@@ -22,7 +22,7 @@ class _SideMenu extends State<SideMenu> {
         children: <Widget>[
           Row(children: <Widget>[],),
           UserAccountsDrawerHeader(
-            accountName: Text("cvDragon"),
+            accountName: Text("My dragon"),
             accountEmail: Text("rohitagarwal17800@gmail.com"),
             currentAccountPicture: CircleAvatar(backgroundColor: Colors.white,),
             otherAccountsPictures: <Widget>[Icon(Icons.edit,color: Colors.white,)],

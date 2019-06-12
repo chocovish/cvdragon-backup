@@ -19,7 +19,8 @@ class Sections extends StatefulWidget {
 }
 
 class _Sections extends State<Sections> {
-  final String url = fetch.urlget();
+  var id=1,authKey=1;
+  final String url = fetch.urlget(id,authKey);
   List data;
   bool _isLoading = false;
   Future<String> getSWData() async {

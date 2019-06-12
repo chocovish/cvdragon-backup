@@ -10,10 +10,8 @@ class TopMenuBar extends StatelessWidget with PreferredSizeWidget{
         title: Text("cvDragon",style: TextStyle(fontSize: 30),),
         backgroundColor: Color(0xff232882),
         actions: <Widget>[IconButton(onPressed:(){},icon: Icon(Icons.sync,color: Colors.white,),tooltip: 'Sync',)],
-        
     );
   }
-    
    Size get preferredSize => Size.fromHeight(60.0);
 
 }

@@ -58,7 +58,6 @@ class _SideMenu extends State<SideMenu> {
                   trailing: Icon(Icons.arrow_forward,color: Colors.white),
                   onTap: () {
                     setState(() {
-                     
                       Navigator.pop(context);
                       Navigator.push(
                           context,
@@ -100,7 +99,6 @@ class _SideMenu extends State<SideMenu> {
                   subtitle: Text('Check your Cover Letters',style: TextStyle(color: Colors.white)),
                   trailing: Icon(Icons.arrow_forward,color: Colors.white),
                   onTap: () {
-                   
                     Navigator.pop(context);
                     Navigator.push(
                         context,

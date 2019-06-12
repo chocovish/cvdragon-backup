@@ -16,11 +16,9 @@ class _MyProfiles extends State <MyProfiles> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Hero(
-      tag:  'MyProfiles',
-      child: Scaffold(
+    return Scaffold(
         body: Center(child: Text("My Profiles",style: TextStyle(fontSize: 50.0),)),
-      )
       );
+      
   }
 }

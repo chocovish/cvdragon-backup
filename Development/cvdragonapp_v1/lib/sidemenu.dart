@@ -55,130 +55,6 @@ class _SideMenu extends State<SideMenu> {
                         Icons.supervised_user_circle,
                         size: 30,
                         color: Colors.white,
-                           fontSize: 15.0)),
-                  leading: Icon(
-                    Icons.supervised_user_circle,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                  subtitle: Text('Check your Profiles',style: TextStyle(color: Colors.white),),
-
-                  trailing: Icon(Icons.arrow_forward,color: Colors.white),
-                  onTap: () {
-                    setState(() {
-                     
-                      Navigator.pop(context);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyProfiles()));
-                    });
-                  },
-                ),
-                Divider(color: Colors.white),
-                ListTile(
-                  title: Text('Sections',
-                      style: TextStyle(
-                          color: Colors.white,
-                           fontSize: 15.0)),
-                  leading: Icon(
-                    Icons.edit,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                  subtitle: Text('View your sections',style: TextStyle(color: Colors.white)),
-                  trailing: Icon(Icons.arrow_forward,color: Colors.white),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Sections()));
-                  },
-                ),
-                Divider(color: Colors.white),
-                ListTile(
-                  title: Text('Cover Letters',
-                      style: TextStyle(
-                          color: Colors.white,
-                           fontSize: 15.0)),
-                  leading: Icon(
-                    Icons.crop_rotate,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                  subtitle: Text('Check your Cover Letters',style: TextStyle(color: Colors.white)),
-                  trailing: Icon(Icons.arrow_forward,color: Colors.white),
-                  onTap: () {
-                   
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CoverLetters()));
-                  },
-                ),
-                Divider(color: Colors.white),
-                ListTile(
-                  title: Text('Institute',
-                      style: TextStyle(
-                          color: Colors.white,
-                           fontSize: 15.0)),
-                  leading: Icon(
-                    Icons.home,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                  subtitle: Text('My Institute Details',style: TextStyle(color: Colors.white)),
-                  trailing: Icon(Icons.arrow_forward,color: Colors.white),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Institutes()));
-                  },
-                ),
-                Divider(color: Colors.white),
-                ListTile(
-                  title: Text('Public Profile',
-                      style: TextStyle(
-                          color: Colors.white,
-                           fontSize: 15.0)),
-                  trailing: Icon(Icons.arrow_forward,color: Colors.white),
-                  leading: Icon(
-                    Icons.supervised_user_circle,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                  subtitle: Text('View Your Public Profile',style: TextStyle(color: Colors.white)),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PublicProfile()));
-                  },
-                ),
-                Divider(color: Colors.white),
-                ListTile(),
-                ListTile(),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          IconButton(
-                            onPressed:(){},
-                            icon: Icon(
-                              Icons.info,
-                              size: 20.0,
-                              color: Colors.white,
-                            ),
-                            tooltip: 'About',
-                          ),
-                          Text(
-                            'About',
-                            style: TextStyle(
-                                fontWeight: FontWeight.normal, fontSize: 10,color: Colors.white),
-                          )
-                        ],
                       ),
                       subtitle: Text(
                         'Check your Profiles',
@@ -195,22 +71,15 @@ class _SideMenu extends State<SideMenu> {
                         });
                       },
                     ),
-                    Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          IconButton(
-                            onPressed:(){},
-                            icon: Icon(
-                              Icons.accessible,
-                              size: 20.0,
-                              color: Colors.white,
-                            ),
-                            tooltip: 'Terms',
-                          ),
-                          Text('Terms',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 10,color: Colors.white))
-                        ],
+                    Divider(color: Colors.white30),
+                    ListTile(
+                      title: Text('Sections',
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 15.0)),
+                      leading: Icon(
+                        Icons.edit,
+                        size: 30,
+                        color: Colors.white,
                       ),
                       subtitle: Text('View your sections',
                           style: TextStyle(color: Colors.white)),
@@ -223,19 +92,15 @@ class _SideMenu extends State<SideMenu> {
                                 builder: (context) => Sections()));
                       },
                     ),
-                    Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          IconButton(
-                            onPressed:(){},
-                            icon: Icon(Icons.apps,
-                                size: 20.0, color: Colors.white),
-                            tooltip: 'Privacy',
-                          ),
-                          Text('Privacy',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 10,color: Colors.white))
-                        ],
+                    Divider(color: Colors.white30),
+                    ListTile(
+                      title: Text('Cover Letters',
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 15.0)),
+                      leading: Icon(
+                        Icons.crop_rotate,
+                        size: 30,
+                        color: Colors.white,
                       ),
                       subtitle: Text('Check your Cover Letters',
                           style: TextStyle(color: Colors.white)),
@@ -248,19 +113,15 @@ class _SideMenu extends State<SideMenu> {
                                 builder: (context) => CoverLetters()));
                       },
                     ),
-                    Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          IconButton(
-                            onPressed:(){},
-                            icon: Icon(Icons.link_off,
-                                size: 20.0, color: Colors.white),
-                            tooltip: 'Logout',
-                          ),
-                          Text('Logout',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 10,color: Colors.white))
-                        ],
+                    Divider(color: Colors.white30),
+                    ListTile(
+                      title: Text('Institute',
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 15.0)),
+                      leading: Icon(
+                        Icons.home,
+                        size: 30,
+                        color: Colors.white,
                       ),
                       subtitle: Text('My Institute Details',
                           style: TextStyle(color: Colors.white)),

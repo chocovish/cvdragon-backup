@@ -50,17 +50,16 @@ List data;
               )
             : Container(
           decoration: BoxDecoration(image:DecorationImage(image: AssetImage("assets/cover.png"),fit: BoxFit.fill)),
-                child: ListView.builder(
+                child: PageView.builder(
                     itemCount: data == null ? 0 : data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
-                        margin: EdgeInsets.only(top: 10),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                        margin: EdgeInsets.only(top:150.0,bottom: 150.0,left: 50.0,right: 50.0),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
                           color: data[index]['defaultSection'].toString() == "0"
                               ? Colors.transparent
                               : Colors.transparent,
                           child: Container(
-                            padding: EdgeInsets.all(25),
                             child:Center(child:Text(data[index]['sectionName'].toString(),
                                 style: TextStyle(
                                   color: Colors.white,

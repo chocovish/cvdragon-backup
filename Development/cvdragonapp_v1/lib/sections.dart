@@ -8,6 +8,7 @@ import './sidemenu.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
+import './urlgenerator.dart'as fetch;
 
 class Sections extends StatefulWidget {
   @override
@@ -18,8 +19,8 @@ class Sections extends StatefulWidget {
 }
 
 class _Sections extends State<Sections> {
-  final String url =
-      "https://cvdragon.com/data/appResourceAPI.php?id=1&authkey=1&data=allSectionsBasicWS";
+  var id=1,authKey=1;
+  final String url = fetch.urlget(id,authKey);
   List data;
   bool _isLoading = false;
   Future<String> getSWData() async {

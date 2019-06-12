@@ -61,15 +61,16 @@ class _Sections extends State<Sections> {
                     itemCount: data == null ? 0 : data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
+                        margin: EdgeInsets.only(top: 10),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
                           color: data[index]['defaultSection'].toString() == "0"
-                              ? Colors.white
-                              : Colors.white,
+                              ? Colors.transparent
+                              : Colors.transparent,
                           child: Container(
                             padding: EdgeInsets.all(25),
                             child:Center(child:Text(data[index]['sectionName'].toString(),
                                 style: TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontSize: 25,
                                 )),)
                           ));

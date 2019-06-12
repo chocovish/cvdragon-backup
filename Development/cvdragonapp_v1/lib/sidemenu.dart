@@ -4,6 +4,7 @@ import './coverletters.dart';
 import './institute.dart';
 import './publicprofile.dart';
 import './sections.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SideMenu extends StatefulWidget {
   @override
@@ -166,6 +167,7 @@ class _SideMenu extends State<SideMenu> {
                           child: Column(
                             children: <Widget>[
                               IconButton(
+                                onPressed:(){},
                                 icon: Icon(
                                   Icons.info,
                                   size: 20.0,
@@ -188,6 +190,7 @@ class _SideMenu extends State<SideMenu> {
                           child: Column(
                             children: <Widget>[
                               IconButton(
+                                onPressed:(){},
                                 icon: Icon(
                                   Icons.accessible,
                                   size: 20.0,
@@ -208,6 +211,7 @@ class _SideMenu extends State<SideMenu> {
                           child: Column(
                             children: <Widget>[
                               IconButton(
+                                onPressed:(){},
                                 icon: Icon(Icons.apps,
                                     size: 20.0, color: Colors.white),
                                 tooltip: 'Privacy',
@@ -225,6 +229,7 @@ class _SideMenu extends State<SideMenu> {
                           child: Column(
                             children: <Widget>[
                               IconButton(
+                                onPressed:(){},
                                 icon: Icon(Icons.link_off,
                                     size: 20.0, color: Colors.white),
                                 tooltip: 'Logout',

@@ -34,27 +34,42 @@ List data;
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: TopMenuBar(),
-       // bottomNavigationBar: BottomBar(),
+        // bottomNavigationBar: BottomBar(),
         drawer: SideMenu(),
-        body: _isLoading?Center(child: Container(height: 75.0,width: 75.0,child:Image(image: AssetImage("assets/logocv.gif")))):
-        ListView.builder(
-            itemCount: data == null ? 0 : data.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Card(
-                color: data[index]['defaultSection'].toString() == "0"
-                    ? Colors.green
-                    : Colors.redAccent,
-                child: Container(
-                    padding: EdgeInsets.all(50),
-                    child: Text(data[index]['sectionName'].toString(),
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,)),
-                                )
-              );
-  }),
-    );
-}
+        body: _isLoading
+            ? DecoratedBox(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/cover.png"),
+                        fit: BoxFit.fill)),
+                child: Center(
+                    child: Image(
+                        image: AssetImage("assets/logocv.gif"),
+                        height: 75.0,
+                        width: 75.0)),
+              )
+            : Container(
+          decoration: BoxDecoration(image:DecorationImage(image: AssetImage("assets/cover.png"),fit: BoxFit.fill)),
+                child: ListView.builder(
+                    itemCount: data == null ? 0 : data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        margin: EdgeInsets.only(top: 10),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                          color: data[index]['defaultSection'].toString() == "0"
+                              ? Colors.transparent
+                              : Colors.transparent,
+                          child: Container(
+                            padding: EdgeInsets.all(25),
+                            child:Center(child:Text(data[index]['sectionName'].toString(),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                )),)
+                          ));
+                    }),
+              ));
+  }
 
   @override
   void initState() {

@@ -9,7 +9,7 @@ class TopMenuBar extends StatelessWidget with PreferredSizeWidget{
       automaticallyImplyLeading: true,
         title: Text("cvDragon",style: TextStyle(fontSize: 30),),
         backgroundColor: Colors.deepPurple,
-        actions: <Widget>[IconButton(icon: Icon(Icons.sync,color: Colors.white,),tooltip: 'Sync',)],
+        actions: <Widget>[IconButton(onPressed:(){},icon: Icon(Icons.sync,color: Colors.white,),tooltip: 'Sync',)],
         
     );
   }

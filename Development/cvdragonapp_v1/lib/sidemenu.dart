@@ -157,6 +157,7 @@ class _SideMenu extends State<SideMenu> {
                       child: Column(
                         children: <Widget>[
                           IconButton(
+                            onPressed:(){},
                             icon: Icon(
                               Icons.info,
                               size: 20.0,
@@ -176,6 +177,7 @@ class _SideMenu extends State<SideMenu> {
                       child: Column(
                         children: <Widget>[
                           IconButton(
+                            onPressed:(){},
                             icon: Icon(
                               Icons.accessible,
                               size: 20.0,
@@ -193,6 +195,7 @@ class _SideMenu extends State<SideMenu> {
                       child: Column(
                         children: <Widget>[
                           IconButton(
+                            onPressed:(){},
                             icon: Icon(Icons.apps,
                                 size: 20.0, color: Colors.white),
                             tooltip: 'Privacy',
@@ -207,6 +210,7 @@ class _SideMenu extends State<SideMenu> {
                       child: Column(
                         children: <Widget>[
                           IconButton(
+                            onPressed:(){},
                             icon: Icon(Icons.link_off,
                                 size: 20.0, color: Colors.white),
                             tooltip: 'Logout',

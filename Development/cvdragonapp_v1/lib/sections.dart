@@ -8,7 +8,7 @@ import './sidemenu.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import './urlgenerator.dart'as fetch;
+import './urlgenerator.dart' as fetch;
 
 class Sections extends StatefulWidget {
   @override
@@ -19,48 +19,63 @@ class Sections extends StatefulWidget {
 }
 
 class _Sections extends State<Sections> {
-  int id=1;
-  int authKey=1;
-   String url = fetch.urlget(1,1);
+  int id = 1;
+  int authKey = 1;
+  String url = fetch.urlget(1, 1);
   List data;
   bool _isLoading = false;
+
   Future<String> getSWData() async {
-    _isLoading =true;
+    _isLoading = true;
     var res = await http.get(url);
 
     setState(() {
-      _isLoading=false;
+      _isLoading = false;
       var resBody = json.decode(res.body);
       data = resBody;
     });
-   // _isLoading=false;
+    // _isLoading=false;
     return "Success!";
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: TopMenuBar(),
-       // bottomNavigationBar: BottomBar(),
+        // bottomNavigationBar: BottomBar(),
         drawer: SideMenu(),
-        body: _isLoading?Center(child: Container(height: 75.0,width: 75.0,child:Image(image: AssetImage("assets/logocv.gif")))):
-        ListView.builder(
-            itemCount: data == null ? 0 : data.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Card(
-                color: data[index]['defaultSection'].toString() == "0"
-                    ? Colors.green
-                    : Colors.redAccent,
-                child: Container(
-                    padding: EdgeInsets.all(50),
-                    child: Text(data[index]['sectionName'].toString(),
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,)),
-                                )
-              );
-  }),
-    );
-}
+        body: _isLoading
+            ? DecoratedBox(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/cover.png"),
+                        fit: BoxFit.fill)),
+                child: Center(
+                    child: Image(
+                        image: AssetImage("assets/logocv.gif"),
+                        height: 75.0,
+                        width: 75.0)),
+              )
+            : Container(
+          decoration: BoxDecoration(image:DecorationImage(image: AssetImage("assets/cover.png"),fit: BoxFit.fill)),
+                child: ListView.builder(
+                    itemCount: data == null ? 0 : data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                          color: data[index]['defaultSection'].toString() == "0"
+                              ? Colors.white
+                              : Colors.white,
+                          child: Container(
+                            padding: EdgeInsets.all(25),
+                            child:Center(child:Text(data[index]['sectionName'].toString(),
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 25,
+                                )),)
+                          ));
+                    }),
+              ));
+  }
 
   @override
   void initState() {

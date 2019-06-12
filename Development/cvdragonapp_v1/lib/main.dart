@@ -4,6 +4,7 @@ import './topmenu.dart';
 import './bottombar_home.dart';
 import './sidemenu.dart';
 import './rightpreviewpane.dart';
+import './login_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,19 +24,17 @@ class _MyApp extends State<MyApp>{
       hometext=t;
      });
    }
+
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
    
     return MaterialApp(
+
       theme: ThemeData( 
         primaryColor: Colors.green,
       ),
-      home:Scaffold(appBar: TopMenuBar(),
-        bottomNavigationBar: BottomBar(_bottompressed),
-        drawer: SideMenu(),
-        body: Center(child: Text(hometext,style: TextStyle(fontSize: 50.0),)),
-        endDrawer: PreviewPane(),
-      )
+
+      home:LoginPage()
     );
   }
 }

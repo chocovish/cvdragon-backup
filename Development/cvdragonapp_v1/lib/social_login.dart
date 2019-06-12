@@ -29,7 +29,7 @@ class SocialIcon extends StatelessWidget {
                 ),
               ),
               Expanded(child: Container(padding: EdgeInsets.only(left: 20,right: 20),child:  CircleAvatar(
-                backgroundImage: ExactAssetImage('assets/images.png'),
+                backgroundImage: ExactAssetImage('assets/google.png'),
                 minRadius: 90,
                 maxRadius: 150,
               ),),),

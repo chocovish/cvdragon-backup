@@ -6,17 +6,6 @@ import 'package:cvdragonapp_v1/social_login.dart';
 
 
 
-class Login extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Login',
-        theme: ThemeData(primarySwatch: Colors.deepPurple),
-        home: LoginPage()
-    );
-
-  }
-}
 
 class LoginPage extends StatefulWidget {
   @override
@@ -40,6 +29,7 @@ class LoginPageState extends State<LoginPage> {
         child: ListView(
           children: <Widget>[
             Container(
+
 //            height: MediaQuery.of(context).size.height/6,
 //            width: MediaQuery.of(context).size.width/6,
               child: animate(),
@@ -71,11 +61,11 @@ Widget animate() {
       builder: (anim) => FractionalTranslation(
           translation: anim.value,
           child: Container(
-//              height: 100,
-//              width: 100,
+              height: 100,
+            width: 100,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: new AssetImage('assets/giflogo2.gif'),
+                  image: new AssetImage('assets/logocv.gif'),
                 )),
           )));
 }

@@ -42,21 +42,20 @@ class _Sections extends State<Sections> {
         appBar: TopMenuBar(),
        // bottomNavigationBar: BottomBar(),
         drawer: SideMenu(),
-        body: _isLoading?Center(child: CircularProgressIndicator(backgroundColor: Color(0xff232882),)):
+        body: _isLoading?Center(child: Container(height: 75.0,width: 75.0,child:Image(image: AssetImage("assets/logocv.gif")))):
         ListView.builder(
             itemCount: data == null ? 0 : data.length,
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 color: data[index]['defaultSection'].toString() == "0"
                     ? Colors.green
-                    : Colors.red,
+                    : Colors.redAccent,
                 child: Container(
-                    padding: EdgeInsets.all(5),
+                    padding: EdgeInsets.all(50),
                     child: Text(data[index]['sectionName'].toString(),
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold)),
+                            fontSize: 25,)),
                                 )
               );
   }),

@@ -1,14 +1,13 @@
 import 'dart:ui' as prefix0;
-
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'dart:async';
-import './urlgenerator.dart' as fetch;
+import './fetch.dart'as fetch;
+import 'package:http/http.dart' as http;
 
 class Sections extends StatefulWidget {
   @override
@@ -19,24 +18,18 @@ class Sections extends StatefulWidget {
 }
 
 class _Sections extends State<Sections> {
-  int id = 1;
-  int authKey = 1;
-  String url = fetch.urlget(1, 1);
-  List data;
-  bool _isLoading = false;
-
-  Future<String> getSWData() async {
-    _isLoading = true;
-    var res = await http.get(url);
-
-    setState(() {
-      _isLoading = false;
-      var resBody = json.decode(res.body);
-      data = resBody;
-    });
-    // _isLoading=false;
-    return "Success!";
-  }
+  int id=1;
+  int authkey=1;
+  bool _isLoading = true;
+List data;
+  void get() {
+  fetch.getSectionData().then((List res){
+  setState(() {
+    data=res;
+  _isLoading=false;
+  });
+   });  
+    }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,15 +54,16 @@ class _Sections extends State<Sections> {
                     itemCount: data == null ? 0 : data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
+                        margin: EdgeInsets.only(top: 10),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
                           color: data[index]['defaultSection'].toString() == "0"
-                              ? Colors.white
-                              : Colors.white,
+                              ? Colors.transparent
+                              : Colors.transparent,
                           child: Container(
                             padding: EdgeInsets.all(25),
                             child:Center(child:Text(data[index]['sectionName'].toString(),
                                 style: TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   fontSize: 25,
                                 )),)
                           ));
@@ -80,6 +74,6 @@ class _Sections extends State<Sections> {
   @override
   void initState() {
     super.initState();
-    this.getSWData();
+    this.get();
   }
 }

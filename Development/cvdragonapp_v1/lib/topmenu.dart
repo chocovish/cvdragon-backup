@@ -8,12 +8,10 @@ class TopMenuBar extends StatelessWidget with PreferredSizeWidget{
     return AppBar(
       automaticallyImplyLeading: true,
         title: Text("cvDragon",style: TextStyle(fontSize: 30),),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Color(0xff232882),
         actions: <Widget>[IconButton(onPressed:(){},icon: Icon(Icons.sync,color: Colors.white,),tooltip: 'Sync',)],
-        
     );
   }
-    
    Size get preferredSize => Size.fromHeight(60.0);
 
 }

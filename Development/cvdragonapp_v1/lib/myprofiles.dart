@@ -17,8 +17,8 @@ class _MyProfiles extends State <MyProfiles> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-        body: Center(child: Text("My Profiles",style: TextStyle(fontSize: 50.0),)),
-      );
-      
+      body: Center(child: Text("My Profiles",style: TextStyle(fontSize: 50.0),)),
+    );
+
   }
 }

@@ -96,11 +96,7 @@ class LoginFormCardState extends State<LoginFormCard> {
             ),
             child: InkWell(
               onTap: () {
-<<<<<<< HEAD
                //Navigator.push(context, MaterialPageRoute(builder: (context)=>()));
-=======
-//                Navigator.push(context, MaterialPageRoute(builder: (context)=>()));
->>>>>>> cd94056769dd8c1bfeb841bb35d25d85d324592b
               },
               child: Center(
                 child: Text(

@@ -16,6 +16,11 @@ class HomePagee extends StatefulWidget {
 }
 
 class _HomePagee extends State<HomePagee> {
+  void _selectedTab(int index) {
+    setState(() {
+      print(index);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -24,7 +29,7 @@ class _HomePagee extends State<HomePagee> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pinkAccent,
-        onPressed: () {},
+        onPressed: () {_selectedTab(5);},
         child: Icon(
           Icons.home,
           color: Colors.white,
@@ -37,6 +42,7 @@ class _HomePagee extends State<HomePagee> {
       endDrawer: PreviewPane(),
       body: _buildCardView(),
       bottomNavigationBar: FABBottomAppBar(
+        onTabSelected: _selectedTab,
         notchedShape: CircularNotchedRectangle(),
         color: Colors.white30,
         centerItemText: "Home",

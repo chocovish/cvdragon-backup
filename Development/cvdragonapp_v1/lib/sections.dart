@@ -51,122 +51,62 @@ class _Sections extends State<Sections> {
                         width: 75.0)),
               )
             : Container(
+                padding: EdgeInsets.only(top:0.0,bottom: 15.0,right: 10.0,left: 10.0),
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage("assets/cover.png"),
                         fit: BoxFit.fill)),
-                child: ListView.builder(
-                    padding: EdgeInsets.all(5.0),
-                    itemCount: data == null ? 0 : data.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                          margin: EdgeInsets.only(top: 10),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0)),
-                          color: data[index]['defaultSection'].toString() == "0"
-                              ? Colors.red
-                              : Colors.green,
-                          child: Container(
-                              padding: EdgeInsets.only(
-                                  top: 10, left: 10, right: 10, bottom: 30),
-                              child: Column(
-                                children: <Widget>[
-                                  Row(children: <Widget>[
-                                    Container(
-                                      padding: EdgeInsets.only(right: 10),
-                                      child: Image(
-                                          image: new AssetImage("assets/" +
-                                              data[index]['sectionName']
-                                                  .toString() +
-                                              ".png"),
-                                          color: null,
-                                          height: 40,
-                                          width: 40,
-                                          fit: BoxFit.fitHeight),
-                                      //new Tab(icon: new Image.asset("assets/Position of Responsibility.png")),
-                                    ),
-                                    Container(
-                                      child: Text(
-                                          data[index]['sectionName'].toString(),
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 17,
-                                          )),
-                                    ),
-                                  ]),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        left: 50.0, bottom: 25.0),
-                                    child: Text(
-                                      "Enter details about all the responsibilities you have handled and is worth mentioning in your resume",
-                                      style: TextStyle(
-                                          color: Colors.white70,
-                                          fontStyle: FontStyle.italic),
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                child: Scrollbar(
+                    child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        itemCount: data == null ? 0 : data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Card(
+                              margin: EdgeInsets.only(top: 10),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0)),
+                              color: Colors.white,
+                              child: Container(
+                                  padding: EdgeInsets.only(
+                                      top: 10, left: 10, right: 10, bottom: 30),
+                                  child: Column(
                                     children: <Widget>[
-                                      InkWell(
-                                        onTap: () {},
-                                        child: Container(
-                                            height: 40.0,
-                                            width: 100.0,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(25.0),
-                                                color: Colors.green),
-                                            child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Icon(
-                                                  Icons.add,
-                                                  color: Colors.white,
-                                                  size: 18.0,
-                                                ),
-                                                Text(
-                                                  "Create",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 18.0,
-                                                      letterSpacing: 1.0),
-                                                ),
-                                              ],
-                                            )),
-                                      ),
-                                      InkWell(
-                                        onTap: () {},
-                                        child: Container(
-                                            height: 40.0,
-                                            width: 100.0,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(25.0),
-                                                color: Colors.green),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Icon(
-                                                  Icons.edit,
-                                                  color: Colors.white,
-                                                  size: 18.0,
-                                                ),
-                                                Text(
-                                                  "Edit",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 18.0,
-                                                      letterSpacing: 1.0),
-                                                ),
-                                              ],
-                                            )),
+                                      Row(children: <Widget>[
+                                        Container(
+                                          padding: EdgeInsets.only(right: 10),
+                                          child: Image(
+                                              image: new AssetImage("assets/" +
+                                                  data[index]['sectionName']
+                                                      .toString() +
+                                                  ".png"),
+                                              color: null,
+                                              height: 40,
+                                              width: 40,
+                                              fit: BoxFit.fitHeight),
+                                        ),
+                                        Container(
+                                          child: Text(
+                                              data[index]['sectionName']
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  color: Color(0xffff1e50),
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
+                                      ]),
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                            left: 50.0, bottom: 10.0),
+                                        child: Text(
+                                          "Enter details about all the responsibilities you have handled and is worth mentioning in your resume",
+                                          style: TextStyle(
+                                            color: Color(0xff232882),
+                                          ),
+                                        ),
                                       ),
                                     ],
-                                  )
-                                ],
-                              )));
-                    }),
+                                  )));
+                        })),
               ));
   }
 

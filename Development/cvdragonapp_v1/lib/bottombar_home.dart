@@ -1,63 +1,117 @@
-import 'package:cvdragonapp_v1/rightpreviewpane.dart';
 import 'package:flutter/material.dart';
-import './main.dart';
-import './bottombar_home.dart';
-class BottomBar extends StatefulWidget{
-  final Function pressed;
-  BottomBar(this.pressed);
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _BottomBar(pressed);
-  }
+
+class FABBottomAppBarItem {
+  FABBottomAppBarItem({this.iconData, this.text});
+  IconData iconData;
+  String text;
 }
 
-class _BottomBar extends State <BottomBar>{
-  final Function pressed;
-  _BottomBar(this.pressed);
-  int _selectedIndex=2;
-  void _onItemTapped(int index) {
-  setState(() {
-    _selectedIndex = index; 
-    pressed('Home Pressed');
-  });
+class FABBottomAppBar extends StatefulWidget {
+  FABBottomAppBar({
+    this.items,
+    this.centerItemText,
+    this.height: 60.0,
+    this.iconSize: 24.0,
+    this.backgroundColor,
+    this.color,
+    this.selectedColor,
+    this.notchedShape,
+    this.onTabSelected,
+  }) {
+    assert(this.items.length == 2 || this.items.length == 4);
+  }
+  final List<FABBottomAppBarItem> items;
+  final String centerItemText;
+  final double height;
+  final double iconSize;
+  final Color backgroundColor;
+  final Color color;
+  final Color selectedColor;
+  final NotchedShape notchedShape;
+  final ValueChanged<int> onTabSelected;
+
+  @override
+  State<StatefulWidget> createState() => FABBottomAppBarState();
 }
+
+class FABBottomAppBarState extends State<FABBottomAppBar> {
+  int _selectedIndex = 2;
+
+  _updateIndex(int index) {
+    widget.onTabSelected(index);
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return  BottomNavigationBar(
-      iconSize: 35.0,
-      type: BottomNavigationBarType.fixed,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.import_contacts),
-          title: Text('Knowledge'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.mode_edit),
-          title: Text('Sections'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text('Home'),
-        ),
-         BottomNavigationBarItem(
-          icon: Icon(Icons.swap_vert),
-          title: Text('Profiles'),
-        ),
-         BottomNavigationBarItem(
-          icon: Icon(Icons.visibility),
-          title: Text('Preview'),
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Color(0xff232882),
-      backgroundColor: Colors.white, 
-      showSelectedLabels: true,
-      showUnselectedLabels: true,
-      unselectedItemColor: Colors.black,
-       onTap: _onItemTapped,
-      
+    List<Widget> items = List.generate(widget.items.length, (int index) {
+      return _buildTabItem(
+        item: widget.items[index],
+        index: index,
+        onPressed: _updateIndex,
+      );
+    });
+    items.insert(items.length >> 1, _buildMiddleTabItem());
+
+    return BottomAppBar(
+      shape: widget.notchedShape,
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: items,
+      ),
+      color: widget.backgroundColor,
     );
   }
 
+  Widget _buildMiddleTabItem() {
+    return Expanded(
+      child: SizedBox(
+        height: widget.height,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: widget.iconSize),
+            Text(
+              widget.centerItemText ?? '',
+              style: TextStyle(color: Colors.pinkAccent),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTabItem({
+    FABBottomAppBarItem item,
+    int index,
+    ValueChanged<int> onPressed,
+  }) {
+    Color color = _selectedIndex == index ? widget.selectedColor : widget.color;
+    return Expanded(
+      child: SizedBox(
+        height: widget.height,
+        child: Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            onTap: () => onPressed(index),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(item.iconData, color: color, size: widget.iconSize),
+                Text(
+                  item.text,
+                  style: TextStyle(color: color),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

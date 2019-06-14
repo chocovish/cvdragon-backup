@@ -3,6 +3,7 @@ import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
+import './rightpreviewpane.dart';
 
 class HomePagee extends StatefulWidget {
   @override
@@ -31,8 +32,11 @@ class _HomePagee extends State<HomePagee> {
       appBar: TopMenuBar(),
       //bottomNavigationBar: BottomBar(),
       drawer: SideMenu(),
-      body:_buildCardView(),
-      bottomNavigationBar: FABBottomAppBar(notchedShape:CircularNotchedRectangle() ,color: Colors.white30,
+      endDrawer: PreviewPane(),
+      body: _buildCardView(),
+      bottomNavigationBar: FABBottomAppBar(
+        notchedShape: CircularNotchedRectangle(),
+        color: Colors.white30,
         centerItemText: "Home",
         backgroundColor: Color(0xff232882),
         selectedColor: Colors.white,
@@ -51,15 +55,23 @@ class _HomePagee extends State<HomePagee> {
 Widget _buildCardView() {
   return Scaffold(
     body: Card(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           const ListTile(
-            leading: Icon(Icons.account_circle,size: 30,),
-            title: Text('Hello User',style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.w500),),
-            subtitle: Text('Your Subscription: ',style: TextStyle(fontSize: 14.0),),
+            leading: Icon(
+              Icons.account_circle,
+              size: 30,
+            ),
+            title: Text(
+              'Hello User',
+              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500),
+            ),
+            subtitle: Text(
+              'Your Subscription: ',
+              style: TextStyle(fontSize: 14.0),
+            ),
           ),
         ],
       ),

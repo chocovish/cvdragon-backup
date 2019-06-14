@@ -1,4 +1,5 @@
-
+import './design_drawer.dart';
+import 'package:cvdragonapp_v1/design_drawer.dart';
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatefulWidget{
@@ -8,6 +9,8 @@ class BottomBar extends StatefulWidget{
     return _BottomBar();
   }
 }
+final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
 
 class _BottomBar extends State <BottomBar>{
 
@@ -15,15 +18,23 @@ int _selectedIndex=2;
   void _onItemTapped(int index) {
   setState(() {
     _selectedIndex = index;
-    if(index==4)
+    if(index==1)
     {
+      
+      _scaffoldKey.currentState.openDrawer();
     } 
   });
 }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return  BottomNavigationBar(
+    return  Scaffold(
+    key: _scaffoldKey,
+    drawer: Drawer(
+    child: DesignDrawer(),
+    ),
+    
+      bottomNavigationBar:BottomNavigationBar(
       iconSize: 35.0,
       type: BottomNavigationBarType.fixed,
       items: const <BottomNavigationBarItem>[
@@ -55,6 +66,10 @@ int _selectedIndex=2;
       showUnselectedLabels: true,
       unselectedItemColor: Colors.black,
       onTap: _onItemTapped,
-    );
+      ),
+      
+    
+      );
+    
   }
 }

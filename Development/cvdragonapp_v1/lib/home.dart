@@ -1,3 +1,5 @@
+import 'package:cvdragonapp_v1/donut.dart';
+import 'package:cvdragonapp_v1/rightpreviewpane.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
@@ -31,6 +33,7 @@ class _HomePagee extends State<HomePagee> {
       appBar: TopMenuBar(),
       //bottomNavigationBar: BottomBar(),
       drawer: SideMenu(),
+      endDrawer: PreviewPane(),
       body:_buildCardView(),
       bottomNavigationBar: FABBottomAppBar(notchedShape:CircularNotchedRectangle() ,color: Colors.white30,
         centerItemText: "Home",
@@ -50,7 +53,7 @@ class _HomePagee extends State<HomePagee> {
 
 Widget _buildCardView() {
   return Scaffold(
-    body: Card(
+    body: ListView(children: <Widget>[Card(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0)),
       child: Column(
@@ -60,9 +63,23 @@ Widget _buildCardView() {
             leading: Icon(Icons.account_circle,size: 30,),
             title: Text('Hello User',style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.w500),),
             subtitle: Text('Your Subscription: ',style: TextStyle(fontSize: 14.0),),
-          ),
+          ), 
+          
         ],
+        
+
+        
       ),
+    ),
+    Card(shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0)),
+          child: DonutPieChart.withSampleData(),
+          //(
+        // mainAxisSize: MainAxisSize.min,
+        // children: <Widget>[DonutPieChart.withSampleData()],
+        // ),
+    ),
+    ],
     ),
   );
 }

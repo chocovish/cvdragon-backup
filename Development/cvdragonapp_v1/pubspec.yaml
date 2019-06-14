@@ -59,8 +59,10 @@ flutter:
     - assets/cover.png
     - assets/giflogo2.gif
     - assets/Position of Responsibility.png
+    - assets/coverLetter.png
+    - assets/fonts.png
     - assets/Profile Image.png
-
+    - assets/logofull.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

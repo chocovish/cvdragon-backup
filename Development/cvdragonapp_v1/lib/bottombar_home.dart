@@ -1,90 +1,117 @@
-import 'package:cvdragonapp_v1/rightpreviewpane.dart';
 import 'package:flutter/material.dart';
-import './main.dart';
-import './bottombar_home.dart';
 
-class BottomBar extends StatefulWidget{
-  //final Function pressed;
- // BottomBar();
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _BottomBar();
-  }
+class FABBottomAppBarItem {
+  FABBottomAppBarItem({this.iconData, this.text});
+  IconData iconData;
+  String text;
 }
 
-class _BottomBar extends State <BottomBar> {
+class FABBottomAppBar extends StatefulWidget {
+  FABBottomAppBar({
+    this.items,
+    this.centerItemText,
+    this.height: 60.0,
+    this.iconSize: 24.0,
+    this.backgroundColor,
+    this.color,
+    this.selectedColor,
+    this.notchedShape,
+    this.onTabSelected,
+  }) {
+    assert(this.items.length == 2 || this.items.length == 4);
+  }
+  final List<FABBottomAppBarItem> items;
+  final String centerItemText;
+  final double height;
+  final double iconSize;
+  final Color backgroundColor;
+  final Color color;
+  final Color selectedColor;
+  final NotchedShape notchedShape;
+  final ValueChanged<int> onTabSelected;
+
+  @override
+  State<StatefulWidget> createState() => FABBottomAppBarState();
+}
+
+class FABBottomAppBarState extends State<FABBottomAppBar> {
+  int _selectedIndex = 2;
+
+  _updateIndex(int index) {
+    widget.onTabSelected(index);
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return BottomAppBar(
+    List<Widget> items = List.generate(widget.items.length, (int index) {
+      return _buildTabItem(
+        item: widget.items[index],
+        index: index,
+        onPressed: _updateIndex,
+      );
+    });
+    items.insert(items.length >> 1, _buildMiddleTabItem());
 
-      //iconSize: 35.0,
+    return BottomAppBar(
+      shape: widget.notchedShape,
       child: Row(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //type: BottomNavigationBarType.fixed,
-
-        children: <Widget>[
-          IconButton(icon: Icon(Icons.import_contacts), onPressed: () {},),
-          IconButton(icon: Icon(Icons.menu), onPressed: () {},),
-          IconButton(icon: Icon(Icons.menu), onPressed: () {},),
-          IconButton(icon: Icon(Icons.menu), onPressed: () {},),
-
-        ],
-
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: items,
       ),
-//        BottomNavigationBarItem(
-//          icon: Icon(Icons.import_contacts),
-//          title: Text('Knowledge'),
-//        ),
-//        BottomNavigationBarItem(
-//          icon: Icon(Icons.mode_edit),
-//          title: Text('Sections'),
-//        ),
-//        BottomNavigationBarItem(
-//          icon: Icon(Icons.home),
-//          title: Text('Home'),
-//        ),
-//         BottomNavigationBarItem(
-//          icon: Icon(Icons.swap_vert),
-//          title: Text('Profiles'),
-//        ),
-//         BottomNavigationBarItem(
-//          icon: Icon(Icons.visibility),
-//          title: Text('Preview'),
-//        ),
-//
-//
-//      currentIndex: _selectedIndex,
-//      selectedItemColor: Color(0xff232882),
-//      backgroundColor: Colors.white,
-//      showSelectedLabels: true,
-//      showUnselectedLabels: true,
-//      unselectedItemColor: Colors.black,
-//       onTap: _onItemTapped,
-//
-//    );
+      color: widget.backgroundColor,
     );
   }
 
-}
+  Widget _buildMiddleTabItem() {
+    return Expanded(
+      child: SizedBox(
+        height: widget.height,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: widget.iconSize),
+            Text(
+              widget.centerItemText ?? '',
+              style: TextStyle(color: Colors.pinkAccent),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-//return  Scaffold(
-//floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-//floatingActionButton: FloatingActionButton(
-//onPressed: () { },
-//tooltip: 'Increment',
-//child: Icon(Icons.add),
-//elevation: 3
-//),
-//bottomNavigationBar: BottomAppBar(
-//child: Container(
-////mainAxisSize: MainAxisSize.max,
-//height: 60.0,
-////mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//
-//
-////notchedShape: CircularNotchedRectangle(),
-//color: Colors.blueGrey,
-//),
-//)
+  Widget _buildTabItem({
+    FABBottomAppBarItem item,
+    int index,
+    ValueChanged<int> onPressed,
+  }) {
+    Color color = _selectedIndex == index ? widget.selectedColor : widget.color;
+    return Expanded(
+      child: SizedBox(
+        height: widget.height,
+        child: Material(
+          type: MaterialType.transparency,
+          child: InkWell(
+            onTap: () => onPressed(index),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(item.iconData, color: color, size: widget.iconSize),
+                Text(
+                  item.text,
+                  style: TextStyle(color: color),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

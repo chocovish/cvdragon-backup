@@ -51,40 +51,47 @@ class _Sections extends State<Sections> {
                   width: 75.0)),
         )
             : Container(
-          decoration: BoxDecoration(image: DecorationImage(
-              image: AssetImage("assets/cover.png"), fit: BoxFit.fill)),
-          child: ListView.builder(
-              itemCount: data == null ? 0 : data.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                    margin: EdgeInsets.only(top: 10),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                    color: data[index]['defaultSection'].toString() == "0"
-                        ? Colors.red
-                        : Colors.green,
-                    child: Container(
-                        padding: EdgeInsets.all(25),
-                        child: Row(children: < Widget > [
-                          Container(
-
-                            padding: EdgeInsets.only(right: 10),
-                            child:
-                          Image(image: new AssetImage("assets/"+data[index]['sectionName'].toString()+".png"),color: null,height: 40,width: 40,fit: BoxFit.fitHeight),
-                            //new Tab(icon: new Image.asset("assets/Position of Responsibility.png")),
-                          ),
-
-                          Container(
-                            child: Text(data[index]['sectionName'].toString(),
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 17,
-                                )),)
-                        ]
-                        )
-                    ));
-              }),
-        ));
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/cover.png"),
+                        fit: BoxFit.fill)),
+                child: ListView.builder(
+                    itemCount: data == null ? 0 : data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                          margin: EdgeInsets.only(top: 10),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          color: data[index]['defaultSection'].toString() == "0"
+                              ? Colors.red
+                              : Colors.green,
+                          child: Container(
+                              padding: EdgeInsets.all(25),
+                              child: Row(children: <Widget>[
+                                Container(
+                                  padding: EdgeInsets.only(right: 10),
+                                  child: Image(
+                                      image: new AssetImage("assets/" +
+                                          data[index]['sectionName']
+                                              .toString() +
+                                          ".png"),
+                                      color: null,
+                                      height: 40,
+                                      width: 40,
+                                      fit: BoxFit.fitHeight),
+                                  //new Tab(icon: new Image.asset("assets/Position of Responsibility.png")),
+                                ),
+                                Container(
+                                  child: Text(
+                                      data[index]['sectionName'].toString(),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 17,
+                                      )),
+                                )
+                              ])));
+                    }),
+              ));
   }
 
   @override

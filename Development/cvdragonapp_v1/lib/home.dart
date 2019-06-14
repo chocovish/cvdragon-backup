@@ -3,15 +3,8 @@ import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
-import './rightpreviewpane.dart';
-//import './donut.dart';
-import './HomePage.dart';
-import 'package:flutter_circular_chart/flutter_circular_chart.dart';
 
-//final GlobalKey<AnimatedCircularChartState> _chartKey = new GlobalKey<AnimatedCircularChartState>();
-
-class HomePagee extends StatefulWidget{
-
+class HomePagee extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -19,27 +12,38 @@ class HomePagee extends StatefulWidget{
   }
 }
 
-class _HomePagee extends State <HomePagee> {
-
-
-
+class _HomePagee extends State<HomePagee> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 
-    return Scaffold(appBar: TopMenuBar(),
+    return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-          onPressed: () { },
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
-          elevation: 3
+        backgroundColor: Colors.pinkAccent,
+        onPressed: () {},
+        child: Icon(
+          Icons.home,
+          color: Colors.white,
+        ),
+        elevation: 0.0,
       ),
-      bottomNavigationBar: BottomBar(),
-      endDrawer: PreviewPane(),
+      appBar: TopMenuBar(),
+      //bottomNavigationBar: BottomBar(),
       drawer: SideMenu(),
-      body: _buildCardView(),
-
+      body:_buildCardView(),
+      bottomNavigationBar: FABBottomAppBar(notchedShape:CircularNotchedRectangle() ,color: Colors.white30,
+        centerItemText: "Home",
+        backgroundColor: Color(0xff232882),
+        selectedColor: Colors.white,
+        items: [
+          FABBottomAppBarItem(
+              iconData: Icons.import_contacts, text: 'Knowledge'),
+          FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
+          FABBottomAppBarItem(iconData: Icons.swap_vert, text: 'Profiles'),
+          FABBottomAppBarItem(iconData: Icons.visibility, text: 'Preview'),
+        ],
+      ),
     );
   }
 }

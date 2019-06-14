@@ -40,56 +40,132 @@ class _Sections extends State<Sections> {
         drawer: SideMenu(),
         body: _isLoading
             ? DecoratedBox(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/cover.png"),
-                  fit: BoxFit.fill)),
-          child: Center(
-              child: Image(
-                  image: AssetImage("assets/logocv.gif"),
-                  height: 75.0,
-                  width: 75.0)),
-        )
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/cover.png"),
+                        fit: BoxFit.fill)),
+                child: Center(
+                    child: Image(
+                        image: AssetImage("assets/logocv.gif"),
+                        height: 75.0,
+                        width: 75.0)),
+              )
             : Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage("assets/cover.png"),
                         fit: BoxFit.fill)),
                 child: ListView.builder(
+                    padding: EdgeInsets.all(5.0),
                     itemCount: data == null ? 0 : data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
                           margin: EdgeInsets.only(top: 10),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
+                              borderRadius: BorderRadius.circular(20.0)),
                           color: data[index]['defaultSection'].toString() == "0"
                               ? Colors.red
                               : Colors.green,
                           child: Container(
-                              padding: EdgeInsets.all(25),
-                              child: Row(children: <Widget>[
-                                Container(
-                                  padding: EdgeInsets.only(right: 10),
-                                  child: Image(
-                                      image: new AssetImage("assets/" +
-                                          data[index]['sectionName']
-                                              .toString() +
-                                          ".png"),
-                                      color: null,
-                                      height: 40,
-                                      width: 40,
-                                      fit: BoxFit.fitHeight),
-                                  //new Tab(icon: new Image.asset("assets/Position of Responsibility.png")),
-                                ),
-                                Container(
-                                  child: Text(
-                                      data[index]['sectionName'].toString(),
+                              padding: EdgeInsets.only(
+                                  top: 10, left: 10, right: 10, bottom: 30),
+                              child: Column(
+                                children: <Widget>[
+                                  Row(children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.only(right: 10),
+                                      child: Image(
+                                          image: new AssetImage("assets/" +
+                                              data[index]['sectionName']
+                                                  .toString() +
+                                              ".png"),
+                                          color: null,
+                                          height: 40,
+                                          width: 40,
+                                          fit: BoxFit.fitHeight),
+                                      //new Tab(icon: new Image.asset("assets/Position of Responsibility.png")),
+                                    ),
+                                    Container(
+                                      child: Text(
+                                          data[index]['sectionName'].toString(),
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 17,
+                                          )),
+                                    ),
+                                  ]),
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                        left: 50.0, bottom: 25.0),
+                                    child: Text(
+                                      "Enter details about all the responsibilities you have handled and is worth mentioning in your resume",
                                       style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 17,
-                                      )),
-                                )
-                              ])));
+                                          color: Colors.white70,
+                                          fontStyle: FontStyle.italic),
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                            height: 40.0,
+                                            width: 100.0,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(25.0),
+                                                color: Colors.green),
+                                            child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Icon(
+                                                  Icons.add,
+                                                  color: Colors.white,
+                                                  size: 18.0,
+                                                ),
+                                                Text(
+                                                  "Create",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18.0,
+                                                      letterSpacing: 1.0),
+                                                ),
+                                              ],
+                                            )),
+                                      ),
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                            height: 40.0,
+                                            width: 100.0,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(25.0),
+                                                color: Colors.green),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Icon(
+                                                  Icons.edit,
+                                                  color: Colors.white,
+                                                  size: 18.0,
+                                                ),
+                                                Text(
+                                                  "Edit",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18.0,
+                                                      letterSpacing: 1.0),
+                                                ),
+                                              ],
+                                            )),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              )));
                     }),
               ));
   }

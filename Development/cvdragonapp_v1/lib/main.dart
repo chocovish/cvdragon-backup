@@ -5,8 +5,12 @@ import './bottombar_home.dart';
 import './sidemenu.dart';
 import './rightpreviewpane.dart';
 import './login_page.dart';
+import 'package:flutter/rendering.dart';
 
-void main() => runApp(MyApp());
+void main() {
+//  debugPaintSizeEnabled = true;
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
 

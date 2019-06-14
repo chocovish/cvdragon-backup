@@ -22,6 +22,7 @@ dependencies:
     sdk: flutter
   charts_flutter: ^0.6.0
   animator: ^0.1.2
+  photo_view: 
 
   flutter_screenutil: ^0.3.0
 
@@ -63,6 +64,7 @@ flutter:
     - assets/fonts.png
     - assets/Profile Image.png
     - assets/logofull.png
+    - assets/cv.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,20 +1,14 @@
+import 'package:cvdragonapp_v1/topmenu.dart';
 import 'package:flutter/material.dart';
 import './bottombar_preview.dart';
-<<<<<<< HEAD
-import './topmenu.dart';
-=======
+import 'package:photo_view/photo_view.dart';
 
->>>>>>> 6e0d48fe4e29378d725e2c87af7d57db49535c90
 class PreviewPane extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return  Scaffold(
-<<<<<<< HEAD
-      appBar: TopMenuBar(),
-      backgroundColor: Colors.white,
-=======
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.pinkAccent,
@@ -25,9 +19,16 @@ class PreviewPane extends StatelessWidget{
           ),
           elevation: 0.0,
         ),
-      backgroundColor: Color(0xff232882),
->>>>>>> 6e0d48fe4e29378d725e2c87af7d57db49535c90
-      body: Center(child: Text('Preview Page'),),
+      appBar: TopMenuBar(),
+      backgroundColor: Colors.white,
+      body: Container(child: PhotoView(
+        imageProvider: AssetImage("assets/cv.png"),
+        minScale: PhotoViewComputedScale.contained * 0.8,
+        maxScale: PhotoViewComputedScale.covered * 1.8,
+        customSize: MediaQuery.of(context).size,
+        initialScale: PhotoViewComputedScale.contained * 1.0,
+      ),
+      ),
       bottomNavigationBar: FABBottomAppBar(notchedShape:CircularNotchedRectangle() ,color: Colors.white30,
         centerItemText: "Download",
         backgroundColor: Color(0xff232882),

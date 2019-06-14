@@ -35,15 +35,10 @@ class _HomePagee extends State<HomePagee> {
       //bottomNavigationBar: BottomBar(),
       drawer: SideMenu(),
       endDrawer: PreviewPane(),
-<<<<<<< HEAD
-      body:_buildCardView(),
-      bottomNavigationBar: FABBottomAppBar(notchedShape:CircularNotchedRectangle() ,color: Colors.white30,
-=======
       body: _buildCardView(),
       bottomNavigationBar: FABBottomAppBar(
         notchedShape: CircularNotchedRectangle(),
         color: Colors.white30,
->>>>>>> 6e0d48fe4e29378d725e2c87af7d57db49535c90
         centerItemText: "Home",
         backgroundColor: Color(0xff232882),
         selectedColor: Colors.white,
@@ -61,25 +56,12 @@ class _HomePagee extends State<HomePagee> {
 
 Widget _buildCardView() {
   return Scaffold(
-<<<<<<< HEAD
-    body: ListView(children: <Widget>[Card(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0)),
-=======
     body: Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
->>>>>>> 6e0d48fe4e29378d725e2c87af7d57db49535c90
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           const ListTile(
-<<<<<<< HEAD
-            leading: Icon(Icons.account_circle,size: 30,),
-            title: Text('Hello User',style: TextStyle(fontSize: 25.0,fontWeight: FontWeight.w500),),
-            subtitle: Text('Your Subscription: ',style: TextStyle(fontSize: 14.0),),
-          ), 
-          
-=======
             leading: Icon(
               Icons.account_circle,
               size: 30,
@@ -93,22 +75,15 @@ Widget _buildCardView() {
               style: TextStyle(fontSize: 14.0),
             ),
           ),
->>>>>>> 6e0d48fe4e29378d725e2c87af7d57db49535c90
         ],
         
 
         
       ),
     ),
-    Card(shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0)),
-          child: DonutPieChart.withSampleData(),
-          //(
-        // mainAxisSize: MainAxisSize.min,
-        // children: <Widget>[DonutPieChart.withSampleData()],
-        // ),
-    ),
-    ],
-    ),
+    
   );
+    
+    
+  
 }

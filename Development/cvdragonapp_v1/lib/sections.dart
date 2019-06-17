@@ -8,6 +8,7 @@ import './sidemenu.dart';
 import 'dart:async';
 import './fetch.dart'as fetch;
 import 'package:http/http.dart' as http;
+import 'main.dart'as main;
 
 class Sections extends StatefulWidget {
   @override
@@ -28,7 +29,7 @@ List data;
     data=res;
   _isLoading=false;
   });
-   });  
+   });
     }
 
   Widget build(BuildContext context) {

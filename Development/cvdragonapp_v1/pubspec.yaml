@@ -21,7 +21,11 @@ dependencies:
   flutter:
     sdk: flutter
   animator: ^0.1.2
+  path_provider: ^1.1.0
   flutter_screenutil: ^0.3.0
+  shared_preferences: ^0.4.3
+  sqflite: ^1.0.0
+  intl: ^0.15.7
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -56,7 +60,7 @@ flutter:
     - assets/logocv.gif
     - assets/cover.png
     - assets/giflogo2.gif
-
+    - assets/sections.db
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

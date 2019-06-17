@@ -5,6 +5,10 @@ import './bottombar_home.dart';
 import './sidemenu.dart';
 import './rightpreviewpane.dart';
 import './login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import './earlyfetch.dart'as efetch;
+import './sharedfetch.dart'as sfetch;
+String name,email;
 
 void main() => runApp(MyApp());
 
@@ -19,6 +23,26 @@ class MyApp extends StatefulWidget {
 }
 class _MyApp extends State<MyApp>{
   var hometext="Home";
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    this.get();
+  }
+  void get(){
+      efetch.DatabaseFetch();
+      sfetch.readname().then((String n){
+      setState(() { 
+       name=n;
+      });
+    });
+      sfetch.readmail().then((String mail){
+      setState(() { 
+       email=mail;
+      });
+    });
+    
+     }
   void _bottompressed(String t){
      setState(() {
       hometext=t;
@@ -26,6 +50,8 @@ class _MyApp extends State<MyApp>{
    }
 
   Widget build(BuildContext context) {
+    
+     
     SystemChrome.setEnabledSystemUIOverlays([]);
    
     return MaterialApp(

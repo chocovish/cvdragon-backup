@@ -3,6 +3,7 @@ import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
+import './fetch.dart' as fetch;
 class HomePage extends StatefulWidget{
 
   @override
@@ -14,9 +15,9 @@ class HomePage extends StatefulWidget{
 
 class _HomePage extends State <HomePage> {
   @override
+
   Widget build(BuildContext context) {
     // TODO: implement build
-
     return Scaffold(appBar: TopMenuBar(),
       //bottomNavigationBar: BottomBar(),
       drawer: SideMenu(),

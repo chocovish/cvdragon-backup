@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './profile_sections.dart';
+import './knowledge_centre.dart';
 
 class FABBottomAppBarItem {
   FABBottomAppBarItem({this.iconData, this.text});
@@ -38,10 +40,45 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
   int _selectedIndex = 5;
 
   _updateIndex(int index) {
+
     widget.onTabSelected(index);
-    setState(() {
-      _selectedIndex = index;
-    });
+    if(_selectedIndex != index) {
+      setState(() {
+        if (index == 1) {
+          Navigator.of(context).push(
+              MaterialPageRoute<Null>(builder: (BuildContext context) {
+                return ProfileSections();
+
+              }
+              )
+          );
+        }
+        else if (index==3){
+          final result = showMenu<String>(
+        context: context,
+        position: RelativeRect.fromLTRB(1000.0, 1000.0, 0.0, 0.0),
+        items: <PopupMenuItem<String>>[
+        new PopupMenuItem<String>(
+        child: const Text('test1'), value: 'test1'),
+        new PopupMenuItem<String>(
+        child: const Text('test2'), value: 'test2'),
+        ],
+        elevation: 8.0,
+        );
+        }
+        else if (index == 0) {
+          Navigator.of(context).push(
+              MaterialPageRoute<Null>(builder: (BuildContext context) {
+                return Knowledge();
+              }
+              )
+          );
+        }
+
+        _selectedIndex = index;
+      }
+      );
+    }
   }
 
   @override

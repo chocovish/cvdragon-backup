@@ -3,12 +3,12 @@ import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
 
-class MyProfiles extends StatefulWidget {
+class Designs extends StatefulWidget {
   @override
-  _MyProfiles  createState() => new _MyProfiles();
+  _Designs  createState() => new _Designs();
 }
 
-class _MyProfiles extends State<MyProfiles> {
+class _Designs extends State<Designs> {
   PageController controller;
   int currentpage = 0;
 
@@ -46,7 +46,7 @@ class _MyProfiles extends State<MyProfiles> {
       bottomNavigationBar: FABBottomAppBar(
         notchedShape: CircularNotchedRectangle(),
         color: Colors.white30,
-        centerItemText: "Add Profile",
+        centerItemText: "Preview",
         backgroundColor: Color(0xff232882),
         selectedColor: Colors.white,
         items: [
@@ -97,7 +97,3 @@ class _MyProfiles extends State<MyProfiles> {
     );
   }
 }
-
-
-
-  

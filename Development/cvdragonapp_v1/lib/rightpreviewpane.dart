@@ -13,7 +13,7 @@ class PreviewPane extends StatefulWidget {
 
 class _PreviewPane extends State<PreviewPane>
 {
-  String _lastSelected = 'TAB: 0';
+  //String _lastSelected = 'TAB: 0';
 
   void _selectedTab(int index) {
     setState(() {
@@ -25,7 +25,8 @@ class _PreviewPane extends State<PreviewPane>
   Widget build(BuildContext context) {
     // TODO: implement build
 
-    return  Scaffold(
+    return  MaterialApp(
+      home: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.pinkAccent,
@@ -59,6 +60,7 @@ class _PreviewPane extends State<PreviewPane>
         ],
         onTabSelected: _selectedTab,
       )
+      ),
     );
   }
 }

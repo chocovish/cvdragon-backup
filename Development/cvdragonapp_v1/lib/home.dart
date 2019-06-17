@@ -1,3 +1,4 @@
+import 'package:cvdragonapp_v1/designs.dart';
 import 'package:cvdragonapp_v1/donut.dart';
 import 'package:cvdragonapp_v1/rightpreviewpane.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,8 @@ class _HomePagee extends State<HomePagee> {
   void _selectedTab(int index) {
     setState(() {
       print(index);
-    });
+      }
+    );
   }
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class _HomePagee extends State<HomePagee> {
         backgroundColor: Colors.pinkAccent,
         onPressed: () {_selectedTab(5);},
         child: Icon(
-          Icons.home,
+          Icons.visibility,
           color: Colors.white,
         ),
         elevation: 0.0,
@@ -45,7 +47,7 @@ class _HomePagee extends State<HomePagee> {
         onTabSelected: _selectedTab,
         notchedShape: CircularNotchedRectangle(),
         color: Colors.white30,
-        centerItemText: "Home",
+        centerItemText: "Preview",
         backgroundColor: Color(0xff232882),
         selectedColor: Colors.white,
         items: [
@@ -53,7 +55,7 @@ class _HomePagee extends State<HomePagee> {
               iconData: Icons.import_contacts, text: 'Knowledge'),
           FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
           FABBottomAppBarItem(iconData: Icons.swap_vert, text: 'Profiles'),
-          FABBottomAppBarItem(iconData: Icons.visibility, text: 'Preview'),
+          FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
         ],
       ),
     );

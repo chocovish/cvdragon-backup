@@ -3,15 +3,25 @@
  import 'dart:convert';
 import 'dart:async';
 List sending_response;
+Map<String,dynamic> sendBasic;
+List sendachieve;
  Future<List> getSectionData() async {
   String url = urlgetter.allSectionsBasic("1","1");
     var res = await http.get(url);
     sending_response= json.decode(res.body);
     return sending_response;
  }
-Future<http.Response> allDesigns() async {
-  String url = urlgetter.allDesigns("1","1");
+ Future<Map<String,dynamic>> getbasicInfo(String id,String authkey) async {
+  String url = urlgetter.basic(id,authkey);
     var res = await http.get(url);
-    return res;
+    sendBasic= json.decode(res.body);
+    return sendBasic;
+ }
+
+ Future<List> getcvAchievement(String id,String authkey) async {
+  String url = urlgetter.cvAchievement(id,authkey);
+    var res = await http.get(url);
+    sendachieve= json.decode(res.body);
+    return sendachieve;
  }
 

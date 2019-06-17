@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import './home.dart';
-
+import './fetch.dart' as fetch;
 import 'main.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 class LoginFormCard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -14,6 +14,12 @@ class LoginFormCard extends StatefulWidget {
 
 /// place: "/"
 class LoginFormCardState extends State<LoginFormCard> {
+
+     @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+      }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -81,6 +87,8 @@ class LoginFormCardState extends State<LoginFormCard> {
 
 
   Widget _buildVerifyButton() {
+  
+    
     return Align(
       alignment: Alignment.center,
       child: Padding(

@@ -38,7 +38,7 @@ class _PreviewPane extends State<PreviewPane>
           elevation: 0.0,
         ),
       appBar: TopMenuBar(),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: Container(child: PhotoView(
         imageProvider: AssetImage("assets/cv.png"),
         minScale: PhotoViewComputedScale.contained * 0.8,

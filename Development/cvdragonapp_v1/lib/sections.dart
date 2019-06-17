@@ -8,6 +8,7 @@ import './sidemenu.dart';
 import 'dart:async';
 import './fetch.dart' as fetch;
 import 'package:http/http.dart' as http;
+import 'main.dart' as main;
 import './my_flutter_app_icons.dart';
 
 class Sections extends StatefulWidget {
@@ -51,7 +52,8 @@ class _Sections extends State<Sections> {
                         width: 75.0)),
               )
             : Container(
-                padding: EdgeInsets.only(top:0.0,bottom: 15.0,right: 10.0,left: 10.0),
+                padding: EdgeInsets.only(
+                    top: 0.0, bottom: 15.0, right: 10.0, left: 10.0),
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage("assets/cover.png"),

@@ -5,7 +5,11 @@ import './institute.dart';
 import './publicprofile.dart';
 import './sections.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import './fetch.dart' as fetch;
+import './sharedfetch.dart'as sfetch;
+import './main.dart'as main;
+String name;
+String email;
 class SideMenu extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -16,12 +20,30 @@ class SideMenu extends StatefulWidget {
 
 //create a list for the list items
 class _SideMenu extends State<SideMenu> {
+     bool _isLoading=false;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    this.get();
+  }
+  void get(){
+      name=main.name;
+      email=main.email;
+    }
+  @override
+
   Widget build(BuildContext context) {
+    //print('called');
     // TODO: implement build
     return Drawer(
       elevation: 2,
-      child: Container(
+      child: _isLoading?Center(child: Center(
+                    child: Image(
+                        image: AssetImage("assets/logocv.gif"),
+                        height: 75.0,
+                        width: 75.0)),
+              ): Container(
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/cover.png"), fit: BoxFit.fill)),
@@ -31,8 +53,8 @@ class _SideMenu extends State<SideMenu> {
             Container(
                 child: UserAccountsDrawerHeader(
               decoration: BoxDecoration(color: Colors.transparent),
-              accountName: Text("My dragon"),
-              accountEmail: Text("rohitagarwal17800@gmail.com"),
+              accountName: Text(name),
+              accountEmail: Text(email),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
               ),

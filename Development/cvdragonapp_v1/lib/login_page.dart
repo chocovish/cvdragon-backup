@@ -4,9 +4,6 @@ import 'package:animator/animator.dart';
 import 'package:cvdragonapp_v1/form_card.dart';
 import 'package:cvdragonapp_v1/social_login.dart';
 
-
-
-
 class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -14,44 +11,37 @@ class LoginPage extends StatefulWidget {
   }
 }
 
-
 class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body:DecoratedBox(
-      decoration: BoxDecoration(
-        image: DecorationImage(fit: BoxFit.fill,image: new AssetImage('assets/cover.png')),
-      ),
-      child:Container(
-        //margin: EdgeInsets.only(top: 100),
-        padding: EdgeInsets.only(top: 130),
-        alignment: Alignment.bottomCenter,
-        child: ListView(
-          children: <Widget>[
-            Container(
-
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: DecoratedBox(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.fill, image: new AssetImage('assets/cover.png')),
+        ),
+        child: Container(
+          //margin: EdgeInsets.only(top: 100),
+          padding: EdgeInsets.only(top: 130),
+          alignment: Alignment.bottomCenter,
+          child: Column(
+            children: <Widget>[
+              Container(
 //            height: MediaQuery.of(context).size.height/6,
 //            width: MediaQuery.of(context).size.width/6,
-              child: animate(),
-
-            ),
-            Container(
-
-              child: animate1(),
-
-            ),
-          ],
+                child: animate(),
+              ),
+              Container(
+                child: animate1(),
+              ),
+            ],
+          ),
         ),
       ),
-    ),
     );
-
-
-
   }
 }
-
-
 
 Widget animate() {
   return Animator(
@@ -61,12 +51,14 @@ Widget animate() {
       builder: (anim) => FractionalTranslation(
           translation: anim.value,
           child: Container(
-              height: 100,
+            height: 100,
             width: 100,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: new AssetImage('assets/logocv.gif'),
-                )),
+              image: new AssetImage(
+                'assets/logocv.gif',
+              ),
+            )),
           )));
 }
 
@@ -75,23 +67,19 @@ Widget animate1() {
     duration: Duration(milliseconds: 2500),
     repeats: 1,
     builder: (anim) => FadeTransition(
-      opacity: anim,
-      child: Container(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children:<Widget>[
-              LoginFormCard(),
-              _buildTextSocialLogin(),
-              _buildSocialMediaIcon(),
-            ]
+          opacity: anim,
+          child: Container(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  LoginFormCard(),
+                  _buildTextSocialLogin(),
+                  _buildSocialMediaIcon(),
+                ]),
+          ),
         ),
-
-      ),
-    ),
   );
 }
-
-
 
 Widget _buildTextSocialLogin() {
   return Row(
@@ -100,7 +88,7 @@ Widget _buildTextSocialLogin() {
       _buildHorizontalLine(),
       Text(
         "Social Login",
-        style: TextStyle(color: Colors.white,fontSize: 16.0),
+        style: TextStyle(color: Colors.white, fontSize: 16.0),
       ),
       _buildHorizontalLine(),
     ],
@@ -123,7 +111,6 @@ Widget _buildSocialMediaIcon() {
     padding: const EdgeInsets.all(16.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
-
       children: <Widget>[
         SocialIcon(
           onPressed: () {},

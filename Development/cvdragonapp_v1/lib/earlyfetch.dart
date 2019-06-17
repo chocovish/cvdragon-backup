@@ -19,7 +19,7 @@ class DatabaseFetch {
         onOpen: (Database db) async {
       List<String> queries = [
         "CREATE TABLE `cv-academic-projects` (  `academicid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `title` varchar(100) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  `proofRead` int(11) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL);",
-        "CREATE TABLE  (`achieveid` int(11) NOT NULL, `id` bigint(20) NOT NULL,`achievement` varchar(255) NOT NULL,  `year` year(4) NOT NULL,  `description` text NOT NULL,`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  `proofRead` tinyint(4) NOT NULL, `proofReadDate` date NOT NULL,`status` tinyint(1) NOT NULL);"
+        "CREATE TABLE  `cv-achievements`(`achieveid` int(11) NOT NULL, `id` bigint(20) NOT NULL,`achievement` varchar(255) NOT NULL,  `year` year(4) NOT NULL,  `description` text NOT NULL,`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  `proofRead` tinyint(4) NOT NULL, `proofReadDate` date NOT NULL,`status` tinyint(1) NOT NULL);"
       ];
       queries.forEach((element) async {
         await db.execute(element.toString()).then((void onvalue){
@@ -46,7 +46,7 @@ class DatabaseFetch {
   }
 
   display() async {
-    print('diaplay called');
+    print('display called');
     var databasesPath = await getDatabasesPath();
     String path = join(databasesPath, 'assets/sections.db');
     await openDatabase('assets/sections.db', version: 3,

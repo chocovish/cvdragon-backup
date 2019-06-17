@@ -10,7 +10,10 @@ import './earlyfetch.dart'as efetch;
 import './sharedfetch.dart'as sfetch;
 String name,email;
 
-void main() => runApp(MyApp());
+void main() {
+//  debugPaintSizeEnabled = true;
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
 
@@ -32,12 +35,12 @@ class _MyApp extends State<MyApp>{
   void get(){
       efetch.DatabaseFetch();
       sfetch.readname().then((String n){
-      setState(() { 
+      setState(() {
        name=n;
       });
     });
       sfetch.readmail().then((String mail){
-      setState(() { 
+      setState(() {
        email=mail;
       });
     });

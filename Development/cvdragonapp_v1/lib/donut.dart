@@ -38,7 +38,6 @@ class DonutPieChart extends StatelessWidget {
     return [
       new charts.Series<LinearSales, int>(
         id: 'Sales',
-        colorFn: ,
         domainFn: (LinearSales sales, _) => sales.year,
         measureFn: (LinearSales sales, _) => sales.sales,
         data: data,

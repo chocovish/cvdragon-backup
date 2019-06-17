@@ -16,20 +16,19 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomPadding: true,
       body: DecoratedBox(
         decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fill, image: new AssetImage('assets/cover.png')),
         ),
         child: Container(
-          //margin: EdgeInsets.only(top: 100),
-          padding: EdgeInsets.only(top: 130),
+          margin: EdgeInsets.only(top: 100),
+//          padding: EdgeInsets.only(top: 130),
           alignment: Alignment.bottomCenter,
-          child: Column(
+          child: ListView(
             children: <Widget>[
               Container(
-//            height: MediaQuery.of(context).size.height/6,
-//            width: MediaQuery.of(context).size.width/6,
                 child: animate(),
               ),
               Container(

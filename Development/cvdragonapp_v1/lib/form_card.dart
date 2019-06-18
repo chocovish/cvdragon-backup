@@ -43,13 +43,13 @@ class LoginFormCardState extends State<LoginFormCard> {
       child: Align(
         alignment: Alignment.centerRight,
         child: TextField(
-          style: TextStyle(color: Colors.white,fontSize: 22),
+          style: TextStyle(color: Colors.white,fontSize: 20),
           maxLength: 10,
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             counterText: '',
             hintText: "+91 Enter Phone Number",border: InputBorder.none,
-            hintStyle: TextStyle(color: Colors.white),
+            hintStyle: TextStyle(color: Colors.white30),
             icon: Icon(
               Icons.phone,
               size: 30,

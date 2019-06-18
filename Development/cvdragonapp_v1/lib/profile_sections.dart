@@ -9,6 +9,7 @@ import 'dart:async';
 import './fetch.dart' as fetch;
 import 'package:http/http.dart' as http;
 import './my_flutter_app_icons.dart';
+import './create_section.dart';
 
 class ProfileSections extends StatefulWidget {
   @override
@@ -35,6 +36,13 @@ class _ProfileSections extends State<ProfileSections> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+        //floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.add_circle),
+          backgroundColor: Colors.green,
+          //label: Text("Add Profile"),
+        ),
         appBar: TopMenuBar(),
         // bottomNavigationBar: BottomBar(),
         drawer: SideMenu(),
@@ -65,7 +73,7 @@ class _ProfileSections extends State<ProfileSections> {
                               margin: EdgeInsets.only(top: 10),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20.0)),
-                              color: Colors.white,
+                              color: Colors.transparent.withOpacity(0.2),
                               child: Container(
                                   padding: EdgeInsets.only(
                                       top: 10, left: 10, right: 10, bottom: 10),
@@ -89,7 +97,7 @@ class _ProfileSections extends State<ProfileSections> {
                                               data[index]['sectionName']
                                                   .toString(),
                                               style: TextStyle(
-                                                  color: Color(0xffff1e50),
+                                                  color: Colors.white,
                                                   fontSize: 18,
                                                   fontWeight: FontWeight.bold)),
                                         ),
@@ -104,6 +112,10 @@ class _ProfileSections extends State<ProfileSections> {
                                         // padding: EdgeInsets.only(
                                         //     left: 50.0, bottom: 10.0),
                                         child: InkWell(
+                                          onTap:() {
+
+
+                          },
                                           child: Container(
                                             padding: EdgeInsets.only(left: 15),
                                           height: 38,
@@ -118,6 +130,7 @@ class _ProfileSections extends State<ProfileSections> {
 //                                            padding: const EdgeInsets.only(top: 1.0),
                                             child: InkWell(
                                             onTap: () {
+                                              Navigator.push(context, MaterialPageRoute(builder: (context)=>(CreateSection())));
                                             },
 
                                             child: Row(

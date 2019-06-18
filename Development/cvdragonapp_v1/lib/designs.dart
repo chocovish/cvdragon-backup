@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import './bottombar_home.dart';
+import './bottombar_design.dart';
 import './topmenu.dart';
+import './rightpreviewpane.dart';
+
 
 class Designs extends StatefulWidget {
+
   @override
   _Designs  createState() => new _Designs();
 }
 
 class _Designs extends State<Designs> {
+
   PageController controller;
   int currentpage = 0;
 
@@ -36,9 +40,16 @@ class _Designs extends State<Designs> {
        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pinkAccent,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute<Null>(builder: (BuildContext context) {
+              return PreviewPane();
+            },
+            ),
+          );
+        },
         child: Icon(
-          Icons.add,
+          Icons.visibility,
           color: Colors.white,
         ),
         elevation: 0.0,

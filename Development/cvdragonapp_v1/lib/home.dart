@@ -34,8 +34,13 @@ class _HomePagee extends State<HomePagee> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pinkAccent,
         onPressed: () {
-          _selectedTab(5);
+      Navigator.of(context).push(
+        MaterialPageRoute<Null>(builder: (BuildContext context) {
+          return PreviewPane();
         },
+        ),
+      );
+      },
         child: Icon(
           Icons.visibility,
           color: Colors.white,
@@ -122,7 +127,7 @@ Widget _buildCardView() {
                     child: Icon(
                       Icons.check,
                       size: 30.0,
-                      color: Color(0xffff1e50),
+                      color: Colors.green,
                     )),
               ),
             ),
@@ -137,7 +142,7 @@ Widget _buildCardView() {
                     child: Icon(
                       Icons.check,
                       size: 30.0,
-                      color: Color(0xffff1e50),
+                      color: Colors.green,
                     )),
               ),
             ),
@@ -152,7 +157,7 @@ Widget _buildCardView() {
                     child: Icon(
                       Icons.check,
                       size: 30.0,
-                      color: Color(0xffff1e50),
+                      color: Colors.green,
                     )),
               ),
             ),
@@ -167,7 +172,7 @@ Widget _buildCardView() {
                     child: Icon(
                       Icons.check,
                       size: 30.0,
-                      color: Color(0xffff1e50),
+                      color: Colors.green,
                     )),
               ),
             ),
@@ -180,9 +185,9 @@ Widget _buildCardView() {
                 child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Icon(
-                      Icons.check,
+                      Icons.close,
                       size: 30.0,
-                      color: Color(0xffff1e50),
+                      color: Colors.red,
                     )),
               ),
             ),

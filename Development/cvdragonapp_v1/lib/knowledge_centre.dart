@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import './bottombar_home.dart';
+import './bottombar_knowledge.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
+import './home.dart';
 
 
 class Knowledge extends StatefulWidget{
@@ -29,7 +30,16 @@ class _Knowledge extends State <Knowledge> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pinkAccent,
-        onPressed: () {_selectedTab(5);},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute<Null>(builder: (BuildContext context) {
+              return HomePagee();
+            },
+            ),
+          );
+
+
+          _selectedTab(5);},
         child: Icon(
           Icons.home,
           color: Colors.white,

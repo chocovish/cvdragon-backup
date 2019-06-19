@@ -4,8 +4,7 @@ import './sidemenu.dart';
 import './rightpreviewpane.dart';
 import './bottombar_createsection.dart';
 
-class CreateSection extends StatefulWidget{
-
+class CreateSection extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -13,29 +12,30 @@ class CreateSection extends StatefulWidget{
   }
 }
 
-class _CreateSection extends State <CreateSection> {
+class _CreateSection extends State<CreateSection> {
   void _selectedTab(int index) {
     setState(() {
       print(index);
-    }
-    );
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(appBar: TopMenuBar(),
+    return Scaffold(
+      appBar: TopMenuBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pinkAccent,
         onPressed: () {
           Navigator.of(context).push(
-            MaterialPageRoute<Null>(builder: (BuildContext context) {
-              return PreviewPane();
-            },
+            MaterialPageRoute<Null>(
+              builder: (BuildContext context) {
+                return PreviewPane();
+              },
             ),
           );
         },
-
         child: Icon(
           Icons.visibility,
           color: Colors.white,
@@ -65,192 +65,188 @@ class _CreateSection extends State <CreateSection> {
   }
 }
 
-
 Widget _buildCardView() {
   return Container(
-    child: ListView(
-      padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0, bottom: 30.0),
-      children: <Widget>[
-        Card(
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              const ListTile(
-                leading: Icon(
-                  Icons.info,
-                  size: 30,
-                  color: Color(0xff232882),
-                ),
-                title: Text(
-                  'Basic Info',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w500),
-                ),
-                subtitle: Text(
-                  'Description ',
-                  style: TextStyle(fontSize: 14.0, color: Color(0xff232882)),
-                ),
+      child: ListView(
+    padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0, bottom: 30.0),
+    children: <Widget>[
+      Stack(
+        children: <Widget>[
+          Container(
+            height: 130,
+            width: 400,
+            decoration: BoxDecoration(color: Colors.yellow),
+            child: Container(
+              margin: EdgeInsets.only(top: 10.0),
+              child: Text(
+                'Academic Projects',
+                style: TextStyle(color: Color(0xff232882), fontSize: 30.0),
+                textAlign: TextAlign.center,
               ),
-            ],
+            ),
           ),
-        ),
-        Card(
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          child: Column(
-          mainAxisSize: MainAxisSize.min,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                  margin: EdgeInsets.only(top: 70.0),
+                  child: Image(image: AssetImage('assets/Basic Info.png')))
+            ],
+          )
+        ],
+      ),
+      Container(
+        padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Row(mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-              Container(
-//              title: Text("PROFILE CREATED",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-
-              decoration: BoxDecoration(
-              shape: BoxShape.rectangle,borderRadius: BorderRadius.circular(10.0),color: Color(0xff232882)),
-
-              child:
-                FlatButton(
-                onPressed: () => {},
-                color: Colors.white,
-                padding: EdgeInsets.all(2),
-                child: Column( // Replace with a Row for horizontal icon + text
-                children: <Widget>[
-                Icon(Icons.skip_previous),
-                Text("Previous")
-                ],
-                ),
-                ),
-              ),
-
-              Container(
-//              title: Text("PROFILE CREATED",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-
+            InkWell(
+              child: Container(
+                height: 50.0,
+                width: 100.0,
+                alignment: FractionalOffset.center,
                 decoration: BoxDecoration(
-                    shape: BoxShape.rectangle, color: Color(0xff232882)),
-                child: Padding(
-                  padding: const EdgeInsets.all(1),
-                  child:
-                  FlatButton(
-                    onPressed: () => {},
-                    color: Colors.white,
-                    padding: EdgeInsets.all(2),
-                    child: Column( // Replace with a Row for horizontal icon + text
-                      children: <Widget>[
-                        Icon(Icons.skip_previous),
-                        Text("Previous")
-                      ],
-                    ),
+                    color: Color(0xff232882),
+                    borderRadius: BorderRadius.circular(30.0),
+                    border: new Border.all(color: Colors.white)),
+                child: InkWell(
+                  onTap: () {},
+                  child: Text(
+                    "FAQs",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
-
-              Container(
-//              title: Text("PROFILE CREATED",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-
+            ),
+            InkWell(
+              child: Container(
+                height: 50.0,
+                width: 100.0,
+                alignment: FractionalOffset.center,
                 decoration: BoxDecoration(
-                    shape: BoxShape.rectangle, color: Color(0xff232882)),
-                child: Padding(
-                  padding: const EdgeInsets.all(1),
-                  child:
-                  FlatButton(
-                    onPressed: () => {},
-                    color: Colors.white,
-                    padding: EdgeInsets.all(2),
-                    child: Column( // Replace with a Row for horizontal icon + text
-                      children: <Widget>[
-                        Icon(Icons.skip_previous),
-                        Text("Previous")
-                      ],
-                    ),
+                    color: Color(0xff232882),
+                    borderRadius: BorderRadius.circular(30.0),
+                    border: new Border.all(color: Colors.white)),
+                child: InkWell(
+                  onTap: () {},
+                  child: Text(
+                    "Key Phrases",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
-              ],
+            ),
+            InkWell(
+              child: Container(
+                height: 50.0,
+                width: 100.0,
+                alignment: FractionalOffset.center,
+                decoration: BoxDecoration(
+                    color: Color(0xff232882),
+                    borderRadius: BorderRadius.circular(30.0),
+                    border: new Border.all(color: Colors.white)),
+                child: InkWell(
+                  onTap: () {},
+                  child: Text(
+                    "Database",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
-              ],
-              ),
-//              ListTile(
-//              title: Text("FILL IN DATA",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//              decoration: BoxDecoration(
-//              shape: BoxShape.circle, color: Color(0xff232882)),
-//              child: Padding(
-//              padding: const EdgeInsets.all(8.0),
-//              child: Icon(
-//              Icons.check,
-//              size: 30.0,
-//              color: Colors.green,
-//              )),
-//              ),
-//              ),
-//              ListTile(
-//              title: Text("DESIGN SELECTED",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//              decoration: BoxDecoration(
-//              shape: BoxShape.circle, color: Color(0xff232882)),
-//              child: Padding(
-//              padding: const EdgeInsets.all(8.0),
-//              child: Icon(
-//              Icons.check,
-//              size: 30.0,
-//              color: Colors.green,
-//              )),
-//              ),
-//              ),
-//              ListTile(
-//              title: Text("SETTINGS CONFIRMED",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//              decoration: BoxDecoration(
-//              shape: BoxShape.circle, color: Color(0xff232882)),
-//              child: Padding(
-//              padding: const EdgeInsets.all(8.0),
-//              child: Icon(
-//              Icons.check,
-//              size: 30.0,
-//              color: Colors.green,
-//              )),
-//              ),
-//              ),
-//              ListTile(
-//              title: Text("DOWNLOAD RESUME",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//              decoration: BoxDecoration(
-//              shape: BoxShape.circle, color: Color(0xff232882)),
-//              child: Padding(
-//              padding: const EdgeInsets.all(8.0),
-//              child: Icon(
-//              Icons.close,
-//              size: 30.0,
-//              color: Colors.red,
-//              )
-//              ),
-//              ),
-//              ),
-        ),
+            ),
           ],
-        )
-        );
-//        ],
-//        ),
-//        );
-
-//      ],
-//    ),
-//  );
-
+        ),
+      ),
+      Card(
+          child: Form(
+        child: Column(
+          children: <Widget>[
+            TextFormField(
+              style: TextStyle(color: Color(0xff232882)),
+              decoration: InputDecoration(
+                  labelStyle: TextStyle(color: Color(0xffff1e50)),
+                  labelText: 'Academic Project Title',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10))),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter a name';
+                }
+              },
+            ),
+            Padding(
+              padding: EdgeInsets.all(10),
+            ),
+            TextFormField(
+              style: TextStyle(color: Color(0xff232882)),
+              scrollPadding: EdgeInsets.all(10.0),
+              maxLines: 15,
+              textAlign: TextAlign.start,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  labelStyle: TextStyle(color: Color(0xffff1e50)),
+                  labelText: 'Brief Description about the project'),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter a name';
+                }
+              },
+            ),
+            Container(
+              padding: EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  InkWell(
+                    child: Container(
+                      height: 50.0,
+                      width: 150.0,
+                      alignment: FractionalOffset.center,
+                      decoration: BoxDecoration(
+                          color: Color(0xff232882),
+                          borderRadius: BorderRadius.circular(30.0),
+                          border: new Border.all(color: Colors.white)),
+                      child: InkWell(
+                        onTap: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.only(right: 5),
+                              child: Icon(
+                                Icons.add_circle,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                            Text(
+                              "Add Section",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ))
+    ],
+  ));
 }

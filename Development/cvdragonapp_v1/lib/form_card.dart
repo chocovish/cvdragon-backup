@@ -3,6 +3,7 @@ import './home.dart';
 import './fetch.dart' as fetch;
 import 'main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 class LoginFormCard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -11,20 +12,19 @@ class LoginFormCard extends StatefulWidget {
   }
 }
 
-
 /// place: "/"
 class LoginFormCardState extends State<LoginFormCard> {
-
-     @override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-      }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      height:200.0 ,
+      height: 200.0,
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: <Widget>[
@@ -36,23 +36,23 @@ class LoginFormCardState extends State<LoginFormCard> {
     );
   }
 
-
   Widget _buildMobileForm() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Align(
         alignment: Alignment.centerRight,
         child: TextField(
-          style: TextStyle(color: Colors.white,fontSize: 20),
+          style: TextStyle(color: Colors.white, fontSize: 18),
           maxLength: 10,
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             counterText: '',
-            hintText: "+91 Enter Phone Number",border: InputBorder.none,
-            hintStyle: TextStyle(color: Colors.white30),
+            hintText: "+91 Enter Phone Number",
+            border: InputBorder.none,
+            hintStyle: TextStyle(color: Colors.white54),
             icon: Icon(
               Icons.phone,
-              size: 30,
+              size: 22,
               color: Colors.white,
             ),
 //            labelText: '+91',
@@ -64,7 +64,6 @@ class LoginFormCardState extends State<LoginFormCard> {
         ),
       ),
     );
-
   }
 
   Widget _buildHorizontalLine() {
@@ -83,12 +82,7 @@ class LoginFormCardState extends State<LoginFormCard> {
     );
   }
 
-
-
-
   Widget _buildVerifyButton() {
-  
-    
     return Align(
       alignment: Alignment.center,
       child: Padding(
@@ -101,22 +95,19 @@ class LoginFormCardState extends State<LoginFormCard> {
             decoration: BoxDecoration(
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(30.0),
-                border: new Border.all(color: Colors.white)
-            ),
+                border: new Border.all(color: Colors.white)),
             child: InkWell(
               onTap: () {
-
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>(HomePagee())));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => (HomePagee())));
               },
-              child: Center(
-                child: Text(
-                  "Verify",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.0),
-                ),
+              child: Text(
+                "Verify",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.0),
               ),
             ),
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './profile_sections.dart';
 import './knowledge_centre.dart';
+import 'home.dart';
 
 class FABBottomAppBarItem {
   FABBottomAppBarItem({this.iconData, this.text});
@@ -37,34 +38,22 @@ class FABBottomAppBar extends StatefulWidget {
 }
 
 class FABBottomAppBarState extends State<FABBottomAppBar> {
-  int _selectedIndex = 3;
+  int _selectedIndex = 5;
 
   _updateIndex(int index) {
 
     widget.onTabSelected(index);
-    if(_selectedIndex != index) {
+     {
       setState(() {
         if (index == 1) {
           Navigator.of(context).push(
               MaterialPageRoute<Null>(builder: (BuildContext context) {
-                return ProfileSections();
+                return HomePagee();
 
               }
               )
           );
         }
-        else if (index==3){
-
-        }
-        else if (index == 0) {
-          Navigator.of(context).push(
-              MaterialPageRoute<Null>(builder: (BuildContext context) {
-                return Knowledge();
-              }
-              )
-          );
-        }
-
         _selectedIndex = index;
       }
       );

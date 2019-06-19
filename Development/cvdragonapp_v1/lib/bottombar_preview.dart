@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './designs.dart';
+import './home.dart';
 
 class FABBottomAppBarItem {
   FABBottomAppBarItem({this.iconData, this.text});
@@ -42,8 +44,26 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
  _updateIndex(int index) {
    widget.onTabSelected(index);
    setState(() {
-     _selectedIndex = index;
+
+     if(index == 0) {
+       Navigator.of(context).push(
+           MaterialPageRoute<Null>(builder: (BuildContext context) {
+             return HomePagee();
+           }
+           )
+       );
+     }
+     if(index == 1){
+      
+       Navigator.of(context).push(MaterialPageRoute<Null>(builder: (BuildContext context){
+        return Designs();
+        }
+      )
+    );
+      }
+      _selectedIndex = index;
    });
+   
  }
 
  @override

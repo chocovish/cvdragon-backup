@@ -13,15 +13,14 @@ class DonutPieChart extends StatelessWidget {
     return new DonutPieChart(
       _createSampleData(),
       // Disable animations for image tests.
-      animate: false,
+      animate: true,
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
     return new charts.PieChart(seriesList,
-        animate: animate,
+        animate: animate,animationDuration: Duration(milliseconds: 1500),
         // Configure the width of the pie slices to 60px. The remaining space in
         // the chart will be left as a hole in the center.
         defaultRenderer: new charts.ArcRendererConfig(arcWidth: 30));

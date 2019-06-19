@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import './topmenu.dart';
 import './bottombar_home.dart';
 import './sidemenu.dart';
+import 'package:flutter/rendering.dart';
 import './rightpreviewpane.dart';
 import './login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,7 +12,7 @@ import './sharedfetch.dart'as sfetch;
 String name,email;
 
 void main() {
-//  debugPaintSizeEnabled = true;
+  //debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
 

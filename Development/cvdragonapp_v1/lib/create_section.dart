@@ -4,8 +4,7 @@ import './sidemenu.dart';
 import './rightpreviewpane.dart';
 import './bottombar_createsection.dart';
 
-class CreateSection extends StatefulWidget{
-
+class CreateSection extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -13,29 +12,30 @@ class CreateSection extends StatefulWidget{
   }
 }
 
-class _CreateSection extends State <CreateSection> {
+class _CreateSection extends State<CreateSection> {
   void _selectedTab(int index) {
     setState(() {
       print(index);
-    }
-    );
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(appBar: TopMenuBar(),
+    return Scaffold(
+      appBar: TopMenuBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pinkAccent,
         onPressed: () {
           Navigator.of(context).push(
-            MaterialPageRoute<Null>(builder: (BuildContext context) {
-              return PreviewPane();
-            },
+            MaterialPageRoute<Null>(
+              builder: (BuildContext context) {
+                return PreviewPane();
+              },
             ),
           );
         },
-
         child: Icon(
           Icons.visibility,
           color: Colors.white,
@@ -65,192 +65,200 @@ class _CreateSection extends State <CreateSection> {
   }
 }
 
-
 Widget _buildCardView() {
   return Container(
     child: ListView(
-      padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0, bottom: 30.0),
       children: <Widget>[
-        Card(
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+        Stack(
+          children: <Widget>[
+            Container(
+                height: 100,
+                width: 500,
+                child: Container(
+                    margin: EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      "Basic Info",
+                      style: TextStyle(
+                          color: Color(0xff232882),
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    )),
+                decoration: BoxDecoration(
+                  color: Colors.yellow,
+                  shape: BoxShape.rectangle,
+                )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: 150,
+                  width: 150,
+                  padding: EdgeInsets.only(top: 50),
+                  child: Image(
+                    image: AssetImage(
+                      "assets/Basic Info.png",
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+        Container(
+          padding: EdgeInsets.only(top: 10),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              const ListTile(
-                leading: Icon(
-                  Icons.info,
-                  size: 30,
-                  color: Color(0xff232882),
+              InkWell(
+                child: Container(
+                  height: 50.0,
+                  width: 100.0,
+                  alignment: FractionalOffset.center,
+                  decoration: BoxDecoration(
+                    color: Color(0xff232882),
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+//                    Navigator.push(context, MaterialPageRoute(builder: (context)=>(HomePagee())));
+                    },
+                    child: Center(
+                      child: Text(
+                        "FAQs",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-                title: Text(
-                  'Basic Info',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w500),
+              ),
+              InkWell(
+                child: Container(
+                  height: 50.0,
+                  width: 100.0,
+                  alignment: FractionalOffset.center,
+                  decoration: BoxDecoration(
+                    color: Color(0xff232882),
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+//                    Navigator.push(context, MaterialPageRoute(builder: (context)=>(HomePagee())));
+                    },
+                    child: Center(
+                      child: Text(
+                        "Key Phrases",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-                subtitle: Text(
-                  'Description ',
-                  style: TextStyle(fontSize: 14.0, color: Color(0xff232882)),
+              ),
+              InkWell(
+                child: Container(
+                  height: 50.0,
+                  width: 100.0,
+                  alignment: FractionalOffset.center,
+                  decoration: BoxDecoration(
+                    color: Color(0xff232882),
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+//                    Navigator.push(context, MaterialPageRoute(builder: (context)=>(HomePagee())));
+                    },
+                    child: Center(
+                      child: Text(
+                        "Database",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
         ),
-        Card(
-          shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Row(mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        Container(
+          padding: EdgeInsets.only(top: 10.0),
+          child: Card(
+            child: Column(
               children: <Widget>[
-              Container(
-//              title: Text("PROFILE CREATED",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-
-              decoration: BoxDecoration(
-              shape: BoxShape.rectangle,borderRadius: BorderRadius.circular(10.0),color: Color(0xff232882)),
-
-              child:
-                FlatButton(
-                onPressed: () => {},
-                color: Colors.white,
-                padding: EdgeInsets.all(2),
-                child: Column( // Replace with a Row for horizontal icon + text
-                children: <Widget>[
-                Icon(Icons.skip_previous),
-                Text("Previous")
-                ],
+                Row(
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        "Full Name",
+                        style:
+                            TextStyle(fontSize: 22.0, color: Color(0xffff1e50)),
+                      ),
+                      padding: EdgeInsets.only(left: 10.0, top: 15.0),
+                    )
+                  ],
                 ),
+                Row(
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        "Piyush Jindal",
+                        style:
+                            TextStyle(fontSize: 25.0, color: Color(0xff232880)),
+                      ),
+                      padding: EdgeInsets.only(
+                        left: 10.0,
+                        top: 10.0,
+                      ),
+                    )
+                  ],
                 ),
-              ),
-
-              Container(
-//              title: Text("PROFILE CREATED",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-
-                decoration: BoxDecoration(
-                    shape: BoxShape.rectangle, color: Color(0xff232882)),
-                child: Padding(
-                  padding: const EdgeInsets.all(1),
-                  child:
-                  FlatButton(
-                    onPressed: () => {},
-                    color: Colors.white,
-                    padding: EdgeInsets.all(2),
-                    child: Column( // Replace with a Row for horizontal icon + text
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Column(
                       children: <Widget>[
-                        Icon(Icons.skip_previous),
-                        Text("Previous")
+                        Container(
+                          child: Text(
+                            "Nationality",
+                            style: TextStyle(
+                                fontSize: 22.0, color: Color(0xffff1e50)),
+                          ),
+                          padding: EdgeInsets.only(left: 10.0, top: 10.0,bottom: 50.0),
+                        ),
                       ],
                     ),
-                  ),
-                ),
-              ),
-
-              Container(
-//              title: Text("PROFILE CREATED",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-
-                decoration: BoxDecoration(
-                    shape: BoxShape.rectangle, color: Color(0xff232882)),
-                child: Padding(
-                  padding: const EdgeInsets.all(1),
-                  child:
-                  FlatButton(
-                    onPressed: () => {},
-                    color: Colors.white,
-                    padding: EdgeInsets.all(2),
-                    child: Column( // Replace with a Row for horizontal icon + text
+                    Column(
                       children: <Widget>[
-                        Icon(Icons.skip_previous),
-                        Text("Previous")
+                        Container(
+                          child: Text(
+                            "Gender",
+                            style: TextStyle(
+                                fontSize: 22.0, color: Color(0xffff1e50)),
+                          ),
+                          padding: EdgeInsets.only(left: 120.0, top: 10.0,bottom: 50.0),
+                        ),
                       ],
                     ),
-                  ),
+
+                  ],
                 ),
-              ),
               ],
-              ),
-              ],
-              ),
-//              ListTile(
-//              title: Text("FILL IN DATA",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//              decoration: BoxDecoration(
-//              shape: BoxShape.circle, color: Color(0xff232882)),
-//              child: Padding(
-//              padding: const EdgeInsets.all(8.0),
-//              child: Icon(
-//              Icons.check,
-//              size: 30.0,
-//              color: Colors.green,
-//              )),
-//              ),
-//              ),
-//              ListTile(
-//              title: Text("DESIGN SELECTED",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//              decoration: BoxDecoration(
-//              shape: BoxShape.circle, color: Color(0xff232882)),
-//              child: Padding(
-//              padding: const EdgeInsets.all(8.0),
-//              child: Icon(
-//              Icons.check,
-//              size: 30.0,
-//              color: Colors.green,
-//              )),
-//              ),
-//              ),
-//              ListTile(
-//              title: Text("SETTINGS CONFIRMED",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//              decoration: BoxDecoration(
-//              shape: BoxShape.circle, color: Color(0xff232882)),
-//              child: Padding(
-//              padding: const EdgeInsets.all(8.0),
-//              child: Icon(
-//              Icons.check,
-//              size: 30.0,
-//              color: Colors.green,
-//              )),
-//              ),
-//              ),
-//              ListTile(
-//              title: Text("DOWNLOAD RESUME",
-//              style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//              decoration: BoxDecoration(
-//              shape: BoxShape.circle, color: Color(0xff232882)),
-//              child: Padding(
-//              padding: const EdgeInsets.all(8.0),
-//              child: Icon(
-//              Icons.close,
-//              size: 30.0,
-//              color: Colors.red,
-//              )
-//              ),
-//              ),
-//              ),
-        ),
-          ],
+            ),
+          ),
         )
-        );
-//        ],
-//        ),
-//        );
-
-//      ],
-//    ),
-//  );
-
+      ],
+    ),
+  );
 }

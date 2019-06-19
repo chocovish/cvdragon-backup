@@ -35,18 +35,10 @@ class _MyApp extends State<MyApp> {
     // TODO: implement initState
     super.initState();
     this.get();
-<<<<<<< HEAD
 }
   void get(){
       efetch.DatabaseFetch();
       sfetch.readname().then((String n){
-=======
-  }
-
-  void get() {
-    efetch.DatabaseFetch();
-    sfetch.readname().then((String n) {
->>>>>>> 2c2e862e99be41e9425f1d93284ded0b1bc746e2
       setState(() {
         name = n;
       });

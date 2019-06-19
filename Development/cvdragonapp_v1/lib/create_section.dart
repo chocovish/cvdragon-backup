@@ -4,7 +4,7 @@ import './sidemenu.dart';
 import './rightpreviewpane.dart';
 import './bottombar_createsection.dart';
 import './Custom_dialog.dart';
-
+import './fetch.dart';
 class CreateSection extends StatefulWidget {
  @override
  State<StatefulWidget> createState() {
@@ -12,8 +12,28 @@ class CreateSection extends StatefulWidget {
   return _CreateSection();
  }
 }
-
+bool isLoading=true;
+ Map<String,dynamic> faq;
+ List keyPhrases;
 class _CreateSection extends State<CreateSection> {
+ @override
+ 
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    get();
+  }
+  void get(){
+    getFAQ("51110").then((Map<String,dynamic> data){
+       faq=data;
+       getKeyPhrases("academic-projects").then((List data){
+        keyPhrases=data;
+        setState(() {
+         isLoading=false; 
+        });
+       });
+      });
+  }
  void _selectedTab(int index) {
   setState(() {
    print(index);
@@ -23,7 +43,17 @@ class _CreateSection extends State<CreateSection> {
  @override
  Widget build(BuildContext context) {
   // TODO: implement build
-  return Scaffold(
+  return isLoading? DecoratedBox(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/cover.png"),
+                        fit: BoxFit.fill)),
+                child: Center(
+                    child: Image(
+                        image: AssetImage("assets/logocv.gif"),
+                        height: 75.0,
+                        width: 75.0)),
+              ):Scaffold(
    appBar: TopMenuBar(),
    floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
    floatingActionButton: FloatingActionButton(
@@ -108,7 +138,7 @@ Widget _buildCardView(BuildContext context) {
              builder: (BuildContext context) => CustomDialog(
               title: "FAQs",
               description:
-              "Faltu Asked Questions :P",
+             faq['51100'],
               buttonText: "Okay",
              ),
             );
@@ -138,7 +168,7 @@ Widget _buildCardView(BuildContext context) {
             builder: (BuildContext context) => CustomDialog(
              title: "Key Phrases",
              description:
-             "Hum Tum Ek Kamre Me Bandh Ho, Aur Key Phrase Kho Jaaye!!",
+             keyPhrases.toString(),
              buttonText: "Okay",
             ),
            );

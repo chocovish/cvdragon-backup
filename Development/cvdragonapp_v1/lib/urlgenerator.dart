@@ -40,3 +40,7 @@ String faq(String sectionID)
 {
   return url+"?id=1&authkey=1&data=Faqs&section="+sectionID;
 }
+String keyPhrases(String section)
+{
+  return url+"?id=1&authkey=1&data=keyPhrases&ref="+section;
+}

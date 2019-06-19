@@ -56,3 +56,9 @@ Future<List> getcvSection(String id,String authkey) async {
     sendBasic= json.decode(res.body);
     return sendBasic;
  }
+  Future<List> getKeyPhrases(String section) async {
+  String url = urlgetter.keyPhrases(section);
+    var res = await http.get(url);
+    sendachieve= json.decode(res.body);
+    return sendachieve;
+ }

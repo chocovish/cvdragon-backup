@@ -77,10 +77,11 @@ class _Sections extends State<Sections> {
                                         Container(
                                           padding: EdgeInsets.only(right: 10),
                                           child: Image(
-                                              image: new AssetImage("assets/" +
-                                                  data[index]['sectionName']
-                                                      .toString() +
-                                                  ".png"),
+                                              // image: new AssetImage("assets/" +
+                                              //     data[index]['sectionName']
+                                              //         .toString() +
+                                              //     ".png"),
+                                              image: AssetImage("assets/Basic Info.png"),
                                               color: null,
                                               height: 40,
                                               width: 40,

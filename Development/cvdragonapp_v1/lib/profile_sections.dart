@@ -84,9 +84,10 @@ class _ProfileSections extends State<ProfileSections> {
 
                             padding: EdgeInsets.only(left: 10.0,right: 10.0,top: 30.0,bottom: 30.0),
                             child: Image(
-                                image: new AssetImage("assets/" +
-                                    data[index]['sectionName'].toString() +
-                                    ".png"),
+                                // image: new AssetImage("assets/" +
+                                //     data[index]['sectionName'].toString() +
+                                //     ".png"),
+                                image: AssetImage("assets/Basic Info.png"),
                                 color: null,
                                 height: 50,
                                 width: 50,

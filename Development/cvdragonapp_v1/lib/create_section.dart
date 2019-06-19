@@ -4,6 +4,7 @@ import './sidemenu.dart';
 import './rightpreviewpane.dart';
 import './bottombar_createsection.dart';
 import './Custom_dialog.dart';
+import './Custom_dialog_KeyPhrases.dart';
 
 class CreateSection extends StatefulWidget {
  @override
@@ -135,11 +136,8 @@ Widget _buildCardView(BuildContext context) {
           InkWell(
            onTap: (){showDialog(
             context: context,
-            builder: (BuildContext context) => CustomDialog(
+            builder: (BuildContext context) => CustomDialogKeyPhrases(
              title: "Key Phrases",
-             description:
-             "Hum Tum Ek Kamre Me Bandh Ho, Aur Key Phrase Kho Jaaye!!",
-             buttonText: "Okay",
             ),
            );
            },

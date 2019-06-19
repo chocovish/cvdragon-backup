@@ -16,6 +16,7 @@ class CustomDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Consts.padding),
       ),
@@ -26,15 +27,16 @@ class CustomDialog extends StatelessWidget {
   }
   Widget dialogContent(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height/1.5,
+      //alignment: FractionalOffset.center,
+      height: MediaQuery.of(context).size.height/1.8,
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.only(
         top: Consts.padding,
-        bottom: Consts.padding,
+        //bottom: Consts.padding,
         left: Consts.padding,
         right: Consts.padding,
       ),
-      margin: EdgeInsets.only(top: Consts.avatarRadius),
+      //margin: EdgeInsets.only(top: Consts.avatarRadius),
       decoration: new BoxDecoration(
         color: Colors.white,
         shape: BoxShape.rectangle,
@@ -47,9 +49,11 @@ class CustomDialog extends StatelessWidget {
           ),
         ],
       ),
-      child: ListView(
+      child: Column(
         children:<Widget>[
         Container(
+          height: 40,
+          alignment: FractionalOffset.topCenter,
           child:
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -67,7 +71,14 @@ class CustomDialog extends StatelessWidget {
 
     ),
               Container(
-                padding: EdgeInsets.only(top: 10,bottom: 10,left: 10,right: 10),
+                padding: EdgeInsets.only(bottom: 10),
+                height: MediaQuery.of(context).size.height/2.5,
+                child:
+              ListView(children:<Widget>[
+              Container(
+                //decoration: BoxDecoration(border: Border.all(color: Color(0xff232882))),
+                alignment: FractionalOffset.center,
+                padding: EdgeInsets.only(bottom: 10,left: 10,right: 10),
               child: Text(
                 description,
                 textAlign: TextAlign.center,
@@ -76,12 +87,15 @@ class CustomDialog extends StatelessWidget {
                 ),
               ),
               ),
+          ]
+              ),
+              ),
 
           Container(
-            height: 50,
-            width: 40,
+            height: 35,
+            //width3 40,
 
-            alignment: FractionalOffset.center,
+            alignment: FractionalOffset.bottomCenter,
             child: RaisedButton(color: Color(0xff232882),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
               onPressed: () {

@@ -106,9 +106,9 @@ Widget _buildCardView(BuildContext context) {
             showDialog(
              context: context,
              builder: (BuildContext context) => CustomDialog(
-              title: "Success",
+              title: "FAQs",
               description:
-              "Media Query use karne me mazaa aa rha hai !!",
+              "Faltu Asked Questions :P",
               buttonText: "Okay",
              ),
             );
@@ -121,18 +121,7 @@ Widget _buildCardView(BuildContext context) {
                 color: Color(0xff232882),
                 borderRadius: BorderRadius.circular(30.0),
                 border: new Border.all(color: Colors.white)),
-            child: InkWell(
-             onTap: () {
-              showDialog(
-               context: context,
-               builder: (BuildContext context) => CustomDialog(
-                title: "FAQs",
-                description:
-                "Media Query use karne me mazaa aa rha!!",
-                buttonText: "Okay",
-               ),
-              );
-             },
+
              child: Text(
               "FAQs",
               style: TextStyle(
@@ -141,9 +130,19 @@ Widget _buildCardView(BuildContext context) {
                   fontWeight: FontWeight.bold),
              ),
             ),
-           ),
+
           ),
           InkWell(
+           onTap: (){showDialog(
+            context: context,
+            builder: (BuildContext context) => CustomDialog(
+             title: "Key Phrases",
+             description:
+             "Hum Tum Ek Kamre Me Bandh Ho, Aur Key Phrase Kho Jaaye!!",
+             buttonText: "Okay",
+            ),
+           );
+           },
            child: Container(
             height: 50.0,
             width: 100.0,
@@ -152,8 +151,6 @@ Widget _buildCardView(BuildContext context) {
                 color: Color(0xff232882),
                 borderRadius: BorderRadius.circular(30.0),
                 border: new Border.all(color: Colors.white)),
-            child: InkWell(
-             onTap: () {},
              child: Text(
               "Key Phrases",
               style: TextStyle(
@@ -162,9 +159,19 @@ Widget _buildCardView(BuildContext context) {
                   fontWeight: FontWeight.bold),
              ),
             ),
-           ),
+
           ),
           InkWell(
+           onTap: (){showDialog(
+            context: context,
+            builder: (BuildContext context) => CustomDialog(
+             title: "DataBase",
+             description:
+             "Data Aaoo, Hum Darte Hai Kya ?",
+             buttonText: "Okay",
+            ),
+           );
+           },
            child: Container(
             height: 50.0,
             width: 100.0,
@@ -173,8 +180,7 @@ Widget _buildCardView(BuildContext context) {
                 color: Color(0xff232882),
                 borderRadius: BorderRadius.circular(30.0),
                 border: new Border.all(color: Colors.white)),
-            child: InkWell(
-             onTap: () {},
+
              child: Text(
               "Database",
               style: TextStyle(
@@ -183,12 +189,12 @@ Widget _buildCardView(BuildContext context) {
                   fontWeight: FontWeight.bold),
              ),
             ),
-           ),
+
           ),
          ],
         ),
        ),
-       Card(
+       Container(
            child: Form(
             child: Column(
              children: <Widget>[

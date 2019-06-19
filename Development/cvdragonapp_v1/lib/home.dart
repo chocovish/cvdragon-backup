@@ -78,7 +78,7 @@ Widget _buildCardView() {
     children: <Widget>[
       Card(
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -105,7 +105,7 @@ Widget _buildCardView() {
       ),
       Card(
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: SizedBox(
           height: 300,
           width: 400,
@@ -114,7 +114,7 @@ Widget _buildCardView() {
       ),
       Card(
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
           child: Column(children: <Widget>[
             ListTile(
               title: Text("PROFILE CREATED",

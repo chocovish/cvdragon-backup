@@ -89,6 +89,24 @@ class _SideMenu extends State<SideMenu> {
             ),
             Divider(color: Colors.white30),
             ListTile(
+              title: Text('Cover Letters',
+                  style: TextStyle(color: Colors.white, fontSize: 15.0)),
+              leading: Icon(
+                Icons.edit,
+                size: 30,
+                color: Colors.white,
+              ),
+              subtitle: Text('View your sections',
+                  style: TextStyle(color: Colors.white)),
+              trailing: Icon(Icons.arrow_forward, color: Colors.white),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Sections()));
+              },
+            ),
+            Divider(color: Colors.white30),
+            ListTile(
               title: Text('Sections',
                   style: TextStyle(color: Colors.white, fontSize: 15.0)),
               leading: Icon(
@@ -107,23 +125,24 @@ class _SideMenu extends State<SideMenu> {
             ),
             Divider(color: Colors.white30),
             ListTile(
-              title: Text('Cover Letters',
+              title: Text('Designs',
                   style: TextStyle(color: Colors.white, fontSize: 15.0)),
+              trailing: Icon(Icons.arrow_forward, color: Colors.white),
               leading: Icon(
-                Icons.crop_rotate,
+                Icons.supervised_user_circle,
                 size: 30,
                 color: Colors.white,
               ),
-              subtitle: Text('Check your Cover Letters',
+              subtitle: Text('View Your Public Profile',
                   style: TextStyle(color: Colors.white)),
-              trailing: Icon(Icons.arrow_forward, color: Colors.white),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CoverLetters()));
+                    MaterialPageRoute(builder: (context) => PublicProfile()));
               },
             ),
             Divider(color: Colors.white30),
+
             ListTile(
               title: Text('Institute',
                   style: TextStyle(color: Colors.white, fontSize: 15.0)),

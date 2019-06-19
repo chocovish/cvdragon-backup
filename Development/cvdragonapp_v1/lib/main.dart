@@ -7,9 +7,11 @@ import 'package:flutter/rendering.dart';
 import './rightpreviewpane.dart';
 import './login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import './earlyfetch.dart'as efetch;
-import './sharedfetch.dart'as sfetch;
-String name,email;
+import './earlyfetch.dart' as efetch;
+import './sharedfetch.dart' as sfetch;
+import 'package:flutter/rendering.dart';
+
+String name, email;
 
 void main() {
   //debugPaintSizeEnabled = true;
@@ -17,7 +19,6 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-
   // This widget is the root of your application.
   @override
   State<StatefulWidget> createState() {
@@ -25,46 +26,44 @@ class MyApp extends StatefulWidget {
     return _MyApp();
   }
 }
-class _MyApp extends State<MyApp>{
-  var hometext="Home";
+
+class _MyApp extends State<MyApp> {
+  var hometext = "Home";
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     this.get();
   }
-  void get(){
-      efetch.DatabaseFetch();
-      sfetch.readname().then((String n){
+
+  void get() {
+    efetch.DatabaseFetch();
+    sfetch.readname().then((String n) {
       setState(() {
-       name=n;
+        name = n;
       });
     });
-      sfetch.readmail().then((String mail){
+    sfetch.readmail().then((String mail) {
       setState(() {
-       email=mail;
+        email = mail;
       });
     });
-    
-     }
-  void _bottompressed(String t){
-     setState(() {
-      hometext=t;
-     });
-   }
+  }
+
+  void _bottompressed(String t) {
+    setState(() {
+      hometext = t;
+    });
+  }
 
   Widget build(BuildContext context) {
-    
-     
     SystemChrome.setEnabledSystemUIOverlays([]);
-   
+
     return MaterialApp(
-
-      theme: ThemeData( 
-        primaryColor: Colors.green,
-      ),
-
-      home:LoginPage()
-    );
+        theme: ThemeData(
+          primaryColor: Colors.green,
+        ),
+        home: LoginPage());
   }
 }

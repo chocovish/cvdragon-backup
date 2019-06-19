@@ -1,6 +1,6 @@
- import 'package:http/http.dart' as http;
- import './urlgenerator.dart'as urlgetter;
- import 'dart:convert';
+import 'package:http/http.dart' as http;
+import './urlgenerator.dart'as urlgetter;
+import 'dart:convert';
 import 'dart:async';
 List sending_response;
 Map<String,dynamic> sendBasic;
@@ -24,4 +24,35 @@ List sendachieve;
     sendachieve= json.decode(res.body);
     return sendachieve;
  }
+Future<List> getcvAcademicProjects(String id,String authkey) async {
+  String url = urlgetter.cvAcademicProjects(id,authkey);
+    var res = await http.get(url);
+    sendachieve= json.decode(res.body);
+    return sendachieve;
+ }
 
+
+Future<List> getcvSection(String id,String authkey) async {
+  String url = urlgetter.cvSection(id,authkey);
+    var res = await http.get(url);
+    sendachieve= json.decode(res.body);
+    return sendachieve;
+ }
+ Future<List> getcvProfileSection(String id,String authkey) async {
+  String url = urlgetter.cvProfileSection(id,authkey);
+    var res = await http.get(url);
+    sendachieve= json.decode(res.body);
+    return sendachieve;
+ }
+  Future<List> getcvProject(String id,String authkey) async {
+  String url = urlgetter.cvProject(id,authkey);
+    var res = await http.get(url);
+    sendachieve= json.decode(res.body);
+    return sendachieve;
+ }
+ Future<Map<String,dynamic>> getFAQ(String sectionID)async {
+  String url = urlgetter.faq(sectionID);
+    var res = await http.get(url);
+    sendBasic= json.decode(res.body);
+    return sendBasic;
+ }

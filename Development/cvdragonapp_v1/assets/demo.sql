@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `cv-academic-projects`
 --
 
-CREATE TABLE `cv-academic-projects` (  `academicid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `title` varchar(100) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  `proofRead` int(11) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL);
+CREATE TABLE `cv-academic-projects` (`academicid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `title` varchar(100) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  `proofRead` int(11) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL);
 
 -- --------------------------------------------------------
 
@@ -61,9 +61,7 @@ CREATE TABLE `cv-association` (  `associationid` int(11) NOT NULL,  `id` bigint(
 -- Table structure for table `cv-awards`
 --
 
-CREATE TABLE `cv-awards` (  `awardid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `title` varchar(100)  NOT NULL,
-  `organization` varchar(50)  NOT NULL,  `year` year(4) NOT NULL,  `description` mediumtext  NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,  `status` tinyint(1) NOT NULL,  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL)    ;
+CREATE TABLE `cv-awards` (  `awardid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `title` varchar(100)  NOT NULL,`organization` varchar(50)  NOT NULL,  `year` year(4) NOT NULL,  `description` mediumtext  NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,  `status` tinyint(1) NOT NULL,  `proofRead` tinyint(4) NOT NULL `proofReadDate` date NOT NULL)    ;
 
 -- --------------------------------------------------------
 
@@ -71,47 +69,16 @@ CREATE TABLE `cv-awards` (  `awardid` int(11) NOT NULL,  `id` bigint(20) NOT NUL
 -- Table structure for table `cv-basic-info`
 --
 
-CREATE TABLE `cv-basic-info` (
-  `id` bigint(20) NOT NULL,
-  `cvFullName` varchar(100)  NOT NULL,
-  `nationality` varchar(50)  NOT NULL,
-  `gender` varchar(50)  NOT NULL,
-  `dateBirth` date DEFAULT NULL,
-  `maritalStatus` varchar(20)  NOT NULL,
-  `facebookLink` varchar(200)  NOT NULL,
-  `linkedinLink` varchar(200)  NOT NULL,
-  `twitterLink` varchar(200)  NOT NULL,
-  `blogLink` varchar(200)  NOT NULL,
-  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` smallint(6) NOT NULL
-)    ;
+CREATE TABLE `cv-basic-info` (  `id` bigint(20) NOT NULL,  `cvFullName` varchar(100)  NOT NULL,  `nationality` varchar(50)  NOT NULL,  `gender` varchar(50)  NOT NULL,  `dateBirth` date DEFAULT NULL,  `maritalStatus` varchar(20)  NOT NULL,
+  `facebookLink` varchar(200)  NOT NULL,  `linkedinLink` varchar(200)  NOT NULL,  `twitterLink` varchar(200)  NOT NULL,
+  `blogLink` varchar(200)  NOT NULL,  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(6) NOT NULL)    ;
 
---
--- Dumping data for table `cv-basic-info`
---
-
-INSERT INTO `cv-basic-info` (`id`, `cvFullName`, `nationality`, `gender`, `dateBirth`, `maritalStatus`, `facebookLink`, `linkedinLink`, `twitterLink`, `blogLink`, `dateCreated`, `proofRead`, `proofReadDate`, `status`) VALUES
-(12, 'rohit', 'india', 'm', '2019-06-13', 'abx', 'ns', 'nqj', 'nj', 'nj', '2019-06-14 05:12:59', 2, '2019-06-03', 1);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-certification`
 --
 
-CREATE TABLE `cv-certification` (
-  `certificateid` int(11) NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `certificate` varchar(100) NOT NULL,
-  `authority` varchar(150) NOT NULL,
-  `year` year(4) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(1) NOT NULL
-)  ;
+CREATE TABLE `cv-certification` (  `certificateid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `certificate` varchar(100) NOT NULL,  `authority` varchar(150) NOT NULL,  `year` year(4) NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL, `status` tinyint(1) NOT NULL);
 
 -- --------------------------------------------------------
 
@@ -119,16 +86,7 @@ CREATE TABLE `cv-certification` (
 -- Table structure for table `cv-co-curricular-activities`
 --
 
-CREATE TABLE `cv-co-curricular-activities` (
-  `activityid` int(11) NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` smallint(1) NOT NULL
-)  ;
+CREATE TABLE `cv-co-curricular-activities` (  `activityid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `title` varchar(100) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL)  ;
 
 -- --------------------------------------------------------
 
@@ -136,17 +94,7 @@ CREATE TABLE `cv-co-curricular-activities` (
 -- Table structure for table `cv-contact`
 --
 
-CREATE TABLE `cv-contact` (
-  `id` bigint(20) NOT NULL,
-  `phoneNumber` varchar(30) DEFAULT NULL,
-  `emailAddress` varchar(50) NOT NULL,
-  `location` varchar(50) NOT NULL,
-  `fullAddress` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` smallint(1) NOT NULL
-)  ;
+CREATE TABLE `cv-contact` (  `id` bigint(20) NOT NULL,  `phoneNumber` varchar(30) DEFAULT NULL,  `emailAddress` varchar(50) NOT NULL,  `location` varchar(50) NOT NULL,  `fullAddress` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL);
 
 -- --------------------------------------------------------
 
@@ -154,36 +102,17 @@ CREATE TABLE `cv-contact` (
 -- Table structure for table `cv-cover`
 --
 
-CREATE TABLE `cv-cover` (
-  `coverid` int(11) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `cover` text NOT NULL,
-  `created` date NOT NULL,
-  `status` binary(1) NOT NULL
-)  ;
+CREATE TABLE `cv-cover` (`coverid` int(11) NOT NULL,  `userid` bigint(20) NOT NULL,  `cover` text NOT NULL,  `created` date NOT NULL,  `status` binary(1) NOT NULL)  ;
 
--- --------------------------------------------------------
+-- ----------------------------------------------------
 
 --
 -- Table structure for table `cv-education`
 --
 
-CREATE TABLE `cv-education` (
-  `eduid` int(11) NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `category` varchar(10) NOT NULL,
-  `institute` varchar(100) NOT NULL,
-  `location` varchar(100) NOT NULL,
-  `university` varchar(100) NOT NULL,
-  `specialization` varchar(100) NOT NULL,
-  `grade` varchar(50) NOT NULL,
-  `score` varchar(50) NOT NULL,
-  `year` varchar(4) DEFAULT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(1) NOT NULL
-)  ;
+CREATE TABLE `cv-education` (  `eduid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `category` varchar(10) NOT NULL,
+  `institute` varchar(100) NOT NULL,  `location` varchar(100) NOT NULL,  `university` varchar(100) NOT NULL,  `specialization` varchar(100) NOT NULL,  `grade` varchar(50) NOT NULL,  `score` varchar(50) NOT NULL,  `year` varchar(4) DEFAULT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,  `proofRead` tinyint(4) NOT NULL,
+  `proofReadDate` date NOT NULL,  `status` tinyint(1) NOT NULL )  ;
 
 -- --------------------------------------------------------
 
@@ -191,15 +120,7 @@ CREATE TABLE `cv-education` (
 -- Table structure for table `cv-images`
 --
 
-CREATE TABLE `cv-images` (
-  `imageid` int(11) NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `image` varchar(100) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(4) NOT NULL
-)    ;
+CREATE TABLE `cv-images` (  `imageid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `image` varchar(100) NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` tinyint(4) NOT NULL)    ;
 
 -- --------------------------------------------------------
 
@@ -207,24 +128,8 @@ CREATE TABLE `cv-images` (
 -- Table structure for table `cv-preference`
 --
 
-CREATE TABLE `cv-preference` (
-  `prefid` int(11) NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `passport` tinyint(1) DEFAULT NULL,
-  `passportDetails` varchar(100) NOT NULL,
-  `recommendations` tinyint(1) DEFAULT NULL,
-  `preferredLocation` varchar(50) NOT NULL,
-  `canRelocate` tinyint(4) NOT NULL,
-  `noticePeriod` varchar(20) NOT NULL,
-  `canJoin` tinyint(4) NOT NULL,
-  `expectedCTC` varchar(100) NOT NULL,
-  `isNegotiate` tinyint(4) NOT NULL,
-  `declaration` tinyint(1) DEFAULT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(1) NOT NULL
-)  ;
+CREATE TABLE `cv-preference` (  `prefid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `passport` tinyint(1) DEFAULT NULL,  `passportDetails` varchar(100) NOT NULL,  `recommendations` tinyint(1) DEFAULT NULL,  `preferredLocation` varchar(50) NOT NULL,  `canRelocate` tinyint(4) NOT NULL,  `noticePeriod` varchar(20) NOT NULL,  `canJoin` tinyint(4) NOT NULL,
+  `expectedCTC` varchar(100) NOT NULL,  `isNegotiate` tinyint(4) NOT NULL,  `declaration` tinyint(1) DEFAULT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` tinyint(1) NOT NULL)  ;
 
 -- --------------------------------------------------------
 
@@ -232,16 +137,7 @@ CREATE TABLE `cv-preference` (
 -- Table structure for table `cv-presentations`
 --
 
-CREATE TABLE `cv-presentations` (
-  `activityid` int(11) NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `description` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` smallint(1) NOT NULL
-)  ;
+CREATE TABLE `cv-presentations` (  `activityid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `title` varchar(200) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL)  ;
 
 -- --------------------------------------------------------
 
@@ -249,21 +145,8 @@ CREATE TABLE `cv-presentations` (
 -- Table structure for table `cv-professional`
 --
 
-CREATE TABLE `cv-professional` (
-  `professionalid` int(11) NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `course` varchar(100) NOT NULL,
-  `organization` varchar(100) NOT NULL,
-  `university` varchar(100) NOT NULL,
-  `year` year(4) DEFAULT NULL,
-  `isPursuing` tinyint(4) DEFAULT NULL,
-  `grade` varchar(20) NOT NULL,
-  `score` varchar(20) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(1) NOT NULL
-)  ;
+CREATE TABLE `cv-professional` (  `professionalid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `course` varchar(100) NOT NULL,  `organization` varchar(100) NOT NULL,  `university` varchar(100) NOT NULL,  `year` year(4) DEFAULT NULL, `isPursuing` tinyint(4) DEFAULT NULL,  `grade` varchar(20) NOT NULL,  `score` varchar(20) NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,
+  `status` tinyint(1) NOT NULL)  ;
 
 -- --------------------------------------------------------
 
@@ -271,21 +154,7 @@ CREATE TABLE `cv-professional` (
 -- Table structure for table `cv-project`
 --
 
-CREATE TABLE `cv-project` (
-  `projectid` int(11) NOT NULL,
-  `workid` int(11) NOT NULL,
-  `organization` varchar(150) NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `designation` varchar(50) NOT NULL,
-  `duration` varchar(20) NOT NULL,
-  `location` varchar(50) NOT NULL,
-  `description` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` smallint(1) NOT NULL
-)  ;
+CREATE TABLE `cv-project` (  `projectid` int(11) NOT NULL,  `workid` int(11) NOT NULL,  `organization` varchar(150) NOT NULL,  `id` bigint(20) NOT NULL,  `title` varchar(100) NOT NULL,  `designation` varchar(50) NOT NULL,  `duration` varchar(20) NOT NULL,  `location` varchar(50) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP    ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL)  ;
 
 --
 -- Indexes for dumped tables
@@ -294,106 +163,77 @@ CREATE TABLE `cv-project` (
 --
 -- Indexes for table `cv-academic-projects`
 --
-ALTER TABLE `cv-academic-projects`
-  ADD PRIMARY KEY (`id`,`title`),
-  ADD UNIQUE KEY `trainingid` (`academicid`);
+ALTER TABLE `cv-academic-projects`  ADD PRIMARY KEY (`id`,`title`),  ADD UNIQUE KEY `trainingid` (`academicid`);
 
 --
 -- Indexes for table `cv-achievements`
 --
-ALTER TABLE `cv-achievements`
-  ADD UNIQUE KEY `achieveid` (`achieveid`),
-  ADD UNIQUE KEY `id` (`id`,`achievement`,`year`);
+ALTER TABLE `cv-achievements`  ADD UNIQUE KEY `achieveid` (`achieveid`),  ADD UNIQUE KEY `id` (`id`,`achievement`,`year`);
 
 --
 -- Indexes for table `cv-add-section`
 --
-ALTER TABLE `cv-add-section`
-  ADD PRIMARY KEY (`addid`);
+ALTER TABLE `cv-add-section`  ADD PRIMARY KEY (`addid`);
 
 --
 -- Indexes for table `cv-association`
 --
-ALTER TABLE `cv-association`
-  ADD PRIMARY KEY (`id`,`organization`,`position`) USING BTREE,
-  ADD UNIQUE KEY `associationid` (`associationid`);
+ALTER TABLE `cv-association`  ADD PRIMARY KEY (`id`,`organization`,`position`) USING BTREE,  ADD UNIQUE KEY `associationid` (`associationid`);
 
 --
 -- Indexes for table `cv-awards`
 --
-ALTER TABLE `cv-awards`
-  ADD PRIMARY KEY (`id`,`title`,`year`),
-  ADD UNIQUE KEY `awardid` (`awardid`);
+ALTER TABLE `cv-awards`  ADD PRIMARY KEY (`id`,`title`,`year`),  ADD UNIQUE KEY `awardid` (`awardid`);
 
 --
 -- Indexes for table `cv-basic-info`
 --
-ALTER TABLE `cv-basic-info`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
+ALTER TABLE `cv-basic-info`  ADD PRIMARY KEY (`id`),  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `cv-certification`
 --
-ALTER TABLE `cv-certification`
-  ADD PRIMARY KEY (`id`,`certificate`,`authority`,`year`),
-  ADD UNIQUE KEY `certificateid` (`certificateid`);
+ALTER TABLE `cv-certification`  ADD PRIMARY KEY (`id`,`certificate`,`authority`,`year`),  ADD UNIQUE KEY `certificateid` (`certificateid`);
 
 --
 -- Indexes for table `cv-co-curricular-activities`
 --
-ALTER TABLE `cv-co-curricular-activities`
-  ADD PRIMARY KEY (`id`,`title`),
-  ADD UNIQUE KEY `trainingid` (`activityid`);
+ALTER TABLE `cv-co-curricular-activities`  ADD PRIMARY KEY (`id`,`title`),  ADD UNIQUE KEY `trainingid` (`activityid`);
 
 --
 -- Indexes for table `cv-contact`
 --
-ALTER TABLE `cv-contact`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `userid` (`id`);
+ALTER TABLE `cv-contact`  ADD PRIMARY KEY (`id`),  ADD UNIQUE KEY `id` (`id`),  ADD KEY `userid` (`id`);
 
 --
 -- Indexes for table `cv-cover`
 --
-ALTER TABLE `cv-cover`
-  ADD PRIMARY KEY (`coverid`),
-  ADD KEY `userid` (`userid`);
+ALTER TABLE `cv-cover`  ADD PRIMARY KEY (`coverid`),  ADD KEY `userid` (`userid`);
 
 --
 -- Indexes for table `cv-education`
 --
-ALTER TABLE `cv-education`
-  ADD PRIMARY KEY (`id`,`category`),
-  ADD KEY `eduid` (`eduid`);
+ALTER TABLE `cv-education`  ADD PRIMARY KEY (`id`,`category`),  ADD KEY `eduid` (`eduid`);
 
 --
 -- Indexes for table `cv-images`
 --
-ALTER TABLE `cv-images`
-  ADD PRIMARY KEY (`id`,`image`),
-  ADD UNIQUE KEY `imageid` (`imageid`);
+ALTER TABLE `cv-images`  ADD PRIMARY KEY (`id`,`image`),  ADD UNIQUE KEY `imageid` (`imageid`);
 
 --
 -- Indexes for table `cv-preference`
 --
-ALTER TABLE `cv-preference`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `profileid` (`prefid`);
+ALTER TABLE `cv-preference`  ADD PRIMARY KEY (`id`),  ADD UNIQUE KEY `profileid` (`prefid`);
 
 --
 -- Indexes for table `cv-presentations`
 --
-ALTER TABLE `cv-presentations`
-  ADD PRIMARY KEY (`id`,`title`),
-  ADD UNIQUE KEY `trainingid` (`activityid`);
+ALTER TABLE `cv-presentations`  ADD PRIMARY KEY (`id`,`title`),  ADD UNIQUE KEY `trainingid` (`activityid`);
 
 --
 -- Indexes for table `cv-professional`
 --
-ALTER TABLE `cv-professional`
-  ADD PRIMARY KEY (`id`,`course`,`organization`),
+ALTER TABLE `cv-professional`  ADD PRIMARY KEY (`id`,`course`,`organization`),
   ADD UNIQUE KEY `professionalid` (`professionalid`);
 
 --

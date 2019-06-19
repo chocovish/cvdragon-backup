@@ -31,7 +31,7 @@ class _MyApp extends State<MyApp>{
     // TODO: implement initState
     super.initState();
     this.get();
-  }
+}
   void get(){
       efetch.DatabaseFetch();
       sfetch.readname().then((String n){

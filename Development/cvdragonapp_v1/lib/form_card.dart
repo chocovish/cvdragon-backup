@@ -1,4 +1,8 @@
+import 'package:cvdragonapp_v1/datapush.dart';
+import 'package:cvdragonapp_v1/earlyfetch.dart';
+import 'package:cvdragonapp_v1/localdatapush.dart' as local;
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 import './home.dart';
 import './fetch.dart' as fetch;
 import 'main.dart';
@@ -20,6 +24,8 @@ class LoginFormCardState extends State<LoginFormCard> {
     // TODO: implement initState
     super.initState();
       }
+
+      
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -104,9 +110,10 @@ class LoginFormCardState extends State<LoginFormCard> {
                 border: new Border.all(color: Colors.white)
             ),
             child: InkWell(
-              onTap: () {
-
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>(HomePagee())));
+              onTap: (){
+              local.push().then((int status){
+                 Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePagee()));
+              });
               },
               child: Center(
                 child: Text(

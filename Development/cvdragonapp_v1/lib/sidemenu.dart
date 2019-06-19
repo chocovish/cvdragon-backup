@@ -20,7 +20,7 @@ class SideMenu extends StatefulWidget {
 
 //create a list for the list items
 class _SideMenu extends State<SideMenu> {
-     bool _isLoading=false;
+     bool _isLoading=true;
   @override
   void initState() {
     // TODO: implement initState
@@ -28,8 +28,10 @@ class _SideMenu extends State<SideMenu> {
     this.get();
   }
   void get(){
+    
       name=main.name;
       email=main.email;
+      _isLoading=false;
     }
   @override
 

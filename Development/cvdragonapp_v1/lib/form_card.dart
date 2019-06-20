@@ -1,6 +1,5 @@
 import 'package:cvdragonapp_v1/localdatapush.dart' as local;
 import 'package:cvdragonapp_v1/otppage.dart';
-import 'package:cvdragonapp_v1/otpverify.dart';
 import 'package:flutter/material.dart';
  final myController = TextEditingController();
 class LoginFormCard extends StatefulWidget {

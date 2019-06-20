@@ -93,10 +93,10 @@ class LoginFormCardState extends State<LoginFormCard> {
         padding: const EdgeInsets.only(top: 40.0),
         child: InkWell(
           onTap: () {
-            local.push().then((int status) {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HomePagee()));
-            });
+            showDialog(
+              context: context,
+              builder: (BuildContext context) => HomePagee(),
+            );
           },
           child: Container(
             height: 50.0,

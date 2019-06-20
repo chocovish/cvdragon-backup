@@ -21,14 +21,15 @@ dependencies:
   flutter:
     sdk: flutter
   charts_flutter: ^0.6.0
+  flutter_reactive_button: "^1.1.0"
   animator: ^0.1.2
   path_provider: ^1.1.0
   photo_view: 
+
   flutter_screenutil: ^0.3.0
   shared_preferences: ^0.4.3
   sqflite: ^1.0.0
   intl: ^0.15.7
-  webview_flutter: ^0.3.9+1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -70,8 +71,13 @@ flutter:
     - assets/Profile Image.png
     - assets/logofull.png
     - assets/cv.png
-    - assets/cv3.html
-
+    - assets/angry.gif
+    - assets/sad.gif
+    - assets/like.gif
+    - assets/haha.gif
+    - assets/wow.gif
+    - assets/love.gif
+    - assets/twitterlogo.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

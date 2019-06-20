@@ -21,6 +21,7 @@ dependencies:
   flutter:
     sdk: flutter
   charts_flutter: ^0.6.0
+  flutter_reactive_button: "^1.1.0"
   animator: ^0.1.2
   path_provider: ^1.1.0
   photo_view: 
@@ -70,7 +71,13 @@ flutter:
     - assets/Profile Image.png
     - assets/logofull.png
     - assets/cv.png
-
+    - assets/angry.gif
+    - assets/sad.gif
+    - assets/like.gif
+    - assets/haha.gif
+    - assets/wow.gif
+    - assets/love.gif
+    - assets/twitterlogo.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

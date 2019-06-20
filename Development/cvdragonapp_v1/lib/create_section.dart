@@ -4,9 +4,15 @@ import './sidemenu.dart';
 import './rightpreviewpane.dart';
 import './bottombar_createsection.dart';
 import './Custom_dialog.dart';
+import './Custom_dialog_KeyPhrases.dart';
+
 import './fetch.dart';
 class CreateSection extends StatefulWidget {
  @override
+ CreateSection(String name)
+ {
+print(name);
+ } 
  State<StatefulWidget> createState() {
   // TODO: implement createState
   return _CreateSection();
@@ -165,11 +171,9 @@ Widget _buildCardView(BuildContext context) {
           InkWell(
            onTap: (){showDialog(
             context: context,
-            builder: (BuildContext context) => CustomDialog(
-             title: "Key Phrases",
-             description:
-             keyPhrases.toString(),
-             buttonText: "Okay",
+            builder: (BuildContext context) => CustomDialogKeyPhrases(
+              "Key Phrases",keyPhrases
+            
             ),
            );
            },

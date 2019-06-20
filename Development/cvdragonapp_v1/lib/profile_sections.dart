@@ -1,5 +1,6 @@
 import 'dart:ui' as prefix0;
 import 'dart:convert';
+import 'package:cvdragonapp_v1/localdatapush.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
@@ -151,7 +152,7 @@ class _ProfileSections extends State<ProfileSections> {
                                               child: InkWell(
                                                 onTap: (
                                                     ) {
-                                                  Navigator.push(context,MaterialPageRoute(builder: (context) => (CreateSection())));
+                                                  Navigator.push(context,MaterialPageRoute(builder: (context) => (CreateSection(data[index]['section']))));
                                                 },
                                                 child: Row(
                                                   children: <Widget>[

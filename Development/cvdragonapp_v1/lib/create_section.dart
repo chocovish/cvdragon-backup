@@ -26,7 +26,7 @@ class _CreateSection extends State<CreateSection> {
   void get(){
     getFAQ("51110").then((Map<String,dynamic> data){
        faq=data;
-       getKeyPhrases("academic-projects").then((List data){
+       getKeyPhrases("51110").then((List data){
         keyPhrases=data;
         setState(() {
          isLoading=false; 
@@ -138,7 +138,7 @@ Widget _buildCardView(BuildContext context) {
              builder: (BuildContext context) => CustomDialog(
               title: "FAQs",
               description:
-             faq['51100'],
+             faq['faq'].toString(),
               buttonText: "Okay",
              ),
             );

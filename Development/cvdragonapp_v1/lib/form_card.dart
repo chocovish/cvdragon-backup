@@ -1,13 +1,8 @@
-import 'package:cvdragonapp_v1/datapush.dart';
-import 'package:cvdragonapp_v1/earlyfetch.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart' as local;
+import 'package:cvdragonapp_v1/otppage.dart';
+import 'package:cvdragonapp_v1/otpverify.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
-import './home.dart';
-import './fetch.dart' as fetch;
-import 'main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+ final myController = TextEditingController();
 class LoginFormCard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -42,11 +37,20 @@ class LoginFormCardState extends State<LoginFormCard> {
   }
 
   Widget _buildMobileForm() {
+   
+ 
+@override
+void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Align(
         alignment: Alignment.centerRight,
         child: TextField(
+          controller: myController,
           style: TextStyle(color: Colors.white, fontSize: 18),
           maxLength: 10,
           keyboardType: TextInputType.number,
@@ -104,10 +108,11 @@ class LoginFormCardState extends State<LoginFormCard> {
             child: InkWell(
               onTap: (){
               local.push().then((int status){
-                 Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePagee()));
+                if(status==1)
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(myController.text.toString())));
               });
-              },
-              child: Text(
+              }
+              ,child: Text(
                 "Verify",
                 style: TextStyle(
                     color: Colors.white,

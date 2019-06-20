@@ -57,8 +57,8 @@ class _CreateSection extends State<CreateSection> {
                 child: Center(
                     child: Image(
                         image: AssetImage("assets/logocv.gif"),
-                        height: 75.0,
-                        width: 75.0)),
+                        height: MediaQuery.of(context).size.height/12,
+                        width: MediaQuery.of(context).size.width/6)),
               ):Scaffold(
    appBar: TopMenuBar(),
    floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

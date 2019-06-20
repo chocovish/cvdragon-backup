@@ -24,7 +24,6 @@ class LoginPageState extends State<LoginPage> {
         ),
         child: Container(
           margin: EdgeInsets.only(top: 100),
-//          padding: EdgeInsets.only(top: 130),
           alignment: Alignment.bottomCenter,
           child: ListView(
             children: <Widget>[

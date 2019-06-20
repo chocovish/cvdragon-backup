@@ -92,7 +92,6 @@ class _Designs extends State<Designs> {
         return new Center(
           child: new SizedBox(
             height: MediaQuery.of(context).size.height/1.4,
-            //height: Curves.easeOut.transform(value) * 550,
             width: Curves.easeOut.transform(value) * 500,
             
             

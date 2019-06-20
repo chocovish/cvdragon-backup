@@ -44,7 +44,3 @@ class SocialIcon extends StatelessWidget {
             ]));
   }
 }
-
-//class CustomIcons{
-//  static const IconData facebook = IconData
-//}

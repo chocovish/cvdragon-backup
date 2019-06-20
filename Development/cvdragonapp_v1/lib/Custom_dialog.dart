@@ -93,8 +93,6 @@ class CustomDialog extends StatelessWidget {
 
           Container(
             height: 35,
-            //width3 40,
-
             alignment: FractionalOffset.bottomCenter,
             child: RaisedButton(color: Color(0xff232882),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),

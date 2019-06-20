@@ -13,11 +13,9 @@ class PreviewPane extends StatefulWidget {
 
 class _PreviewPane extends State<PreviewPane>
 {
-  //String _lastSelected = 'TAB: 0';
 
   void _selectedTab(int index) {
     setState(() {
-      //_lastSelected = 'TAB: $index';
       print(index);
     });
   }

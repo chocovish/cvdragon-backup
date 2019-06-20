@@ -9,7 +9,6 @@ import 'dart:async';
 import './fetch.dart' as fetch;
 import 'package:http/http.dart' as http;
 import 'main.dart' as main;
-import './my_flutter_app_icons.dart';
 
 class Sections extends StatefulWidget {
   @override
@@ -48,8 +47,8 @@ class _Sections extends State<Sections> {
                 child: Center(
                     child: Image(
                         image: AssetImage("assets/logocv.gif"),
-                        height: 75.0,
-                        width: 75.0)),
+                        height: MediaQuery.of(context).size.height/12,
+                        width: MediaQuery.of(context).size.width/6)),
               )
             : Container(
                 padding: EdgeInsets.only(

@@ -62,3 +62,11 @@ Future<List> getcvSection(String id,String authkey) async {
     sendachieve= json.decode(res.body);
     return sendachieve;
  }
+  Future<List> getOtp(String mobileno) async {
+  String url = urlgetter.otpgenerator(mobileno);
+  print (url);
+    var res = await http.get(url);
+    sending_response= json.decode(res.body);
+    return sending_response;
+ }
+ 

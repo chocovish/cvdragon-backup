@@ -1,13 +1,7 @@
-import 'package:cvdragonapp_v1/datapush.dart';
-import 'package:cvdragonapp_v1/earlyfetch.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart' as local;
+import 'package:cvdragonapp_v1/otppage.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
-import './home.dart';
-import './fetch.dart' as fetch;
-import 'main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+ final myController = TextEditingController();
 class LoginFormCard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -22,8 +16,9 @@ class LoginFormCardState extends State<LoginFormCard> {
   void initState() {
     // TODO: implement initState
     super.initState();
-  }
+      }
 
+      
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -41,11 +36,20 @@ class LoginFormCardState extends State<LoginFormCard> {
   }
 
   Widget _buildMobileForm() {
+   
+ 
+@override
+void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Align(
         alignment: Alignment.centerRight,
         child: TextField(
+          controller: myController,
           style: TextStyle(color: Colors.white, fontSize: 18),
           maxLength: 10,
           keyboardType: TextInputType.number,
@@ -92,12 +96,6 @@ class LoginFormCardState extends State<LoginFormCard> {
       child: Padding(
         padding: const EdgeInsets.only(top: 40.0),
         child: InkWell(
-          onTap: () {
-            showDialog(
-              context: context,
-              builder: (BuildContext context) => HomePagee(),
-            );
-          },
           child: Container(
             height: 50.0,
             width: 150.0,
@@ -106,13 +104,21 @@ class LoginFormCardState extends State<LoginFormCard> {
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(30.0),
                 border: new Border.all(color: Colors.white)),
-            child: Text(
-              "Verify",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.0),
+            child: InkWell(
+              onTap: (){
+              local.push().then((int status){
+                if(status==1)
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(myController.text.toString())));
+              });
+              }
+              ,child: Text(
+                "Verify",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.0),
+              ),
             ),
           ),
         ),

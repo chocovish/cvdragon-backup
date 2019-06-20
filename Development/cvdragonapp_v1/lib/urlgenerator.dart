@@ -44,3 +44,7 @@ String keyPhrases(String sectionid)
 {
   return url+"?id=1&authkey=1&data=keyPhrases&section="+sectionid;
 }
+String otpgenerator(String mobileno)
+{
+  return url+"?id=1&authkey=cvDragonAppPublicKey12345&data=verifyMobile&mobile="+mobileno+"&countryCode=91";
+}

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import './const.dart';
-
+List data;
 class CustomDialogKeyPhrases extends StatelessWidget {
-  final String title;
+  String title="";
 
-  CustomDialogKeyPhrases({
-    @required this.title,
-  });
+  CustomDialogKeyPhrases(String t,List d){
+    this.title=t;
+    data=d;
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class CustomDialogKeyPhrases extends StatelessWidget {
   Widget dialogContent(BuildContext context) {
     return Container(
       //alignment: FractionalOffset.center,
-      height: MediaQuery.of(context).size.height / 1.8,
+      height: MediaQuery.of(context).size.height / 1.5,
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.only(
         top: Consts.padding,
@@ -64,21 +66,21 @@ class CustomDialogKeyPhrases extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(bottom: 10),
-            height: MediaQuery.of(context).size.height / 2.5,
-            child: Scrollbar(
+            height: MediaQuery.of(context).size.height / 1.95,
+              child: Scrollbar(
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
                 itemCount: data == null ? 0 : data.length,
                 itemBuilder: (BuildContext context, int index) {
-                  RaisedButton(
-                    color: Colors.transparent,
+                  return RaisedButton(
+                    color: Color(0xff232882),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0)),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
                     child: Text(
-                      "Okay",
+                      data[index]['keyitem'],
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 15.0,
@@ -86,8 +88,9 @@ class CustomDialogKeyPhrases extends StatelessWidget {
                     ),
                   );
                 },
-              ),
+              
             ),
+          ),
           ),
           Container(
             height: 35,
@@ -101,8 +104,8 @@ class CustomDialogKeyPhrases extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text(
-                buttonText,
+              child: Text("Okay",
+                
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 15.0,

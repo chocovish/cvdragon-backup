@@ -1,5 +1,6 @@
 import 'dart:ui' as prefix0;
 import 'dart:convert';
+import 'package:cvdragonapp_v1/localdatapush.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
@@ -84,9 +85,10 @@ class _ProfileSections extends State<ProfileSections> {
 
                             padding: EdgeInsets.only(left: 10.0,right: 10.0,top: 30.0,bottom: 30.0),
                             child: Image(
-                                image: new AssetImage("assets/" +
-                                    data[index]['sectionName'].toString() +
-                                    ".png"),
+                                // image: new AssetImage("assets/" +
+                                //     data[index]['sectionName'].toString() +
+                                //     ".png"),
+                                image: AssetImage("assets/Basic Info.png"),
                                 color: null,
                                 height: 50,
                                 width: 50,
@@ -150,7 +152,7 @@ class _ProfileSections extends State<ProfileSections> {
                                               child: InkWell(
                                                 onTap: (
                                                     ) {
-                                                  Navigator.push(context,MaterialPageRoute(builder: (context) => (CreateSection())));
+                                                  Navigator.push(context,MaterialPageRoute(builder: (context) => (CreateSection(data[index]['section']))));
                                                 },
                                                 child: Row(
                                                   children: <Widget>[

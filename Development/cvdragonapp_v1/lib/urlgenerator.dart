@@ -38,9 +38,9 @@ String cvProject(String id,String authkey)
 }
 String faq(String sectionID)
 {
-  return url+"?id=1&authkey=1&data=Faqs&section="+sectionID;
+  return url+"?id=1&authkey=1&data=FaqSection&section="+sectionID;
 }
-String keyPhrases(String section)
+String keyPhrases(String sectionid)
 {
-  return url+"?id=1&authkey=1&data=keyPhrases&ref="+section;
+  return url+"?id=1&authkey=1&data=keyPhrases&section="+sectionid;
 }

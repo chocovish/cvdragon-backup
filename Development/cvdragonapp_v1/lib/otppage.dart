@@ -22,22 +22,22 @@ class _OtpPage extends State<OtpPage>{
  String otp;
  List data;
   void get()  {
-    fetch.getOtp(mobileno).then((List res){
+   // fetch.getOtp(mobileno).then((List res){
       setState(() {
-       data=res;
+      // data=res;
       _isLoading=false; 
       });
-    });
+   // });
   }
 @override
 
   Widget build(BuildContext context) {
      verify()
     {
-        if(myController.text.toString()==data[1]['OTP'].toString())
+      //  if(myController.text.toString()==data[1]['OTP'].toString())
         Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePagee()));
-        else
-        print("Wrong otp");
+       // else
+       // print("Wrong otp");
     }
     // TODO: implement build
     return Scaffold(

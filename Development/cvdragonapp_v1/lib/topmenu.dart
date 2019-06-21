@@ -11,8 +11,7 @@ class TopMenuBar extends StatelessWidget with PreferredSizeWidget {
         alignment: Alignment.center,
         child: Image(
           image: AssetImage("assets/logofull.png"),
-          height: 100,
-          width: 150,
+          width: MediaQuery.of(context).size.width/3.2,
         ),
       ),
       backgroundColor: Color(0xff232882),

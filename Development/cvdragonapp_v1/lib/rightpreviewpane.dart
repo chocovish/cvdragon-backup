@@ -2,6 +2,7 @@ import 'package:cvdragonapp_v1/topmenu.dart';
 import 'package:flutter_reactive_button/flutter_reactive_button.dart';
 import 'package:flutter/material.dart';
 import './bottombar_preview.dart';
+import './cvwebview.dart';
 import 'package:photo_view/photo_view.dart';
 import './Design_Sections.dart';
 
@@ -95,13 +96,14 @@ class _PreviewPane extends State<PreviewPane> {
           ),
           appBar: TopMenuBar(),
           backgroundColor: Colors.black,
-          body: PhotoView(
-            imageProvider: AssetImage("assets/cv.png"),
-            minScale: PhotoViewComputedScale.contained * 0.9,
-            maxScale: PhotoViewComputedScale.covered * 1.8,
-            customSize: MediaQuery.of(context).size,
-            initialScale: PhotoViewComputedScale.contained * 0.9,
-          ),
+          body: CVView(),
+          // body: PhotoView(
+          //   imageProvider: AssetImage("assets/cv.png"),
+          //   minScale: PhotoViewComputedScale.contained * 0.9,
+          //   maxScale: PhotoViewComputedScale.covered * 1.8,
+          //   customSize: MediaQuery.of(context).size,
+          //   initialScale: PhotoViewComputedScale.contained * 0.9,
+          // ),
           bottomNavigationBar: FABBottomAppBar(
             notchedShape: CircularNotchedRectangle(),
             color: Colors.white30,

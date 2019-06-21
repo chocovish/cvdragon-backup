@@ -38,9 +38,13 @@ String cvProject(String id,String authkey)
 }
 String faq(String sectionID)
 {
-  return url+"?id=1&authkey=1&data=Faqs&section="+sectionID;
+  return url+"?id=1&authkey=1&data=FaqSection&section="+sectionID;
 }
-String keyPhrases(String section)
+String keyPhrases(String sectionid)
 {
-  return url+"?id=1&authkey=1&data=keyPhrases&ref="+section;
+  return url+"?id=1&authkey=1&data=keyPhrases&section="+sectionid;
+}
+String otpgenerator(String mobileno)
+{
+  return url+"?id=1&authkey=cvDragonAppPublicKey12345&data=verifyMobile&mobile="+mobileno+"&countryCode=91";
 }

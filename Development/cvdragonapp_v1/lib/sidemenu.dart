@@ -43,8 +43,8 @@ class _SideMenu extends State<SideMenu> {
       child: _isLoading?Center(child: Center(
                     child: Image(
                         image: AssetImage("assets/logocv.gif"),
-                        height: 75.0,
-                        width: 75.0)),
+                        height: MediaQuery.of(context).size.height/12,
+                        width: MediaQuery.of(context).size.width/6)),
               ): Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -73,7 +73,7 @@ class _SideMenu extends State<SideMenu> {
                   style: TextStyle(color: Colors.white, fontSize: 15.0)),
               leading: Icon(
                 Icons.supervised_user_circle,
-                size: 30,
+                size: MediaQuery.of(context).size.aspectRatio*55.0,
                 color: Colors.white,
               ),
               subtitle: Text(
@@ -95,16 +95,16 @@ class _SideMenu extends State<SideMenu> {
                   style: TextStyle(color: Colors.white, fontSize: 15.0)),
               leading: Icon(
                 Icons.edit,
-                size: 30,
+                size: MediaQuery.of(context).size.aspectRatio*55.0,
                 color: Colors.white,
               ),
-              subtitle: Text('View your sections',
+              subtitle: Text('View your cover letters',
                   style: TextStyle(color: Colors.white)),
               trailing: Icon(Icons.arrow_forward, color: Colors.white),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Sections()));
+                    MaterialPageRoute(builder: (context) => CoverLetters()));
               },
             ),
             Divider(color: Colors.white30),
@@ -113,7 +113,7 @@ class _SideMenu extends State<SideMenu> {
                   style: TextStyle(color: Colors.white, fontSize: 15.0)),
               leading: Icon(
                 Icons.edit,
-                size: 30,
+                size: MediaQuery.of(context).size.aspectRatio*55.0,
                 color: Colors.white,
               ),
               subtitle: Text('View your sections',
@@ -132,16 +132,12 @@ class _SideMenu extends State<SideMenu> {
               trailing: Icon(Icons.arrow_forward, color: Colors.white),
               leading: Icon(
                 Icons.supervised_user_circle,
-                size: 30,
+                size: MediaQuery.of(context).size.aspectRatio*55.0,
                 color: Colors.white,
               ),
               subtitle: Text('View Your Public Profile',
                   style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => PublicProfile()));
-              },
+              onTap: () {},
             ),
             Divider(color: Colors.white30),
 
@@ -150,7 +146,7 @@ class _SideMenu extends State<SideMenu> {
                   style: TextStyle(color: Colors.white, fontSize: 15.0)),
               leading: Icon(
                 Icons.home,
-                size: 30,
+                size: MediaQuery.of(context).size.aspectRatio*55.0,
                 color: Colors.white,
               ),
               subtitle: Text('My Institute Details',
@@ -169,7 +165,7 @@ class _SideMenu extends State<SideMenu> {
               trailing: Icon(Icons.arrow_forward, color: Colors.white),
               leading: Icon(
                 Icons.supervised_user_circle,
-                size: 30,
+                size: MediaQuery.of(context).size.aspectRatio*55.0,
                 color: Colors.white,
               ),
               subtitle: Text('View Your Public Profile',
@@ -194,7 +190,7 @@ class _SideMenu extends State<SideMenu> {
                           onPressed: () {},
                           icon: Icon(
                             Icons.info,
-                            size: 20.0,
+                            size: MediaQuery.of(context).size.aspectRatio*40.0,
                             color: Colors.white,
                           ),
                           tooltip: 'About',
@@ -218,7 +214,7 @@ class _SideMenu extends State<SideMenu> {
                           onPressed: () {},
                           icon: Icon(
                             Icons.accessible,
-                            size: 20.0,
+                            size: MediaQuery.of(context).size.aspectRatio*40.0,
                             color: Colors.white,
                           ),
                           tooltip: 'Terms',
@@ -239,7 +235,7 @@ class _SideMenu extends State<SideMenu> {
                           padding: EdgeInsets.only(bottom: 15.0),
                           onPressed: () {},
                           icon:
-                              Icon(Icons.apps, size: 20.0, color: Colors.white),
+                              Icon(Icons.apps,size: MediaQuery.of(context).size.aspectRatio*40.0, color: Colors.white),
                           tooltip: 'Privacy',
                         ),
                         Text('Privacy',
@@ -258,7 +254,8 @@ class _SideMenu extends State<SideMenu> {
                           padding: EdgeInsets.only(bottom: 15.0),
                           onPressed: () {},
                           icon: Icon(Icons.link_off,
-                              size: 25.0, color: Colors.white),
+                              size: MediaQuery.of(context).size.aspectRatio*40.0,
+                              color: Colors.white),
                           tooltip: 'Logout',
                         ),
                         Text('Logout',

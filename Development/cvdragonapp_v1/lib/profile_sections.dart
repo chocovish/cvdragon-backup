@@ -9,7 +9,6 @@ import './sidemenu.dart';
 import 'dart:async';
 import './fetch.dart' as fetch;
 import 'package:http/http.dart' as http;
-import './my_flutter_app_icons.dart';
 import './create_section.dart';
 
 class ProfileSections extends StatefulWidget {
@@ -55,8 +54,8 @@ class _ProfileSections extends State<ProfileSections> {
               child: Center(
                   child: Image(
                       image: AssetImage("assets/logocv.gif"),
-                      height: 75.0,
-                      width: 75.0)),
+                      height: MediaQuery.of(context).size.height/12,
+                      width: MediaQuery.of(context).size.width/6)),
             )
           : Container(
               padding: EdgeInsets.only(
@@ -90,8 +89,8 @@ class _ProfileSections extends State<ProfileSections> {
                                 //     ".png"),
                                 image: AssetImage("assets/Basic Info.png"),
                                 color: null,
-                                height: 50,
-                                width: 50,
+                                height: MediaQuery.of(context).size.height/16,
+                                width: MediaQuery.of(context).size.width/7,
                                 fit: BoxFit.fitHeight),
                           ),
 
@@ -129,16 +128,13 @@ class _ProfileSections extends State<ProfileSections> {
                                         Container(
                                           alignment: FractionalOffset.bottomLeft,
                                           padding: EdgeInsets.only(left: 10.0,top: 10.0,bottom: 10.0),
-
-                                          // padding: EdgeInsets.only(
-                                          //     left: 15.0),
                                           child: InkWell(
                                             child: Container(
                                               alignment: FractionalOffset.centerLeft,
                                               padding:
                                                   EdgeInsets.only(left: 11.0),
-                                              height: 35.0,
-                                              width: 100.0,
+                                              height: MediaQuery.of(context).size.height/22,
+                                              width: MediaQuery.of(context).size.width/4,
                                               //alignment: FractionalOffset.bottomRight,
                                               decoration: BoxDecoration(
                                                   color: Color(0xff232882),
@@ -159,7 +155,7 @@ class _ProfileSections extends State<ProfileSections> {
                                                     Container(
                                                       padding: EdgeInsets.only(
                                                           right: 5),
-                                                      child: Icon(Icons.add_circle,size: 20,
+                                                      child: Icon(Icons.add_circle,size: MediaQuery.of(context).size.aspectRatio*35.0,
                                                           color: Colors.white),
                                                     ),
                                                     Text(
@@ -181,15 +177,12 @@ class _ProfileSections extends State<ProfileSections> {
                                           padding: EdgeInsets.only(left: 10.0,top: 10.0,bottom: 10.0),
                                           alignment:
                                           FractionalOffset.bottomRight,
-                                          //padding: EdgeInsets.only(left: 40),
-                                          // padding: EdgeInsets.only(
-                                          //     left: 15.0),
                                           child: InkWell(
                                             child: Container(
                                               padding:
                                               EdgeInsets.only(left: 15.0),
-                                              height: 35.0,
-                                              width: 100.0,
+                                              height: MediaQuery.of(context).size.height/22,
+                                              width: MediaQuery.of(context).size.width/4,
                                               //alignment: FractionalOffset.bottomRight,
                                               decoration: BoxDecoration(
                                                   color: Colors.pink[500]
@@ -208,7 +201,7 @@ class _ProfileSections extends State<ProfileSections> {
                                                     Container(
                                                       padding: EdgeInsets.only(
                                                           right: 5),
-                                                      child: Icon(Icons.edit,size: 20,
+                                                      child: Icon(Icons.edit,size: MediaQuery.of(context).size.aspectRatio*35.0,
                                                           color: Colors.white),
                                                     ),
                                                     Text(

@@ -49,8 +49,8 @@ class _OtpPage extends State<OtpPage>{
               child: Center(
                   child: Image(
                       image: AssetImage("assets/logocv.gif"),
-                      height: 75.0,
-                      width: 75.0)),
+                      height: MediaQuery.of(context).size.height/12,
+                      width: MediaQuery.of(context).size.width/6)),
             ):Column(
         children: <Widget>[
           TextField( controller: myController),

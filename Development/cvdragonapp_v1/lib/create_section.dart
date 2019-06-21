@@ -65,6 +65,7 @@ class _CreateSection extends State<CreateSection> {
                     width: MediaQuery.of(context).size.width / 6)),
           )
         : Scaffold(
+      backgroundColor: Color(0xff232882),
             appBar: TopMenuBar(),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
@@ -111,6 +112,7 @@ class _CreateSection extends State<CreateSection> {
 
 Widget _buildCardView(BuildContext context) {
   return Container(
+    decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/cover.png'),fit: BoxFit.fill)),
       child: ListView(
           padding:
               EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0, bottom: 30.0),
@@ -298,7 +300,7 @@ Widget _buildCardView(BuildContext context) {
                                       child: Icon(
                                         Icons.add_circle,
                                         color: Colors.white,
-                                        size: 20,
+                                        size: MediaQuery.of(context).size.aspectRatio*40,
                                       ),
                                     ),
                                     Text(

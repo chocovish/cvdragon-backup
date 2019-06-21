@@ -17,24 +17,21 @@ class LoginPageState extends State<LoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       resizeToAvoidBottomPadding: true,
-      body: DecoratedBox(
+      body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.fill, image: new AssetImage('assets/cover.png')),
-        ),
-        child: Container(
-          margin: EdgeInsets.only(top: 100),
-          alignment: Alignment.bottomCenter,
-          child: ListView(
-            children: <Widget>[
-              Container(
-                child: animate(),
-              ),
-              Container(
-                child: animate1(),
-              ),
-            ],
-          ),
+            image: DecorationImage(
+                image: AssetImage('assets/cover.png'), fit: BoxFit.fill)),
+        padding: EdgeInsets.only(top: 100),
+        alignment: Alignment.bottomCenter,
+        child: ListView(
+          children: <Widget>[
+            Container(
+              child: animate(),
+            ),
+            Container(
+              child: animate1(),
+            ),
+          ],
         ),
       ),
     );
@@ -97,7 +94,7 @@ Widget _buildHorizontalLine() {
   return Padding(
     padding: const EdgeInsets.all(16.0),
     child: Container(
-      width: 100.0, //context wala problem
+      width: 60.0, //context wala problem
       height: 1.0,
       color: Colors.white,
     ),

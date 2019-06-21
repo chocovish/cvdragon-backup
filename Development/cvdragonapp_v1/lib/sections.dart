@@ -82,8 +82,8 @@ class _Sections extends State<Sections> {
                                               //     ".png"),
                                               image: AssetImage("assets/Basic Info.png"),
                                               color: null,
-                                              height: 40,
-                                              width: 40,
+                                              height: MediaQuery.of(context).size.height/22,
+                                              width: MediaQuery.of(context).size.width/9,
                                               fit: BoxFit.fitHeight),
                                         ),
                                         Container(

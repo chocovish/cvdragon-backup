@@ -36,79 +36,105 @@ class FABBottomAppBar extends StatefulWidget {
   final NotchedShape notchedShape;
   final ValueChanged<int> onTabSelected;
 
-  @override
-  State<StatefulWidget> createState() => FABBottomAppBarState();
+ @override
+ State<StatefulWidget> createState() => FABBottomAppBarState();
 }
 
 class FABBottomAppBarState extends State<FABBottomAppBar> {
   int _selectedIndex = 5;
 
-  _updateIndex(int index) {
-    widget.onTabSelected(index);
-    setState(() {
-      if (index == 0) {
-        Navigator.of(context)
-            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-          return HomePagee();
-        }));
-      }
-      if (index == 1) {
-        Navigator.of(context)
-            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-          return Designs();
-        }));
-      }
-      if (index == 2) {
-        Navigator.of(context)
-            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
-          return ProfileSections();
-        }));
+ _updateIndex(int index) {
+   widget.onTabSelected(index);
+   setState(() async {
+      if(index == 2) {
+        Navigator.of(context).push(
+            MaterialPageRoute<Null>(builder: (BuildContext context) {
+              return ProfileSections();
+            }
+            )
+        );
       }
 
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    List<Widget> items = List.generate(widget.items.length, (int index) {
-      return _buildTabItem(
-        item: widget.items[index],
-        index: index,
-        onPressed: _updateIndex,
-      );
-    });
-    items.insert(items.length >> 1, _buildMiddleTabItem());
-
-    return BottomAppBar(
-      shape: widget.notchedShape,
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: items,
-      ),
-      color: widget.backgroundColor,
-    );
-  }
-
-  Widget _buildMiddleTabItem() {
-    return Expanded(
-      child: SizedBox(
-        height: widget.height,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(height: widget.iconSize),
-            Text(
-              widget.centerItemText ?? '',
-              style: TextStyle(color: Colors.pinkAccent),
-            ),
+      if(index == 3) {
+        await showMenu<String>(
+          context: context,
+          position: RelativeRect.fromLTRB(1000.0, 1000.0, 0.0, 0.0),
+          items: <PopupMenuItem<String>>[
+            new PopupMenuItem<String>(
+                child: const Text('Proof Read'), value: 'test1',),
+            new PopupMenuItem<String>(
+                child: const Text('Colors'), value: 'test2'),
+            new PopupMenuItem<String>(
+                child: const Text('Fonts'), value: 'test2'),
+            new PopupMenuItem<String>(
+                child: const Text('Advanced Setting'), value: 'test2'),
           ],
-        ),
-      ),
+          elevation: 8.0,
+
+        );
+      }
+
+     if(index == 0) {
+       Navigator.of(context).push(
+           MaterialPageRoute<Null>(builder: (BuildContext context) {
+             return HomePagee();
+           }
+           )
+       );
+     }
+     if(index == 1){
+      
+       Navigator.of(context).push(MaterialPageRoute<Null>(builder: (BuildContext context){
+        return Designs();
+        }
+      )
     );
-  }
+      }
+      _selectedIndex = index;
+   });
+   
+ }
+
+ @override
+ Widget build(BuildContext context) {
+   List<Widget> items = List.generate(widget.items.length, (int index) {
+     return _buildTabItem(
+       item: widget.items[index],
+       index: index,
+       onPressed: _updateIndex,
+     );
+   });
+   items.insert(items.length >> 1, _buildMiddleTabItem());
+
+   return BottomAppBar(
+     shape: widget.notchedShape,
+     child: Row(
+       mainAxisSize: MainAxisSize.max,
+       mainAxisAlignment: MainAxisAlignment.spaceAround,
+       children: items,
+     ),
+     color: widget.backgroundColor,
+   );
+ }
+
+ Widget _buildMiddleTabItem() {
+   return Expanded(
+     child: SizedBox(
+       height: widget.height,
+       child: Column(
+         mainAxisSize: MainAxisSize.min,
+         mainAxisAlignment: MainAxisAlignment.center,
+         children: <Widget>[
+           SizedBox(height: widget.iconSize),
+           Text(
+             widget.centerItemText ?? '',
+             style: TextStyle(color: Colors.pinkAccent),
+           ),
+         ],
+       ),
+     ),
+   );
+ }
 
   Widget _buildTabItem({
     FABBottomAppBarItem item,

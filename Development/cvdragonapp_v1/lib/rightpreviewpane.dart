@@ -6,6 +6,7 @@ import './cvwebview.dart';
 import 'package:photo_view/photo_view.dart';
 import './Design_Sections.dart';
 
+
 class PreviewPane extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

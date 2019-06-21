@@ -36,86 +36,79 @@ class FABBottomAppBar extends StatefulWidget {
   final NotchedShape notchedShape;
   final ValueChanged<int> onTabSelected;
 
- @override
- State<StatefulWidget> createState() => FABBottomAppBarState();
+  @override
+  State<StatefulWidget> createState() => FABBottomAppBarState();
 }
 
 class FABBottomAppBarState extends State<FABBottomAppBar> {
   int _selectedIndex = 5;
 
- _updateIndex(int index) {
-   widget.onTabSelected(index);
-   setState(() {
-      if(index == 2) {
-        Navigator.of(context).push(
-            MaterialPageRoute<Null>(builder: (BuildContext context) {
-              return ProfileSections();
-            }
-            )
-        );
+  _updateIndex(int index) {
+    widget.onTabSelected(index);
+    setState(() {
+      if (index == 0) {
+        Navigator.of(context)
+            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+          return HomePagee();
+        }));
+      }
+      if (index == 1) {
+        Navigator.of(context)
+            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+          return Designs();
+        }));
+      }
+      if (index == 2) {
+        Navigator.of(context)
+            .push(MaterialPageRoute<Null>(builder: (BuildContext context) {
+          return ProfileSections();
+        }));
       }
 
-     if(index == 0) {
-       Navigator.of(context).push(
-           MaterialPageRoute<Null>(builder: (BuildContext context) {
-             return HomePagee();
-           }
-           )
-       );
-     }
-     if(index == 1){
-      
-       Navigator.of(context).push(MaterialPageRoute<Null>(builder: (BuildContext context){
-        return Designs();
-        }
-      )
-    );
-      }
       _selectedIndex = index;
-   });
-   
- }
+    });
+  }
 
- @override
- Widget build(BuildContext context) {
-   List<Widget> items = List.generate(widget.items.length, (int index) {
-     return _buildTabItem(
-       item: widget.items[index],
-       index: index,
-       onPressed: _updateIndex,
-     );
-   });
-   items.insert(items.length >> 1, _buildMiddleTabItem());
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> items = List.generate(widget.items.length, (int index) {
+      return _buildTabItem(
+        item: widget.items[index],
+        index: index,
+        onPressed: _updateIndex,
+      );
+    });
+    items.insert(items.length >> 1, _buildMiddleTabItem());
 
-   return BottomAppBar(
-     shape: widget.notchedShape,
-     child: Row(
-       mainAxisSize: MainAxisSize.max,
-       mainAxisAlignment: MainAxisAlignment.spaceAround,
-       children: items,
-     ),
-     color: widget.backgroundColor,
-   );
- }
+    return BottomAppBar(
+      shape: widget.notchedShape,
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: items,
+      ),
+      color: widget.backgroundColor,
+    );
+  }
 
- Widget _buildMiddleTabItem() {
-   return Expanded(
-     child: SizedBox(
-       height: widget.height,
-       child: Column(
-         mainAxisSize: MainAxisSize.min,
-         mainAxisAlignment: MainAxisAlignment.center,
-         children: <Widget>[
-           SizedBox(height: widget.iconSize),
-           Text(
-             widget.centerItemText ?? '',
-             style: TextStyle(color: Colors.pinkAccent),
-           ),
-         ],
-       ),
-     ),
-   );
- }
+  Widget _buildMiddleTabItem() {
+    return Expanded(
+      child: SizedBox(
+        height: widget.height,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: widget.iconSize),
+            Text(
+              widget.centerItemText ?? '',
+              style: TextStyle(color: Colors.pinkAccent),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   Widget _buildTabItem({
     FABBottomAppBarItem item,

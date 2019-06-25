@@ -14,7 +14,7 @@ import 'package:flutter/rendering.dart';
 String name, email;
 
 void main() {
-  //debugPaintSizeEnabled = true;
+  debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
 

@@ -3,6 +3,7 @@ import './designs.dart';
 import './home.dart';
 import './Design_Sections.dart';
 import './profile_sections.dart';
+import './Colors.dart';
 
 class FABBottomAppBarItem {
   FABBottomAppBarItem({this.iconData, this.text});
@@ -56,21 +57,11 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
       }
 
       if(index == 3) {
-        await showMenu<String>(
-          context: context,
-          position: RelativeRect.fromLTRB(1000.0, 1000.0, 0.0, 0.0),
-          items: <PopupMenuItem<String>>[
-            new PopupMenuItem<String>(
-                child: const Text('Proof Read'), value: 'test1',),
-            new PopupMenuItem<String>(
-                child: const Text('Colors'), value: 'test2'),
-            new PopupMenuItem<String>(
-                child: const Text('Fonts'), value: 'test2'),
-            new PopupMenuItem<String>(
-                child: const Text('Advanced Setting'), value: 'test2'),
-          ],
-          elevation: 8.0,
-
+        Navigator.of(context).push(
+            MaterialPageRoute<Null>(builder: (BuildContext context) {
+              return Colorset();
+            }
+            )
         );
       }
 

@@ -62,9 +62,9 @@ class _PreviewPane extends State<PreviewPane> {
 
                   child: ReactiveButton(
 
-                    iconPadding: 40,
-                    iconGrowRatio: 1.2,
-                    padding: EdgeInsets.only(right: 83),
+                    iconPadding: 70,
+                    //iconGrowRatio: 1.2,
+                    //padding: EdgeInsets.only(left: 50),
                     decoration: BoxDecoration(
                         color: Colors.transparent,
                         border: null,
@@ -96,14 +96,14 @@ class _PreviewPane extends State<PreviewPane> {
           ),
           appBar: TopMenuBar(),
           backgroundColor: Colors.black,
-          body: CVView(),
-          // body: PhotoView(
-          //   imageProvider: AssetImage("assets/cv.png"),
-          //   minScale: PhotoViewComputedScale.contained * 0.9,
-          //   maxScale: PhotoViewComputedScale.covered * 1.8,
-          //   customSize: MediaQuery.of(context).size,
-          //   initialScale: PhotoViewComputedScale.contained * 0.9,
-          // ),
+          //body: CVView(),
+           body: PhotoView(
+             imageProvider: AssetImage("assets/cv.png"),
+             minScale: PhotoViewComputedScale.contained * 0.9,
+             maxScale: PhotoViewComputedScale.covered * 1.8,
+             customSize: MediaQuery.of(context).size,
+             initialScale: PhotoViewComputedScale.contained * 0.9,
+           ),
           bottomNavigationBar: FABBottomAppBar(
             notchedShape: CircularNotchedRectangle(),
             color: Colors.white30,

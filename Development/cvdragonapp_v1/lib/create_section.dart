@@ -5,6 +5,7 @@ import './rightpreviewpane.dart';
 import './bottombar_createsection.dart';
 import './Custom_dialog.dart';
 import './Custom_dialog_KeyPhrases.dart';
+import './Custom dialog database.dart';
 
 import './fetch.dart';
 
@@ -208,11 +209,8 @@ Widget _buildCardView(BuildContext context) {
                       onTap: () {
                         showDialog(
                           context: context,
-                          builder: (BuildContext context) => CustomDialog(
-                                title: "DataBase",
-                                description: "Data Aaoo, Hum Darte Hai Kya ?",
-                                buttonText: "Okay",
-                              ),
+                          builder: (BuildContext context) =>
+                              CustomDialogDatabase("Database"),
                         );
                       },
                       child: Container(

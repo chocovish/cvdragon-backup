@@ -1,3 +1,5 @@
+import 'package:cvdragonapp_v1/earlyfetch.dart';
+import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:flutter/material.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
@@ -7,11 +9,15 @@ import './Custom_dialog.dart';
 import './Custom_dialog_KeyPhrases.dart';
 
 import './fetch.dart';
+List data;
+int index;
+String database;
 class CreateSection extends StatefulWidget {
  @override
- CreateSection(String name)
+ CreateSection(List d,int i)
  {
-print(name);
+data=d;
+index=i;
  } 
  State<StatefulWidget> createState() {
   // TODO: implement createState
@@ -21,6 +27,7 @@ print(name);
 bool isLoading=true;
  Map<String,dynamic> faq;
  List keyPhrases;
+ 
 class _CreateSection extends State<CreateSection> {
  @override
  
@@ -30,13 +37,17 @@ class _CreateSection extends State<CreateSection> {
     get();
   }
   void get(){
-    getFAQ("51110").then((Map<String,dynamic> data){
+    String sid=data[index]['section'].toString();
+    getFAQ("51100").then((Map<String,dynamic> data){
        faq=data;
-       getKeyPhrases("51110").then((List data){
+       getKeyPhrases("51122").then((List data){
         keyPhrases=data;
-        setState(() {
-         isLoading=false; 
-        });
+           getDatabaseAcademicProject(sid).then((String s){
+            setState(() {
+                database=s;
+             isLoading=false; 
+            });
+           });
        });
       });
   }
@@ -116,7 +127,7 @@ Widget _buildCardView(BuildContext context) {
           child: Container(
            margin: EdgeInsets.only(top: 10.0),
            child: Text(
-            'Academic Projects',
+            data[index]['sectionName'],
             style: TextStyle(color: Color(0xff232882), fontSize: 30.0),
             textAlign: TextAlign.center,
            ),
@@ -196,12 +207,13 @@ Widget _buildCardView(BuildContext context) {
 
           ),
           InkWell(
-           onTap: (){showDialog(
+           onTap: (){
+             showDialog(
             context: context,
             builder: (BuildContext context) => CustomDialog(
              title: "DataBase",
              description:
-             "Data Aaoo, Hum Darte Hai Kya ?",
+             database,
              buttonText: "Okay",
             ),
            );

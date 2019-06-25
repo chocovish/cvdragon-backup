@@ -28,10 +28,16 @@ class _SideMenu extends State<SideMenu> {
     this.get();
   }
   void get(){
+    sfetch.readname().then((String n){
+    name=n;
+     sfetch.readmail().then((String mail) {
+       email=mail;
+       setState(() {
+        _isLoading=false; 
+       });
+       });
+    });
     
-      name=main.name;
-      email=main.email;
-      _isLoading=false;
     }
   @override
 

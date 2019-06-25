@@ -152,7 +152,7 @@ class _ProfileSections extends State<ProfileSections> {
                                               child: InkWell(
                                                 onTap: (
                                                     ) {
-                                                  Navigator.push(context,MaterialPageRoute(builder: (context) => (CreateSection(data[index]['section']))));
+                                                  Navigator.push(context,MaterialPageRoute(builder: (context) => (CreateSection(data,index))));
                                                 },
                                                 child: Row(
                                                   children: <Widget>[

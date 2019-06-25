@@ -106,7 +106,7 @@ void dispose() {
                 border: new Border.all(color: Colors.white)),
             child: InkWell(
               onTap: (){
-              local.push().then((int status){
+              local.pushAcademicProject().then((int status){
                 if(status==1)
                    Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(myController.text.toString())));
               });

@@ -1,5 +1,5 @@
 List<String> createQueries = [
-        "CREATE TABLE `cv-academic-projects` ( `academicid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `title` varchar(100) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  `proofRead` int(11) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL);",
+        "CREATE TABLE `cv-academic-projects` ( `academicid` int(11) NOT NULL,  `id` bigint(20) NOT NULL, `refID` bigint(30), `title` varchar(100) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  `proofRead` int(11),  `proofReadDate` date ,  `status` smallint(1) NOT NULL);",
 
         "CREATE TABLE  `cv-achievements` (`achieveid` int(11) NOT NULL, `id` bigint(20) NOT NULL,`achievement` varchar(255) NOT NULL,  `year` year(4) NOT NULL,  `description` text NOT NULL,`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  `proofRead` tinyint(4) NOT NULL, `proofReadDate` date NOT NULL,`status` tinyint(1) NOT NULL);",
 

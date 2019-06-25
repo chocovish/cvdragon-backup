@@ -9,12 +9,10 @@ String allSectionsBasic(String id,String authkey)
 String allDesigns(String id,String authkey)
 {
   return url+"?id="+id+"&authkey="+authkey+"&data=allDesign";
-    
 }
 String basic(String id,String authkey)
 {
   return url2+"?id="+id+"&authkey="+authkey+"&data=basic";
-    
 }
 String cvAchievement(String id,String authkey)
 {
@@ -22,7 +20,7 @@ String cvAchievement(String id,String authkey)
 }
 String cvAcademicProjects(String id,String authkey)
 {
-  return url2+"?id="+id+"&authkey="+authkey+"&data=cvAcademicProjects";
+  return url2+"?id="+id+"&authkey="+authkey+"&data=cvAcademicProject";
 }
 String cvSection(String id,String authkey)
 {

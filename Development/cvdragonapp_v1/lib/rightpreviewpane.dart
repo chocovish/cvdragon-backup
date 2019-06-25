@@ -6,6 +6,7 @@ import './cvwebview.dart';
 import 'package:photo_view/photo_view.dart';
 import './Design_Sections.dart';
 
+
 class PreviewPane extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -62,9 +63,9 @@ class _PreviewPane extends State<PreviewPane> {
 
                   child: ReactiveButton(
 
-                    iconPadding: 70,
-                    //iconGrowRatio: 1.2,
-                    //padding: EdgeInsets.only(left: 50),
+                    iconPadding: 40,
+                    iconGrowRatio: 1.2,
+                    //padding: EdgeInsets.only(right: 83),
                     decoration: BoxDecoration(
                         color: Colors.transparent,
                         border: null,

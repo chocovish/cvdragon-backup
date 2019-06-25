@@ -14,7 +14,7 @@ import 'package:flutter/rendering.dart';
 String name, email;
 
 void main() {
-  debugPaintSizeEnabled = true;
+  //debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
 
@@ -60,9 +60,7 @@ class _MyApp extends State<MyApp> {
     SystemChrome.setEnabledSystemUIOverlays([]);
 
     return MaterialApp(
-        theme: ThemeData(
-          primaryColor: Colors.green,
-        ),
+
         home: LoginPage());
   }
 }

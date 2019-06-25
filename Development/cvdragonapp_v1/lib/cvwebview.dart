@@ -12,7 +12,7 @@ class CVView extends StatefulWidget {
 
 class _CVView extends State<CVView> {
   WebViewController _webViewController;
-  String filePath = 'assets/cv3.html';
+  String filePath = "assets/cv3.html";
   @override
   Widget build(BuildContext context) {
     return WebView(

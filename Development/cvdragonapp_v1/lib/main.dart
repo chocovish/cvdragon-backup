@@ -60,9 +60,7 @@ class _MyApp extends State<MyApp> {
     SystemChrome.setEnabledSystemUIOverlays([]);
 
     return MaterialApp(
-        theme: ThemeData(
-          primaryColor: Colors.green,
-        ),
+
         home: LoginPage());
   }
 }

@@ -58,7 +58,7 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
       if(index == 3) {
         await showMenu<String>(
           context: context,
-          position: RelativeRect.fromLTRB(1000.0, 1000.0, 0.0, 0.0),
+          position: RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
           items: <PopupMenuItem<String>>[
             new PopupMenuItem<String>(
                 child: const Text('Proof Read'), value: 'test1',),

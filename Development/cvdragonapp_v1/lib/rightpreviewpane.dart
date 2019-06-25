@@ -65,7 +65,7 @@ class _PreviewPane extends State<PreviewPane> {
 
                     iconPadding: 40,
                     iconGrowRatio: 1.2,
-                    padding: EdgeInsets.only(right: 83),
+                    //padding: EdgeInsets.only(right: 83),
                     decoration: BoxDecoration(
                         color: Colors.transparent,
                         border: null,

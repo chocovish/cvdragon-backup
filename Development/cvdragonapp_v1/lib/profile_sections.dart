@@ -10,6 +10,7 @@ import 'dart:async';
 import './fetch.dart' as fetch;
 import 'package:http/http.dart' as http;
 import './create_section.dart';
+import './edit_section.dart';
 
 class ProfileSections extends StatefulWidget {
   @override
@@ -132,7 +133,7 @@ class _ProfileSections extends State<ProfileSections> {
                                             child: Container(
                                               alignment: FractionalOffset.centerLeft,
                                               padding:
-                                                  EdgeInsets.only(left: 11.0),
+                                                  EdgeInsets.only(left: 8.0),
                                               height: MediaQuery.of(context).size.height/22,
                                               width: MediaQuery.of(context).size.width/4,
                                               //alignment: FractionalOffset.bottomRight,
@@ -195,7 +196,9 @@ class _ProfileSections extends State<ProfileSections> {
 //                                            child: Padding(
 //                                              padding: const EdgeInsets.only(top: 1.0),
                                               child: InkWell(
-                                                onTap: () {},
+                                                onTap: () {
+                                                  Navigator.push(context,MaterialPageRoute(builder: (context) => (EditSection())));
+                                                },
                                                 child: Row(
                                                   children: <Widget>[
                                                     Container(

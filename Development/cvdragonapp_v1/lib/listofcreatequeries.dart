@@ -31,6 +31,12 @@ List<String> createQueries = [
 
       "CREATE TABLE `cv-internship` (  `internshipid` int(11) NOT NULL UNIQUE ,  `workid` int(11) NOT NULL,  `organization` varchar(50) NOT NULL,  `id` bigint(20) NOT NULL,  `title` varchar(100) NOT NULL,  `designation` varchar(50) NOT NULL,  `duration` varchar(10) NOT NULL,  `location` varchar(50) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,  PRIMARY KEY (`organization`,`id`,`title`,`designation`));",
 
-      ""
+      "CREATE TABLE `cv-introduction` (  `introid` int(11) NOT NULL UNIQUE,  `id` bigint(20) NOT NULL,  `introduction` text CHARACTER SET utf8 NOT NULL,  `title` varchar(255)   NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,  PRIMARY KEY (`introid`)) ;",
+
+      "CREATE TABLE `cv-languages` (  `langid` int(11) NOT NULL UNIQUE,  `id` bigint(20) NOT NULL,  `language` varchar(50) NOT NULL,  `readLanguage` tinyint(4) NOT NULL,  `writeLanguage` tinyint(4) NOT NULL,  `speakLanguage` tinyint(4) NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` tinyint(1) NOT NULL,  PRIMARY KEY (`id`,`language`,`status`));",
+
+      "CREATE TABLE `cv-patent` (  `patentid` int(11) NOT NULL UNIQUE ,  `id` bigint(20) NOT NULL,  `title` varchar(200) NOT NULL,  `patentOffice` varchar(200) NOT NULL,  `patentStatus` varchar(10) NOT NULL,  `patentApplication` varchar(100) NOT NULL,  `patentDate` varchar(10) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` tinyint(1) NOT NULL,  PRIMARY KEY (`id`,`title`,`patentApplication`));",
+
+      
 
       ];

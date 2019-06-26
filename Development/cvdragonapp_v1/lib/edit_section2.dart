@@ -6,15 +6,15 @@ import './bottombar_createsection.dart';
 import './Custom_dialog.dart';
 import './Custom_dialog_KeyPhrases.dart';
 import './fetch.dart';
-
+import './localdatapush.dart';
 
 int index;
 String database;
 String y;
-
+ var data=[];
 class EditSection2 extends StatefulWidget {
   @override
-  var data=[];
+ 
   EditSection2(List d,int i)
   {
     data=d;
@@ -66,19 +66,21 @@ class _EditSection2 extends State<EditSection2> {
 
   @override
   Widget build(BuildContext context) {
-    var myController = TextEditingController(
-        text: data[index]['title'].toString());
-    var myController2 = TextEditingController(
-        text: data[index]['description'].toString());
+    var title =  data[index]['title'];
+    var description = data[index]['description'];
     // TODO: implement build
-    update(String x) {
-      setState(() {
-        data[index]['title'] = x;
-        y = x;
+    update(String t,String d,Map<String,dynamic> initial) {
+     
+        updateAcademicProject(t,d,initial).then((int status){
+            setState(() {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            });
+        });
         // data[index]['description']=myController2.text.toString();
-        print(y);
+      //  print(y);
         //print(data[index]['description']=myController2.text);
-      });
+     
     }
     return
 //      isLoading
@@ -288,7 +290,7 @@ class _EditSection2 extends State<EditSection2> {
                           ),
                         ),
                         Container(
-                            child: Form(
+                            
 
                               child: Column(
                                 children: <Widget>[
@@ -297,11 +299,11 @@ class _EditSection2 extends State<EditSection2> {
                                           .of(context)
                                           .size
                                           .width / 1.2,
-                                      child: TextFormField(
-
-
-                                        controller: myController,
-
+                                      child: TextField(
+                                        //initialValue: myController.text,
+                                         controller: new TextEditingController.fromValue(new TextEditingValue(text: title,selection: new TextSelection.collapsed(offset: title.length-2))),
+                                         onChanged: (val) => title = val,
+                                         autofocus: true,
                                         style: TextStyle(color: Color(0xff232882)),
                                         decoration: InputDecoration(
                                             labelStyle: TextStyle(
@@ -326,8 +328,10 @@ class _EditSection2 extends State<EditSection2> {
                                         .size
                                         .width / 1.2,
                                     child: TextField(
-                                      controller: myController2,
-//                                initialValue: myController2.text,
+                                     controller: new TextEditingController.fromValue(new TextEditingValue(text: description,selection: new TextSelection.collapsed(offset: description.length-2))),
+                                         onChanged: (val) => description = val,
+                                         autofocus: true,
+                               // initialValue: myController2.text,
                                       style: TextStyle(color: Color(0xff232882)),
                                       scrollPadding: EdgeInsets.all(10.0),
                                       maxLines: 15,
@@ -370,7 +374,7 @@ class _EditSection2 extends State<EditSection2> {
                                                     color: Colors.white)),
                                             child: InkWell(
                                               onTap: () {
-                                                update(myController.text);
+                                                update(title,description,data[index]);
                                               },
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment
@@ -406,7 +410,7 @@ class _EditSection2 extends State<EditSection2> {
                                   )
                                 ],
                               ),
-                            ))
+                            ),
                       ],
                     ),
                   ),

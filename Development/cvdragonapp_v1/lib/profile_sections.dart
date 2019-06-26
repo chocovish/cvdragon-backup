@@ -133,7 +133,7 @@ class _ProfileSections extends State<ProfileSections> {
                                             child: Container(
                                               alignment: FractionalOffset.centerLeft,
                                               padding:
-                                                  EdgeInsets.only(left: 8.0),
+                                                  EdgeInsets.only(left: 9.0),
                                               height: MediaQuery.of(context).size.height/22,
                                               width: MediaQuery.of(context).size.width/4,
                                               //alignment: FractionalOffset.bottomRight,

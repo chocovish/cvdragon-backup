@@ -9,7 +9,6 @@ import 'dart:async';
 import './fetch.dart' as fetch;
 import 'package:http/http.dart' as http;
 import 'main.dart' as main;
-import './my_flutter_app_icons.dart';
 
 class Sections extends StatefulWidget {
   @override
@@ -48,8 +47,8 @@ class _Sections extends State<Sections> {
                 child: Center(
                     child: Image(
                         image: AssetImage("assets/logocv.gif"),
-                        height: 75.0,
-                        width: 75.0)),
+                        height: MediaQuery.of(context).size.height/12,
+                        width: MediaQuery.of(context).size.width/6)),
               )
             : Container(
                 padding: EdgeInsets.only(
@@ -83,8 +82,8 @@ class _Sections extends State<Sections> {
                                               //     ".png"),
                                               image: AssetImage("assets/Basic Info.png"),
                                               color: null,
-                                              height: 40,
-                                              width: 40,
+                                              height: MediaQuery.of(context).size.height/22,
+                                              width: MediaQuery.of(context).size.width/9,
                                               fit: BoxFit.fitHeight),
                                         ),
                                         Container(
@@ -101,7 +100,7 @@ class _Sections extends State<Sections> {
                                         padding: EdgeInsets.only(
                                             left: 50.0, bottom: 10.0),
                                         child: Text(
-                                          "Enter details about all the responsibilities you have handled and is worth mentioning in your resume",
+                                          "Enter details about all the responsibilities you have handled and is worth mentioning in your resumehiirghngevnvnvshghohonvhshhoggvhnhnvhgsvhnvnsvhinsvsrvnnsgrvnhsrvnsvsg",
                                           style: TextStyle(
                                             color: Color(0xff232882),
                                           ),

@@ -28,7 +28,7 @@ class CustomDialog extends StatelessWidget {
   Widget dialogContent(BuildContext context) {
     return Container(
       //alignment: FractionalOffset.center,
-      height: MediaQuery.of(context).size.height/1.8,
+      height: MediaQuery.of(context).size.height/1.5,
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.only(
         top: Consts.padding,
@@ -52,8 +52,8 @@ class CustomDialog extends StatelessWidget {
       child: Column(
         children:<Widget>[
         Container(
-          height: 40,
-          alignment: FractionalOffset.topCenter,
+          height: MediaQuery.of(context).size.height/18,
+          alignment: FractionalOffset.center,
           child:
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -72,13 +72,16 @@ class CustomDialog extends StatelessWidget {
     ),
               Container(
                 padding: EdgeInsets.only(bottom: 10),
-                height: MediaQuery.of(context).size.height/2.5,
+                height: MediaQuery.of(context).size.height/1.9,
                 child:
-              ListView(children:<Widget>[
+              ListView(
+                physics: BouncingScrollPhysics(),
+                  children:<Widget>[
               Container(
+                height: MediaQuery.of(context).size.height/1.9,
                 //decoration: BoxDecoration(border: Border.all(color: Color(0xff232882))),
-                alignment: FractionalOffset.center,
-                padding: EdgeInsets.only(bottom: 10,left: 10,right: 10),
+                alignment: FractionalOffset.topCenter,
+                padding: EdgeInsets.only(top:10,bottom: 10,left: 10,right: 10),
               child: Text(
                 description,
                 textAlign: TextAlign.center,
@@ -92,11 +95,9 @@ class CustomDialog extends StatelessWidget {
               ),
 
           Container(
-            height: 35,
-            //width3 40,
-
-            alignment: FractionalOffset.bottomCenter,
-            child: RaisedButton(color: Color(0xff232882),
+            height: MediaQuery.of(context).size.height/16,
+            alignment: FractionalOffset.center,
+            child: RaisedButton(color: Colors.pink,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
               onPressed: () {
                 Navigator.of(context).pop();

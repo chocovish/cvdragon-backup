@@ -37,12 +37,11 @@ class _CreateSection extends State<CreateSection> {
     get();
   }
   void get(){
-    String sid=data[index]['section'].toString();
     getFAQ("51100").then((Map<String,dynamic> data){
        faq=data;
        getKeyPhrases("51122").then((List data){
         keyPhrases=data;
-           getDatabaseAcademicProject(sid).then((String s){
+           getDatabaseAcademicProject(data[index]['section'].toString()).then((String s){
             setState(() {
                 database=s;
              isLoading=false; 

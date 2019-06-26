@@ -82,7 +82,7 @@ class _HomePagee extends State<HomePagee> {
       //bottomNavigationBar: BottomBar(),
       drawer: SideMenu(),
       endDrawer: PreviewPane(),
-      body: _buildCardView(),
+      body: _buildCardView(context),
       bottomNavigationBar: FABBottomAppBar(
         onTabSelected: _selectedTab,
         notchedShape: CircularNotchedRectangle(),
@@ -102,7 +102,7 @@ class _HomePagee extends State<HomePagee> {
   }
 }
 
-Widget _buildCardView() {
+Widget _buildCardView(BuildContext context) {
   return Container(
       child: ListView(
     padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0, bottom: 30.0),
@@ -116,7 +116,7 @@ Widget _buildCardView() {
             const ListTile(
               leading: Icon(
                 Icons.account_circle,
-                size: 30,
+                size: 30.0,
                 color: Color(0xff232882),
               ),
               title: Text(
@@ -138,8 +138,8 @@ Widget _buildCardView() {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: SizedBox(
-          height: 300,
-          width: 400,
+          height: MediaQuery.of(context).size.height/3,
+          width: MediaQuery.of(context).size.width,
           child: DonutPieChart.withSampleData(),
         ),
       ),
@@ -157,7 +157,7 @@ Widget _buildCardView() {
                     padding: const EdgeInsets.all(8.0),
                     child: Icon(
                       Icons.check,
-                      size: 30.0,
+                      size: MediaQuery.of(context).size.aspectRatio*40.0,
                       color: Colors.green,
                     )),
               ),
@@ -172,7 +172,7 @@ Widget _buildCardView() {
                     padding: const EdgeInsets.all(8.0),
                     child: Icon(
                       Icons.check,
-                      size: 30.0,
+                      size: MediaQuery.of(context).size.aspectRatio*40.0,
                       color: Colors.green,
                     )),
               ),
@@ -187,7 +187,7 @@ Widget _buildCardView() {
                     padding: const EdgeInsets.all(8.0),
                     child: Icon(
                       Icons.check,
-                      size: 30.0,
+                      size: MediaQuery.of(context).size.aspectRatio*40.0,
                       color: Colors.green,
                     )),
               ),
@@ -202,7 +202,7 @@ Widget _buildCardView() {
                     padding: const EdgeInsets.all(8.0),
                     child: Icon(
                       Icons.check,
-                      size: 30.0,
+                      size: MediaQuery.of(context).size.aspectRatio*40.0,
                       color: Colors.green,
                     )),
               ),
@@ -217,7 +217,7 @@ Widget _buildCardView() {
                     padding: const EdgeInsets.all(8.0),
                     child: Icon(
                       Icons.close,
-                      size: 30.0,
+                      size: MediaQuery.of(context).size.aspectRatio*40.0,
                       color: Colors.red,
                     )),
               ),

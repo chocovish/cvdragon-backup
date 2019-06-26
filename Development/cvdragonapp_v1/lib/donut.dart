@@ -1,6 +1,5 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
-import 'package:flutter_circular_chart/flutter_circular_chart.dart';
 
 class DonutPieChart extends StatelessWidget {
   final List<charts.Series> seriesList;
@@ -23,7 +22,7 @@ class DonutPieChart extends StatelessWidget {
         animate: animate,animationDuration: Duration(milliseconds: 1500),
         // Configure the width of the pie slices to 60px. The remaining space in
         // the chart will be left as a hole in the center.
-        defaultRenderer: new charts.ArcRendererConfig(arcWidth: 30));
+        defaultRenderer: new charts.ArcRendererConfig(arcWidth: 18));
   }
 
   /// Create one series with sample hard coded data.

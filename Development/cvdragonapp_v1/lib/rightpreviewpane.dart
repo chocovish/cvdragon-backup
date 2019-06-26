@@ -6,6 +6,7 @@ import './cvwebview.dart';
 import 'package:photo_view/photo_view.dart';
 import './Design_Sections.dart';
 
+
 class PreviewPane extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -64,7 +65,7 @@ class _PreviewPane extends State<PreviewPane> {
 
                     iconPadding: 40,
                     iconGrowRatio: 1.2,
-                    padding: EdgeInsets.only(right: 83),
+                    //padding: EdgeInsets.only(right: 83),
                     decoration: BoxDecoration(
                         color: Colors.transparent,
                         border: null,
@@ -96,14 +97,14 @@ class _PreviewPane extends State<PreviewPane> {
           ),
           appBar: TopMenuBar(),
           backgroundColor: Colors.black,
-          body: CVView(),
-          // body: PhotoView(
-          //   imageProvider: AssetImage("assets/cv.png"),
-          //   minScale: PhotoViewComputedScale.contained * 0.9,
-          //   maxScale: PhotoViewComputedScale.covered * 1.8,
-          //   customSize: MediaQuery.of(context).size,
-          //   initialScale: PhotoViewComputedScale.contained * 0.9,
-          // ),
+          //body: CVView(),
+           body: PhotoView(
+             imageProvider: AssetImage("assets/cv.png"),
+             minScale: PhotoViewComputedScale.contained * 0.9,
+             maxScale: PhotoViewComputedScale.covered * 1.8,
+             customSize: MediaQuery.of(context).size,
+             initialScale: PhotoViewComputedScale.contained * 0.9,
+           ),
           bottomNavigationBar: FABBottomAppBar(
             notchedShape: CircularNotchedRectangle(),
             color: Colors.white30,

@@ -66,7 +66,7 @@ class CustomDialogKeyPhrases extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(bottom: 10),
-            height: MediaQuery.of(context).size.height / 1.95,
+            height: MediaQuery.of(context).size.height / 1.85,
               child: Scrollbar(
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
@@ -93,12 +93,11 @@ class CustomDialogKeyPhrases extends StatelessWidget {
           ),
           ),
           Container(
-            height: 35,
-            //width3 40,
+            height: MediaQuery.of(context).size.height/20,
 
-            alignment: FractionalOffset.bottomCenter,
+            alignment: FractionalOffset.center,
             child: RaisedButton(
-              color: Color(0xff232882),
+              color: Colors.pink,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0)),
               onPressed: () {

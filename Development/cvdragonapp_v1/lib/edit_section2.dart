@@ -288,18 +288,14 @@ class _EditSection2 extends State<EditSection2> {
                           ),
                         ),
                         Container(
-                            child: Form(
-
                               child: Column(
                                 children: <Widget>[
                                   Container(
-                                      width: MediaQuery
-                                          .of(context)
-                                          .size
-                                          .width / 1.2,
-                                      child: TextFormField(
+                                      width: MediaQuery.of(context).size.width / 1.2,
+                                      child: TextField(
 
-
+enableInteractiveSelection:
+                                        true,
                                         controller: myController,
 
                                         style: TextStyle(color: Color(0xff232882)),
@@ -321,10 +317,7 @@ class _EditSection2 extends State<EditSection2> {
                                     padding: EdgeInsets.all(10),
                                   ),
                                   Container(
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 1.2,
+                                    width: MediaQuery.of(context).size.width / 1.2,
                                     child: TextField(
                                       controller: myController2,
 //                                initialValue: myController2.text,
@@ -406,7 +399,7 @@ class _EditSection2 extends State<EditSection2> {
                                   )
                                 ],
                               ),
-                            ))
+                        ),
                       ],
                     ),
                   ),

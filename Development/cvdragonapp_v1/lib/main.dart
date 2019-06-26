@@ -36,18 +36,11 @@ class _MyApp extends State<MyApp> {
     super.initState();
     this.get();
 }
-  void get(){
-      efetch.DatabaseFetch();
-      sfetch.readname().then((String n){
-      setState(() {
-        name = n;
-      });
+  void get()async {
+ efetch.DatabaseFetch().get().then((onValue){
+      print("Done");
     });
-    sfetch.readmail().then((String mail) {
-      setState(() {
-        email = mail;
-      });
-    });
+
   }
 
   void _bottompressed(String t) {

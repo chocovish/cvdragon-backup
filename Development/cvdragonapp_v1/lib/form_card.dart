@@ -114,13 +114,21 @@ class LoginFormCardState extends State<LoginFormCard> {
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(30.0),
                 border: new Border.all(color: Colors.white)),
-            child: Text(
-              "Verify",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.0),
+            child: InkWell(
+              onTap: (){
+              local.pushAcademicProject().then((int status){
+                if(status==1)
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(myController.text.toString())));
+              });
+              }
+              ,child: Text(
+                "Verify",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.0),
+              ),
             ),
           ),
         ),

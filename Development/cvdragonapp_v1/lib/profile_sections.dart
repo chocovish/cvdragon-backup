@@ -149,7 +149,7 @@ class _ProfileSections extends State<ProfileSections> {
                                               child: InkWell(
                                                 onTap: (
                                                     ) {
-                                                  Navigator.push(context,MaterialPageRoute(builder: (context) => (CreateSection(data[index]['section']))));
+                                                  Navigator.push(context,MaterialPageRoute(builder: (context) => (CreateSection(data,index))));
                                                 },
                                                 child: Row(
                                                   children: <Widget>[
@@ -197,7 +197,7 @@ class _ProfileSections extends State<ProfileSections> {
 //                                              padding: const EdgeInsets.only(top: 1.0),
                                               child: InkWell(
                                                 onTap: () {
-                                                  Navigator.push(context,MaterialPageRoute(builder: (context) => (EditSection())));
+                                                  Navigator.push(context,MaterialPageRoute(builder: (context) => (EditSection(data,index))));
                                                 },
                                                 child: Row(
                                                   children: <Widget>[

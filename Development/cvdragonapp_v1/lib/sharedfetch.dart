@@ -2,13 +2,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 Future<String> readname() async {
       final prefs = await SharedPreferences.getInstance();
-      final value = prefs.getString('name') ?? null;
+      final value = prefs.getString('name');
       return value;
     }
 
 Future<String> readmail() async {
       final prefs = await SharedPreferences.getInstance();
-      final value = prefs.getString('email') ?? null;
+      final value = prefs.getString('email');
       return value;
     }
 Future<bool> readalltablescreated() async {
@@ -26,14 +26,17 @@ Future<String> readid() async {
 Future<String> writename(String name) async {
       final prefs = await SharedPreferences.getInstance();
        prefs.setString('name',name);
+       return "Success";
       }
 
 
 Future<String> writemail(String email) async {
       final prefs = await SharedPreferences.getInstance();
        prefs.setString('email',email);
+       return "Success";
       }
 Future<String> writealltablescreated(bool val) async {
       final prefs = await SharedPreferences.getInstance();
        prefs.setBool('alltablescreated',val);
+       return "Success";
       }

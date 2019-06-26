@@ -6,6 +6,7 @@ import './bottombar_createsection.dart';
 import './Custom_dialog.dart';
 import './Custom_dialog_KeyPhrases.dart';
 import './create_section.dart';
+import './edit_section2.dart';
 
 import './fetch.dart';
 
@@ -125,7 +126,7 @@ Widget _buildCardView(BuildContext context) {
                 Container(
                   height: MediaQuery.of(context).size.height / 6,
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(color: Colors.yellow),
+                  decoration: BoxDecoration(color: Colors.cyan),
                   child: Container(
                     margin: EdgeInsets.only(top: 10.0),
                     child: Text(
@@ -169,7 +170,7 @@ Widget _buildCardView(BuildContext context) {
                           width: MediaQuery.of(context).size.width/8,
                           child: InkWell(
                             onTap: () {
-                              Navigator.push(context,MaterialPageRoute(builder: (context) => (CreateSection('section'))));
+                              Navigator.push(context,MaterialPageRoute(builder: (context) => (EditSection2())));
                             },
                             child:
                             Icon(Icons.mode_edit,size: 30,color: Color(0xff232882)),

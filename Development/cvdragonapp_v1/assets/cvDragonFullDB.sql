@@ -54,7 +54,7 @@ CREATE TABLE `associate-subscription` (
   `design` int(11) NOT NULL,
   `activate` date NOT NULL,
   `expiry` date NOT NULL,
-  `securityKey` varchar(19) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `securityKey` varchar(19)  NOT NULL,
   `dateCreated` date NOT NULL,
   `dateUpdated` timestamp NULL DEFAULT CURRENT_TIMESTAMP   ,
   `status` tinyint(4) NOT NULL,
@@ -67,42 +67,16 @@ CREATE TABLE `associate-subscription` (
 
 --
 -- Table structure for table `create-clprofile`
---
+--done for app
 
-CREATE TABLE `create-clprofile` (
-  `clid` bigint(20) NOT NULL ,
-  `cvid` int(11) NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `design` int(11) NOT NULL,
-  `coverName` varchar(100)   NOT NULL,
-  `coverLetter` text   NOT NULL,
-  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `status` smallint(6) NOT NULL,
-  UNIQUE KEY `cvid` (`clid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci =56 ;
-
+CREATE TABLE `create-clprofile` (  `clid` bigint(20) NOT NULL UNIQUE,  `cvid` int(11) NOT NULL,  `id` bigint(20) NOT NULL,  `design` int(11) NOT NULL,  `coverName` varchar(100)   NOT NULL,  `coverLetter` text   NOT NULL,  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `status` smallint(6) NOT NULL);
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `create-cvprofile`
---
+--DONE FOR APP
 
-CREATE TABLE `create-cvprofile` (
-  `cvid` bigint(20) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `profileName` varchar(100)   NOT NULL,
-  `sections` varchar(255)   NOT NULL,
-  `design` int(11) NOT NULL,
-  `font` int(11) NOT NULL,
-  `setting` int(11) NOT NULL,
-  `profilePicture` varchar(100)   NOT NULL,
-  `isPublic` tinyint(4) NOT NULL,
-  `progressReport` tinyint(4) NOT NULL,
-  `dateUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `status` smallint(6) NOT NULL,
-  PRIMARY KEY (`id`,`profileName`,`sections`,`status`),
-  UNIQUE KEY `cvid` (`cvid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci =4764 ;
+CREATE TABLE `create-cvprofile` (  `cvid` bigint(20) NOT NULL UNIQUE,  `id` bigint(20) NOT NULL,  `profileName` varchar(100)   NOT NULL,  `sections` varchar(255)   NOT NULL,  `design` int(11) NOT NULL,  `font` int(11) NOT NULL,  `setting` int(11) NOT NULL,  `profilePicture` varchar(100)   NOT NULL,  `isPublic` tinyint(4) NOT NULL,  `progressReport` tinyint(4) NOT NULL,  `dateUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `status` smallint(6) NOT NULL,  PRIMARY KEY (`id`,`profileName`,`sections`,`status`));
 
 -- --------------------------------------------------------
 
@@ -161,19 +135,9 @@ CREATE TABLE `cv-academic-projects` (
 -- Table structure for table `cv-achievements`
 --
 
-CREATE TABLE `cv-achievements` (
-  `achieveid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `achievement` varchar(255) NOT NULL,
-  `year` year(4) NOT NULL,
-  `description` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  UNIQUE KEY `achieveid` (`achieveid`),
-  UNIQUE KEY `id` (`id`,`achievement`,`year`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 =1386 ;
+CREATE TABLE `cv-achievements` (  `achieveid` int(11) NOT NULL ,  `id` bigint(20) NOT NULL,  `achievement` varchar(255) NOT NULL,  `year` year(4) NOT NULL,
+  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,
+  `status` tinyint(1) NOT NULL);
 
 -- --------------------------------------------------------
 
@@ -181,19 +145,9 @@ CREATE TABLE `cv-achievements` (
 -- Table structure for table `cv-add-section`
 --
 
-CREATE TABLE `cv-add-section` (
-  `addid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `heading` varchar(200) NOT NULL,
-  `subHeading` text NOT NULL,
-  `description` text NOT NULL,
-  `showAfter` int(11) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`addid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 =47 ;
+CREATE TABLE `cv-add-section` (  `addid` int(11) NOT NULL ,  `id` bigint(20) NOT NULL,  `heading` varchar(200) NOT NULL , `subHeading` text NOT NULL,
+  `description` text NOT NULL,  `showAfter` int(11) NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,
+  `proofReadDate` date NOT NULL,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`addid`)) ;
 
 -- --------------------------------------------------------
 
@@ -317,283 +271,108 @@ CREATE TABLE `cv-patent` (  `patentid` int(11) NOT NULL UNIQUE ,  `id` bigint(20
 
 --
 -- Table structure for table `cv-POA`
---
+--done for app
 
-CREATE TABLE `cv-POA` (
-  `poaid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `proofRead` int(11) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` smallint(1) NOT NULL,
-  PRIMARY KEY (`id`,`title`),
-  UNIQUE KEY `trainingid` (`poaid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 =16 ;
+CREATE TABLE `cv-POA` (  `poaid` int(11) NOT NULL UNIQUE,  `id` bigint(20) NOT NULL,  `title` varchar(100) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` int(11) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,
+  PRIMARY KEY (`id`,`title`));
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-preference`
---
+--done for app
 
-CREATE TABLE `cv-preference` (
-  `prefid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `passport` tinyint(1) DEFAULT NULL,
-  `passportDetails` varchar(100) NOT NULL,
-  `recommendations` tinyint(1) DEFAULT NULL,
-  `preferredLocation` varchar(50) NOT NULL,
-  `canRelocate` tinyint(4) NOT NULL,
-  `noticePeriod` varchar(20) NOT NULL,
-  `canJoin` tinyint(4) NOT NULL,
-  `expectedCTC` varchar(100) NOT NULL,
-  `isNegotiate` tinyint(4) NOT NULL,
-  `declaration` tinyint(1) DEFAULT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `profileid` (`prefid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 =3658 ;
+CREATE TABLE `cv-preference` (  `prefid` int(11) NOT NULL UNIQUE ,  `id` bigint(20) NOT NULL,  `passport` tinyint(1) DEFAULT NULL,  `passportDetails` varchar(100) NOT NULL,  `recommendations` tinyint(1) DEFAULT NULL,  `preferredLocation` varchar(50) NOT NULL,  `canRelocate` tinyint(4) NOT NULL,  `noticePeriod` archar(20) NOT NULL,  `canJoin` tinyint(4) NOT NULL,  `expectedCTC` varchar(100) NOT NULL,  `isNegotiate` tinyint(4) NOT NULL,  `declaration` tinyint(1) DEFAULT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` tinyint(1) NOT NULL,  PRIMARY KEY (`id`) );
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-presentations`
---
+--done for app
 
-CREATE TABLE `cv-presentations` (
-  `activityid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `description` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` smallint(1) NOT NULL,
-  PRIMARY KEY (`id`,`title`),
-  UNIQUE KEY `trainingid` (`activityid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 =959 ;
+CREATE TABLE `cv-presentations` (`activityid` int(11) NOT NULL UNIQUE ,  `id` bigint(20) NOT NULL,  `title` varchar(200) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,  PRIMARY KEY (`id`,`title`)) ;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-professional`
---
+-- done for app
 
-CREATE TABLE `cv-professional` (
-  `professionalid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `course` varchar(100) NOT NULL,
-  `organization` varchar(100) NOT NULL,
-  `university` varchar(100) NOT NULL,
-  `year` year(4) DEFAULT NULL,
-  `isPursuing` tinyint(4) DEFAULT NULL,
-  `grade` varchar(20) NOT NULL,
-  `score` varchar(20) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`,`course`,`organization`),
-  UNIQUE KEY `professionalid` (`professionalid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 =2419 ;
+CREATE TABLE `cv-professional` (  `professionalid` int(11) NOT NULL UNIQUE,  `id` bigint(20) NOT NULL,  `course` varchar(100) NOT NULL,  `organization` varchar(100) NOT NULL,  `university` varchar(100) NOT NULL,  `year` year(4) DEFAULT NULL,  `isPursuing` tinyint(4) DEFAULT NULL,  `grade` varchar(20) NOT NULL,  `score` varchar(20) NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,
+  `status` tinyint(1) NOT NULL,  PRIMARY KEY (`id`,`course`,`organization`));
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-project`
---
+--done for app
 
-CREATE TABLE `cv-project` (
-  `projectid` int(11) NOT NULL ,
-  `workid` int(11) NOT NULL,
-  `organization` varchar(150) NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `designation` varchar(50) NOT NULL,
-  `duration` varchar(20) NOT NULL,
-  `location` varchar(50) NOT NULL,
-  `description` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` smallint(1) NOT NULL,
-  PRIMARY KEY (`organization`,`id`,`title`),
-  UNIQUE KEY `projectid` (`projectid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 =496 ;
-
+CREATE TABLE `cv-project` (  `projectid` int(11) NOT NULL UNIQUE,  `workid` int(11) NOT NULL,  `organization` varchar(150) NOT NULL,  `id` bigint(20) NOT NULL,  `title` varchar(100) NOT NULL,  `designation` varchar(50) NOT NULL,  `duration` varchar(20) NOT NULL,  `location` varchar(50) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,
+  PRIMARY KEY (`organization`,`id`,`title`));
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-publications`
---
+--  done for app
 
-CREATE TABLE `cv-publications` (
-  `publishid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `title` varchar(200) NOT NULL,
-  `category` varchar(100) NOT NULL,
-  `publisher` varchar(200) NOT NULL,
-  `publishDate` varchar(10) NOT NULL,
-  `description` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  UNIQUE KEY `publishid` (`publishid`),
-  KEY `id` (`id`,`title`,`category`,`publisher`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 =135 ;
+CREATE TABLE `cv-publications` (  `publishid` int(11) NOT NULL UNIQUE,  `id` bigint(20) NOT NULL,  `title` varchar(200) NOT NULL,  `category` varchar(100) NOT NULL,  `publisher` varchar(200) NOT NULL,  `publishDate` varchar(10) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` tinyint(1) NOT NULL );
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-publicprofile`
---
+--done for app
 
-CREATE TABLE `cv-publicprofile` (
-  `publicid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `status` tinyint(1) NOT NULL,
-  UNIQUE KEY `publicid` (`publicid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci =1 ;
+CREATE TABLE `cv-publicprofile` (  `publicid` int(11) NOT NULL UNIQUE ,  `id` bigint(20) NOT NULL,  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `status` tinyint(1) NOT NULL);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-resumedownload`
---
+--done for app
 
-CREATE TABLE `cv-resumedownload` (
-  `resumeid` int(11) NOT NULL ,
-  `resume` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `profileID` int(11) NOT NULL,
-  `ProfileSections` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sectionsBreak` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `profileDesign` int(11) NOT NULL,
-  `profileSetting` int(11) NOT NULL,
-  `profileFont` int(11) NOT NULL,
-  `imageLink` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `workTimeFormat` tinyint(1) NOT NULL,
-  `fontSize` float NOT NULL,
-  `id` bigint(20) NOT NULL,
-  `isPublic` tinyint(4) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`resumeid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci =10445 ;
+CREATE TABLE `cv-resumedownload` (  `resumeid` int(11) NOT NULL ,
+  `resume` varchar(150)  NOT NULL,  `profileID` int(11) NOT NULL,
+  `ProfileSections` varchar(255)  NOT NULL,  `sectionsBreak` varchar(255)  NOT NULL,  `profileDesign` int(11) NOT NULL,  `profileSetting` int(11) NOT NULL,  `profileFont` int(11) NOT NULL,  `imageLink` varchar(200)  NOT NULL,  `workTimeFormat` tinyint(1) NOT NULL,  `fontSize` float NOT NULL,  `id` bigint(20) NOT NULL,  `isPublic` tinyint(4) NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`resumeid`));
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-skills`
---
+--done for app
 
-CREATE TABLE `cv-skills` (
-  `skillid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `skill` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`,`skill`,`status`),
-  UNIQUE KEY `skillid` (`skillid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 =4830 ;
-
+CREATE TABLE `cv-skills` (  `skillid` int(11) NOT NULL UNIQUE ,  `id` bigint(20) NOT NULL,  `skill` varchar(100) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   , `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` tinyint(1) NOT NULL,  PRIMARY KEY (`id`,`skill`,`status`)) ;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-technical`
---
+--  done for app
 
-CREATE TABLE `cv-technical` (
-  `technicalid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `technical` varchar(100) NOT NULL,
-  `type` varchar(100) NOT NULL,
-  `level` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id`,`technical`,`level`),
-  KEY `technicalid` (`technicalid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 =5340 ;
+CREATE TABLE `cv-technical` (  `technicalid` int(11) NOT NULL ,  `id` bigint(20) NOT NULL,  `technical` varchar(100) NOT NULL,  `type` varchar(100) NOT NULL,  `level` varchar(100) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`id`,`technical`,`level`)) ;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-trainings`
---
+--done for app
 
-CREATE TABLE `cv-trainings` (
-  `trainingid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `training` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `number` int(11) NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` smallint(1) NOT NULL,
-  PRIMARY KEY (`id`,`training`),
-  UNIQUE KEY `trainingid` (`trainingid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 =96 ;
+CREATE TABLE `cv-trainings` (  `trainingid` int(11) NOT NULL UNIQUE ,  `id` bigint(20) NOT NULL,  `training` varchar(100) NOT NULL, `description` text NOT NULL,  `number` int(11) NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,  PRIMARY KEY (`id`,`training`));
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-volunteer`
---
+--done for app
 
-CREATE TABLE `cv-volunteer` (
-  `volunteerid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `organization` varchar(50) NOT NULL,
-  `cause` varchar(50) NOT NULL,
-  `role` varchar(50) NOT NULL,
-  `dateJoining` date DEFAULT NULL,
-  `dateLeaving` date DEFAULT NULL,
-  `present` tinyint(4) NOT NULL,
-  `description` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'   ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`,`organization`,`cause`),
-  UNIQUE KEY `volunteerid` (`volunteerid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 =81 ;
-
+CREATE TABLE `cv-volunteer` (  `volunteerid` int(11) NOT NULL UNIQUE,  `id` bigint(20) NOT NULL,  `organization` varchar(50) NOT NULL,  `cause` varchar(50) NOT NULL,  `role` varchar(50) NOT NULL,  `dateJoining` date DEFAULT NULL,  `dateLeaving` date DEFAULT NULL,  `present` tinyint(4) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` tinyint(1) NOT NULL,  PRIMARY KEY (`id`,`organization`,`cause`));
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `cv-work`
---
+-- done for app
 
-CREATE TABLE `cv-work` (
-  `workid` int(11) NOT NULL ,
-  `id` bigint(20) NOT NULL,
-  `organization` varchar(100) NOT NULL,
-  `designation` varchar(100) NOT NULL,
-  `location` varchar(30) NOT NULL,
-  `dateJoined` date NOT NULL,
-  `dateResigned` date DEFAULT NULL,
-  `currentWorking` smallint(1) NOT NULL,
-  `workProfile` text NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `proofRead` tinyint(4) NOT NULL,
-  `proofReadDate` date NOT NULL,
-  `status` smallint(1) NOT NULL,
-  PRIMARY KEY (`id`,`organization`,`designation`,`dateJoined`),
-  KEY `workid` (`workid`) USING BTREE
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 =552 ;
+CREATE TABLE `cv-work` (  `workid` int(11) NOT NULL ,  `id` bigint(20) NOT NULL,  `organization` varchar(100) NOT NULL,  `designation` varchar(100) NOT NULL,  `location` varchar(30) NOT NULL,  `dateJoined` date NOT NULL,  `dateResigned` date DEFAULT NULL,  `currentWorking` smallint(1) NOT NULL,  `workProfile` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,  PRIMARY KEY (`id`,`organization`,`designation`,`dateJoined`));
+
 
 -- --------------------------------------------------------
 
@@ -605,26 +384,26 @@ CREATE TABLE `orders` (
   `sn` int(11) NOT NULL ,
   `orderid` bigint(20) NOT NULL,
   `id` bigint(20) NOT NULL,
-  `orderStatus` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `orderStatus` varchar(20)  NOT NULL,
   `platform` tinyint(4) NOT NULL,
   `platformid` bigint(20) NOT NULL,
-  `paymentMode` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `currency` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `netAmount` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `paymentMode` varchar(50)  NOT NULL,
+  `currency` varchar(10)  NOT NULL,
+  `netAmount` varchar(10)  NOT NULL,
   `discountAmount` int(11) NOT NULL,
   `totalAmount` int(11) NOT NULL,
-  `billing_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `billing_tel` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `billing_email` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `billing_address` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `billing_country` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `billing_state` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `billing_city` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `billing_zip` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `offer_type` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `offer_code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `orderFor` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `orderSection` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `billing_name` varchar(100)  NOT NULL,
+  `billing_tel` varchar(15)  NOT NULL,
+  `billing_email` varchar(50)  NOT NULL,
+  `billing_address` varchar(200)  NOT NULL,
+  `billing_country` varchar(20)  NOT NULL,
+  `billing_state` varchar(50)  NOT NULL,
+  `billing_city` varchar(50)  NOT NULL,
+  `billing_zip` varchar(10)  NOT NULL,
+  `offer_type` varchar(10)  NOT NULL,
+  `offer_code` varchar(10)  NOT NULL,
+  `orderFor` varchar(20)  NOT NULL,
+  `orderSection` varchar(10)  NOT NULL,
   `resumeid` bigint(20) NOT NULL,
   `design` int(11) NOT NULL,
   `transactionDate` date DEFAULT NULL,
@@ -779,7 +558,7 @@ CREATE TABLE `resource-co-curricular-activities` (
 CREATE TABLE `resource-faqs` (
   `faqid` int(11) NOT NULL ,
   `section` int(11) NOT NULL,
-  `faq` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `faq` text  NOT NULL,
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
   `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`section`),
@@ -851,10 +630,10 @@ CREATE TABLE `resource-location` (
 CREATE TABLE `resource-notifications` (
   `notifyid` int(11) NOT NULL ,
   `notifyLevel` int(11) NOT NULL,
-  `notifyHeading` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notifyContent` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifyHeading` varchar(200)  NOT NULL,
+  `notifyContent` text  NOT NULL,
   `notifyUserCategory` tinyint(4) NOT NULL,
-  `notifyAuthor` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifyAuthor` varchar(100)  NOT NULL,
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
   `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`notifyid`)
@@ -868,14 +647,14 @@ CREATE TABLE `resource-notifications` (
 
 CREATE TABLE `resource-profiledesign` (
   `designid` int(11) NOT NULL ,
-  `designName` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `designName` varchar(100)  NOT NULL,
+  `content` text  NOT NULL,
   `designPrice` int(11) NOT NULL,
-  `category` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(50)  NOT NULL,
   `isPrivate` tinyint(4) NOT NULL,
-  `sections` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sections` varchar(255)  NOT NULL,
   `isDownload` tinyint(11) NOT NULL,
-  `author` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `author` varchar(100)  NOT NULL,
   `rating` float NOT NULL,
   `downloadTimes` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL,
@@ -890,10 +669,10 @@ CREATE TABLE `resource-profiledesign` (
 
 CREATE TABLE `resource-profilefont` (
   `fontid` int(11) NOT NULL ,
-  `fontTypeName` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fontType` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fontTypeName` varchar(100)  NOT NULL,
+  `fontType` varchar(200)  NOT NULL,
   `fontSize` int(11) NOT NULL,
-  `appliedOn` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `appliedOn` text  NOT NULL,
   `downloadTime` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`fontid`)
@@ -907,13 +686,13 @@ CREATE TABLE `resource-profilefont` (
 
 CREATE TABLE `resource-profilesetting` (
   `settingid` int(11) NOT NULL ,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `heading` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color1` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `color2` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `color3` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `color4` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(100)  NOT NULL,
+  `content` text  NOT NULL,
+  `heading` varchar(10)  NOT NULL,
+  `color1` varchar(10)  DEFAULT NULL,
+  `color2` varchar(10)  DEFAULT NULL,
+  `color3` varchar(10)  DEFAULT NULL,
+  `color4` varchar(10)  DEFAULT NULL,
   `downloadTimes` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`settingid`)
@@ -972,10 +751,10 @@ CREATE TABLE `resource-service-request` (
   `serviceid` int(11) NOT NULL ,
   `serviceType` int(11) NOT NULL,
   `id` bigint(20) NOT NULL,
-  `userName` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `userPhone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `userEmail` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `service` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `userName` varchar(100)  NOT NULL,
+  `userPhone` varchar(20)  NOT NULL,
+  `userEmail` varchar(50)  NOT NULL,
+  `service` text  NOT NULL,
   `isResolved` tinyint(4) NOT NULL,
   `dateResolved` datetime NOT NULL,
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1037,7 +816,7 @@ CREATE TABLE `resource-technical-knowledge` (
 CREATE TABLE `resource-tips` (
   `tipid` int(11) NOT NULL ,
   `section` int(11) NOT NULL,
-  `tip` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tip` text  NOT NULL,
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
   `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`section`),
@@ -1117,10 +896,10 @@ CREATE TABLE `user-basic` (
 CREATE TABLE `user-feedback` (
   `feedbackid` int(11) NOT NULL ,
   `id` bigint(20) NOT NULL,
-  `userName` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `userPhone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `userEmail` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `feedback` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `userName` varchar(100)  NOT NULL,
+  `userPhone` varchar(20)  NOT NULL,
+  `userEmail` varchar(50)  NOT NULL,
+  `feedback` text  NOT NULL,
   `isResolved` tinyint(4) NOT NULL,
   `dateResolved` datetime NOT NULL,
   `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1154,14 +933,14 @@ CREATE TABLE `user-notification` (
 
 CREATE TABLE `user-proofRead` (
   `orderid` bigint(20) NOT NULL,
-  `proofReport` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `proofReport` text  NOT NULL,
   `accessGrant` tinyint(4) NOT NULL,
   `approved` tinyint(4) NOT NULL,
-  `feedback` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `feedback` text  NOT NULL,
   `rating` float NOT NULL,
   `proofReadstatus` tinyint(4) NOT NULL,
   `id` bigint(20) NOT NULL,
-  `resume` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `resume` varchar(50)  NOT NULL,
   `snapshot` bigint(11) NOT NULL,
   `dateRequest` datetime NOT NULL,
   `dateCompleted` datetime NOT NULL,
@@ -1201,7 +980,7 @@ CREATE TABLE `user-subscription` (
   `design` int(11) NOT NULL,
   `activate` date NOT NULL,
   `expiry` date NOT NULL,
-  `securityKey` varchar(19) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `securityKey` varchar(19)  NOT NULL,
   `dateCreated` date NOT NULL,
   `dateUpdated` timestamp NULL DEFAULT CURRENT_TIMESTAMP   ,
   `status` tinyint(4) NOT NULL,

@@ -125,7 +125,7 @@ Widget _buildCardView(BuildContext context) {
               child: Container(
                 margin: EdgeInsets.only(top: 10.0),
                 child: Text(
-                  'Academic Projects',
+                  data[ind]['sectionName'],
                   style: TextStyle(color: Color(0xff232882), fontSize: 30.0),
                   textAlign: TextAlign.center,
                 ),
@@ -183,7 +183,7 @@ Widget _buildCardView(BuildContext context) {
                           height: MediaQuery.of(context).size.height / 14,
                           width: MediaQuery.of(context).size.width / 8,
                           child: InkWell(
-                            onTap: () {},
+                           // onTap: deletefromprofile,
                             child: Icon(Icons.delete,
                                 size: 30, color: Color(0xff232882)),
                           ),

@@ -6,7 +6,7 @@ import './bottombar_createsection.dart';
 import './Custom_dialog.dart';
 import './Custom_dialog_KeyPhrases.dart';
 import './fetch.dart';
-import './localdatapush.dart';
+import './localdatapush.dart' ;
 
 int index;
 String database;
@@ -70,7 +70,6 @@ class _EditSection2 extends State<EditSection2> {
     var description = data[index]['description'];
     // TODO: implement build
     update(String t,String d,Map<String,dynamic> initial) {
-     
         updateAcademicProject(t,d,initial).then((int status){
             setState(() {
               Navigator.pop(context);

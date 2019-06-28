@@ -97,14 +97,14 @@ class LoginFormCardState extends State<LoginFormCard> {
         padding: const EdgeInsets.only(top: 40.0),
         child: InkWell(
           onTap: () {
-            local.push().then((int status) {
-              if (status == 1)
+           // local.push().then((int status) {
+             // if (status == 1)
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
                             OtpPage(myController.text.toString())));
-            });
+          //  });
           },
           child: Container(
             height: 50.0,
@@ -116,10 +116,10 @@ class LoginFormCardState extends State<LoginFormCard> {
                 border: new Border.all(color: Colors.white)),
             child: InkWell(
               onTap: (){
-              local.pushAcademicProject().then((int status){
-                if(status==1)
+              // local.pushAcademicProject().then((int status){
+              //   if(status==1)
                    Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(myController.text.toString())));
-              });
+              // });
               }
               ,child: Text(
                 "Verify",

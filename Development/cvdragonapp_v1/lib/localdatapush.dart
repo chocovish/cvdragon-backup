@@ -46,9 +46,9 @@ var db=await openDatabase("assets/sections.db", version: 1);
         return 1;
 }
 
-Future<int>pushAcademicProject() async{
+Future<int>pushAcademicProject(String title,String description) async{
 var db=await openDatabase("assets/sections.db", version: 1);
-         // db.insert("`cv-academic-projects`",academicProject).then((onValue){
+          // db.insert("`cv-academic-projects`",academicProject).then((onValue){
         //  db.rawUpdate("UPDATE `create-cvsection` SET contentAdded = contentAdded+1 WHERE id="+id+" AND section="+sectionID+" AND status=1");
          // });
         return 1;

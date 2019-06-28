@@ -48,6 +48,7 @@ class _PreviewPane extends State<PreviewPane> {
     // TODO: implement build
 
     return MaterialApp(
+      //home: CVView(),
       home: Scaffold(
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
@@ -59,8 +60,6 @@ class _PreviewPane extends State<PreviewPane> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Expanded(
-                  
-
                   child: ReactiveButton(
 
                     iconPadding: 40,
@@ -97,7 +96,7 @@ class _PreviewPane extends State<PreviewPane> {
           ),
           appBar: TopMenuBar(),
           backgroundColor: Colors.black,
-          //body: CVView(),
+        //  body: CVView(),
            body: PhotoView(
              imageProvider: AssetImage("assets/cv.png"),
              minScale: PhotoViewComputedScale.contained * 0.9,

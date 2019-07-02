@@ -1,4 +1,5 @@
 import 'package:cvdragonapp_v1/localdatafetch.dart';
+import 'package:cvdragonapp_v1/maps.dart';
 import 'package:flutter/material.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
@@ -180,13 +181,19 @@ Widget _buildCardView(BuildContext context) {
                           ),
                         ),
                         Container(
+                          
                           height: MediaQuery.of(context).size.height / 14,
                           width: MediaQuery.of(context).size.width / 8,
-                          child: InkWell(
+                          child: InkWell(onTap: (){
+                            print(index);
+                            deleteFromProfile(data[ind]['section'], addeddata[index][columnName[data[ind]['section'].toString()]].toString());
+                          },
                            // onTap: deletefromprofile,
                             child: Icon(Icons.delete,
+                            
                                 size: 30, color: Color(0xff232882)),
                           ),
+                          
                         ),
                       ],
                     ),

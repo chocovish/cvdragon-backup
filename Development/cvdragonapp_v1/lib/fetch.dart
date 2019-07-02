@@ -10,6 +10,7 @@ Map<String,dynamic> sendBasic;
     sending_response= json.decode(res.body);
     return sending_response;
  }
+
  Future<List> getbasicInfo(String id,String authkey) async {
   String url = urlgetter.basic(id,authkey);
     var res = await http.get(url);

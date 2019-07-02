@@ -45,9 +45,9 @@ class _HomePagee extends State<HomePagee> {
   }
   void set()
   {
-    push().then((int status){
-        print(status);
-    });
+    // push().then((int status){
+    //     print(status);
+    // });
   }
   void _selectedTab(int index) {
     setState(() {

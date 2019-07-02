@@ -66,7 +66,7 @@ class _EditSection extends State<EditSection> {
       )
           :
       Scaffold(
-        backgroundColor: Color(0xff232882),
+        backgroundColor: Colors.black,
         appBar: TopMenuBar(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
@@ -111,45 +111,38 @@ class _EditSection extends State<EditSection> {
 Widget _buildCardView(BuildContext context) {
   return Container(
     decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/cover.png'), fit: BoxFit.fill)),
+        color: Colors.white),
     child: ListView(
       padding: EdgeInsets.only(bottom: 30.0),
       children: <Widget>[
-        Stack(
-          children: <Widget>[
             Container(
-              height: MediaQuery.of(context).size.height / 6,
+              height: MediaQuery.of(context).size.height/4.4,
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(color: Colors.yellow),
+
+              decoration: BoxDecoration( image: DecorationImage(
+                  image: AssetImage('assets/Work Details.png'),alignment: Alignment.topCenter,fit: BoxFit.scaleDown )),
               child: Container(
-                margin: EdgeInsets.only(top: 10.0),
+                margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/20),
                 child: Text(
-                  'Academic Projects',
-                  style: TextStyle(color: Color(0xff232882), fontSize: 30.0),
+                  data[ind]['sectionName'],
+                  style: TextStyle(color: Colors.white, fontSize: 28.0),
                   textAlign: TextAlign.center,
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                    height: MediaQuery.of(context).size.height / 7,
-                    width: MediaQuery.of(context).size.width / 5,
-                    margin: EdgeInsets.only(top: 60),
-                    child: Image(image: AssetImage('assets/Basic Info.png')))
-              ],
-            )
-          ],
-        ),
-        Container(
-          height: 200,
-          child: ListView.builder(
+
+            Container(
+              margin: EdgeInsets.only(top: 5),
+              color: Colors.black,
+            height: MediaQuery.of(context).size.height/1.8,
+            width: MediaQuery.of(context).size.width,
+            child:
+         ListView.builder(
               physics: BouncingScrollPhysics(),
               itemCount: addeddata == null ? 0 : addeddata.length,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
+                  color: Colors.lightBlue[200],
                   margin: EdgeInsets.only(top: 10, left: 5, right: 5),
                   elevation: 5.0,
                   child: Container(
@@ -159,9 +152,10 @@ Widget _buildCardView(BuildContext context) {
                     child: Row(
                       children: <Widget>[
                         Container(
+
                           alignment: Alignment.center,
                           padding: EdgeInsets.only(top: 5, bottom: 5),
-                          height: MediaQuery.of(context).size.height / 14,
+                          height: MediaQuery.of(context).size.height / 12,
                           width: MediaQuery.of(context).size.width / 1.5,
                           child: Text(
                             addeddata[index]['title'].toString(),
@@ -193,8 +187,16 @@ Widget _buildCardView(BuildContext context) {
                   ),
                 );
               }),
-        ),
-      ],
+
+
+),
+
+
+
+],
     ),
+
+
+
   );
 }

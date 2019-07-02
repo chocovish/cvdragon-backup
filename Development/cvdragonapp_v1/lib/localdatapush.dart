@@ -53,3 +53,12 @@ var db=await openDatabase("assets/sections.db", version: 1);
          // });
         return 1;
 }
+
+Future<int>updateAcademicProject(String t,String d,Map<String,dynamic> data) async{
+var db=await openDatabase("assets/sections.db", version: 1);
+print(d);
+print(t);
+String sql="UPDATE `cv-academic-projects` SET title = \" "+t+" \" , description = \" "+d+"\" WHERE id="+id+" AND academicid="+data['academicid'].toString();
+        await db.rawUpdate(sql);
+        return 1;
+}

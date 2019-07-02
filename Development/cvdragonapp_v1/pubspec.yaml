@@ -20,6 +20,8 @@ dependencies:
   flutter_circular_chart: ^0.1.0
   flutter:
     sdk: flutter
+  auto_size_text: ^2.0.1
+
   charts_flutter: ^0.6.0
   flutter_reactive_button: "^1.1.0"
   animator: ^0.1.2
@@ -81,6 +83,10 @@ flutter:
     - assets/wow.gif
     - assets/love.gif
     - assets/twitterlogo.png
+    - assets/finalpor.png
+    - assets/Work Details.png
+    - assets/Profile Image.png
+    - assets/final structure-02.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

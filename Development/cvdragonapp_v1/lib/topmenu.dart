@@ -14,7 +14,7 @@ class TopMenuBar extends StatelessWidget with PreferredSizeWidget {
           width: MediaQuery.of(context).size.width/3.2,
         ),
       ),
-      backgroundColor: Color(0xff232882),
+      backgroundColor: Colors.black,
       actions: <Widget>[
         IconButton(
           onPressed: () {},

@@ -76,8 +76,8 @@ class DatabaseFetch {
           });
     sfetch.readalltablescreated().then((bool status) {
       if (status == true) {
-       //display();
-      // add();
+       display();
+       //add();
       } else {
        initialize();
       }

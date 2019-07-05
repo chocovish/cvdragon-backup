@@ -128,7 +128,11 @@ Widget _buildCardView(BuildContext context,setState,initState) {
                 child: Text(
                   data[ind]['sectionName'],
 <<<<<<< HEAD
+<<<<<<< HEAD
                   style: TextStyle(color: Color(0xff232882), fontSize: 30.0),
+=======
+                  style: TextStyle(color: Colors.white, fontSize: 28.0),
+>>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
 =======
                   style: TextStyle(color: Colors.white, fontSize: 28.0),
 >>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52

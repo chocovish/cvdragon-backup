@@ -49,17 +49,23 @@ class _EditSection2 extends State<EditSection2> {
     // TODO: implement build
     update(String t,String d,Map<String,dynamic> initial) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         updateAcademicProject(t,d,initial).then((int status){
             setState(() {
               Navigator.pop(context);
               Navigator.pop(context);
             });
 =======
+=======
+>>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
 
       updateAcademicProject(t,d,initial).then((int status){
         setState(() {
           Navigator.pop(context);
           Navigator.pop(context);
+<<<<<<< HEAD
+>>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
+=======
 >>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
         });
       });
@@ -254,6 +260,7 @@ body:
                         ),
                         Container(
 <<<<<<< HEAD
+<<<<<<< HEAD
                               child: Column(
                                 children: <Widget>[
                                   Container(
@@ -275,6 +282,8 @@ body:
                                                 borderRadius: BorderRadius.circular(
                                                     10))),
 =======
+=======
+>>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
 
 
                           child: Column(
@@ -298,6 +307,9 @@ body:
                                         border: OutlineInputBorder(
                                             borderRadius: BorderRadius.circular(
                                                 10))),
+<<<<<<< HEAD
+>>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
+=======
 >>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
 //                                  validator: (value) {
 //                                    if (value.isEmpty) {

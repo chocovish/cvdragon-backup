@@ -113,11 +113,14 @@ class _CreateSection extends State<CreateSection> {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Widget _buildCardView(BuildContext context) {
   create(){
       
   }
 =======
+=======
+>>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
 Widget _buildChild(BuildContext context) {
  if (data[index]['section'] == "51099") {
   return _buildPositionOfResponsibility(context);
@@ -131,6 +134,9 @@ Widget _buildChild(BuildContext context) {
 
 
 Widget _buildAcademicProjects(BuildContext context) {
+<<<<<<< HEAD
+>>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
+=======
 >>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
  return Container(
      child: ListView(
@@ -544,8 +550,13 @@ Widget _buildPositionOfResponsibility(BuildContext context) {
            ),
           ),
           Container(
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
            child: Column(
             children: <Widget>[
              Container(
@@ -929,6 +940,7 @@ Widget _buildContactDetails(BuildContext context) {
 //                                },
               ),
 <<<<<<< HEAD
+<<<<<<< HEAD
               Container(
                padding: EdgeInsets.all(10.0),
                child: Row(
@@ -956,6 +968,8 @@ Widget _buildContactDetails(BuildContext context) {
                         size: 20,
                        ),
 =======
+=======
+>>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
              ),
 
              Container(
@@ -998,6 +1012,9 @@ Widget _buildContactDetails(BuildContext context) {
                            .of(context)
                            .size
                            .aspectRatio * 40,
+<<<<<<< HEAD
+>>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
+=======
 >>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
                       ),
                      ),

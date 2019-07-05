@@ -11,10 +11,10 @@ import './localdatapush.dart' ;
 int index;
 String database;
 String y;
- var data=[];
+var data=[];
 class EditSection2 extends StatefulWidget {
   @override
- 
+
   EditSection2(List d,int i)
   {
     data=d;
@@ -34,29 +34,7 @@ class _EditSection2 extends State<EditSection2> {
 
 
   @override
-//  void dispose() {
-//    // Clean up the controller when the widget is disposed.
-//    myController.dispose();
-//    super.dispose();
-//  }
 
-//  void initState() {
-//    // TODO: implement initState
-//    super.initState();
-//    get();
-//  }
-
-//  void get() {
-//    getFAQ("51110").then((Map<String, dynamic> data) {
-//      faq = data;
-//      getKeyPhrases("51110").then((List data) {
-//        keyPhrases = data;
-//        setState(() {
-//          isLoading = false;
-//        });
-//      });
-//    });
-//  }
 
   void _selectedTab(int index) {
     setState(() {
@@ -70,32 +48,26 @@ class _EditSection2 extends State<EditSection2> {
     var description = data[index]['description'];
     // TODO: implement build
     update(String t,String d,Map<String,dynamic> initial) {
+<<<<<<< HEAD
         updateAcademicProject(t,d,initial).then((int status){
             setState(() {
               Navigator.pop(context);
               Navigator.pop(context);
             });
+=======
+
+      updateAcademicProject(t,d,initial).then((int status){
+        setState(() {
+          Navigator.pop(context);
+          Navigator.pop(context);
+>>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
         });
-        // data[index]['description']=myController2.text.toString();
-      //  print(y);
-        //print(data[index]['description']=myController2.text);
-     
+      });
+
     }
     return
-//      isLoading
-//        ? DecoratedBox(
-//      decoration: BoxDecoration(
-//          image: DecorationImage(
-//              image: AssetImage("assets/cover.png"), fit: BoxFit.fill)),
-//      child: Center(
-//          child: Image(
-//              image: AssetImage("assets/logocv.gif"),
-//              height: MediaQuery.of(context).size.height / 12,
-//              width: MediaQuery.of(context).size.width / 6)),
-//    )
-      // :
       Scaffold(
-        backgroundColor: Color(0xff232882),
+        backgroundColor: Colors.white,
         appBar: TopMenuBar(),
         floatingActionButtonLocation:
         FloatingActionButtonLocation.centerDocked,
@@ -118,7 +90,7 @@ class _EditSection2 extends State<EditSection2> {
         ),
         // bottomNavigationBar: BottomBar(),
         drawer: SideMenu(),
-        endDrawer: PreviewPane(),
+       // endDrawer: PreviewPane(),
         bottomNavigationBar: FABBottomAppBar(
           onTabSelected: _selectedTab,
           notchedShape: CircularNotchedRectangle(),
@@ -135,52 +107,44 @@ class _EditSection2 extends State<EditSection2> {
             FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
           ],
         ),
-        body:  Container(
-            decoration: BoxDecoration(image: DecorationImage(
-                image: AssetImage('assets/cover.png'), fit: BoxFit.fill)),
+    body: NestedScrollView(
+    headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+    return <Widget>[
+    SliverAppBar(automaticallyImplyLeading: false,backgroundColor: Colors.black,
+
+
+    expandedHeight: 140.0,
+    floating: false,
+    pinned: true,
+    flexibleSpace: FlexibleSpaceBar(
+    centerTitle: true,
+    title: Text("Academic Projects",
+    style: TextStyle(
+    color: Colors.white,
+    fontSize: 16.0,
+    )),
+    background:
+      Image.asset('assets/final structure-02.png'),
+
+    )
+    ),
+    ];
+    },
+body:
+        Container(
+
             child: ListView(
                 padding:
                 EdgeInsets.only(bottom: 30.0),
                 children: <Widget>[
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height / 6,
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
-                        decoration: BoxDecoration(color: Colors.yellow),
-                        child: Container(
-                          margin: EdgeInsets.only(top: 10.0),
-                          child: Text(
-                            'Academic Projects',
-                            style: TextStyle(
-                                color: Color(0xff232882), fontSize: 30.0),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                              margin: EdgeInsets.only(top: 70),
-                              child: Image(
-                                  image: AssetImage('assets/Basic Info.png')))
-                        ],
-                      )
-                    ],
-                  ),
+
+
                   Card(
                     elevation: 5.0,
                     child: Column(
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                          padding: EdgeInsets.only( top: 5.0,bottom: 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
@@ -289,6 +253,7 @@ class _EditSection2 extends State<EditSection2> {
                           ),
                         ),
                         Container(
+<<<<<<< HEAD
                               child: Column(
                                 children: <Widget>[
                                   Container(
@@ -309,104 +274,126 @@ class _EditSection2 extends State<EditSection2> {
                                             border: OutlineInputBorder(
                                                 borderRadius: BorderRadius.circular(
                                                     10))),
+=======
+
+
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                  width: MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width / 1.2,
+                                  child: TextField(
+                                    //initialValue: myController.text,
+                                    controller: new TextEditingController.fromValue(new TextEditingValue(text: title,selection: new TextSelection.collapsed(offset: title.length-2))),
+                                    onChanged: (val) => title = val,
+                                    //autofocus: true,
+                                    style: TextStyle(color: Color(0xff232882)),
+                                    decoration: InputDecoration(
+                                        labelStyle: TextStyle(
+                                            color: Color(0xffff1e50)),
+                                        labelText: 'Academic Project Title',
+
+                                        border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                10))),
+>>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
 //                                  validator: (value) {
 //                                    if (value.isEmpty) {
 //                                      return 'Please enter a name';
 //                                    }
 //                                  },
-                                      )),
-                                  Padding(
-                                    padding: EdgeInsets.all(10),
-                                  ),
-                                  Container(
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width / 1.2,
-                                    child: TextField(
-                                     controller: new TextEditingController.fromValue(new TextEditingValue(text: description,selection: new TextSelection.collapsed(offset: description.length-2))),
-                                         onChanged: (val) => description = val,
-                                         autofocus: true,
-                               // initialValue: myController2.text,
-                                      style: TextStyle(color: Color(0xff232882)),
-                                      scrollPadding: EdgeInsets.all(10.0),
-                                      maxLines: 15,
-                                      textAlign: TextAlign.start,
-                                      decoration: InputDecoration(
-                                          border: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(
-                                                  10)),
-                                          labelStyle: TextStyle(
-                                              color: Color(0xffff1e50)),
-                                          labelText: 'Brief Description about the project'),
+                                  )),
+                              Padding(
+                                padding: EdgeInsets.all(10),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width / 1.2,
+                                child: TextField(
+                                  controller: new TextEditingController.fromValue(new TextEditingValue(text: description,selection: new TextSelection.collapsed(offset: description.length-2))),
+                                  onChanged: (val) => description = val,
+                                  //autofocus: true,
+                                  // initialValue: myController2.text,
+                                  style: TextStyle(color: Color(0xff232882)),
+                                  scrollPadding: EdgeInsets.all(10.0),
+                                  maxLines: 15,
+                                  textAlign: TextAlign.start,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              10)),
+                                      labelStyle: TextStyle(
+                                          color: Color(0xffff1e50)),
+                                      labelText: 'Brief Description about the project'),
 //                                validator: (value) {
 //                                  if (value.isEmpty) {
 //                                    return 'Please enter a name';
 //                                  }
 //                                },
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        InkWell(
-                                          child: Container(
-                                            height: MediaQuery
-                                                .of(context)
-                                                .size
-                                                .height / 18,
-                                            width: MediaQuery
-                                                .of(context)
-                                                .size
-                                                .width / 3,
-                                            alignment: FractionalOffset.center,
-                                            decoration: BoxDecoration(
-                                                color: Color(0xff232882),
-                                                borderRadius: BorderRadius.circular(
-                                                    30.0),
-                                                border: new Border.all(
-                                                    color: Colors.white)),
-                                            child: InkWell(
-                                              onTap: () {
-                                                update(title,description,data[index]);
-                                              },
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment
-                                                    .center,
-                                                children: <Widget>[
-                                                  Container(
-                                                    padding: EdgeInsets.only(
-                                                        right: 5),
-                                                    child: Icon(
-                                                      Icons.add_circle,
-                                                      color: Colors.white,
-                                                      size: MediaQuery
-                                                          .of(context)
-                                                          .size
-                                                          .aspectRatio * 40,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "Add Section",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15.0,
-                                                        fontWeight: FontWeight
-                                                            .bold),
-                                                  )
-                                                ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(10.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    InkWell(
+                                      child: Container(
+                                        height: MediaQuery
+                                            .of(context)
+                                            .size
+                                            .height / 18,
+                                        width: MediaQuery
+                                            .of(context)
+                                            .size
+                                            .width / 3,
+                                        alignment: FractionalOffset.center,
+                                        decoration: BoxDecoration(
+                                            color: Color(0xff232882),
+                                            borderRadius: BorderRadius.circular(
+                                                30.0),
+                                            border: new Border.all(
+                                                color: Colors.white)),
+                                        child: InkWell(
+                                          onTap: () {
+                                            update(title,description,data[index]);
+                                          },
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment
+                                                .center,
+                                            children: <Widget>[
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                    right: 5),
+                                                child: Icon(
+                                                  Icons.add_circle,
+                                                  color: Colors.white,
+                                                  size: MediaQuery
+                                                      .of(context)
+                                                      .size
+                                                      .aspectRatio * 40,
+                                                ),
                                               ),
-                                            ),
+                                              Text(
+                                                "Add Section",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 15.0,
+                                                    fontWeight: FontWeight
+                                                        .bold),
+                                              )
+                                            ],
                                           ),
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -440,11 +427,12 @@ class _EditSection2 extends State<EditSection2> {
 
                             child:
                             Container(
-
+                              alignment: Alignment.bottomCenter,
                               // width: MediaQuery.of(context).size.width/1.6,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0)),
                               padding: EdgeInsets.only(left: 10),
+                              //child: Align(alignment: Alignment.center,
                               child: Row(
                                 children: <Widget>[
                                   Container(
@@ -498,10 +486,11 @@ class _EditSection2 extends State<EditSection2> {
                                   ),
                                 ],
                               ),
-
                             ),
 
                           ),
+
+
                         );
 //
 //
@@ -512,6 +501,7 @@ class _EditSection2 extends State<EditSection2> {
 
 
                 ])),
+    ),
       );
   }
 

@@ -5,6 +5,11 @@ Future<String> readname() async {
       final value = prefs.getString('name');
       return value;
     }
+Future<int> readloginstatus() async {
+      final prefs = await SharedPreferences.getInstance();
+      final value = prefs.getInt('loginstatus')??0;
+       return value;
+      }
 
 Future<String> readmail() async {
       final prefs = await SharedPreferences.getInstance();
@@ -22,13 +27,33 @@ Future<String> readid() async {
       return value;
     }
 
+Future<String> writeid(String id) async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('id', id);
+      return "Success";
+    }
+    Future<String> readauthKey() async {
+      final prefs = await SharedPreferences.getInstance();
+      final value = prefs.getString('authKey');
+      return value;
+    }
 
+Future<String> writeauthKey(String id) async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('authKey', id);
+      return "Success";
+    }
 Future<String> writename(String name) async {
       final prefs = await SharedPreferences.getInstance();
        prefs.setString('name',name);
        return "Success";
       }
 
+Future<String> writeloginstatus(int status) async {
+      final prefs = await SharedPreferences.getInstance();
+       prefs.setInt('loginstatus',1);
+       return "Success";
+      }
 
 Future<String> writemail(String email) async {
       final prefs = await SharedPreferences.getInstance();

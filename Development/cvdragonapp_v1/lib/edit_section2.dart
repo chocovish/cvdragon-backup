@@ -289,8 +289,6 @@ class _EditSection2 extends State<EditSection2> {
                           ),
                         ),
                         Container(
-                            
-
                               child: Column(
                                 children: <Widget>[
                                   Container(
@@ -308,7 +306,6 @@ class _EditSection2 extends State<EditSection2> {
                                             labelStyle: TextStyle(
                                                 color: Color(0xffff1e50)),
                                             labelText: 'Academic Project Title',
-
                                             border: OutlineInputBorder(
                                                 borderRadius: BorderRadius.circular(
                                                     10))),

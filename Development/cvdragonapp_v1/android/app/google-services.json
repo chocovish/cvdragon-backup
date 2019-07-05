@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "455532156792",
+    "firebase_url": "https://cvdragon-160504.firebaseio.com",
+    "project_id": "cvdragon-160504",
+    "storage_bucket": "cvdragon-160504.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455532156792:android:9765d497a55e0879",
+        "android_client_info": {
+          "package_name": "com.example.cvdragonapp_v1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455532156792-fh5ftri0cmca5uj1k4v93f9b4adpnijs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cvdragonapp_v1",
+            "certificate_hash": "b4ef26978c0209f099103538f440acd56ca2033d"
+          }
+        },
+        {
+          "client_id": "455532156792-uba2ppn7duvn0inug0fa785ujpancuie.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlnp8L8OK3OrRU90oURcaM4nKo99wUJyY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455532156792-uba2ppn7duvn0inug0fa785ujpancuie.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

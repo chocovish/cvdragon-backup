@@ -1,8 +1,11 @@
+import 'package:cvdragonapp_v1/form_card.dart';
 import 'package:cvdragonapp_v1/home.dart';
+import 'package:cvdragonapp_v1/sharedfetch.dart';
+import 'package:cvdragonapp_v1/wizard.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import './fetch.dart'as fetch;
 String mobileno;
+
 class OtpPage extends StatefulWidget{
 OtpPage(String mobile)
 {
@@ -10,35 +13,57 @@ OtpPage(String mobile)
  }
 @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _OtpPage();
+        return _OtpPage();
   }
 
 }
 
 class _OtpPage extends State<OtpPage>{
- final myController = TextEditingController();
+ final myController2 = TextEditingController();
  bool _isLoading=true;
  String otp;
  List data;
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    myController2.dispose();
+    super.dispose();
+  }
+
   void get()  {
-   // fetch.getOtp(mobileno).then((List res){
+   fetch.getOtp(mobileno).then((List res){
       setState(() {
-      // data=res;
+    data=res;
       _isLoading=false; 
       });
-   // });
+   });
   }
 @override
 
   Widget build(BuildContext context) {
-     verify()
+     verify() async
     {
-      //  if(myController.text.toString()==data[1]['OTP'].toString())
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePagee()));
-       // else
-       // print("Wrong otp");
-    }
+        if(myController2.text.toString()==data[1]['OTP'].toString())
+        {
+         var data=await fetch.getverifyUser(mobileno);
+         print(data);
+         if(data==0)
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>FirstTimeWizard()));
+          else
+          {
+            Map<String,dynamic> basic_data=await fetch.getUserDetaisMobile(mobileno);
+            await writeid(basic_data['id']);
+            await writeauthKey(basic_data['authKey']);
+            await writeloginstatus(1);
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePagee()));
+          }
+        
+        }
+        
+       else
+        print("Wrong otp");
+     }
     // TODO: implement build
     return Scaffold(
       
@@ -53,7 +78,7 @@ class _OtpPage extends State<OtpPage>{
                       width: MediaQuery.of(context).size.width/6)),
             ):Column(
         children: <Widget>[
-          TextField( controller: myController),
+          TextField( controller: myController2),
           RaisedButton(
             child: Text("Submit OTP"),
             onPressed:verify,

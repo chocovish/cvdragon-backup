@@ -1,8 +1,9 @@
+import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:sqflite/sqflite.dart';
-var id = "15585932569410"; //Rohit Agarwal 
-var authkey = "1d9f7dba5fa41c8065f198f97cd177f9";
+var id = ""; //Rohit Agarwal 
+var authkey = "";
 // var id		 = '15363407469796';
 // var authkey	= '042b2de6a38da30c2a96a72d5b80993d';
 var cvid	   = '4672';
@@ -19,6 +20,8 @@ Map<String,dynamic> contents_skills={
     };
     
 Future<String> pushData() async {
+  id=await readid();
+  authkey=await readauthKey();
    String url="https://cvdragon.com/data/appCVAddAPI.php?"+"id="+id+"&authkey="+authkey+"&CVID="+cvid+"&sectionID="+sectionID+"&data="+data+"&contents=";
     url+=json.encode(contents_academic_projects);
      return url;

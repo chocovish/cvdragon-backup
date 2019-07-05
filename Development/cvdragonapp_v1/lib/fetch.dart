@@ -202,9 +202,25 @@ Future<List> getcvSection(String id,String authkey) async {
  }
   Future<List> getOtp(String mobileno) async {
   String url = urlgetter.otpgenerator(mobileno);
-  print (url);
+  print(url);
     var res = await http.get(url);
     sending_response= json.decode(res.body);
     return sending_response;
  }
- 
+  Future<int> getverifyUser(String mobileno) async {
+  String url = urlgetter.verifyUserMobile(mobileno);
+    var res = await http.get(url);
+    print(res.body);
+    if(res.body=="null")
+     return 0;
+     else
+     return 1;
+    //sending_response= json.decode(res.body);
+    //return sending_response;
+ }
+ Future<Map<String,dynamic>> getUserDetaisMobile(String mobileno) async {
+  String url = urlgetter.verifyUserMobile(mobileno);
+    var res = await http.get(url);
+    sendBasic= json.decode(res.body);
+    return sendBasic ;
+ }

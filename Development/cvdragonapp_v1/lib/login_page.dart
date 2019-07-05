@@ -3,7 +3,7 @@ import 'package:flutter/animation.dart';
 import 'package:animator/animator.dart';
 import 'package:cvdragonapp_v1/form_card.dart';
 import 'package:cvdragonapp_v1/social_login.dart';
-
+final myController = TextEditingController();
 class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -12,6 +12,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    myController.text="";
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

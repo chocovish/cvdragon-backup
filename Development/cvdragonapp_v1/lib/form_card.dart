@@ -1,8 +1,8 @@
 import 'package:cvdragonapp_v1/localdatapush.dart' as local;
+import 'package:cvdragonapp_v1/login_page.dart';
 import 'package:cvdragonapp_v1/otppage.dart';
 import 'package:flutter/material.dart';
 
-final myController = TextEditingController();
 
 class LoginFormCard extends StatefulWidget {
   @override
@@ -17,6 +17,8 @@ class LoginFormCardState extends State<LoginFormCard> {
   @override
   void initState() {
     // TODO: implement initState
+  
+   
     super.initState();
   }
 
@@ -37,12 +39,12 @@ class LoginFormCardState extends State<LoginFormCard> {
   }
 
   Widget _buildMobileForm() {
-    @override
-    void dispose() {
-      // Clean up the controller when the widget is disposed.
-      myController.dispose();
-      super.dispose();
-    }
+
+    // void dispose() {
+    //   // Clean up the controller when the widget is disposed.
+    //   //myController.dispose();
+    //   super.dispose();
+    // }
 
     return Padding(
       padding: const EdgeInsets.all(8.0),

@@ -1,15 +1,7 @@
+import 'package:cvdragonapp_v1/demologin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import './topmenu.dart';
-import './bottombar_home.dart';
-import './sidemenu.dart';
-import 'package:flutter/rendering.dart';
-import './rightpreviewpane.dart';
 import './login_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import './earlyfetch.dart' as efetch;
-import './sharedfetch.dart' as sfetch;
-import 'package:flutter/rendering.dart';
 
 String name, email;
 
@@ -37,16 +29,10 @@ class _MyApp extends State<MyApp> {
     this.get();
 }
   void get()async {
- efetch.DatabaseFetch().get().then((onValue){
-      print("Done");
-    });
+//  efetch.DatabaseFetch().get().then((onValue){
+//       print("Done");
+//     });
 
-  }
-
-  void _bottompressed(String t) {
-    setState(() {
-      hometext = t;
-    });
   }
 
   Widget build(BuildContext context) {
@@ -54,6 +40,6 @@ class _MyApp extends State<MyApp> {
 
     return MaterialApp(
 
-        home: LoginPage());
+        home: DemoLogin());
   }
 }

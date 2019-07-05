@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 
- String url="https://cvdragon.com/data/appResourceAPI.php";
- String url2="https://cvdragon.com/data/appCVAPI.php";
+ String url="https://cvdragon.com/data/app/appResourceAPI.php";
+ String url2="https://cvdragon.com/data/app/appCVAPI.php";
 String allSectionsBasic(String id,String authkey)
 {
   return url+"?id="+id+"&authkey="+authkey+"&data=allSectionsBasic";
@@ -139,4 +139,10 @@ String keyPhrases(String sectionid)
 String otpgenerator(String mobileno)
 {
   return url+"?id=1&authkey=cvDragonAppPublicKey12345&data=verifyMobile&mobile="+mobileno+"&countryCode=91";
+}
+String verifyUserMobile(String mobileno)
+{
+  String x=url+"?id=1&authkey=cvDragonAppPublicKey12345&data=verifyUserMobile&usermobile=91"+mobileno;
+  print(x);
+  return x;
 }

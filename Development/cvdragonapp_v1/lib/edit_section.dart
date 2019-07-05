@@ -105,11 +105,12 @@ class _EditSection extends State<EditSection> {
             FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
           ],
         ),
-        body: _buildCardView(context),
+        body: _buildCardView(context,setState,initState),
       );
   }
 }
-Widget _buildCardView(BuildContext context) {
+Widget _buildCardView(BuildContext context,setState,initState) {
+ 
   return Container(
     decoration: BoxDecoration(
         image: DecorationImage(
@@ -180,13 +181,16 @@ Widget _buildCardView(BuildContext context) {
                                 size: 30, color: Color(0xff232882)),
                           ),
                         ),
-                        Container(
-                          
+                        Container(    
                           height: MediaQuery.of(context).size.height / 14,
                           width: MediaQuery.of(context).size.width / 8,
                           child: InkWell(onTap: (){
                             print(index);
                             deleteFromProfile(data[ind]['section'], addeddata[index][columnName[data[ind]['section'].toString()]].toString());
+                            setState((){
+                              initState();
+                                print("refresh");
+                            });
                           },
                            // onTap: deletefromprofile,
                             child: Icon(Icons.delete,

@@ -17,6 +17,7 @@ var db=  await openDatabase('assets/sections.db', version: 3);
     });
   return data.toString();
 }
+
 Future<List> getAddedAcademicProject(String section) async {
 var db=  await openDatabase('assets/sections.db', version: 3);
    List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= 4672 AND `section` = "+section);
@@ -33,7 +34,12 @@ var db=  await openDatabase('assets/sections.db', version: 3);
     });
   return data;
 }
-
+Future<List> getDefaultSection(String section) async {
+var db=  await openDatabase('assets/sections.db', version: 3);
+   
+   List response=await db.rawQuery("SELECT * FROM "+tablename[section]);
+    return response;
+}
 Future<int>deleteFromProfile(String section,String subSection)async{
  var db=await openDatabase("assets/sections.db", version: 1);
   List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= 4672 AND `section` = "+section);

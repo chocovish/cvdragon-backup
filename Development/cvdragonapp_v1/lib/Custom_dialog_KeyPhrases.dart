@@ -49,7 +49,7 @@ class CustomDialogKeyPhrases extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            height: 40,
+            height: MediaQuery.of(context).size.height / 18,
             alignment: FractionalOffset.topCenter,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -65,8 +65,8 @@ class CustomDialogKeyPhrases extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(bottom: 10),
-            height: MediaQuery.of(context).size.height / 1.85,
+            padding: EdgeInsets.only(bottom: 20),
+            height: MediaQuery.of(context).size.height /1.9,
               child: Scrollbar(
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
@@ -93,7 +93,7 @@ class CustomDialogKeyPhrases extends StatelessWidget {
           ),
           ),
           Container(
-            height: MediaQuery.of(context).size.height/20,
+            height: MediaQuery.of(context).size.height/16,
 
             alignment: FractionalOffset.center,
             child: RaisedButton(

@@ -57,3 +57,34 @@ Map<String,String> columnName={
 "51125":"activityid",
 "51126":"addid",
 };
+Map<String,String> AddedDataColumn=
+{
+ "51099":"title",
+ "51101":"`cv-contact`",
+ "51102":"`cv-images`",
+ "51103":"`cv-introduction`",
+ "51104":"organization",
+ "51105":"organization",
+ "51106":"organization",
+ "51107":"training",
+ "51108":"course",
+ "51109":"category",
+ "51110":"certificate",
+ "51111":"technical",
+ "51112":"title",
+ "51113":"title",
+ "51114":"achievement",
+ "51115":"title",
+ "51116":"organization",
+ "51117":"organization",
+ "51118":"skill",
+ "51119":"interest",
+ "51120":"language",
+ "51121":"passport",
+ "51122":"title",
+ "51123":"title",
+ "51125":"title",
+ "51126":"heading",
+
+
+};

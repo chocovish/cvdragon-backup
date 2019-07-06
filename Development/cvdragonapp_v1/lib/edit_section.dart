@@ -105,12 +105,11 @@ class _EditSection extends State<EditSection> {
             FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
           ],
         ),
-        body: _buildCardView(context,setState,initState),
+        body: _buildCardView(context),
       );
   }
 }
-Widget _buildCardView(BuildContext context,setState,initState) {
- 
+Widget _buildCardView(BuildContext context) {
   return Container(
     decoration: BoxDecoration(
         color: Colors.white),
@@ -127,15 +126,7 @@ Widget _buildCardView(BuildContext context,setState,initState) {
                 margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/20),
                 child: Text(
                   data[ind]['sectionName'],
-<<<<<<< HEAD
-<<<<<<< HEAD
-                  style: TextStyle(color: Color(0xff232882), fontSize: 30.0),
-=======
-                  style: TextStyle(color: Colors.white, fontSize: 28.0),
->>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
-=======
-                  style: TextStyle(color: Colors.white, fontSize: 28.0),
->>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
+                  style: TextStyle(color: Colors.white, fontSize: 30.0),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -143,7 +134,7 @@ Widget _buildCardView(BuildContext context,setState,initState) {
 
             Container(
               margin: EdgeInsets.only(top: 5),
-              color: Colors.black,
+
             height: MediaQuery.of(context).size.height/1.8,
             width: MediaQuery.of(context).size.width,
             child:
@@ -151,13 +142,15 @@ Widget _buildCardView(BuildContext context,setState,initState) {
               physics: BouncingScrollPhysics(),
               itemCount: addeddata == null ? 0 : addeddata.length,
               itemBuilder: (BuildContext context, int index) {
+
                 return Card(
-                  color: Colors.lightBlue[200],
+                  color: Colors.transparent,
                   margin: EdgeInsets.only(top: 10, left: 5, right: 5),
                   elevation: 5.0,
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/Untitled-2.png"),fit: BoxFit.cover),
                         borderRadius: BorderRadius.circular(10.0)),
+
                     padding: EdgeInsets.only(left: 10),
                     child: Row(
                       children: <Widget>[
@@ -168,8 +161,8 @@ Widget _buildCardView(BuildContext context,setState,initState) {
                           height: MediaQuery.of(context).size.height / 12,
                           width: MediaQuery.of(context).size.width / 1.5,
                           child: Text(
-                            addeddata[index]['title'].toString(),
-                            textAlign: TextAlign.center,
+                            addeddata[index][AddedDataColumn[(data[ind]['section']).toString()]].toString(),
+                            textAlign: TextAlign.center,style: TextStyle(color: Colors.white),
                           ),
                         ),
                         Container(
@@ -177,27 +170,23 @@ Widget _buildCardView(BuildContext context,setState,initState) {
                           width: MediaQuery.of(context).size.width / 8,
                           child: InkWell(
                             onTap: () {
-                              Navigator.push(context,MaterialPageRoute(builder: (context) => (EditSection2(addeddata,index))));
+                              Navigator.push(context,MaterialPageRoute(builder: (context) => (EditSection2(addeddata,index, data,ind))));
                             },
                             child: Icon(Icons.mode_edit,
-                                size: 30, color: Color(0xff232882)),
+                                size: 30, color: Colors.white70),
                           ),
                         ),
-                        Container(    
+                        Container(
                           height: MediaQuery.of(context).size.height / 14,
                           width: MediaQuery.of(context).size.width / 8,
                           child: InkWell(onTap: (){
                             print(index);
                             deleteFromProfile(data[ind]['section'], addeddata[index][columnName[data[ind]['section'].toString()]].toString());
-                            setState((){
-                              initState();
-                                print("refresh");
-                            });
                           },
                            // onTap: deletefromprofile,
                             child: Icon(Icons.delete,
-                            
-                                size: 30, color: Color(0xff232882)),
+
+                                size: 30, color: Colors.white70),
                           ),
                           
                         ),

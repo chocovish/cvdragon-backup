@@ -112,15 +112,6 @@ class _CreateSection extends State<CreateSection> {
  }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-Widget _buildCardView(BuildContext context) {
-  create(){
-      
-  }
-=======
-=======
->>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
 Widget _buildChild(BuildContext context) {
  if (data[index]['section'] == "51099") {
   return _buildPositionOfResponsibility(context);
@@ -134,10 +125,6 @@ Widget _buildChild(BuildContext context) {
 
 
 Widget _buildAcademicProjects(BuildContext context) {
-<<<<<<< HEAD
->>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
-=======
->>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
  return Container(
      child: ListView(
       padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0, bottom: 30.0),
@@ -550,13 +537,8 @@ Widget _buildPositionOfResponsibility(BuildContext context) {
            ),
           ),
           Container(
-<<<<<<< HEAD
 
 
-=======
-
-
->>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
            child: Column(
             children: <Widget>[
              Container(
@@ -939,37 +921,6 @@ Widget _buildContactDetails(BuildContext context) {
 //                                  }
 //                                },
               ),
-<<<<<<< HEAD
-<<<<<<< HEAD
-              Container(
-               padding: EdgeInsets.all(10.0),
-               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                 InkWell(
-                  child: Container(
-                   height: 50.0,
-                   width: 150.0,
-                   alignment: FractionalOffset.center,
-                   decoration: BoxDecoration(
-                       color: Color(0xff232882),
-                       borderRadius: BorderRadius.circular(30.0),
-                       border: new Border.all(color: Colors.white)),
-                   child: InkWell(
-                    onTap: create,
-                    child: Row(
-                     mainAxisAlignment: MainAxisAlignment.center,
-                     children: <Widget>[
-                      Container(
-                       padding: EdgeInsets.only(right: 5),
-                       child: Icon(
-                        Icons.add_circle,
-                        color: Colors.white,
-                        size: 20,
-                       ),
-=======
-=======
->>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
              ),
 
              Container(
@@ -1012,10 +963,6 @@ Widget _buildContactDetails(BuildContext context) {
                            .of(context)
                            .size
                            .aspectRatio * 40,
-<<<<<<< HEAD
->>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
-=======
->>>>>>> 7550ad139212faad227d2d0c433a0eace1044a52
                       ),
                      ),
                      Text(

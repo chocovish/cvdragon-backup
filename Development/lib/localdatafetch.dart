@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:sqflite/sqflite.dart';
 import './maps.dart';
 Future<String> getDatabaseAcademicProject(String section) async {
 var db=  await openDatabase('assets/sections.db', version: 3);
-   List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= 4672 AND `section` = "+section);
+var cvid=await readprofiles();
+   List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);
     print(response);//contains 2 which is not in database
    List response2=await db.rawQuery("SELECT * FROM "+tablename[section]);
     print(response2);//contains all 4
@@ -20,7 +22,8 @@ var db=  await openDatabase('assets/sections.db', version: 3);
 
 Future<List> getAddedAcademicProject(String section) async {
 var db=  await openDatabase('assets/sections.db', version: 3);
-   List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= 4672 AND `section` = "+section);
+var cvid=await readprofiles();
+   List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);
     //print(response);//contains 2 which is not in database
    List response2=await db.rawQuery("SELECT * FROM "+tablename[section]);
    // print(response2);//contains all 4
@@ -48,7 +51,8 @@ var db=  await openDatabase('assets/sections.db', version: 3);
 
 Future<int>deleteFromProfile(String section,String subSection)async{
  var db=await openDatabase("assets/sections.db", version: 1);
-  List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= 4672 AND `section` = "+section);
+ var cvid=await readprofiles();
+  List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);
   List res=json.decode(response[0]['subsection']);
   print(res);
   print(subSection);
@@ -62,7 +66,7 @@ if(element.toString()==subSection.toString())
   });
  res.removeAt(i);
   print(res);
-  String sql="UPDATE `create-cvprofilesection` SET subsection=\""+res.toString()+"\" WHERE `cvid`= 4672 AND `section` = "+section;
+  String sql="UPDATE `create-cvprofilesection` SET subsection=\""+res.toString()+"\" WHERE `cvid`= "+cvid+" AND `section` = "+section;
   print(sql);
  await db.rawUpdate(sql);
 }

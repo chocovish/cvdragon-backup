@@ -11,10 +11,9 @@ import './earlyfetch.dart' as efetch;
 import './fetch.dart' as fetch;
 import './rightpreviewpane.dart';
 
-String name = "Piyush";
+String name = "";
 var id = '';
 var authkey = '';
-var name= '';
 var selectedprofile='';
 List profiles;
 Map<String, dynamic> contents = {

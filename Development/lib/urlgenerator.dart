@@ -56,7 +56,7 @@ String cvSection(String id,String authkey)
 }
 String cvProfileSection(String id,String authkey,String cvid)
 {
-  return url2+"?id="+id+"&authkey="+authkey+"&data=mySubSections&CVID=4672";
+  return url2+"?id="+id+"&authkey="+authkey+"&data=mySubSections&CVID="+cvid;
 }
 String cvProject(String id,String authkey)
 {

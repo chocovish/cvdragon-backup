@@ -1,3 +1,4 @@
+import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:http/http.dart' as http;
 import './urlgenerator.dart'as urlgetter;
 import 'dart:convert';
@@ -177,7 +178,8 @@ Future<List> getcvSection(String id,String authkey) async {
     return sending_response;
  }
  Future<List> getcvProfileSection(String id,String authkey) async {
-  String url = urlgetter.cvProfileSection(id,authkey,"4672");
+   var cvid=await readprofiles();
+  String url = urlgetter.cvProfileSection(id,authkey,cvid);
     var res = await http.get(url);
     sending_response= json.decode(res.body);
     return sending_response;

@@ -20,7 +20,7 @@ var cvid=await readprofiles();
   return data.toString();
 }
 
-Future<List> getAddedAcademicProject(String section) async {
+Future<List> getAddedData(String section) async {
 var db=  await openDatabase('assets/sections.db', version: 3);
 var cvid=await readprofiles();
    List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);

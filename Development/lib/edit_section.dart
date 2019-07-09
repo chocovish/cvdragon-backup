@@ -37,7 +37,7 @@ class _EditSection extends State<EditSection> {
     get();
   }
   void get() {
-    getAddedAcademicProject(data[ind]['section'].toString())
+    getAddedData(data[ind]['section'].toString())
         .then((List res) {
       setState(() {
         addeddata = res;

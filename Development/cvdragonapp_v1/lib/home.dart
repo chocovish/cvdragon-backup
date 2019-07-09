@@ -8,10 +8,14 @@ import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
 import './earlyfetch.dart' as efetch;
+import './fetch.dart' as fetch;
 import './rightpreviewpane.dart';
 
 var id = '';
 var authkey = '';
+var name= '';
+var selectedprofile='';
+List profiles;
 Map<String, dynamic> contents = {
   'id': id,
   'projectid': 1,
@@ -34,9 +38,11 @@ class HomePagee extends StatefulWidget {
   }
 }
 
+bool profileselected = false;
 class _HomePagee extends State<HomePagee> {
   @override
   bool isLoading = true;
+  
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -44,10 +50,19 @@ class _HomePagee extends State<HomePagee> {
   }
 
   void get() async{
-   id=await readid();
-   authkey=await readauthKey();
+  
+    
     int val=await efetch.get();
       if(val==1){
+         id=await readid();
+          authkey=await readauthKey();
+        name=await readname();
+        selectedprofile=await readprofiles();
+        if(selectedprofile!=" ")
+        profileselected=true;
+        print("selected prfilrd is "+selectedprofile);
+       profiles=await fetch.getcvProfiles(id, authkey);
+        print(name);
         setState(() {
         print(val);
         isLoading = false;
@@ -74,7 +89,7 @@ class _HomePagee extends State<HomePagee> {
                     height: MediaQuery.of(context).size.height / 12,
                     width: MediaQuery.of(context).size.width / 6)),
           )
-        : Scaffold(
+         :Scaffold(
             backgroundColor: Colors.black,
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
@@ -99,7 +114,9 @@ class _HomePagee extends State<HomePagee> {
             //bottomNavigationBar: BottomBar(),
             drawer: SideMenu(),
             endDrawer: PreviewPane(),
-            body: _buildCardView(context),
+            body: profileselected?
+            _buildCardView(context):
+            dialogContent(context, write,setState),
             bottomNavigationBar: FABBottomAppBar(
               onTabSelected: _selectedTab,
               notchedShape: CircularNotchedRectangle(),
@@ -119,7 +136,48 @@ class _HomePagee extends State<HomePagee> {
           );
   }
 }
-
+write(String cvid) async
+  {
+      await writeprofile(cvid);
+  }
+Widget dialogContent(BuildContext context,write,setState)
+{
+  return Center(
+    child: Container(
+      height: MediaQuery.of(context).size.height/3,
+      child: Dialog( 
+        child: ListView.builder(
+          physics: BouncingScrollPhysics(),
+          itemCount: profiles == null ? 0 : profiles.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        decoration: BoxDecoration(border: new Border.all(color: Colors.black),),
+                        child: InkWell(
+                         
+                          onTap: ()async{
+                           // print(profiles[index]['cvid'].toString());
+                            await write(profiles[index]['cvid'].toString());
+                             setState((){
+                               print("done");
+                               profileselected=true;
+                             });
+                          },
+                          child: Text(
+                           profiles[index]['profileName'],
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      );
+                    },
+                  
+        ),
+      ),
+    ),
+  );
+}
 Widget _buildCardView(BuildContext context) {
   return Container(
       child: ListView(
@@ -131,14 +189,14 @@ Widget _buildCardView(BuildContext context) {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const ListTile(
+             ListTile(
               leading: Icon(
                 Icons.account_circle,
                 size: 30.0,
                 color: Color(0xff232882),
               ),
               title: Text(
-                'Hello User',
+              name,
                 style: TextStyle(
                     color: Color(0xff232882),
                     fontSize: 25.0,

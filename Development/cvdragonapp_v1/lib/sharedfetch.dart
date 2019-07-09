@@ -26,6 +26,16 @@ Future<String> readid() async {
       final value = prefs.getString('id');
       return value;
     }
+Future<String> readprofiles() async {
+      final prefs = await SharedPreferences.getInstance();
+      final value = prefs.getString('cvid')??" ";
+      return value;
+    }
+Future<String> writeprofile(String cvid) async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('cvid', cvid);
+      return "Success";
+    }
 
 Future<String> writeid(String id) async {
       final prefs = await SharedPreferences.getInstance();

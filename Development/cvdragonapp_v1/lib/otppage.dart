@@ -4,12 +4,21 @@ import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:cvdragonapp_v1/wizard.dart';
 import 'package:flutter/material.dart';
 import './fetch.dart'as fetch;
-String mobileno;
-
+String mobileno="";
+String socialid="";
+int typeoflogin;
+/*
+1: Mobile
+2: Facebook
+3: Google
+4:Linkedin
+*/
 class OtpPage extends StatefulWidget{
-OtpPage(String mobile)
+OtpPage(String mobile,String social,int type)
 {
   mobileno=mobile;
+  socialid=social;
+  typeoflogin=type;
  }
 @override
   State<StatefulWidget> createState() {
@@ -31,20 +40,31 @@ class _OtpPage extends State<OtpPage>{
     super.dispose();
   }
 
-  void get()  {
+  void get()  async{
+    if(typeoflogin==1)
+    {
    fetch.getOtp(mobileno).then((List res){
       setState(() {
     data=res;
       _isLoading=false; 
       });
    });
+    }
+    else {
+      await verify();
+      setState(() {
+        _isLoading=false;
+      });
+        
+    }
   }
 @override
-
-  Widget build(BuildContext context) {
-     verify() async
+verify() async
     {
-        if(myController2.text.toString()==data[1]['OTP'].toString())
+      print(typeoflogin);
+       if(typeoflogin==1)
+       { 
+         if(myController2.text.toString()==data[1]['OTP'].toString())
         {
          var data=await fetch.getverifyUser(mobileno);
          print(data);
@@ -63,7 +83,26 @@ class _OtpPage extends State<OtpPage>{
         
        else
         print("Wrong otp");
+        }
+        else{
+        print(socialid);
+        var data=await fetch.getverifyUserSocial(socialid);
+         print(data);
+         if(data==0)
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>FirstTimeWizard()));
+          else
+          {
+            Map<String,dynamic> basic_data=await fetch.getUserDetailsSocial(socialid);
+            await writeid(basic_data['id']);
+            await writeauthKey(basic_data['authKey']);
+            await writeloginstatus(1);
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePagee()));
+          }
+        }
      }
+
+  Widget build(BuildContext context) {
+     
     // TODO: implement build
     return Scaffold(
       
@@ -76,7 +115,8 @@ class _OtpPage extends State<OtpPage>{
                       image: AssetImage("assets/logocv.gif"),
                       height: MediaQuery.of(context).size.height/12,
                       width: MediaQuery.of(context).size.width/6)),
-            ):Column(
+            ):
+            Column(
         children: <Widget>[
           TextField( controller: myController2),
           RaisedButton(
@@ -86,6 +126,7 @@ class _OtpPage extends State<OtpPage>{
 
         ],
       )
+
       );
   }
   void initState() {

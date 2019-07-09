@@ -1,14 +1,13 @@
-import 'package:http/http.dart' as http;
-
+  
  String url="https://cvdragon.com/data/app/appResourceAPI.php";
  String url2="https://cvdragon.com/data/app/appCVAPI.php";
 String allSectionsBasic(String id,String authkey)
 {
   return url+"?id="+id+"&authkey="+authkey+"&data=allSectionsBasic";
 }
-String allDesigns(String id,String authkey)
+String allDesigns()
 {
-  return url+"?id="+id+"&authkey="+authkey+"&data=allDesign";
+  return url+"?id=1&authkey=1&data=allDesigns";
 }
 String basic(String id,String authkey)
 {
@@ -127,7 +126,10 @@ String cvWork(String id,String authkey)
 {
   return url2+"?id="+id+"&authkey="+authkey+"&data=cvWork";
 }
-
+String cvProfile(String id,String authkey)
+{
+  return url2+"?id="+id+"&authkey="+authkey+"&data=cvProfile";
+}
 String faq(String sectionID)
 {
   return url+"?id=1&authkey=1&data=FaqSection&section="+sectionID;
@@ -143,6 +145,12 @@ String otpgenerator(String mobileno)
 String verifyUserMobile(String mobileno)
 {
   String x=url+"?id=1&authkey=cvDragonAppPublicKey12345&data=verifyUserMobile&usermobile=91"+mobileno;
+  print(x);
+  return x;
+}
+String verifyUserSocial(String socialid)
+{
+  String x=url+"?id=1&authkey=cvDragonAppPublicKey12345&data=verifyUserSocial&socialID="+socialid;
   print(x);
   return x;
 }

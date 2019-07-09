@@ -218,9 +218,33 @@ Future<List> getcvSection(String id,String authkey) async {
     //sending_response= json.decode(res.body);
     //return sending_response;
  }
+  Future<int> getverifyUserSocial(String socialid) async {
+  String url = urlgetter.verifyUserSocial(socialid);
+    var res = await http.get(url);
+    print(res.body);
+    if(res.body=="null")
+     return 0;
+     else
+     return 1;
+    //sending_response= json.decode(res.body);
+    //return sending_response;
+ }
+   Future<Map<String,dynamic>> getUserDetailsSocial(String socialid) async {
+  String url = urlgetter.verifyUserSocial(socialid);
+    var res = await http.get(url);
+    sendBasic= json.decode(res.body);
+    return sendBasic ;
+    
+ }
  Future<Map<String,dynamic>> getUserDetaisMobile(String mobileno) async {
   String url = urlgetter.verifyUserMobile(mobileno);
     var res = await http.get(url);
     sendBasic= json.decode(res.body);
     return sendBasic ;
+ }
+ Future<List> getcvProfiles(String id,String authkey) async {
+  String url = urlgetter.cvProfile(id, authkey);
+    var res = await http.get(url);
+    sending_response= json.decode(res.body);
+    return sending_response ;
  }

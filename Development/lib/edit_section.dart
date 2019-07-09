@@ -124,10 +124,76 @@ Widget _buildCardView(BuildContext context) {
                   image: AssetImage('assets/Work Details.png'),alignment: Alignment.topCenter,fit: BoxFit.scaleDown )),
               child: Container(
                 margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/20),
-                child: Text(
-                  data[ind]['sectionName'],
-                  style: TextStyle(color: Colors.white, fontSize: 30.0),
-                  textAlign: TextAlign.center,
+                child: Column(
+                  children: <Widget>[
+                  Text(
+                    data[ind]['sectionName'],
+                    style: TextStyle(color: Colors.white, fontSize: 30.0),
+                    textAlign: TextAlign.center,
+
+                  ),
+
+                  Container(
+                    margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/16,right: 5),
+                    //padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/20,right: MediaQuery.of(context).size.width/25),
+                    alignment: Alignment.bottomRight,
+                   // height: MediaQuery.of(context).size.height/8.3,
+                    //padding: EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        InkWell(
+                          child: Container(
+                            height: MediaQuery.of(context)
+                                .size
+                                .height /
+                                18,
+                            width: MediaQuery.of(context)
+                                .size
+                                .width /
+                                3.5,
+//                              alignment: FractionalOffset.center,
+                            decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius:
+                                BorderRadius.circular(30.0),
+                                border: new Border.all(
+                                    color: Colors.white)),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(context,MaterialPageRoute(builder: (context) => (CreateSection(addeddata,index, data,ind))));
+                              },
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Container(
+                                    padding:
+                                    EdgeInsets.only(right: 5),
+                                    child: Icon(
+                                      Icons.add_circle,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Add Data",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15.0,
+                                        fontWeight:
+                                        FontWeight.bold),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                ],
                 ),
               ),
             ),

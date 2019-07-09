@@ -166,6 +166,9 @@ class Introduction extends StatelessWidget {
                               labelStyle: TextStyle(color: Color(0xffff1e50)),
                               labelText: 'Brief Description about yourself'),
                         ),
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                        ),
                         Container(
                           padding: EdgeInsets.all(10.0),
                           child: Row(

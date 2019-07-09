@@ -10,6 +10,7 @@ import './sidemenu.dart';
 import './earlyfetch.dart' as efetch;
 import './rightpreviewpane.dart';
 
+String name = "Piyush";
 var id = '';
 var authkey = '';
 Map<String, dynamic> contents = {
@@ -161,86 +162,86 @@ Widget _buildCardView(BuildContext context) {
           child: DonutPieChart.withSampleData(),
         ),
       ),
-      Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-          child: Column(children: <Widget>[
-            ListTile(
-              title: Text("PROFILE CREATED",
-                  style: TextStyle(color: Color(0xff232882))),
-              leading: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Color(0xff232882)),
-                child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.check,
-                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
-                      color: Colors.green,
-                    )),
-              ),
-            ),
-            ListTile(
-              title: Text("FILL IN DATA",
-                  style: TextStyle(color: Color(0xff232882))),
-              leading: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Color(0xff232882)),
-                child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.check,
-                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
-                      color: Colors.green,
-                    )),
-              ),
-            ),
-            ListTile(
-              title: Text("DESIGN SELECTED",
-                  style: TextStyle(color: Color(0xff232882))),
-              leading: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Color(0xff232882)),
-                child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.check,
-                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
-                      color: Colors.green,
-                    )),
-              ),
-            ),
-            ListTile(
-              title: Text("SETTINGS CONFIRMED",
-                  style: TextStyle(color: Color(0xff232882))),
-              leading: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Color(0xff232882)),
-                child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.check,
-                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
-                      color: Colors.green,
-                    )),
-              ),
-            ),
-            ListTile(
-              title: Text("DOWNLOAD RESUME",
-                  style: TextStyle(color: Color(0xff232882))),
-              leading: Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Color(0xff232882)),
-                child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.close,
-                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
-                      color: Colors.red,
-                    )),
-              ),
-            ),
-          ])),
+//      Card(
+//          shape:
+//              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+//          child: Column(children: <Widget>[
+//            ListTile(
+//              title: Text("PROFILE CREATED",
+//                  style: TextStyle(color: Color(0xff232882))),
+//              leading: Container(
+//                decoration: BoxDecoration(
+//                    shape: BoxShape.circle, color: Color(0xff232882)),
+//                child: Padding(
+//                    padding: const EdgeInsets.all(8.0),
+//                    child: Icon(
+//                      Icons.check,
+//                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
+//                      color: Colors.green,
+//                    )),
+//              ),
+//            ),
+//            ListTile(
+//              title: Text("FILL IN DATA",
+//                  style: TextStyle(color: Color(0xff232882))),
+//              leading: Container(
+//                decoration: BoxDecoration(
+//                    shape: BoxShape.circle, color: Color(0xff232882)),
+//                child: Padding(
+//                    padding: const EdgeInsets.all(8.0),
+//                    child: Icon(
+//                      Icons.check,
+//                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
+//                      color: Colors.green,
+//                    )),
+//              ),
+//            ),
+//            ListTile(
+//              title: Text("DESIGN SELECTED",
+//                  style: TextStyle(color: Color(0xff232882))),
+//              leading: Container(
+//                decoration: BoxDecoration(
+//                    shape: BoxShape.circle, color: Color(0xff232882)),
+//                child: Padding(
+//                    padding: const EdgeInsets.all(8.0),
+//                    child: Icon(
+//                      Icons.check,
+//                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
+//                      color: Colors.green,
+//                    )),
+//              ),
+//            ),
+//            ListTile(
+//              title: Text("SETTINGS CONFIRMED",
+//                  style: TextStyle(color: Color(0xff232882))),
+//              leading: Container(
+//                decoration: BoxDecoration(
+//                    shape: BoxShape.circle, color: Color(0xff232882)),
+//                child: Padding(
+//                    padding: const EdgeInsets.all(8.0),
+//                    child: Icon(
+//                      Icons.check,
+//                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
+//                      color: Colors.green,
+//                    )),
+//              ),
+//            ),
+//            ListTile(
+//              title: Text("DOWNLOAD RESUME",
+//                  style: TextStyle(color: Color(0xff232882))),
+//              leading: Container(
+//                decoration: BoxDecoration(
+//                    shape: BoxShape.circle, color: Color(0xff232882)),
+//                child: Padding(
+//                    padding: const EdgeInsets.all(8.0),
+//                    child: Icon(
+//                      Icons.close,
+//                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
+//                      color: Colors.red,
+//                    )),
+//              ),
+//            ),
+//          ])),
     ],
   ));
 }

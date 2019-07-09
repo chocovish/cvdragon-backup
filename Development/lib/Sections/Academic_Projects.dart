@@ -64,8 +64,7 @@ class AcademicProjects extends StatelessWidget {
             elevation: 5.0,
             child: Container(
                 child:
-                ListView(padding: EdgeInsets.only(bottom: 30.0), children: <
-                    Widget>[
+                ListView(padding: EdgeInsets.only(bottom: 30.0), children: <Widget>[
                   Column(
                     children: <Widget>[
                       Container(

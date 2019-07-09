@@ -14,7 +14,6 @@ final String clientSecret = 'cZFQqJV6IdgPsBpv';
 class DemoLogin extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _DemoLogin();
   }
 }
@@ -68,7 +67,7 @@ Future<GoogleSignInAccount> _handleSignIn() async {
   }
   @override
   void initState()  {
-    // TODO: implement initState
+    
     get();
         
     mycontroller.text="";
@@ -84,7 +83,7 @@ Future<GoogleSignInAccount> _handleSignIn() async {
   }
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return _isLoading?DecoratedBox(
               decoration: BoxDecoration(
                   image: DecorationImage(

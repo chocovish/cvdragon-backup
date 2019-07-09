@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import './fetch.dart' as fetch;
 import './sharedfetch.dart'as sfetch;
 import './main.dart'as main;
+import './vishal/utils.dart';
 String name;
 String email;
 class SideMenu extends StatefulWidget {
@@ -263,7 +264,9 @@ class _SideMenu extends State<SideMenu> {
                       children: <Widget>[
                         IconButton(
                           padding: EdgeInsets.only(bottom: 15.0),
-                          onPressed: () {},
+                          onPressed: () {
+                            logout(context);
+                          },
                           icon: Icon(Icons.link_off,
                               size: MediaQuery.of(context).size.aspectRatio*40.0,
                               color: Colors.white),

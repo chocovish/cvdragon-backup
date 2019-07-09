@@ -177,7 +177,7 @@ Future<List> getcvSection(String id,String authkey) async {
     return sending_response;
  }
  Future<List> getcvProfileSection(String id,String authkey) async {
-  String url = urlgetter.cvProfileSection(id,authkey);
+  String url = urlgetter.cvProfileSection(id,authkey,"4672");
     var res = await http.get(url);
     sending_response= json.decode(res.body);
     return sending_response;

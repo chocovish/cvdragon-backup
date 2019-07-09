@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
-
+import './fetch.dart' as fetch;
 class MyDesigns extends StatefulWidget {
   @override
   _MyDesigns createState() => new _MyDesigns();
@@ -11,7 +11,8 @@ class MyDesigns extends StatefulWidget {
 class _MyDesigns extends State<MyDesigns> {
   PageController controller;
   int currentpage = 0;
-
+  List data=[];
+  bool isLoading=true;
   @override
   initState() {
     super.initState();
@@ -20,8 +21,14 @@ class _MyDesigns extends State<MyDesigns> {
       keepPage: false,
       viewportFraction: 0.7,
     );
+    get();
   }
-
+void get() async{
+    data=await fetch.getallDesigns();
+setState(() {
+ isLoading=false; 
+});
+}
   @override
   dispose() {
     controller.dispose();
@@ -38,7 +45,17 @@ class _MyDesigns extends State<MyDesigns> {
       });
     }
 
-    return new Scaffold(
+    return isLoading?DecoratedBox(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/cover.png"), fit: BoxFit.fill)),
+              child: Center(
+                  child: Image(
+                      image: AssetImage("assets/logocv.gif"),
+                      height: MediaQuery.of(context).size.height/12,
+                      width: MediaQuery.of(context).size.width/6)),
+            )
+    : Scaffold(
       appBar: TopMenuBar(),
       bottomNavigationBar: new Theme(
         data: Theme.of(context).copyWith(
@@ -221,6 +238,7 @@ class _MyDesigns extends State<MyDesigns> {
               height: MediaQuery.of(context).size.height/1.7,
               width: MediaQuery.of(context).size.width,
             child: new PageView.builder(
+                 itemCount: data == null ? 0 : data.length,
                 onPageChanged: (value) {
                   setState(() {
                     currentpage = value;
@@ -250,6 +268,8 @@ class _MyDesigns extends State<MyDesigns> {
         );
       },
       child: new Card(
+        child:Image(image: new AssetImage("assets/resumeDesignsLarge/"+data[index]['designid'].toString()+".jpg"),),
+        // child: Container(decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/resumeDesignsLarge/1.jpg"))),),
         elevation: 15.0,
         margin: const EdgeInsets.all(8.0),
         color: index % 2 == 0 ? Colors.blue : Colors.red,

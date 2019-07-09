@@ -28,12 +28,13 @@ Future<GoogleSignInAccount> _handleSignIn() async {
  try {
    acc = await _googleSignIn.signIn();
    print(acc);
+  
  } catch (error) {
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text("Error Login,Try Again"),));
+    //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Error Login,Try Again"),));
    print("within catch block...");
    print(error);
  }
- return acc;
+  return acc;
 }
    Future<void> fbb(BuildContext context) async {
     var facebookLogin = FacebookLogin() ;

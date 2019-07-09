@@ -1,8 +1,13 @@
+import './localdatafetch.dart' as lfetch;
+import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
-
+String id="";
+String authkey="";
+List data;
+bool isLoading=true;
 class MyProfiles extends StatefulWidget {
   @override
   _MyProfiles createState() => new _MyProfiles();
@@ -20,8 +25,17 @@ class _MyProfiles extends State<MyProfiles> {
       keepPage: false,
       viewportFraction: 0.9,
     );
+    get();
   }
-
+void get() async
+{
+  id=await readid();
+  authkey=await readauthKey();
+data =await lfetch.getProfiles(id, authkey);
+setState(() {
+ isLoading=false; 
+});
+}
   @override
   dispose() {
     controller.dispose();
@@ -38,7 +52,17 @@ class _MyProfiles extends State<MyProfiles> {
       });
     }
 
-    return new Scaffold(
+    return isLoading?DecoratedBox(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/cover.png"), fit: BoxFit.fill)),
+              child: Center(
+                  child: Image(
+                      image: AssetImage("assets/logocv.gif"),
+                      height: MediaQuery.of(context).size.height/12,
+                      width: MediaQuery.of(context).size.width/6)),
+            )
+    : Scaffold(
       appBar: TopMenuBar(),
       bottomNavigationBar: new Theme(
         data: Theme.of(context).copyWith(
@@ -84,6 +108,7 @@ class _MyProfiles extends State<MyProfiles> {
       ),
       body: Container(
         child: new PageView.builder(
+          itemCount: data == null ? 0 : data.length,
             onPageChanged: (value) {
               setState(() {
                 currentpage = value;
@@ -91,6 +116,7 @@ class _MyProfiles extends State<MyProfiles> {
             },
             controller: controller,
             itemBuilder: (context, index) => builder(index)),
+            
       ),
     );
   }
@@ -110,6 +136,7 @@ class _MyProfiles extends State<MyProfiles> {
         );
       },
       child: new Card(
+        child: Text(data[index].toString()),
         elevation: 15.0,
         margin: const EdgeInsets.all(8.0),
         color: index % 2 == 0 ? Colors.blue : Colors.red,

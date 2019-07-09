@@ -248,3 +248,9 @@ Future<List> getcvSection(String id,String authkey) async {
     sending_response= json.decode(res.body);
     return sending_response ;
  }
+ Future<List> getallDesigns() async {
+  String url = urlgetter.allDesigns();
+    var res = await http.get(url);
+    sending_response= json.decode(res.body);
+    return sending_response ;
+ }

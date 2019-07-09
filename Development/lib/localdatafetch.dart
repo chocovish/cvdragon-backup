@@ -40,6 +40,12 @@ var db=  await openDatabase('assets/sections.db', version: 3);
    List response=await db.rawQuery("SELECT * FROM "+tablename[section]);
     return response;
 }
+Future<List> getProfiles(String id, String authkey) async {
+var db=  await openDatabase('assets/sections.db', version: 3);
+   List response=await db.rawQuery("SELECT * FROM `create-cvprofile`");
+    return response;
+}
+
 Future<int>deleteFromProfile(String section,String subSection)async{
  var db=await openDatabase("assets/sections.db", version: 1);
   List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= 4672 AND `section` = "+section);
@@ -60,3 +66,4 @@ if(element.toString()==subSection.toString())
   print(sql);
  await db.rawUpdate(sql);
 }
+

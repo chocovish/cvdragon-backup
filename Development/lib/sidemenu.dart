@@ -3,6 +3,7 @@ import './myprofiles.dart';
 import './coverletters.dart';
 import './institute.dart';
 import './publicprofile.dart';
+import './MyDesigns.dart';
 import './sections.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import './fetch.dart' as fetch;
@@ -143,7 +144,11 @@ class _SideMenu extends State<SideMenu> {
               ),
               subtitle: Text('View Your Public Profile',
                   style: TextStyle(color: Colors.white)),
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MyDesigns()));
+              },
             ),
             Divider(color: Colors.white30),
 

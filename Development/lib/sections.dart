@@ -100,7 +100,7 @@ class _Sections extends State<Sections> {
                                         padding: EdgeInsets.only(
                                             left: 50.0, bottom: 10.0),
                                         child: Text(
-                                          "Enter details about all the responsibilities you have handled and is worth mentioning in your resumehiirghngevnvnvshghohonvhshhoggvhnhnvhgsvhnvnsvhinsvsrvnnsgrvnhsrvnsvsg",
+                                          data[index]['sectionContentApp'],
                                           style: TextStyle(
                                             color: Color(0xff232882),
                                           ),

@@ -3,14 +3,11 @@ import 'package:flutter_reactive_button/flutter_reactive_button.dart';
 import 'package:flutter/material.dart';
 import './bottombar_preview.dart';
 import './cvwebview.dart';
-import 'package:photo_view/photo_view.dart';
 import './Design_Sections.dart';
-
 
 class PreviewPane extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _PreviewPane();
   }
 }
@@ -20,7 +17,6 @@ class _PreviewPane extends State<PreviewPane> {
 
   void _selectedTab(int index) {
     setState(() {
-
       print(index);
     });
   }
@@ -38,15 +34,12 @@ class _PreviewPane extends State<PreviewPane> {
       assetIcon: 'assets/love.gif',
       code: 'love',
     ),
-
   ];
 
   String facebook;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-
     return MaterialApp(
       //home: CVView(),
       home: Scaffold(
@@ -61,7 +54,6 @@ class _PreviewPane extends State<PreviewPane> {
               children: <Widget>[
                 Expanded(
                   child: ReactiveButton(
-
                     iconPadding: 40,
                     iconGrowRatio: 1.2,
                     //padding: EdgeInsets.only(right: 83),
@@ -70,7 +62,11 @@ class _PreviewPane extends State<PreviewPane> {
                         border: null,
                         backgroundBlendMode: BlendMode.colorDodge,
                         boxShadow: null),
-                    child: Container(child: Icon(Icons.arrow_downward,color: Colors.white,),
+                    child: Container(
+                      child: Icon(
+                        Icons.arrow_downward,
+                        color: Colors.white,
+                      ),
                       decoration: BoxDecoration(
                           shape: BoxShape.circle, color: Colors.pinkAccent),
                       width: 48.0,
@@ -96,14 +92,12 @@ class _PreviewPane extends State<PreviewPane> {
           ),
           appBar: TopMenuBar(),
           backgroundColor: Colors.black,
-        //  body: CVView(),
-           body: PhotoView(
-             imageProvider: AssetImage("assets/cv.png"),
-             minScale: PhotoViewComputedScale.contained * 0.9,
-             maxScale: PhotoViewComputedScale.covered * 1.8,
-             customSize: MediaQuery.of(context).size,
-             initialScale: PhotoViewComputedScale.contained * 0.9,
-           ),
+          //  body: CVView(),
+          body: Container(
+            alignment: Alignment.center,
+            color: Colors.transparent,
+            child: Text("A webview will be shown here",style: TextStyle(color: Colors.white),),
+          ),
           bottomNavigationBar: FABBottomAppBar(
             notchedShape: CircularNotchedRectangle(),
             color: Colors.white30,

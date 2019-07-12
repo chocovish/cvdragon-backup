@@ -21,7 +21,7 @@ class EditSection extends StatefulWidget {
     ind = i;
   }
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+    
     return _EditSection();
   }
 }
@@ -32,7 +32,7 @@ List addeddata;
 class _EditSection extends State<EditSection> {
   @override
   void initState() {
-    // TODO: implement initState
+    
     super.initState();
     get();
   }

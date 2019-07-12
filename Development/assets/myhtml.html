@@ -32,7 +32,7 @@
         	<table cellpadding="0" cellspacing="0" style="text-align:center; width:100%;">
             	<tbody><tr>
                 <td style="font-size:1.8em; line-height:1.53em; color:#342E67;">
-                {{name}}                </td>
+                {{#basicInfo}} {{cvFullName}} {{/basicInfo}}                </td>
                 </tr>
                 <tr>
                 <td style="font-size:0.99em; line-height:1.44em;">
@@ -40,7 +40,7 @@
                 </tr>
             	<tr>
                 <td style="font-size:0.81em; line-height:1.44em;">
-                {{email}} | {{email}}                </td>
+                        {{#contacts}} {{emailAddress}} {{/contacts}} | {{#contacts}} {{phoneNumber}} {{/contacts}}                </td>
                 </tr>
               </tbody></table>
 		</td>
@@ -87,52 +87,34 @@ WORK EXPERIENCE
 </tr>
 </tbody></table>
 
+{{#exp}}
+
 <table style="page-break-inside:avoid;"><tbody><tr><td>
 <table style="padding:2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
 <tbody><tr>
 <td style="width:165mm; text-align:left; font-size:0.99em; color:#000C29; font-weight:bold;">
-The Hindu</td>
+{{organization}}</td>
 <td style="width:40mm; text-align:right; font-size:0.72em;">
 <span>
- Dec 2018 till <span style="color:#060;">Present</span></span>
+ {{dateJoined}} till <span style="color:#060;">{{dateResigned}}</span></span>
 </td>
 </tr>
 </tbody></table>    
 <table style="padding:0 2mm 1mm 2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
 <tbody><tr>
 <td style="width:195mm; padding-bottom:1mm; text-align:left; font-size:0.81em; line-height:1.44em; text-align:justify; color:#666;">
-Content Provider, KOLKATA</td>
+{{designation}}, {{location}}</td>
 </tr>
 <tr>
 <td style="width:195mm; text-align:left; font-size:0.81em; line-height:1.44em; text-align:justify;">
-The Description will come here       
+{{workProfile}}     
 </td>
 </tr>
 </tbody></table>
 </td></tr></tbody></table> 
-<table style="page-break-inside:avoid;"><tbody><tr><td>
-<table style="padding:2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
-<tbody><tr>
-<td style="width:165mm; text-align:left; font-size:0.99em; color:#000C29; font-weight:bold;">
-cvDragon India</td>
-<td style="width:40mm; text-align:right; font-size:0.72em;">
-<span>
- Jan 2018 till <span style="color:#060;">Present</span></span>
-</td>
-</tr>
-</tbody></table>    
-<table style="padding:0 2mm 1mm 2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
-<tbody><tr>
-<td style="width:195mm; padding-bottom:1mm; text-align:left; font-size:0.81em; line-height:1.44em; text-align:justify; color:#666;">
-Content Provider, Kolkata</td>
-</tr>
-<tr>
-<td style="width:195mm; text-align:left; font-size:0.81em; line-height:1.44em; text-align:justify;">
-<div><ul><li>This is the information to be provided as per the job description</li><li>This is the information to be provided as per the job description</li><li>This is the information to be provided as per the job description</li><li>This is the information to be provided as per the job description</li><li>This is the information to be provided as per the job description</li></ul></div>       
-</td>
-</tr>
-</tbody></table>
-</td></tr></tbody></table> 
+
+{{/exp}}
+
 
 
 
@@ -206,14 +188,19 @@ HONORS &amp; AWARDS
    <tbody><tr>
     <td style="width:195mm; text-align:left;">
 	<table>
-    <tbody><tr>
+    <tbody>
+        
+        {{#awards}}
+        <tr>
     <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
-<span style="color:#000C29; font-weight:bold;">QWERTY</span> 
-(2018) - abc    </td>
+<span style="color:#000C29; font-weight:bold;">{{title}}</span> 
+({{year}}) - {{description}} by {{organization}}   </td>
     </tr>
     </tbody></table>
     </td>
     </tr>
+    {{/awards}}
+
 </tbody></table>
 </td></tr></tbody></table>
 
@@ -235,34 +222,22 @@ CERTIFICATIONS
    <tbody><tr>
     <td style="width:195mm; text-align:left;">
     <table>
-    <tbody><tr>
-    <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
-<span style="color:#000C29; font-weight:bold;">
-2018 -  
-</span>
-XYZ by ABC 
-    </td>
-    </tr>
-    <tr>
-    <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
-<span style="color:#000C29; font-weight:bold;">
-2017 -  
-</span>
-XYZ by ABC 
-    </td>
-    </tr>
-    <tr>
-    <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
-<span style="color:#000C29; font-weight:bold;">
-2012 -  
-</span>
-Six Sigma Green Belt by MNO 
-    </td>
-    </tr>
-</tbody></table>
+    <tbody>
 
+    {{#certifications}}
+
+    <tr>
+    <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
+<span style="color:#000C29; font-weight:bold;">
+{{year}} -  
+</span>
+{{certificate}} by {{authority}} 
     </td>
     </tr>
+
+
+    {{/certifications}}
+    
 </tbody></table>
 </td></tr></tbody></table>
 
@@ -280,29 +255,33 @@ INTERNSHIPS
 </tr>
 </tbody></table>
 
+{{#internships}}
+
 <table style="page-break-inside:avoid;"><tbody><tr><td>
 <table style="padding:2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
 <tbody><tr>
 <td style="width:165mm; text-align:left; font-size:0.99em; color:#000C29; font-weight:bold;">
-cvDragon India</td>
+{{title}}</td>
 <td style="width:40mm; text-align:right; font-size:0.72em;">
-3 months</td>
+{{duration}}</td>
 </tr>
 </tbody></table>    
 <table style="padding:0 2mm 1mm 2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
 <tbody><tr>
 <td style="width:195mm; padding-bottom:1mm; text-align:left; font-size:0.81em; line-height:1.44em; text-align:justify;">
-<span style="color:#000C29; font-weight:bold;">Purpose: </span>Development of Environment for Computation of Numerical Methods Using Visual Basic (Minor Project)</td>
+<span style="color:#000C29; font-weight:bold;">{{designation}}</td>
 </tr>
 <tr>
 <td style="width:195mm; text-align:left; font-size:0.81em; line-height:1.44em; text-align:justify;">
-<div><ul><li>Description point about the internship&nbsp;</li><li>Description point about the internship</li><li>Description point about the internship</li><li>Description point about the internship</li></ul></div>        
+<div><ul><li>
+    {{description}}
+</li></ul></div>        
 </td>
 </tr>
 </tbody></table>
 </td></tr></tbody></table> 
 
-
+{{/internships}}
 
 
 <table style="page-break-inside:avoid;"><tbody><tr><td>
@@ -321,11 +300,16 @@ KEY PROJECTS
    <tbody><tr>
     <td style="width:195mm; text-align:left;">
     <table>
-    <tbody><tr>
+    <tbody>
+        {{#projects}}
+    <tr>
     <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
-<span style="color:#000C29; font-weight:bold;">Employee Engagement</span> - The new age magic wand and its effectiveness in the organization    </td>
+        <span style="color:#000C29; font-weight:bold;">{{title}}</span> - {{description}}   </td>
     </tr>
     <tr>
+        {{/projects}}
+
+
     <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
 <span style="color:#000C29; font-weight:bold;">Future Group</span> - A detailed study of the company based on the various aspects of management studies    </td>
     </tr>
@@ -353,14 +337,17 @@ PRESENTATION &amp; SEMINARS
    <tbody><tr>
     <td style="width:195mm; text-align:left;">
     <table>
-    <tbody><tr>
+    <tbody>
+        {{#presentations}}
+        <tr>
     <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
-<span style="color:#000C29; font-weight:bold;">XYZ</span> - abc    </td>
+<span style="color:#000C29; font-weight:bold;">{{title}}</span> - {{description}}    </td>
     </tr>
 </tbody></table>
 
     </td>
     </tr>
+        {{/presentations}}
 </tbody></table>
 </td></tr></tbody></table>
 
@@ -380,16 +367,21 @@ TECHNICAL KNOWLEDGE
 </tbody></table>
 
  <table style="padding:0 2mm 1mm 2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
-   <tbody><tr>
+   <tbody>
+       
+    {{#technical}}
+    <tr>
     <td style="width:195mm; text-align:left;">
     <table cellspacing="8">
     <tbody><tr>
     <td style="padding:2mm 4mm 2mm 4mm; font-size:0.81em; line-height:1.44em; background-color:#F9F9FF; border-radius: 5mm;">
-Microsoft Office    </td>
+{{technical}} ({{level}})    </td>
     </tr>
     </tbody></table>
     </td>
     </tr>
+    {{/technical}}
+
 </tbody></table>
 </td></tr></tbody></table>
 
@@ -411,15 +403,15 @@ ACHIEVEMENTS
    <tbody><tr>
     <td style="width:195mm; text-align:left;">
 	<table>
-	    <tbody><tr>
+	    <tbody>
+            {{#achievements}}
+            <tr>
     <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
-<span style="color:#000C29; font-weight:bold;">Topper in College</span> 
-(2006)    </td>
+<span style="color:#000C29; font-weight:bold;">{{achievement}}t</span> 
+({{year}})    </td>
     </tr>
     <tr>
-    <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
-<span style="color:#000C29; font-weight:bold;">Awarded the best athlete in 11th standard</span> 
-    </td>
+        {{/achievements}}
     </tr>
     </tbody></table>
     </td>
@@ -445,14 +437,13 @@ CO - CURRICULAR ACTIVITIES
    <tbody><tr>
     <td style="width:195mm; text-align:left;">
     <table>
-    <tbody><tr>
-    <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
-<span style="color:#000C29; font-weight:bold;"> Co Curricular 2</span> - This is a description to showcase the details of the heading     </td>
-    </tr>
+    <tbody>
+        {{#cocurricular}}
     <tr>
     <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
-<span style="color:#000C29; font-weight:bold;">Co Curricular 1</span> - This is a description to showcase the details of the heading     </td>
+<span style="color:#000C29; font-weight:bold;">{{title}}</span> - {{description}}   </td>
     </tr>
+    {{/cocurricular}}
 </tbody></table>
 
     </td>
@@ -480,42 +471,60 @@ OTHER INFORMATION
         </td>
         <td style="width:160mm; font-size:0.81em; line-height:1.44em; padding:2mm;  border:thin; border-color:#999; border-width:thin; border-style:solid;" valign="middle" align="left">
         
+
+
+    {{#basicInfo}}
+    {{#linkedinLink.isNotEmpty}}
 <table cellspacing="2mm">
-<tbody><tr>
+<tbody>
+    <tr>
 <td valign="middle">
 <span><img src="./cvDragon India_files/linkedin.png" style="width:5mm;"></span>
 </td>
 <td valign="middle" style="padding:0 0 1.5mm 2mm; font-size:0.81em; ">
-https://www.linkedin.com/company/cvdragon/</td>
-</tr>
+{{linkedinLink}}</td>
+    </tr>
 </tbody></table>
+    {{/linkedinLink.isNotEmpty}}
+    {{/basicInfo}}
+
+
+    
+
+    {{#basicInfo}}
+    {{#facebookLink.isNotEmpty}}
 <table cellspacing="2mm">
-<tbody><tr>
+<tbody>
+    <tr>
 <td valign="middle">
 <span><img src="./cvDragon India_files/facebook.png" style="width:5mm;"></span>
 </td>
 <td valign="middle" style="padding:0 0 1.5mm 2mm; font-size:0.81em; ">
-https://www.facebook.com/cvDragonIndia/</td>
-</tr>
+{{facebookLink}}</td>
+    </tr>
 </tbody></table>
+    {{/facebookLink.isNotEmpty}}
+    {{/basicInfo}}
+
+
+
+    {{#basicInfo}}
+    {{#twitterLink.isNotEmpty}}
 <table cellspacing="2mm">
-<tbody><tr>
+<tbody>
+    <tr>
 <td valign="middle">
 <span><img src="./cvDragon India_files/twitter.png" style="width:5mm;"></span>
 </td>
 <td valign="middle" style="padding:0 0 1.5mm 2mm; font-size:0.81em; ">
-https://twitter.com/cvDragonIndia</td>
-</tr>
+{{twitterLink}}</td>
+    </tr>
 </tbody></table>
-<table cellspacing="2mm">
-<tbody><tr>
-<td valign="middle">
-<span><img src="./cvDragon India_files/link.png" style="width:5mm;"></span>
-</td>
-<td valign="middle" style="padding:0 0 1.5mm 2mm; font-size:0.81em; ">
-https://cvdragon.com/blog</td>
-</tr>
-</tbody></table>
+    {{/twitterLink.isNotEmpty}}
+    {{/basicInfo}}
+
+
+
 
         </td>
 </tr>
@@ -526,20 +535,9 @@ https://cvdragon.com/blog</td>
         Skills
         </td>
         <td style="width:160mm; font-size:0.81em; line-height:1.44em; padding:2mm;  border:thin; border-color:#999; border-width:thin; border-style:solid;" valign="middle" align="left">
-Analytical Thinker,   
-Business Intelligence,   
-Desire to Learn,   
-Flexible,   
-Highly Organized,   
-New Skill Added,   
-New Skill Added 2,   
-New Skill Added1560752351,   
-New Skill Added1560752376,   
-New Skill Added1560752405,   
-Persistence,   
-Public Speaking,   
-Time Management  
-
+        {{#skills}}
+            {{skill}}, &nbsp;
+        {{/skills}}
         </td>
 </tr>
 
@@ -564,11 +562,9 @@ Playing Cricket
         <td style="width:160mm; font-size:0.81em; line-height:1.44em; padding:2mm;  border:thin; border-color:#999; border-width:thin; border-style:solid;" valign="middle" align="left">
         
  
-English 
-,   
- 
-German 
-,   
+{{#languages}}
+    {{language}}, &nbsp;
+{{/languages}}
 
         </td>
 </tr>
@@ -578,14 +574,14 @@ German
         Date of Birth
         </td>
         <td style="width:160mm; font-size:0.81em; line-height:1.44em; padding:2mm;  border:thin; border-color:#999; border-width:thin; border-style:solid;" valign="middle" align="left">
-        01 January 1980        </td>
+                {{#basicInfo}} {{dateBirth}} {{/basicInfo}}        </td>
 </tr>
        <tr>
         <td style="width:30mm; font-size:0.81em; line-height:1.44em; padding:2mm; background-color:#EEE; border:1px; border-color:#999; border-width:1px; border-style:solid;" valign="middle" align="left">
         Address
         </td>
         <td style="width:160mm; font-size:0.81em; line-height:1.44em; padding:2mm;  border:thin; border-color:#999; border-width:thin; border-style:solid;" valign="middle" align="left">
-         Kolkata - India        </td>
+         {{#contacts}} {{fullAddress}} {{/contacts}}        </td>
 </tr>
 </tbody></table>
 </td></tr></tbody></table>

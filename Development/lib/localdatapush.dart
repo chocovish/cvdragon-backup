@@ -37,8 +37,17 @@ contents.addAll(createddata);
         await db.rawUpdate("UPDATE `create-cvsection` SET contentAdded = contentAdded+1, status=1 WHERE id="+id+" AND section="+section+" AND status=1");
         // insert a subsection the arrays of create-cvprofilesection => in subsection
         List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);
-        List res=json.decode(response[0]['subsection']);
+        print(response.toString());
+        List res=[];
+        if(response[0]['subsection'].toString()!="")
+        {
+        res=json.decode(response[0]['subsection']);
         res.add(timestamp);
+        }
+        else
+        {
+          res.add(timestamp);
+        }
         String sql="UPDATE `create-cvprofilesection` SET subsection=\""+res.toString()+"\" WHERE `cvid`= "+cvid+" AND `section` = "+section;
         await db.rawUpdate(sql);
         print("Added a data in local data fetch");

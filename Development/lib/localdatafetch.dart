@@ -6,10 +6,16 @@ Future<List> getDatabase(String section) async {
 var db=  await openDatabase('assets/sections.db', version: 3);
 var cvid=await readprofiles();
    List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);
-    print(response);//contains 2 which is not in database
+    print("response="+response.toString());//contains 2 which is not in database
    List response2=await db.rawQuery("SELECT * FROM "+tablename[section]);
-    print(response2);//contains all 4
+    print("response2="+response2.toString());//contains all 4
     List data=[];
+    if(response.isEmpty==true)
+    {
+      return data;  
+    }
+    else
+    {
     response2.forEach((element){
       if(response[0]['subsection'].contains(element[columnName[section]].toString())==false)//perform response2-response
       {//element['academicid'].toString()
@@ -19,10 +25,12 @@ var cvid=await readprofiles();
     });
   return data;
 }
+}
 
 Future<List> getAddedData(String section) async {
 var db=  await openDatabase('assets/sections.db', version: 3);
 var cvid=await readprofiles();
+print(section);
    List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);
 
     //print(response);//contains 2 which is not in database
@@ -30,6 +38,12 @@ var cvid=await readprofiles();
    //print(response2);//contains all 4
   
     List data=[];
+    if(response.isEmpty==true)
+    {
+      return data;  
+    }
+    else
+    {
     response2.forEach((element){
 
       if(response[0]['subsection'].contains(element[columnName[section]].toString())==true)//perform response2-response
@@ -39,6 +53,7 @@ var cvid=await readprofiles();
       }
     });
   return data;
+    }
 }
 Future<List> getDefaultSection(String section) async {
 var db=  await openDatabase('assets/sections.db', version: 3);

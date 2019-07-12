@@ -22,12 +22,12 @@ class Presentations extends StatelessWidget {
     data = d;
   }
   update(BuildContext context,String t, String d, Map<String, dynamic> initial) {
-    updateAcademicProject(t, d, initial).then((int status) {
+    // updateData(t, d, initial).then((int status) {
 
-      Navigator.pop(context);
-      Navigator.pop(context);
+    //   Navigator.pop(context);
+    //   Navigator.pop(context);
 
-    });
+    // });
   }
   @override
   Widget build(BuildContext context) {

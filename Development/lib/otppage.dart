@@ -8,10 +8,10 @@ String mobileno="";
 String socialid="";
 int typeoflogin;
 /*
-1: Mobile
-2: Facebook
-3: Google
-4:Linkedin
+1	Mobile
+2 Facebook
+3	Google
+4	Linkedin
 */
 class OtpPage extends StatefulWidget{
 OtpPage(String mobile,String social,int type)
@@ -69,7 +69,7 @@ verify() async
          var data=await fetch.getverifyUser(mobileno);
          print(data);
          if(data==0)
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>FirstTimeWizard()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>FirstTimeWizard(typeoflogin,mobileno)));
           else
           {
             Map<String,dynamic> basic_data=await fetch.getUserDetaisMobile(mobileno);
@@ -89,7 +89,7 @@ verify() async
         var data=await fetch.getverifyUserSocial(socialid);
          print(data);
          if(data==0)
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>FirstTimeWizard()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>FirstTimeWizard(typeoflogin,socialid)));
           else
           {
             Map<String,dynamic> basic_data=await fetch.getUserDetailsSocial(socialid);

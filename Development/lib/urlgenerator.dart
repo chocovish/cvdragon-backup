@@ -1,6 +1,27 @@
-  
+import 'dart:convert';
  String url="https://cvdragon.com/data/app/appResourceAPI.php";
- String url2="https://cvdragon.com/data/app/appCVAPI.php";
+ String   url2="https://cvdragon.com/data/app/appCVAPI.php";
+ String usercreate(String name,String email,String countryCode,String phoneNumber,String typeoflogin,String socialid, String sectionType)
+ {
+   Map<String,dynamic> userdetails={
+        'id':1,
+        'authkey':"cvDragonAppPublicKey12345",
+        'data':'createUser',
+        'fullName':name,
+        'emailAddress':email,
+        'countryCode':countryCode,
+        'phoneNumber':phoneNumber,
+        'socialType':typeoflogin,
+        'socialid':socialid,
+        'sectionType':sectionType,
+    };
+    
+   return url+json.encode(userdetails);
+ }
+String all(String id,String authkey)
+{
+  return url2+"?id="+id+"&authkey="+authkey+"&data=fetchAllSections";
+}
 String allSectionsBasic(String id,String authkey)
 {
   return url+"?id="+id+"&authkey="+authkey+"&data=allSectionsBasic";
@@ -8,6 +29,14 @@ String allSectionsBasic(String id,String authkey)
 String allDesigns()
 {
   return url+"?id=1&authkey=1&data=allDesigns";
+}
+String allProfileSettings()
+{
+  return url+"?id=1&authkey=1&data=allProfileSettings";
+}
+String allProfileFonts()
+{
+  return url+"?id=1&authkey=1&data=allProfileFonts";
 }
 String basic(String id,String authkey)
 {
@@ -54,9 +83,9 @@ String cvSection(String id,String authkey)
 {
   return url2+"?id="+id+"&authkey="+authkey+"&data=myALLsections";
 }
-String cvProfileSection(String id,String authkey,String cvid)
+String cvProfileSection(String id,String authkey)
 {
-  return url2+"?id="+id+"&authkey="+authkey+"&data=mySubSections&CVID="+cvid;
+  return url2+"?id="+id+"&authkey="+authkey+"&data=allSubSections";
 }
 String cvProject(String id,String authkey)
 {

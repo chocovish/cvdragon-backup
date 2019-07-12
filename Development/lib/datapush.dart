@@ -19,16 +19,16 @@ Map<String,dynamic> contents_skills={
         'description':'Description of Project'
     };
     
-Future<String> pushData() async {
-  id=await readid();
-  authkey=await readauthKey();
-  cvid=await readprofiles();
-   String url="https://cvdragon.com/data/appCVAddAPI.php?"+"id="+id+"&authkey="+authkey+"&CVID="+cvid+"&sectionID="+sectionID+"&data="+data+"&contents=";
-    url+=json.encode(contents_academic_projects);
-     return url;
-    // var res = await http.get(url);
-    //  return res.body;
- }
+// Future<String> pushData() async {
+//   id=await readid();
+//   authkey=await readauthKey();
+//   cvid=await readprofiles();
+//    String url="https://cvdragon.com/data/appCVAddAPI.php?"+"id="+id+"&authkey="+authkey+"&CVID="+cvid+"&sectionID="+sectionID+"&data="+data+"&contents=";
+//     url+=json.encode(contents_academic_projects);
+//      return url;
+//     // var res = await http.get(url);
+//     //  return res.body;
+//  }
  Future<int> displaylocal()async{
     print('This display called');
     await openDatabase('assets/sections.db', version: 3,
@@ -42,9 +42,9 @@ Future<String> pushData() async {
 class DataPush{
   DataPush(){
     print('Server Data Pushed called');
-    pushData().then((String message){
-      print(message);
-    });
+    // pushData().then((String message){
+    //   print(message);
+    // });
     displaylocal().then((int status) {
       print(status); 
     });

@@ -33,7 +33,7 @@ List<String> createQueries = [
 
        "CREATE TABLE `cv-interests` (  `interestid` int(11) NOT NULL UNIQUE,  `id` bigint(20) NOT NULL,`refID` bigint(30),  `interest` varchar(150) NOT NULL,  `level` varchar(10) NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` tinyint(1) NOT NULL,  PRIMARY KEY (`id`,`interest`)) ;",
 
-       "CREATE TABLE `cv-internship` (  `internshipid` int(11) NOT NULL UNIQUE ,  `workid` int(11) NOT NULL,  `organization` varchar(50) NOT NULL,  `id` bigint(20) NOT NULL, `refID` bigint(30), `title` varchar(100) NOT NULL,  `designation` varchar(50) NOT NULL,  `duration` varchar(10) NOT NULL,  `location` varchar(50) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,  PRIMARY KEY (`organization`,`id`,`title`,`designation`));",
+       "CREATE TABLE `cv-internship` (  `internshipid` int(11) NOT NULL UNIQUE ,  `workid` int(11) ,  `organization` varchar(50) NOT NULL,  `id` bigint(20) NOT NULL, `refID` bigint(30), `title` varchar(100) NOT NULL,  `designation` varchar(50) NOT NULL,  `duration` varchar(10) NOT NULL,  `location` varchar(50) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,  PRIMARY KEY (`organization`,`id`,`title`,`designation`));",
 
        "CREATE TABLE `cv-introduction` (  `introid` int(11) NOT NULL UNIQUE,  `id` bigint(20) NOT NULL, `refID` bigint(30), `introduction` text NOT NULL,  `title` varchar(255)   NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,  PRIMARY KEY (`introid`)) ;",
 
@@ -79,5 +79,17 @@ List<String> createQueries = [
 
        "CREATE TABLE `associate-proofRead` (`orderid` bigint(20) NOT NULL UNIQUE,`proofReport` text NOT NULL,`approved` tinyint(4) NOT NULL,`rating` float NOT NULL,`proofReadstatus` tinyint(4) NOT NULL,`id` bigint(20) NOT NULL,`resume` bigint(11) NOT NULL,`dateRequest` datetime NOT NULL,`dateCompleted` datetime NOT NULL,`dateUpdated` timestamp NULL DEFAULT CURRENT_TIMESTAMP,`proofReader` bigint(20) NOT NULL,`status` tinyint(4) NOT NULL);",
 
-       "CREATE TABLE `resource-all` (  `keyid` int(11) NOT NULL,  `section` int(11) NOT NULL,  `keyitem` varchar(100) NOT NULL,  `keydescription` text NOT NULL,  `used` int(11) NOT NULL,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`keyid`)) "
+       "CREATE TABLE `resource-all` (  `keyid` int(11) NOT NULL,  `section` int(11) NOT NULL,  `keyitem` varchar(100) NOT NULL,  `keydescription` text NOT NULL,  `used` int(11) NOT NULL,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`keyid`)) ",
+
+       "CREATE TABLE `resource-tips` (  `tipid` int(11) NOT NULL UNIQUE,  `section` int(11) NOT NULL UNIQUE,  `tip` text  NOT NULL,  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`section`)) ;",
+
+       "CREATE TABLE `resource-faqs` (  `faqid` int(11) NOT NULL UNIQUE ,  `section` int(11) NOT NULL,  `faq` text  NOT NULL,  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`section`)) ;",
+
+       "CREATE TABLE `resource-profiledesign` (  `designid` int(11) NOT NULL ,  `designName` varchar(100)  NOT NULL,  `content` text  NOT NULL,  `designPrice` int(11) NOT NULL,  `category` varchar(50)  NOT NULL,  `isPrivate` tinyint(4) NOT NULL,  `sections` varchar(255)  NOT NULL,  `isDownload` tinyint(11) NOT NULL,  `author` varchar(100)  NOT NULL,  `rating` float NOT NULL,  `downloadTimes` int(11) NOT NULL,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`designid`)) ;",
+
+       "CREATE TABLE `resource-profilefont` (  `fontid` int(11) NOT NULL ,`fontTypeName` varchar(100)  NOT NULL,  `fontType` varchar(200)  NOT NULL,  `fontSize` int(11) NOT NULL,  `appliedOn` text  NOT NULL,  `downloadTime` int(11) NOT NULL,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`fontid`));",
+
+      "CREATE TABLE `resource-profilesetting` (  `settingid` int(11) NOT NULL ,  `name` varchar(100)  NOT NULL,  `content` text  NOT NULL,  `heading` varchar(10)  NOT NULL,  `color1` varchar(10)  DEFAULT NULL,  `color2` varchar(10)  DEFAULT NULL,  `color3` varchar(10)  DEFAULT NULL,  `color4` varchar(10)  DEFAULT NULL,  `downloadTimes` int(11) NOT NULL,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`settingid`)) ;",
+
+      "CREATE TABLE `resource-section` (  `section` int(11) NOT NULL,  `main` tinyint(4) NOT NULL,  `defaultSection` tinyint(4) NOT NULL,  `sectionContent` text NOT NULL,  `sectionContentApp` varchar(100) NOT NULL,  `sectionName` varchar(50) NOT NULL,  `sectionLink` varchar(100) NOT NULL,  `sectionTable` varchar(20) NOT NULL,  `status` smallint(6) NOT NULL,  PRIMARY KEY (`section`)) ;"
       ];

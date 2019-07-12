@@ -11,7 +11,12 @@ Map<String,dynamic> sendBasic;
     sending_response= json.decode(res.body);
     return sending_response;
  }
-
+Future<Map<String,dynamic>>getall(String id,String authkey) async{
+  String url = urlgetter.all(id, authkey);
+    var res = await http.get(url);
+    sendBasic= json.decode(res.body);
+    return sendBasic;
+}
  Future<List> getbasicInfo(String id,String authkey) async {
   String url = urlgetter.basic(id,authkey);
     var res = await http.get(url);
@@ -178,8 +183,7 @@ Future<List> getcvSection(String id,String authkey) async {
     return sending_response;
  }
  Future<List> getcvProfileSection(String id,String authkey) async {
-   var cvid=await readprofiles();
-  String url = urlgetter.cvProfileSection(id,authkey,cvid);
+  String url = urlgetter.cvProfileSection(id,authkey);
     var res = await http.get(url);
     sending_response= json.decode(res.body);
     return sending_response;
@@ -256,3 +260,16 @@ Future<List> getcvSection(String id,String authkey) async {
     sending_response= json.decode(res.body);
     return sending_response ;
  }
+ Future<List> getallProfileSttings() async {
+  String url = urlgetter.allProfileSettings();
+    var res = await http.get(url);
+    sending_response= json.decode(res.body);
+    return sending_response ;
+ }
+  Future<List> getallProfileFonts() async {
+  String url = urlgetter.allProfileFonts();
+    var res = await http.get(url);
+    sending_response= json.decode(res.body);
+    return sending_response ;
+ }
+

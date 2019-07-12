@@ -26,7 +26,11 @@ class AcademicProjects extends StatelessWidget {
   }
 
   update(BuildContext context,String t, String d, Map<String, dynamic> initial) {
-    updateAcademicProject(t, d, initial).then((int status) {
+   Map <String,dynamic> newdata={
+  "title":t,
+  "description":d
+};
+    updateData(section,newdata,initial).then((int status) {
 
         Navigator.pop(context);
         Navigator.pop(context);

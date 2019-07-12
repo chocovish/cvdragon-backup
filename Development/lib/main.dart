@@ -1,12 +1,16 @@
 import 'package:cvdragonapp_v1/demologin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import './login_page.dart';
-import 'package:flutter/rendering.dart';
 
 String name, email;
 
 void main() {
+
+  //Turning of landscape mode..
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]);
   //debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
@@ -15,7 +19,6 @@ class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _MyApp();
   }
 }
@@ -25,7 +28,6 @@ class _MyApp extends State<MyApp> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     this.get();
 }
@@ -44,3 +46,4 @@ class _MyApp extends State<MyApp> {
         home: DemoLogin());
   }
 }
+

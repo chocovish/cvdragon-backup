@@ -8,10 +8,10 @@ String mobileno="";
 String socialid="";
 int typeoflogin;
 /*
-1	Mobile
+1   Mobile
 2 Facebook
-3	Google
-4	Linkedin
+3   Google
+4   Linkedin
 */
 class OtpPage extends StatefulWidget{
 OtpPage(String mobile,String social,int type)
@@ -24,9 +24,7 @@ OtpPage(String mobile,String social,int type)
   State<StatefulWidget> createState() {
         return _OtpPage();
   }
-
 }
-
 class _OtpPage extends State<OtpPage>{
  final myController2 = TextEditingController();
  bool _isLoading=true;
@@ -39,7 +37,6 @@ class _OtpPage extends State<OtpPage>{
     myController2.dispose();
     super.dispose();
   }
-
   void get()  async{
     if(typeoflogin==1)
     {
@@ -100,7 +97,6 @@ verify() async
           }
         }
      }
-
   Widget build(BuildContext context) {
      
     // TODO: implement build
@@ -123,10 +119,8 @@ verify() async
             child: Text("Submit OTP"),
             onPressed:verify,
             )
-
         ],
       )
-
       );
   }
   void initState() {

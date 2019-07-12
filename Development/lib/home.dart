@@ -70,7 +70,7 @@ class _HomePagee extends State<HomePagee> {
   }
   }
 
-  void _selectedTab(int index) {
+  void  _selectedTab(int index) {
     setState(() {
       print(index);
     });
@@ -118,6 +118,7 @@ class _HomePagee extends State<HomePagee> {
             _buildCardView(context):
             dialogContent(context, write,setState),
             bottomNavigationBar: FABBottomAppBar(
+              selectedPage: 3,
               onTabSelected: _selectedTab,
               notchedShape: CircularNotchedRectangle(),
               color: Colors.white30,

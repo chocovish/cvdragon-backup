@@ -98,16 +98,7 @@ class LoginFormCardState extends State<LoginFormCard> {
       child: Padding(
         padding: const EdgeInsets.only(top: 40.0),
         child: InkWell(
-          onTap: () {
-           // local.push().then((int status) {
-             // if (status == 1)
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            OtpPage(myController.text.toString())));
-          //  });
-          },
+          onTap: () {},
           child: Container(
             height: 50.0,
             width: 150.0,
@@ -120,7 +111,7 @@ class LoginFormCardState extends State<LoginFormCard> {
               onTap: (){
               // local.pushAcademicProject().then((int status){
               //   if(status==1)
-                   Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(myController.text.toString())));
+                 //  Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(myController.text.toString())));
               // });
               }
               ,child: Text(

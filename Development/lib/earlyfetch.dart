@@ -192,10 +192,16 @@ await   fetch.getcvCoCurricular(id, authkey).then((List data) {
       print("Added2");
     });
   });
-    fetch.getcvProfileSection(id, authkey).then((List cvprofilesections) {
+    await fetch.getcvProfileSection(id, authkey).then((List cvprofilesections) {
     cvprofilesections.forEach((element) {
       db.insert("`create-cvprofilesection`", element);
       print("Added3");
+    });
+  });
+  await fetch.getcvProfiles(id, authkey).then((List cvprofiles) {
+    cvprofiles.forEach((element) {
+      db.insert("`create-cvprofile`", element);
+      print("Added4");
     });
   });
 }

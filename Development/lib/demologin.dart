@@ -6,6 +6,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:linkedin_login/linkedin_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 final String redirectUrl = 'https://cvdragon.com/loginRedirect';
 final String clientId = '81jxugmo6b2dop';
 final String clientSecret = 'cZFQqJV6IdgPsBpv';
@@ -22,35 +24,37 @@ class _DemoLogin extends State<DemoLogin>
   scopes: ['email'],
 );
 
-Future<void> _handleSignIn() async {
-  try {
-    GoogleSignInAccount acc=await _googleSignIn.signIn();
-    print(acc.email);
-
-  }
-  catch(error){
-    print("error");
-  }
-
+Future<GoogleSignInAccount> _handleSignIn() async {
+ GoogleSignInAccount acc;
+ try {
+   acc = await _googleSignIn.signIn();
+   print(acc);
+  
+ } catch (error) {
+    //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Error Login,Try Again"),));
+   print("within catch block...");
+   print(error);
+ }
+  return acc;
 }
    Future<void> fbb(BuildContext context) async {
     var facebookLogin = FacebookLogin() ;
     var result = await facebookLogin.logInWithReadPermissions(['email']);
     var token = result.accessToken.token;
-        print(token.toString());
-        if(token.toString()=="null")
-        print("error");
-        else
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => HomePagee()));
     switch (result.status) {
       case FacebookLoginStatus.loggedIn:
+        var r = await http.get(
+       'https://graph.facebook.com/v2.12/me?fields=id&access_token=$token');
+        var id=json.decode(r.body);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage("",id['id'].toString(),2)));
         print("Logged Inn..");
         break;
       case FacebookLoginStatus.cancelledByUser:
+       Scaffold.of(context).showSnackBar(SnackBar(content: Text("Error Login,Try Again"),));
         print("Login cancelled");
         break;
       case FacebookLoginStatus.error:
+       Scaffold.of(context).showSnackBar(SnackBar(content: Text("Error Login,Try Again"),));
         print("Another error..");
         break;
     }
@@ -60,8 +64,6 @@ Future<void> _handleSignIn() async {
     bool _isLoading=true;
   @override
   void dispose() {
-    // Clean up the controller when the widget is removed from the
-    // widget tree.
     mycontroller.dispose();
     super.dispose();
   }
@@ -136,14 +138,7 @@ Future<void> _handleSignIn() async {
         padding: const EdgeInsets.only(top: 40.0),
         child: InkWell(
           onTap: () {
-           // local.push().then((int status) {
-             // if (status == 1)
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            OtpPage(mycontroller.text.toString())));
-          //  });
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(mycontroller.text.toString(),"",1)));
           },
           child: Container(
             height: 50.0,
@@ -157,7 +152,7 @@ Future<void> _handleSignIn() async {
               onTap: (){
               // local.pushAcademicProject().then((int status){
               //   if(status==1)
-                   Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(mycontroller.text.toString())));
+                   Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(mycontroller.text.toString(),"",1)));
               // });
               }
               ,child: Text(
@@ -182,7 +177,12 @@ Future<void> _handleSignIn() async {
         .push(MaterialPageRoute(builder: (context) => buildLinkedIn(context)));
     }),
     RaisedButton(child: Text("Google"),onPressed: (){
-        _handleSignIn();
+        _handleSignIn().then((GoogleSignInAccount acc){
+          if(acc!=null)
+          {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage("",acc.id.toString(),3)));
+          }
+        });
     }),
           ],
         ),
@@ -198,15 +198,17 @@ Widget buildLinkedIn(BuildContext context) {
     clientId: clientId,
     clientSecret: clientSecret,
     onGetUserProfile: (LinkedInUserModel linkedInUser) {
-      print('Access token ${linkedInUser.token.accessToken}');
-      print('First name: ${linkedInUser.firstName.localized.label}');
-      print('Last name: ${linkedInUser.lastName.localized.label}');
+      //print('Access token ${linkedInUser.token.accessToken}');
+      //print('First name: ${linkedInUser.firstName.localized.label}');
+      //print('Last name: ${linkedInUser.lastName.localized.label}');
+
       Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => HomePagee()));
+        .push(MaterialPageRoute(builder: (context) => OtpPage("",linkedInUser.userId.toString(),4)));
     },
     catchError: (LinkedInErrorObject error) {
       print('Error description: ${error.description},'
           ' Error code: ${error.statusCode.toString()}');
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text("Error Login,Try Again"),));
     },
   );
 }

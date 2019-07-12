@@ -56,7 +56,7 @@ class _EditSection extends State<EditSection> {
     });
 
 
-   await  getAddedAcademicProject(data[ind]['section'].toString())  // Profile me jo hai voh aa rha hai
+   await  getAddedData(data[ind]['section'].toString())  // Profile me jo hai voh aa rha hai
         .then((List res) {
       setState(() {
         addeddata = res;

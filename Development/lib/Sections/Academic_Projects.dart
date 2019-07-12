@@ -1,41 +1,44 @@
 import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
+import '../Custom dialog database.dart';
 import '../localdatapush.dart';
 
 Map<String, dynamic> faq;
 int index;
+List databb3 = [];
+List databb1 = [];
 String database;
-String y;
 List keyPhrases;
 String section;
 String secName;
-//Map<String,dynamic> passData={
-//  ""
-//};
+
+
 var data = [];
 var title = data[index]['title'];
 var description = data[index]['description'];
 
 class AcademicProjects extends StatelessWidget {
-  AcademicProjects(String d2, String i2, int i1, List d) {
+  AcademicProjects(String d2, String i2, int i1, List d, List k2, List d1, List d3) {
     section = d2;
     secName = i2;
     index = i1;
     data = d;
+    databb1 = d3;
+    databb3 = d1;
+    keyPhrases = k2;
   }
 
   update(BuildContext context,String t, String d, Map<String, dynamic> initial) {
     updateAcademicProject(t, d, initial).then((int status) {
 
         Navigator.pop(context);
-        Navigator.pop(context);
+
 
     });
   }
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -130,10 +133,7 @@ class AcademicProjects extends StatelessWidget {
                               onTap: () {
                                 showDialog(
                                   context: context,
-                                  builder: (BuildContext context) => CustomDialog(
-                                    title: "DataBase",
-                                    description: "Data Aaoo, Hum Darte Hai Kya ?",
-                                    buttonText: "Okay",
+                                  builder: (BuildContext context) => CustomDialogDatabase("Database",data, databb3,section
                                   ),
                                 );
                               },
@@ -220,11 +220,11 @@ class AcademicProjects extends StatelessWidget {
                                 children: <Widget>[
                                   InkWell(
                                     onTap: () {
-                                      update(context, title, description, data[index]);
+                                     // update(context, title, description, data[index]);
                                     },
                                     child: Container(
                                       height: MediaQuery.of(context).size.height / 18,
-                                      width: MediaQuery.of(context).size.width / 3,
+                                      width: MediaQuery.of(context).size.width / 2,
                                       alignment: FractionalOffset.center,
                                       decoration: BoxDecoration(
                                           color: Color(0xff232882),
@@ -251,7 +251,7 @@ class AcademicProjects extends StatelessWidget {
                                               ),
                                             ),
                                             Text(
-                                              "Add Section",
+                                              "Update Section",
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 15.0,

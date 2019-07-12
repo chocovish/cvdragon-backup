@@ -6,11 +6,20 @@ Map<String, dynamic> faq;
 List keyPhrases;
 String section;
 String secName;
+String database;
+int index;
+
+var data = [];
+var skill = data[index]['skill'];
+var description = data[index]['description'];
 
 class SoftSkills extends StatelessWidget {
-  SoftSkills(String d2, String i2) {
+  SoftSkills(String d2, String i2, int i1, List d, List k2) {
     section = d2;
     secName = i2;
+    keyPhrases = k2;
+    index = i1;
+    data = d;
   }
   @override
   Widget build(BuildContext context) {
@@ -153,7 +162,13 @@ class SoftSkills extends StatelessWidget {
                                   child: Form(
                                     child: Column(
                                       children: <Widget>[
-                                        TextFormField(
+                                        TextField(
+                                          controller: new TextEditingController.fromValue(
+                                              new TextEditingValue(
+                                                  text: data[index]['skill'].toString(),
+                                                  selection: new TextSelection.collapsed(
+                                                      offset: skill.length))),
+                                          onChanged: (val) => skill = val,
                                           style: TextStyle(color: Color(0xff232882)),
                                           decoration: InputDecoration(
                                               labelStyle:
@@ -162,16 +177,22 @@ class SoftSkills extends StatelessWidget {
                                               border: OutlineInputBorder(
                                                   borderRadius:
                                                   BorderRadius.circular(10))),
-                                          validator: (value) {
-                                            if (value.isEmpty) {
-                                              return 'Please enter a skill';
-                                            }
-                                          },
+//                                          validator: (value) {
+//                                            if (value.isEmpty) {
+//                                              return 'Please enter a skill';
+//                                            }
+//                                          },
                                         ),
                                         Padding(
                                           padding: EdgeInsets.all(10),
                                         ),
-                                        TextFormField(
+                                        TextField(
+                                          controller: new TextEditingController.fromValue(
+                                              new TextEditingValue(
+                                                  text: data[index]['description'].toString(),
+                                                  selection: new TextSelection.collapsed(
+                                                      offset: description.length))),
+                                          onChanged: (val) => description = val,
                                           style: TextStyle(color: Color(0xff232882)),
                                           scrollPadding: EdgeInsets.all(10.0),
                                           maxLines: 15,

@@ -20,8 +20,10 @@ dependencies:
   flutter_circular_chart: ^0.1.0
   flutter:
     sdk: flutter
+  flutter_markdown:
+  meta: ^1.0.5
+  path: ^1.5.1
   auto_size_text: ^2.0.1
-
   charts_flutter: ^0.6.0
   flutter_reactive_button: "^1.1.0"
   animator: ^0.1.2

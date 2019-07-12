@@ -1,5 +1,3 @@
-import 'package:cvdragonapp_v1/earlyfetch.dart';
-import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:flutter/material.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
@@ -24,6 +22,7 @@ import './Create_New_Section/Create_Professional_Qualifications.dart';
 import './Create_New_Section/Create_Soft_Skills.dart';
 import './Create_New_Section/Create_Trainings_Conducted.dart';
 import './Create_New_Section/Create_Volunteer_Experience.dart';
+import './Custom dialog database.dart';
 import './Create_New_Section/Create_Work_Details.dart';
 import './Create_New_Section/Create_Work_Projects.dart';
 
@@ -34,21 +33,25 @@ import './fetch.dart';
 int index2;
 String database;
 List keyPhrases;
+List databb2;
+List databb1;
 String y;
 String section;
 String secName;
 var data = [];
 class CreateSection extends StatefulWidget {
  @override
- CreateSection(List d,int i, List d2, int i2)
+ CreateSection(List d, int i, List d2, int i2, List k1, List db, List d3)
  {
 data=d;
 index2=i;
+keyPhrases=k1;
 section = d2[i2]['section'];
 secName = d2[i2]['sectionName'];
+databb1 = d3;
+databb2 = db;
  }
  State<StatefulWidget> createState() {
-  // TODO: implement createState
   return _CreateSection();
  }
 }
@@ -198,11 +201,9 @@ class _CreateSection extends State<CreateSection> {
                onTap: () {
                showDialog(
                context: context,
-               builder: (BuildContext context) => CustomDialog(
-               title: "DataBase",
-               description: "Data Aaoo, Hum Darte Hai Kya ?",
-               buttonText: "Okay",
+               builder: (BuildContext context) => CustomDialogDatabase("Database",data, databb1,section
                ),
+
                );
                },
                child: Container(

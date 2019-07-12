@@ -6,11 +6,21 @@ Map<String, dynamic> faq;
 List keyPhrases;
 String section;
 String secName;
+String database;
+int index;
+
+var data = [];
+var certificate = data[index]['certificate'];
+var year = data[index]['year'];
+var authority = data[index]['authority'];
 
 class Certificates extends StatelessWidget {
-  Certificates(String d2, String i2) {
+  Certificates(String d2, String i2, int i1, List d, List k2) {
     section = d2;
     secName = i2;
+    index = i1;
+    data = d;
+    keyPhrases = k2;
   }
   @override
   Widget build(BuildContext context) {
@@ -144,7 +154,13 @@ class Certificates extends StatelessWidget {
                             child: Form(
                               child: Column(
                                 children: <Widget>[
-                                  TextFormField(
+                                  TextField(
+                                    controller: new TextEditingController.fromValue(
+                                        new TextEditingValue(
+                                            text: data[index]['certificate'].toString(),
+                                            selection: new TextSelection.collapsed(
+                                                offset: certificate.length))),
+                                    onChanged: (val) => certificate = val,
                                     style: TextStyle(color: Color(0xff232882)),
                                     decoration: InputDecoration(
                                         labelStyle:
@@ -161,7 +177,13 @@ class Certificates extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                   ),
-                                  TextFormField(
+                                  TextField(
+                                    controller: new TextEditingController.fromValue(
+                                        new TextEditingValue(
+                                            text: data[index]['authority'].toString(),
+                                            selection: new TextSelection.collapsed(
+                                                offset: authority.length))),
+                                    onChanged: (val) => authority = val,
                                     style: TextStyle(color: Color(0xff232882)),
                                     scrollPadding: EdgeInsets.all(10.0),
                                     maxLength: 4,
@@ -178,7 +200,13 @@ class Certificates extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                   ),
-                                  TextFormField(
+                                  TextField(
+                                    controller: new TextEditingController.fromValue(
+                                        new TextEditingValue(
+                                            text: data[index]['year'].toString(),
+                                            selection: new TextSelection.collapsed(
+                                                offset: year.toString().length))),
+                                    onChanged: (val) => year = val,
                                     keyboardType: TextInputType.number,
                                     style: TextStyle(color: Color(0xff232882)),
                                     decoration: InputDecoration(

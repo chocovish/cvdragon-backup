@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:sqflite/sqflite.dart';
 import './maps.dart';
-Future<String> getDatabaseAcademicProject(String section) async {
+Future<List> getDatabaseAcademicProject(String section) async {
 var db=  await openDatabase('assets/sections.db', version: 3);
    List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= 4672 AND `section` = "+section);
     print(response);//contains 2 which is not in database
@@ -15,7 +15,7 @@ var db=  await openDatabase('assets/sections.db', version: 3);
        data.add(element);
       }
     });
-  return data.toString();
+  return data;
 }
 
 Future<List> getAddedAcademicProject(String section) async {

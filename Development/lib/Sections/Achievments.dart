@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
+import '../Custom dialog database.dart';
+
 
 Map<String, dynamic> faq;
+int index;
+List databb3 = [];
+List databb1 = [];
+String database;
 List keyPhrases;
 String section;
 String secName;
 
+var data = [];
+var achievement = data[index]['achievement'];
+var year = data[index]['year'];
+var description = data[index]['description'];
+
+
 class Achievments extends StatelessWidget {
-  Achievments(String d2, String i2) {
+  Achievments(String d2, String i2, int i1, List d, List k2, List d1, List d3) {
     section = d2;
     secName = i2;
+    index = i1;
+    data = d;
+    databb1 = d3;
+    databb3 = d1;
+    keyPhrases = k2;
   }
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -111,11 +130,7 @@ class Achievments extends StatelessWidget {
                                 onTap: () {
                                   showDialog(
                                     context: context,
-                                    builder: (BuildContext context) => CustomDialog(
-                                      title: "DataBase",
-                                      description:
-                                      "Data Aaoo, Hum Darte Hai Kya ?",
-                                      buttonText: "Okay",
+                                    builder: (BuildContext context) => CustomDialogDatabase("Database",data, databb3,section
                                     ),
                                   );
                                 },
@@ -144,7 +159,13 @@ class Achievments extends StatelessWidget {
                             child: Form(
                               child: Column(
                                 children: <Widget>[
-                                  TextFormField(
+                                  TextField(
+                                    controller: new TextEditingController.fromValue(
+                                        new TextEditingValue(
+                                            text: data[index]['achievement'].toString(),
+                                            selection: new TextSelection.collapsed(
+                                                offset: achievement.length))),
+                                    onChanged: (val) => achievement = val,
                                     style: TextStyle(color: Color(0xff232882)),
                                     decoration: InputDecoration(
                                         labelStyle:
@@ -152,16 +173,22 @@ class Achievments extends StatelessWidget {
                                         labelText: 'Achievement',
                                         border: OutlineInputBorder(
                                             borderRadius: BorderRadius.circular(10))),
-                                    validator: (value) {
-                                      if (value.isEmpty) {
-                                        return 'Please enter an Achievement';
-                                      }
-                                    },
+//                                    validator: (value) {
+//                                      if (value.isEmpty) {
+//                                        return 'Please enter an Achievement';
+//                                      }
+//                                    },
                                   ),
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                   ),
-                                  TextFormField(
+                                  TextField(
+                                    controller: new TextEditingController.fromValue(
+                                        new TextEditingValue(
+                                            text: data[index]['year'].toString(),
+                                            selection: new TextSelection.collapsed(
+                                                offset: year.toString().length))),
+                                    onChanged: (val) => year = val,
                                     style: TextStyle(color: Color(0xff232882)),
                                     scrollPadding: EdgeInsets.all(10.0),
                                     keyboardType: TextInputType.number,
@@ -179,7 +206,13 @@ class Achievments extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                   ),
-                                  TextFormField(
+                                  TextField(
+                                    controller: new TextEditingController.fromValue(
+                                        new TextEditingValue(
+                                            text: data[index]['description'].toString(),
+                                            selection: new TextSelection.collapsed(
+                                                offset: description.length))),
+                                    onChanged: (val) => description = val,
                                     style: TextStyle(color: Color(0xff232882)),
                                     maxLines: 10,
                                     decoration: InputDecoration(

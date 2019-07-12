@@ -23,8 +23,10 @@ import './Sections/Trainings_Conducted.dart';
 import './Sections/Associated_Members.dart';
 import './Sections/Patents.dart';
 
-
+List keyP;
 int index;
+List databb2;
+List databb1;
 String database;
 String y;
 String section;
@@ -33,15 +35,18 @@ var data = [];
 
 class EditSection2 extends StatefulWidget {
   @override
-  EditSection2(List d, int i, List d2, int i2) {
+  EditSection2(List d, int i, List d2, int i2, List k1, List db, List d3) {
     data = d;
     index = i;
     section = d2[i2]['section'];
     secName = d2[i2]['sectionName'];
+    keyP = k1;
+    databb1 = d3;
+    databb2 = db;
   }
 
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+
     return _EditSection2();
   }
 }
@@ -104,42 +109,42 @@ class _EditSection2 extends State<EditSection2> {
 
 Widget _buildCardView(BuildContext context) {
   if (section == "51122")
-    return AcademicProjects(section, secName, index, data); //Done
-  else if (section == "51100")
-    return BasicInfo(section, secName);
+    return AcademicProjects(section, secName, index, data, keyP, databb2, databb1); //Done
+//  else if (section == "51100")
+//    return BasicInfo(section, secName, index, data,keyP);
   else if (section == "51106")
-    return Internships(section, secName); //Done
+    return Internships(section, secName, index, data,keyP); //Done
   else if (section == "51103")
-    return Introduction(section, secName);
+    return Introduction(section, secName, index, data,keyP);
   else if (section == "51108")
-    return ProfessionalQualifications(section, secName); //Done
+    return ProfessionalQualifications(section, secName, index, data,keyP); //Done
   else if (section == "51110")
-    return Certificates(section, secName);
+    return Certificates(section, secName, index, data,keyP);
   else if (section == "51114")
-    return Achievments(section, secName); //Done
+    return Achievments(section, secName, index, data, keyP, databb2, databb1); //Done
   else if (section == "51115")
-    return HonorsAwards(section, secName); //Done
+    return HonorsAwards(section, secName, index, data,keyP); //Done
   else if (section == "51118")
-    return SoftSkills(section, secName); //Done
+    return SoftSkills(section, secName, index, data,keyP); //Done
   else if (section == "51123")
-    return CoCurricularActivity(section, secName);
+    return CoCurricularActivity(section, secName, index, data,keyP);
   else if (section == "51125")
-    return Presentations(section, secName, index, data);
+    return Presentations(section, secName, index, data,keyP);
   else if (section == "51120")
-    return Languages(section, secName);
+    return Languages(section, secName, index, data,keyP);
   else if (section == "51119")
-    return Interests(section,  secName);
+    return Interests(section,  secName, index, data,keyP);
   else if(section=="51117")
-    return VolunteerExperience(section, secName);
+    return VolunteerExperience(section, secName, index, data,keyP);
   else if(section == "51104")
-    return WorkDetails(section, secName);
+    return WorkDetails(section, secName, index, data,keyP);
   else if(section == "51105")
-    return WorkProjects(section, secName);
+    return WorkProjects(section, secName, index, data,keyP);
   else if(section == "51107")
-    return TrainingsConducted(section, secName);
+    return TrainingsConducted(section, secName, index, data,keyP);
   else if(section == "51116")
-    return AssociatedMembers(section, secName);
+    return AssociatedMembers(section, secName, index, data, keyP, databb2, databb1);
   else if(section=="51113")
-    return Patents(section, secName);
+    return Patents(section, secName, index, data,keyP);
 }
 

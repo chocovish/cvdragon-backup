@@ -20,6 +20,9 @@ dependencies:
   flutter_circular_chart: ^0.1.0
   flutter:
     sdk: flutter
+  flutter_markdown:
+  meta: ^1.0.5
+  path: ^1.5.1
   auto_size_text: ^2.0.1
   code_input: ^1.0.3
 

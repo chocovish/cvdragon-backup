@@ -21,14 +21,14 @@ class CreatePresentations extends StatelessWidget {
     index = i1;
     data = d;
   }
-  update(BuildContext context,String t, String d, Map<String, dynamic> initial) {
-    updateAcademicProject(t, d, initial).then((int status) {
+  // update(BuildContext context,String t, String d, Map<String, dynamic> initial) {
+  //   updateAcademicProject(t, d, initial).then((int status) {
 
-      Navigator.pop(context);
-      Navigator.pop(context);
+  //     Navigator.pop(context);
+  //     Navigator.pop(context);
 
-    });
-  }
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -110,7 +110,7 @@ class CreatePresentations extends StatelessWidget {
                             color: Colors.white)),
                     child: InkWell(
                       onTap: () {
-                        update(context, title, description, data[index]);
+                    //    update(context, title, description, data[index]);
                       },
                       child: Row(
                         mainAxisAlignment:

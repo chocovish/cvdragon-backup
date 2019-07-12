@@ -6,21 +6,38 @@ Map<String, dynamic> faq;
 List keyPhrases;
 String section;
 String secName;
+String database;
+int index;
+
+var data = [];
+var title = data[index]['title'];
+var patentOffice = data[index]['patentOffice'];
+var patentStatus = data[index]['patentStatus'];
+var patentApplication = data[index]['patentApplication'];
+var patentDate = data[index]['patentDate'];
+var description = data[index]['description'];
+
+
    var dropdown = ValueNotifier('one');
 
 class Patents extends StatelessWidget {
-  Patents(String d2, String i2) {
+  Patents(String d2, String i2, int i1, List d, List k2) {
     section = d2;
     secName = i2;
+    keyPhrases = k2;
+    index = i1;
+     data = d;
+     print(data[index]);
   }
 
 
 
-  final _selectedVal = ValueNotifier("No Interest selected");
+
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<String> _value = ValueNotifier("DD/MM/YYYY");
+    final _selectedVal = ValueNotifier(data[index]['patentStatus'].toString());
+    ValueNotifier<String> _value = ValueNotifier(data[index]['patentDate']);
     Future _selectDate() async {
       DateTime picked = await showDatePicker(
           context: context,
@@ -159,7 +176,13 @@ class Patents extends StatelessWidget {
                                   padding: EdgeInsets.all(20.0),
                                   child: Form(
                                       child: Column(children: <Widget>[
-                                        TextFormField(
+                                        TextField(
+                                          controller: new TextEditingController.fromValue(
+                                              new TextEditingValue(
+                                                  text: data[index]['title'].toString(),
+                                                  selection: new TextSelection.collapsed(
+                                                      offset: title.length))),
+                                          onChanged: (val) => title = val,
                                           style: TextStyle(color: Color(0xff232882)),
                                           decoration: InputDecoration(
                                               labelStyle: TextStyle(color: Color(0xffff1e50)),
@@ -167,16 +190,22 @@ class Patents extends StatelessWidget {
                                               //hintText: "Heading",
                                               border: OutlineInputBorder(
                                                   borderRadius: BorderRadius.circular(10))),
-                                          validator: (value) {
-                                            if (value.isEmpty) {
-                                              return 'Please enter a Patent';
-                                            }
-                                          },
+//                                          validator: (value) {
+//                                            if (value.isEmpty) {
+//                                              return 'Please enter a Patent';
+//                                            }
+//                                          },
                                         ),
                                         Padding(
                                           padding: EdgeInsets.all(10),
                                         ),
-                                        TextFormField(
+                                        TextField(
+                                          controller: new TextEditingController.fromValue(
+                                              new TextEditingValue(
+                                                  text: data[index]['patentOffice'].toString(),
+                                                  selection: new TextSelection.collapsed(
+                                                      offset: patentOffice.length))),
+                                          onChanged: (val) => patentOffice = val,
                                           style: TextStyle(color: Color(0xff232882)),
                                           decoration: InputDecoration(
                                               labelStyle: TextStyle(color: Color(0xffff1e50)),
@@ -184,11 +213,11 @@ class Patents extends StatelessWidget {
                                               //hintText: "Heading",
                                               border: OutlineInputBorder(
                                                   borderRadius: BorderRadius.circular(10))),
-                                          validator: (value) {
-                                            if (value.isEmpty) {
-                                              return 'Please enter a Patent Office';
-                                            }
-                                          },
+//                                          validator: (value) {
+//                                            if (value.isEmpty) {
+//                                              return 'Please enter a Patent Office';
+//                                            }
+//                                          },
                                         ),
                                         Padding(
                                           padding: EdgeInsets.all(10),
@@ -203,14 +232,14 @@ class Patents extends StatelessWidget {
                                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                   children: <Widget>[
                                                     Radio(
-                                                        value: "Patent Issued",
+                                                        value: "Issued",
                                                         groupValue: val,
                                                         onChanged: (v) {
                                                           _selectedVal.value = v;
                                                         }),
                                                     Text("Patent Issued"),
                                                     Radio(
-                                                        value: "Patent Pending",
+                                                        value: "Pending",
                                                         groupValue: val,
                                                         onChanged: (v) {
                                                           _selectedVal.value = v;
@@ -224,7 +253,13 @@ class Patents extends StatelessWidget {
                                             Padding(
                                               padding: EdgeInsets.all(10),
                                             ),
-                                            TextFormField(
+                                            TextField(
+                                              controller: new TextEditingController.fromValue(
+                                                  new TextEditingValue(
+                                                      text: data[index]['patentApplication'].toString(),
+                                                      selection: new TextSelection.collapsed(
+                                                          offset: patentApplication.length))),
+                                              onChanged: (val) => patentApplication = val,
                                               style: TextStyle(color: Color(0xff232882)),
                                               decoration: InputDecoration(
                                                   labelStyle: TextStyle(color: Color(0xffff1e50)),
@@ -232,11 +267,11 @@ class Patents extends StatelessWidget {
                                                   //hintText: "Heading",
                                                   border: OutlineInputBorder(
                                                       borderRadius: BorderRadius.circular(10))),
-                                              validator: (value) {
-                                                if (value.isEmpty) {
-                                                  return 'Please enter Patent Application Number';
-                                                }
-                                              },
+//                                              validator: (value) {
+//                                                if (value.isEmpty) {
+//                                                  return 'Please enter Patent Application Number';
+//                                                }
+//                                              },
                                             ),
                                             Padding(
                                               padding: EdgeInsets.all(10),
@@ -294,7 +329,13 @@ class Patents extends StatelessWidget {
                                           padding: EdgeInsets.all(10),
                                         ),
                                             
-                                            TextFormField(
+                                            TextField(
+                                              controller: new TextEditingController.fromValue(
+                                                  new TextEditingValue(
+                                                      text: data[index]['description'].toString(),
+                                                      selection: new TextSelection.collapsed(
+                                                          offset: description.length))),
+                                              onChanged: (val) => description = val,
                                               style: TextStyle(color: Color(0xff232882)),
                                               maxLines: 15,
                                               decoration: InputDecoration(

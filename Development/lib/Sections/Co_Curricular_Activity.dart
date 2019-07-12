@@ -3,18 +3,39 @@ import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
 
 Map<String, dynamic> faq;
+int index;
 List keyPhrases;
 String section;
 String secName;
+//Map<String,dynamic> passData={
+//"title":" ",
+//"description":" ",
+//};
+
+var data = [];
+var title = data[index]['title'];
+var description = data[index]['description'];
 
 class CoCurricularActivity extends StatelessWidget {
-  CoCurricularActivity(String d2, String i2) {
+  CoCurricularActivity(String d2, String i2, int i1, List d, List k2) {
     section = d2;
     secName = i2;
+    index = i1;
+    keyPhrases = k2;
+    data = d;
   }
+
+//  update(BuildContext context,passData Map<String, dynamic> initial) {
+//    updateCoCurricularActivity(passData, initial).then((int status) {
+//
+//      Navigator.pop(context);
+//      Navigator.pop(context);
+//
+//    });
+//  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
         body: Container(
             decoration: BoxDecoration(
@@ -159,7 +180,13 @@ class CoCurricularActivity extends StatelessWidget {
                                     child: Form(
                                       child: Column(
                                         children: <Widget>[
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['title'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: title.length))),
+                                            onChanged: (val) => title = val,
                                             style:
                                             TextStyle(color: Color(0xff232882)),
                                             decoration: InputDecoration(
@@ -170,16 +197,22 @@ class CoCurricularActivity extends StatelessWidget {
                                                 border: OutlineInputBorder(
                                                     borderRadius:
                                                     BorderRadius.circular(10))),
-                                            validator: (value) {
-                                              if (value.isEmpty) {
-                                                return 'Please enter a heading';
-                                              }
-                                            },
+//                                            validator: (value) {
+//                                              if (value.isEmpty) {
+//                                                return 'Please enter a heading';
+//                                              }
+//                                            },
                                           ),
                                           Padding(
                                             padding: EdgeInsets.all(10),
                                           ),
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['description'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: description.length))),
+                                            onChanged: (val) => description = val,
                                             style:
                                             TextStyle(color: Color(0xff232882)),
                                             scrollPadding: EdgeInsets.all(10.0),
@@ -220,7 +253,9 @@ class CoCurricularActivity extends StatelessWidget {
                                                         border: new Border.all(
                                                             color: Colors.white)),
                                                     child: InkWell(
-                                                      onTap: () {},
+                                                      onTap: () {
+                                                        //update(context, passData, data[index]);
+                                                      },
                                                       child: Row(
                                                         mainAxisAlignment:
                                                         MainAxisAlignment.center,

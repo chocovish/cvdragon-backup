@@ -7,6 +7,19 @@ Map<String, dynamic> faq;
 List keyPhrases;
 String section;
 String secName;
+int index;
+String database;
+
+var data = [];
+
+var organization = data[index]['organization'];
+var title = data[index]['title'];
+var designation = data[index]['designation'];
+var duration = data[index]['duration'];
+var location = data[index]['location'];
+var description = data[index]['description'];
+
+
 
 class Internships extends StatelessWidget {
   Map<String, dynamic> formData = {};
@@ -17,13 +30,19 @@ class Internships extends StatelessWidget {
     'Apprentice',
     'Industrial Trainee'
   ];
-  String accountname = 'abcf';
-  Internships(String d2, String i2) {
+
+  //String accountname = data[index]['designation'].toString();
+  Internships(String d2, String i2, int i1, List d,List k2) {
     section = d2;
     secName = i2;
+    index = i1;
+    data = d;
+    keyPhrases = k2;
+    print(data[index].toString());
     formData = {
-      'accountname': 'abcd',
+      'accountname': data[index]['designation'].toString(),
     };
+    //print("data is $data");
   }
   @override
   Widget build(BuildContext context) {
@@ -164,7 +183,13 @@ class Internships extends StatelessWidget {
                                 Form(
                                   child: Column(
                                     children: <Widget>[
-                                      TextFormField(
+                                      TextField(
+                                        controller: new TextEditingController.fromValue(
+                                            new TextEditingValue(
+                                                text: data[index]['organization'].toString(),
+                                                selection: new TextSelection.collapsed(
+                                                    offset: organization.length))),
+                                        onChanged: (val) => organization = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         decoration: InputDecoration(
                                             labelStyle:
@@ -174,16 +199,22 @@ class Internships extends StatelessWidget {
                                             border: OutlineInputBorder(
                                                 borderRadius:
                                                 BorderRadius.circular(10))),
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter the name of the organization';
-                                          }
-                                        },
+//                                        validator: (value) {
+//                                          if (value.isEmpty) {
+//                                            return 'Please enter the name of the organization';
+//                                          }
+//                                        },
                                       ),
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                        controller: new TextEditingController.fromValue(
+                                            new TextEditingValue(
+                                                text: data[index]['title'].toString(),
+                                                selection: new TextSelection.collapsed(
+                                                    offset: title.length))),
+                                        onChanged: (val) => title = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         textAlign: TextAlign.start,
@@ -195,28 +226,81 @@ class Internships extends StatelessWidget {
                                             TextStyle(color: Color(0xffff1e50)),
                                             labelText: 'Internship Title',
                                             hintText: "Name of the project"),
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter an Internship Title';
-                                          }
-                                        },
+//                                        validator: (value) {
+//                                          if (value.isEmpty) {
+//                                            return 'Please enter an Internship Title';
+//                                          }
+//                                        },
                                       ),
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      DropDownField(
-                                          value: formData['accountname'],
-                                          required: true,
-                                          labelText: 'Account Name *',
-                                          icon: Icon(Icons.account_balance),
-                                          items: accountNames,
-                                          setter: (dynamic newValue) {
-                                            formData['accountname'] = newValue;
-                                          }),
+
+                                      Row(mainAxisAlignment: MainAxisAlignment.start,
+                                        children: <Widget>[Container(
+                                          child: Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Container(
+                                                    padding: EdgeInsets.only(
+                                                        bottom: 10),
+                                                    child: Text(
+                                                      "Designation",
+                                                      textAlign: TextAlign.left,
+                                                    )),
+                                                Container(
+                                                    decoration:
+                                                    BoxDecoration(
+                                                        color:
+                                                        Colors.red),
+                                                    height: 40,
+                                                    width: MediaQuery.of(context).size.width/2,
+                                                    child: Row(
+                                                        mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                        children: <Widget>[
+
+                                                          Text("Project Intern"
+                                                          ),
+
+                                                          InkWell(
+                                                            onTap: (){
+                                                              showDialog(
+                                                                context: context,
+                                                                builder: (BuildContext context) =>
+                                                                    CustomDialog(title: "Des", description: "123", buttonText: "Okay"),
+                                                              );
+                                                            },
+                                                            child: Icon(Icons
+
+                                                                .arrow_drop_down_circle),
+                                                          ),
+                                                        ])),
+                                              ]),
+                                        ),],
+                                      ),
+
+//                                      DropDownField(
+//                                          value: formData['accountname'],
+//                                          required: true,
+//                                          labelText: 'Account Name *',
+//                                          icon: Icon(Icons.account_balance),
+//                                          items: accountNames,
+//                                          setter: (dynamic newValue) {
+//                                            formData['accountname'] = newValue;
+//                                          }),
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                        controller: new TextEditingController.fromValue(
+                                            new TextEditingValue(
+                                                text: data[index]['location'].toString(),
+                                                selection: new TextSelection.collapsed(
+                                                    offset: location.length))),
+                                        onChanged: (val) => location = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         textAlign: TextAlign.start,
@@ -228,16 +312,22 @@ class Internships extends StatelessWidget {
                                             TextStyle(color: Color(0xffff1e50)),
                                             labelText: 'Location',
                                             hintText: "City"),
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter Internship Location';
-                                          }
-                                        },
+//                                        validator: (value) {
+//                                          if (value.isEmpty) {
+//                                            return 'Please enter Internship Location';
+//                                          }
+//                                        },
                                       ),
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                        controller: new TextEditingController.fromValue(
+                                            new TextEditingValue(
+                                                text: data[index]['duration'],
+                                                selection: new TextSelection.collapsed(
+                                                    offset: duration.length))),
+                                        onChanged: (val) => duration = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         textAlign: TextAlign.start,
@@ -253,7 +343,13 @@ class Internships extends StatelessWidget {
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                        controller: new TextEditingController.fromValue(
+                                            new TextEditingValue(
+                                                text: data[index]['description'],
+                                                selection: new TextSelection.collapsed(
+                                                    offset: description.length))),
+                                        onChanged: (val) => description = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         textAlign: TextAlign.start,

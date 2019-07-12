@@ -5,9 +5,12 @@ import './institute.dart';
 import './publicprofile.dart';
 import './MyDesigns.dart';
 import './sections.dart';
+import './Terms.dart';
+import './Privacy.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import './fetch.dart' as fetch;
 import './sharedfetch.dart'as sfetch;
+import './About.dart';
 import './main.dart'as main;
 import './vishal/utils.dart';
 String name;
@@ -199,7 +202,9 @@ class _SideMenu extends State<SideMenu> {
                       children: <Widget>[
                         IconButton(
                           padding: EdgeInsets.only(bottom: 15.0),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => (About())));
+                          },
                           icon: Icon(
                             Icons.info,
                             size: MediaQuery.of(context).size.aspectRatio*40.0,
@@ -223,7 +228,9 @@ class _SideMenu extends State<SideMenu> {
                       children: <Widget>[
                         IconButton(
                           padding: EdgeInsets.only(bottom: 15.0),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => (Terms())));
+                          },
                           icon: Icon(
                             Icons.accessible,
                             size: MediaQuery.of(context).size.aspectRatio*40.0,
@@ -245,7 +252,9 @@ class _SideMenu extends State<SideMenu> {
                       children: <Widget>[
                         IconButton(
                           padding: EdgeInsets.only(bottom: 15.0),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => (Privacy())));
+                          },
                           icon:
                               Icon(Icons.apps,size: MediaQuery.of(context).size.aspectRatio*40.0, color: Colors.white),
                           tooltip: 'Privacy',

@@ -15,19 +15,20 @@ var description = data[index]['description'];
 var data = [];
 
 class Presentations extends StatelessWidget {
-  Presentations(String d2, String i2,int i1, List d) {
+  Presentations(String d2, String i2,int i1, List d, List k2) {
     section = d2;
     secName = i2;
+    keyPhrases = k2;
     index = i1;
     data = d;
   }
   update(BuildContext context,String t, String d, Map<String, dynamic> initial) {
-    updateAcademicProject(t, d, initial).then((int status) {
+    // updateData(t, d, initial).then((int status) {
 
-      Navigator.pop(context);
-      Navigator.pop(context);
+    //   Navigator.pop(context);
+    //   Navigator.pop(context);
 
-    });
+    // });
   }
   @override
   Widget build(BuildContext context) {
@@ -203,7 +204,13 @@ class Presentations extends StatelessWidget {
                                           Padding(
                                             padding: EdgeInsets.all(10),
                                           ),
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['description'],
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: description.length))),
+                                            onChanged: (val) => description = val,
                                             style:
                                             TextStyle(color: Color(0xff232882)),
                                             scrollPadding: EdgeInsets.all(10.0),

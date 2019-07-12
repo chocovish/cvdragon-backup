@@ -6,11 +6,21 @@ Map<String, dynamic> faq;
 List keyPhrases;
 String section;
 String secName;
+String database;
+int index;
+
+var data = [];
+var training = data[index]['training'];
+var number = data[index]['number'];
+var description = data[index]['description'];
 
 class TrainingsConducted extends StatelessWidget {
-  TrainingsConducted(String d2, String i2) {
+  TrainingsConducted(String d2, String i2, int i1, List d, List k2) {
     section = d2;
     secName = i2;
+    keyPhrases = k2;
+    index = i1;
+    data = d;
   }
   @override
   Widget build(BuildContext context) {
@@ -158,7 +168,13 @@ class TrainingsConducted extends StatelessWidget {
                                     child: Form(
                                       child: Column(
                                         children: <Widget>[
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['training'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: training.length))),
+                                            onChanged: (val) => training = val,
                                             style:
                                             TextStyle(color: Color(0xff232882)),
                                             decoration: InputDecoration(
@@ -169,16 +185,23 @@ class TrainingsConducted extends StatelessWidget {
                                                 border: OutlineInputBorder(
                                                     borderRadius:
                                                     BorderRadius.circular(10))),
-                                            validator: (value) {
-                                              if (value.isEmpty) {
-                                                return 'Please enter a heading';
-                                              }
-                                            },
+//                                            validator: (value) {
+//                                              if (value.isEmpty) {
+//                                                return 'Please enter a heading';
+//                                              }
+//                                            },
                                           ),
                                           Padding(
                                             padding: EdgeInsets.all(10),
                                           ),
-                                          TextFormField(keyboardType: TextInputType.numberWithOptions(decimal: false),
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['number'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: number.toString().length))),
+                                            onChanged: (val) => number = val,
+                                            keyboardType: TextInputType.numberWithOptions(decimal: false),
                                             style:
                                             TextStyle(color: Color(0xff232882)),
                                             scrollPadding: EdgeInsets.all(10.0),
@@ -195,7 +218,13 @@ class TrainingsConducted extends StatelessWidget {
                                           Padding(
                                             padding: EdgeInsets.all(10),
                                           ),
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['description'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: description.length))),
+                                            onChanged: (val) => description = val,
                                             style:
                                             TextStyle(color: Color(0xff232882)),
                                             scrollPadding: EdgeInsets.all(10.0),

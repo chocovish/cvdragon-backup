@@ -78,7 +78,7 @@ class _ProfileSections extends State<ProfileSections> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      (EditSection(data, index))));
+                                      (EditSection(data[index]['section'].toString()))));
                         },
                         child: Stack(
                           children: <Widget>[

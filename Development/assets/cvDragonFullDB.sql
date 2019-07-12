@@ -555,16 +555,7 @@ CREATE TABLE `resource-co-curricular-activities` (
 -- Table structure for table `resource-faqs`
 --
 
-CREATE TABLE `resource-faqs` (
-  `faqid` int(11) NOT NULL ,
-  `section` int(11) NOT NULL,
-  `faq` text  NOT NULL,
-  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`section`),
-  UNIQUE KEY `faqid` (`faqid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci =15 ;
-
+CREATE TABLE `resource-faqs` (  `faqid` int(11) NOT NULL UNIQUE ,  `section` int(11) NOT NULL,  `faq` text  NOT NULL,  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`section`)) ;
 -- --------------------------------------------------------
 
 --
@@ -645,21 +636,12 @@ CREATE TABLE `resource-notifications` (
 -- Table structure for table `resource-profiledesign`
 --
 
-CREATE TABLE `resource-profiledesign` (
-  `designid` int(11) NOT NULL ,
-  `designName` varchar(100)  NOT NULL,
-  `content` text  NOT NULL,
-  `designPrice` int(11) NOT NULL,
-  `category` varchar(50)  NOT NULL,
-  `isPrivate` tinyint(4) NOT NULL,
-  `sections` varchar(255)  NOT NULL,
-  `isDownload` tinyint(11) NOT NULL,
-  `author` varchar(100)  NOT NULL,
-  `rating` float NOT NULL,
-  `downloadTimes` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`designid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci =10034 ;
+CREATE TABLE `resource-profiledesign` (  `designid` int(11) NOT NULL ,
+  `designName` varchar(100)  NOT NULL,  `content` text  NOT NULL,
+  `designPrice` int(11) NOT NULL,  `category` varchar(50)  NOT NULL,
+  `isPrivate` tinyint(4) NOT NULL,  `sections` varchar(255)  NOT NULL,
+  `isDownload` tinyint(11) NOT NULL,  `author` varchar(100)  NOT NULL,
+  `rating` float NOT NULL,  `downloadTimes` int(11) NOT NULL,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`designid`)) ;
 
 -- --------------------------------------------------------
 
@@ -667,16 +649,7 @@ CREATE TABLE `resource-profiledesign` (
 -- Table structure for table `resource-profilefont`
 --
 
-CREATE TABLE `resource-profilefont` (
-  `fontid` int(11) NOT NULL ,
-  `fontTypeName` varchar(100)  NOT NULL,
-  `fontType` varchar(200)  NOT NULL,
-  `fontSize` int(11) NOT NULL,
-  `appliedOn` text  NOT NULL,
-  `downloadTime` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`fontid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci =13 ;
+CREATE TABLE `resource-profilefont` (  `fontid` int(11) NOT NULL ,`fontTypeName` varchar(100)  NOT NULL,  `fontType` varchar(200)  NOT NULL,  `fontSize` int(11) NOT NULL,  `appliedOn` text  NOT NULL,  `downloadTime` int(11) NOT NULL,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`fontid`));
 
 -- --------------------------------------------------------
 
@@ -684,19 +657,9 @@ CREATE TABLE `resource-profilefont` (
 -- Table structure for table `resource-profilesetting`
 --
 
-CREATE TABLE `resource-profilesetting` (
-  `settingid` int(11) NOT NULL ,
-  `name` varchar(100)  NOT NULL,
-  `content` text  NOT NULL,
-  `heading` varchar(10)  NOT NULL,
-  `color1` varchar(10)  DEFAULT NULL,
-  `color2` varchar(10)  DEFAULT NULL,
-  `color3` varchar(10)  DEFAULT NULL,
-  `color4` varchar(10)  DEFAULT NULL,
-  `downloadTimes` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`settingid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci =40 ;
+CREATE TABLE `resource-profilesetting` (  `settingid` int(11) NOT NULL ,
+  `name` varchar(100)  NOT NULL,  `content` text  NOT NULL,  `heading` varchar(10)  NOT NULL,  `color1` varchar(10)  DEFAULT NULL,  `color2` varchar(10)  DEFAULT NULL,  `color3` varchar(10)  DEFAULT NULL,  `color4` varchar(10)  DEFAULT NULL,  `downloadTimes` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`settingid`)) ;
 
 -- --------------------------------------------------------
 
@@ -704,18 +667,8 @@ CREATE TABLE `resource-profilesetting` (
 -- Table structure for table `resource-section`
 --
 
-CREATE TABLE `resource-section` (
-  `section` int(11) NOT NULL,
-  `main` tinyint(4) NOT NULL,
-  `defaultSection` tinyint(4) NOT NULL,
-  `sectionContent` text NOT NULL,
-  `sectionContentApp` varchar(100) NOT NULL,
-  `sectionName` varchar(50) NOT NULL,
-  `sectionLink` varchar(100) NOT NULL,
-  `sectionTable` varchar(20) NOT NULL,
-  `status` smallint(6) NOT NULL,
-  PRIMARY KEY (`section`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `resource-section` (  `section` int(11) NOT NULL,
+  `main` tinyint(4) NOT NULL,  `defaultSection` tinyint(4) NOT NULL,  `sectionContent` text NOT NULL,  `sectionContentApp` varchar(100) NOT NULL,  `sectionName` varchar(50) NOT NULL,  `sectionLink` varchar(100) NOT NULL,  `sectionTable` varchar(20) NOT NULL,  `status` smallint(6) NOT NULL,  PRIMARY KEY (`section`)) ;
 
 -- --------------------------------------------------------
 
@@ -813,16 +766,8 @@ CREATE TABLE `resource-technical-knowledge` (
 -- Table structure for table `resource-tips`
 --
 
-CREATE TABLE `resource-tips` (
-  `tipid` int(11) NOT NULL ,
-  `section` int(11) NOT NULL,
-  `tip` text  NOT NULL,
-  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,
-  `status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`section`),
-  UNIQUE KEY `section` (`section`),
-  UNIQUE KEY `tipid` (`tipid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci =38 ;
+CREATE TABLE `resource-tips` (  `tipid` int(11) NOT NULL UNIQUE,  `section` int(11) NOT NULL UNIQUE,  `tip` text  NOT NULL,
+  `dateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `status` tinyint(4) NOT NULL,  PRIMARY KEY (`section`)) ;
 
 -- --------------------------------------------------------
 

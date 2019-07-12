@@ -6,11 +6,24 @@ Map<String, dynamic> faq;
 List keyPhrases;
 String section;
 String secName;
+int index;
+String database;
+
+var data = [];
+var course = data[index]['course'];
+var organization = data[index]['organization'];
+var university = data[index]['university'];
+var year = data[index]['year'];
+var grade = data[index]['grade'];
+var score = data[index]['score'];
 
 class ProfessionalQualifications extends StatelessWidget {
-  ProfessionalQualifications(String d2, String i2) {
+  ProfessionalQualifications(String d2, String i2, int i1, List d, List k2) {
     section = d2;
     secName = i2;
+    keyPhrases = k2;
+    index = i1;
+    data = d;
   }
   @override
   Widget build(BuildContext context) {
@@ -145,7 +158,13 @@ class ProfessionalQualifications extends StatelessWidget {
                                 Form(
                                   child: Column(
                                     children: <Widget>[
-                                      TextFormField(
+                                      TextField(
+                                        controller: new TextEditingController.fromValue(
+                                            new TextEditingValue(
+                                                text: data[index]['course'].toString(),
+                                                selection: new TextSelection.collapsed(
+                                                    offset: course.length))),
+                                        onChanged: (val) => course = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         decoration: InputDecoration(
                                             labelStyle:
@@ -155,16 +174,22 @@ class ProfessionalQualifications extends StatelessWidget {
                                             border: OutlineInputBorder(
                                                 borderRadius:
                                                 BorderRadius.circular(10))),
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter the name of the course';
-                                          }
-                                        },
+//                                        validator: (value) {
+//                                          if (value.isEmpty) {
+//                                            return 'Please enter the name of the course';
+//                                          }
+//                                        },
                                       ),
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                        controller: new TextEditingController.fromValue(
+                                            new TextEditingValue(
+                                                text: data[index]['organization'].toString(),
+                                                selection: new TextSelection.collapsed(
+                                                    offset: organization.length))),
+                                        onChanged: (val) => organization = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         textAlign: TextAlign.start,
@@ -176,16 +201,22 @@ class ProfessionalQualifications extends StatelessWidget {
                                             TextStyle(color: Color(0xffff1e50)),
                                             labelText: 'Name of the Institute',
                                             hintText: "Ex - IIM Rohtak"),
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter the name of the institute';
-                                          }
-                                        },
+//                                        validator: (value) {
+//                                          if (value.isEmpty) {
+//                                            return 'Please enter the name of the institute';
+//                                          }
+//                                        },
                                       ),
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                        controller: new TextEditingController.fromValue(
+                                            new TextEditingValue(
+                                                text: data[index]['university'].toString(),
+                                                selection: new TextSelection.collapsed(
+                                                    offset: university.length))),
+                                        onChanged: (val) => university = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         textAlign: TextAlign.start,
@@ -199,16 +230,22 @@ class ProfessionalQualifications extends StatelessWidget {
                                             'University / Affiliation / Autonomous',
                                             hintText:
                                             "Ex - Affiliated to Anna University"),
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter the Institute Status';
-                                          }
-                                        },
+//                                        validator: (value) {
+//                                          if (value.isEmpty) {
+//                                            return 'Please enter the Institute Status';
+//                                          }
+//                                        },
                                       ),
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                        controller: new TextEditingController.fromValue(
+                                            new TextEditingValue(
+                                                text: data[index]['year'].toString(),
+                                                selection: new TextSelection.collapsed(
+                                                    offset: year.toString().length))),
+                                        onChanged: (val) => year = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         keyboardType: TextInputType.datetime,
@@ -223,16 +260,22 @@ class ProfessionalQualifications extends StatelessWidget {
                                             TextStyle(color: Color(0xffff1e50)),
                                             labelText: 'Year',
                                             hintText: "yyyy"),
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter Internship Location';
-                                          }
-                                        },
+//                                        validator: (value) {
+//                                          if (value.isEmpty) {
+//                                            return 'Please enter Internship Location';
+//                                          }
+//                                        },
                                       ),
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                        controller: new TextEditingController.fromValue(
+                                            new TextEditingValue(
+                                                text: data[index]['grade'].toString(),
+                                                selection: new TextSelection.collapsed(
+                                                    offset: grade.length))),
+                                        onChanged: (val) => grade = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         textAlign: TextAlign.start,
@@ -249,7 +292,13 @@ class ProfessionalQualifications extends StatelessWidget {
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                        controller: new TextEditingController.fromValue(
+                                            new TextEditingValue(
+                                                text: data[index]['score'].toString(),
+                                                selection: new TextSelection.collapsed(
+                                                    offset: score.length))),
+                                        onChanged: (val) => score = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         keyboardType: TextInputType.number,

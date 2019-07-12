@@ -6,11 +6,18 @@ Map<String, dynamic> faq;
 List keyPhrases;
 String section;
 String secName;
+String database;
+int index;
+
+var data = [];
 
 class Introduction extends StatelessWidget {
-  Introduction(String d2, String i2) {
+  Introduction(String d2, String i2, int i1, List d, List k2) {
     section = d2;
     secName = i2;
+    keyPhrases = k2;
+    index = i1;
+    data = d;
   }
   @override
   Widget build(BuildContext context) {

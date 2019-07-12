@@ -3,15 +3,24 @@ import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
 
 Map<String, dynamic> faq;
+int index;
+String database;
 List keyPhrases;
 String section;
 String secName;
 
+
+
 class BasicInfo extends StatelessWidget {
-  BasicInfo(String d2, String i2) {
+  BasicInfo(String d2, String i2, int i1, List d) {
     section = d2;
     secName = i2;
+    index = i1;
+    data = d;
+
   }
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

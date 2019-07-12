@@ -1,21 +1,41 @@
 import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
+import '../Custom dialog database.dart';
+
 
 Map<String, dynamic> faq;
+int index;
+List databb3 = [];
+List databb1 = [];
+String database;
 List keyPhrases;
 String section;
 String secName;
 
+var data = [];
+var organization = data[index]['organization'];
+var position = data[index]['position'];
+var location = data[index]['location'];
+var dateJoining = data[index]['dateJoining'];
+var dateLeaving = data[index]['dateLeaving'];
+var description = data[index]['description'];
+
 class AssociatedMembers extends StatelessWidget {
-  AssociatedMembers(String d2, String i2) {
+  AssociatedMembers(String d2, String i2, int i1, List d, List k2, List d1, List d3) {
     section = d2;
     secName = i2;
+    index = i1;
+    data = d;
+    databb1 = d3;
+    databb3 = d1;
+    keyPhrases = k2;
   }
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<String> _value = ValueNotifier("DD/MM/YYYY");
+    ValueNotifier<String> _value = ValueNotifier(dateJoining.toString());
+    ValueNotifier<String> _value2 = ValueNotifier(dateLeaving.toString());
 
     Future _selectDate() async {
       DateTime picked = await showDatePicker(
@@ -135,11 +155,7 @@ class AssociatedMembers extends StatelessWidget {
                                         showDialog(
                                           context: context,
                                           builder: (BuildContext context) =>
-                                              CustomDialog(
-                                                title: "DataBase",
-                                                description:
-                                                "Data Aaoo, Hum Darte Hai Kya ?",
-                                                buttonText: "Okay",
+                                              CustomDialogDatabase("Database",data, databb3,section
                                               ),
                                         );
                                       },
@@ -172,7 +188,13 @@ class AssociatedMembers extends StatelessWidget {
                                   child: Form(
                                       child: Column(
                                         children: <Widget>[
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['organization'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: organization.length))),
+                                            onChanged: (val) => organization = val,
                                             style: TextStyle(color: Color(0xff232882)),
                                             decoration: InputDecoration(
                                                 labelStyle:
@@ -183,16 +205,22 @@ class AssociatedMembers extends StatelessWidget {
                                                 border: OutlineInputBorder(
                                                     borderRadius:
                                                     BorderRadius.circular(10))),
-                                            validator: (value) {
-                                              if (value.isEmpty) {
-                                                return 'Please enter an Organization';
-                                              }
-                                            },
+//                                            validator: (value) {
+//                                              if (value.isEmpty) {
+//                                                return 'Please enter an Organization';
+//                                              }
+//                                            },
                                           ),
                                           Padding(
                                             padding: EdgeInsets.all(10),
                                           ),
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['position'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: position.length))),
+                                            onChanged: (val) => position = val,
                                             style: TextStyle(color: Color(0xff232882)),
                                             scrollPadding: EdgeInsets.all(10.0),
                                             textAlign: TextAlign.start,
@@ -207,7 +235,13 @@ class AssociatedMembers extends StatelessWidget {
                                           Padding(
                                             padding: EdgeInsets.all(10),
                                           ),
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['location'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: location.length))),
+                                            onChanged: (val) => location = val,
                                             style: TextStyle(color: Color(0xff232882)),
                                             scrollPadding: EdgeInsets.all(10.0),
                                             textAlign: TextAlign.start,
@@ -316,7 +350,13 @@ class AssociatedMembers extends StatelessWidget {
                                           Padding(
                                             padding: EdgeInsets.all(10),
                                           ),
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['description'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: description.length))),
+                                            onChanged: (val) => description = val,
                                             style: TextStyle(color: Color(0xff232882)),
                                             scrollPadding: EdgeInsets.all(10.0),
                                             textAlign: TextAlign.start,

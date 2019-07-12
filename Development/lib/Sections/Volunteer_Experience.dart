@@ -3,19 +3,34 @@ import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
 
 Map<String, dynamic> faq;
+int index;
+String database;
 List keyPhrases;
 String section;
 String secName;
 
+var data = [];
+var organization = data[index]['organization'];
+var cause = data[index]['cause'];
+var role = data[index]['role'];
+var dateJoining = data[index]['dateJoining'];
+var dateLeaving = data[index]['dateLeaving'];
+var description = data[index]['description'];
+
 class VolunteerExperience extends StatelessWidget {
-  VolunteerExperience(String d2, String i2) {
+  VolunteerExperience(String d2, String i2, int i1, List d, List k2) {
     section = d2;
     secName = i2;
+    index = i1;
+    keyPhrases = k2;
+    data = d;
   }
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<String> _value = ValueNotifier("DD/MM/YYYY");
+    ValueNotifier<String> _value = ValueNotifier(data[index]['dateJoining']);
+    ValueNotifier<String> _value2 = ValueNotifier(data[index]['dateLeaving']);
+
 
     Future _selectDate() async {
       DateTime picked = await showDatePicker(
@@ -172,7 +187,13 @@ class VolunteerExperience extends StatelessWidget {
                               child: Form(
                                   child: Column(
                                 children: <Widget>[
-                                  TextFormField(
+                                  TextField(
+                                    controller: new TextEditingController.fromValue(
+                                        new TextEditingValue(
+                                            text: data[index]['organization'],
+                                            selection: new TextSelection.collapsed(
+                                                offset: organization.length))),
+                                    onChanged: (val) => organization = val,
                                     style: TextStyle(color: Color(0xff232882)),
                                     decoration: InputDecoration(
                                         labelStyle:
@@ -183,16 +204,22 @@ class VolunteerExperience extends StatelessWidget {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(10))),
-                                    validator: (value) {
-                                      if (value.isEmpty) {
-                                        return 'Please enter an Organization';
-                                      }
-                                    },
+//                                    validator: (value) {
+//                                      if (value.isEmpty) {
+//                                        return 'Please enter an Organization';
+//                                      }
+//                                    },
                                   ),
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                   ),
-                                  TextFormField(
+                                  TextField(
+                                    controller: new TextEditingController.fromValue(
+                                        new TextEditingValue(
+                                            text: data[index]['role'],
+                                            selection: new TextSelection.collapsed(
+                                                offset: role.length))),
+                                    onChanged: (val) => role = val,
                                     style: TextStyle(color: Color(0xff232882)),
                                     scrollPadding: EdgeInsets.all(10.0),
                                     textAlign: TextAlign.start,
@@ -207,7 +234,13 @@ class VolunteerExperience extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                   ),
-                                  TextFormField(
+                                  TextField(
+                                    controller: new TextEditingController.fromValue(
+                                        new TextEditingValue(
+                                            text: data[index]['cause'],
+                                            selection: new TextSelection.collapsed(
+                                                offset: cause.length))),
+                                    onChanged: (val) => cause = val,
                                     style: TextStyle(color: Color(0xff232882)),
                                     scrollPadding: EdgeInsets.all(10.0),
                                     textAlign: TextAlign.start,
@@ -296,7 +329,7 @@ class VolunteerExperience extends StatelessWidget {
                                                             children: <Widget>[
                                                               ValueListenableBuilder(
                                                                 valueListenable:
-                                                                    _value,
+                                                                    _value2,
                                                                 builder:
                                                                     (context,
                                                                         val,
@@ -316,7 +349,13 @@ class VolunteerExperience extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                   ),
-                                  TextFormField(
+                                  TextField(
+                                    controller: new TextEditingController.fromValue(
+                                        new TextEditingValue(
+                                            text: data[index]['description'],
+                                            selection: new TextSelection.collapsed(
+                                                offset: description.length))),
+                                    onChanged: (val) => description = val,
                                     style: TextStyle(color: Color(0xff232882)),
                                     scrollPadding: EdgeInsets.all(10.0),
                                     textAlign: TextAlign.start,

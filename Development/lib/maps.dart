@@ -88,3 +88,33 @@ Map<String,String> AddedDataColumn=
 
 
 };
+Map<String,String> Sections={
+
+'51122':'Academic Projects',
+'51114':'Achievements',
+'51126':'Add a Section',
+'51116':'Associated Members',
+'51115':'Honors & Awards',
+'51100':'Basic Info',
+'51110':'Certificates',
+'51123':'Co-Curricular Activities',
+'51101':'Contact Details',
+'51109':'Educational Background',
+'51102':'Profile Image',
+'51119':'Interests',
+'51106':'Internships',
+'51103':'Introduction',
+'51120':'Spoken Languages',
+'51113':'Patents',
+'51099':'Position of Responsibility',
+'51121':'Preferences',
+'51125':'Presentations',
+'51108':'Professional Qualifications',
+'51105':'Work Projects',
+'51112':'Publications',
+'51118':'Soft Skills',
+'51111':'Technical Knowledge',
+'51107':'Trainings Conducted',
+'51117':'Volunteer Experience',
+'51104':'Work Details',
+};

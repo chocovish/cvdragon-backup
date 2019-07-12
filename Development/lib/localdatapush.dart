@@ -56,8 +56,9 @@ var db=await openDatabase("assets/sections.db", version: 1);
 id=await sfetch.readid();
 String sql="UPDATE "+tablename[section]+" SET ";
 newdata.forEach((k,v){
-  sql+=k+" = \""+v+"\"";
+  sql+=k+" = \""+v+"\",";
 });
+sql=sql.substring(0,sql.length-1);
 sql+=" WHERE id="+id+" AND "+columnName[section]+"="+data[columnName[section]].toString();
         await db.rawUpdate(sql);
         return 1;

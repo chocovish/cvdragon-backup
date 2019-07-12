@@ -6,16 +6,31 @@ Map<String, dynamic> faq;
 List keyPhrases;
 String section;
 String secName;
+String database;
+int index;
+
+var data = [];
+var organization = data[index]['organization'];
+var designation = data[index]['designation'];
+var dateJoining = data[index]['dateJoining'];
+var dateLeaving = data[index]['dateLeaving'];
+var location = data[index]['location'];
+var description = data[index]['description'];
+
 
 class WorkDetails extends StatelessWidget {
-  WorkDetails(String d2, String i2) {
+  WorkDetails(String d2, String i2, int i1, List d, List k2) {
     section = d2;
     secName = i2;
+    keyPhrases = k2;
+    index = i1;
+    data = d;
   }
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<String> _value = ValueNotifier("DD/MM/YYYY");
+    ValueNotifier<String> _value = ValueNotifier(data[index][dateJoining].toString());
+        ValueNotifier<String> _value2 = ValueNotifier(data[index][dateLeaving].toString());
 
     Future _selectDate() async {
       DateTime picked = await showDatePicker(
@@ -26,7 +41,7 @@ class WorkDetails extends StatelessWidget {
       if (picked != null) {
         String mydate = "${picked.day}/${picked.month}/${picked.year}";
         _value.value = mydate;
-        print("Value is $mydate");
+        //print("Value is $mydate");
       }
     }
 
@@ -172,7 +187,13 @@ class WorkDetails extends StatelessWidget {
                                   child: Form(
                                       child: Column(
                                         children: <Widget>[
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['organization'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: organization.length))),
+                                            onChanged: (val) => organization = val,
                                             style: TextStyle(color: Color(0xff232882)),
                                             decoration: InputDecoration(
                                                 labelStyle:
@@ -183,16 +204,22 @@ class WorkDetails extends StatelessWidget {
                                                 border: OutlineInputBorder(
                                                     borderRadius:
                                                     BorderRadius.circular(10))),
-                                            validator: (value) {
-                                              if (value.isEmpty) {
-                                                return 'Please enter an Organization';
-                                              }
-                                            },
+//                                            validator: (value) {
+//                                              if (value.isEmpty) {
+//                                                return 'Please enter an Organization';
+//                                              }
+//                                            },
                                           ),
                                           Padding(
                                             padding: EdgeInsets.all(10),
                                           ),
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['designation'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: designation.length))),
+                                            onChanged: (val) => designation = val,
                                             style: TextStyle(color: Color(0xff232882)),
                                             scrollPadding: EdgeInsets.all(10.0),
                                             textAlign: TextAlign.start,
@@ -208,7 +235,13 @@ class WorkDetails extends StatelessWidget {
                                           Padding(
                                             padding: EdgeInsets.all(10),
                                           ),
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['location'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: location.length))),
+                                            onChanged: (val) => location = val,
                                             style: TextStyle(color: Color(0xff232882)),
                                             scrollPadding: EdgeInsets.all(10.0),
                                             textAlign: TextAlign.start,
@@ -298,7 +331,7 @@ class WorkDetails extends StatelessWidget {
                                                                     children: <Widget>[
                                                                       ValueListenableBuilder(
                                                                         valueListenable:
-                                                                        _value,
+                                                                        _value2,
                                                                         builder:
                                                                             (context,
                                                                             val,
@@ -318,7 +351,13 @@ class WorkDetails extends StatelessWidget {
                                           Padding(
                                             padding: EdgeInsets.all(10),
                                           ),
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController.fromValue(
+                                                new TextEditingValue(
+                                                    text: data[index]['description'].toString(),
+                                                    selection: new TextSelection.collapsed(
+                                                        offset: description.toString().length))),
+                                            onChanged: (val) => description = val,
                                             style: TextStyle(color: Color(0xff232882)),
                                             scrollPadding: EdgeInsets.all(10.0),
                                             textAlign: TextAlign.start,

@@ -1,4 +1,6 @@
+import 'package:cvdragonapp_v1/edit_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as prefix0;
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
 import '../localdatapush.dart'as lpush;
@@ -30,10 +32,10 @@ class CreateAcademicProjects extends StatelessWidget {
       "title":t,
       "description":d
     };
-   lpush.pushData (section,datatobecreated).then((int status) {
-
+   lpush.pushData(section,datatobecreated).then((int status) {
       Navigator.pop(context);
       Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
 
     });
   }

@@ -6,20 +6,32 @@ Map<String, dynamic> faq;
 List keyPhrases;
 String section;
 String secName;
+String database;
+int index;
+
+var data = [];
+var language = data[index]['language'];
+var readLanguage = data[index]['readLanguage'];
+var writeLanguage = data[index]['writeLanguage'];
+var speakLanguage = data[index]['speakLanguage'];
 
 class Languages extends StatelessWidget {
-  Languages(String d2, String i2) {
+  Languages(String d2, String i2, int i1, List d, List k2) {
     section = d2;
     secName = i2;
+    keyPhrases = k2;
+    index = i1;
+    data = d;
   }
 
-  final monVal = ValueNotifier(false);
-  final tuVal = ValueNotifier(false);
-  final wedVal = ValueNotifier(false);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    final speakVal = ValueNotifier(data[index]['speakLanguage']);
+    final readVal = ValueNotifier(data[index]['readLanguage']);
+    final writeVal = ValueNotifier(data[index]['writeLanguage']);
+
+
     return Scaffold(
         body: Container(
             decoration: BoxDecoration(
@@ -167,7 +179,13 @@ class Languages extends StatelessWidget {
                                 padding: EdgeInsets.all(20.0),
                                 child: Form(
                                     child: Column(children: <Widget>[
-                                  TextFormField(
+                                  TextField(
+                                    controller: new TextEditingController.fromValue(
+                                        new TextEditingValue(
+                                            text: data[index]['language'].toString(),
+                                            selection: new TextSelection.collapsed(
+                                                offset: language.length))),
+                                    onChanged: (val) => language = val,
                                     style: TextStyle(color: Color(0xff232882)),
                                     decoration: InputDecoration(
                                         labelStyle:
@@ -177,11 +195,11 @@ class Languages extends StatelessWidget {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(10))),
-                                    validator: (value) {
-                                      if (value.isEmpty) {
-                                        return 'Please enter a heading';
-                                      }
-                                    },
+//                                    validator: (value) {
+//                                      if (value.isEmpty) {
+//                                        return 'Please enter a heading';
+//                                      }
+//                                    },
                                   ),
                                   Padding(
                                     padding: EdgeInsets.all(10),
@@ -192,34 +210,34 @@ class Languages extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: <Widget>[
                                         ValueListenableBuilder(
-                                            valueListenable: monVal,
+                                            valueListenable: speakVal,
                                             builder: (context, val, child) {
                                               return Checkbox(
-                                                value: val,
+                                                value: val==0?false:true,
                                                 onChanged: (c) {
-                                                  monVal.value = c;
+                                                  speakVal.value = c;
                                                 },
                                               );
                                             }),
                                         Text("Speak"),
                                         ValueListenableBuilder(
-                                            valueListenable: tuVal,
+                                            valueListenable: readVal,
                                             builder: (context, val, child) {
                                               return Checkbox(
-                                                value: val,
+                                                value: val==0?false:true,
                                                 onChanged: (c) {
-                                                  tuVal.value = c;
+                                                  readVal.value = c;
                                                 },
                                               );
                                             }),
                                         Text("Read"),
                                         ValueListenableBuilder(
-                                            valueListenable: wedVal,
+                                            valueListenable: writeVal,
                                             builder: (context, val, child) {
                                               return Checkbox(
-                                                value: val,
+                                                value: val==0?false:true,
                                                 onChanged: (c) {
-                                                  wedVal.value = c;
+                                                  writeVal.value = c;
                                                 },
                                               );
                                             }),

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io' as io;
 import 'package:cvdragonapp_v1/datapush.dart';
-
+import 'package:path_provider/path_provider.dart';
 import './listofcreatequeries.dart';
 import 'package:sqflite/sqflite.dart';
 import './fetch.dart' as fetch;
@@ -13,7 +13,9 @@ List datafrmserver;
 Database database;
 Future<String> initialize() async {
   print('initialized called');
-   await openDatabase("assets/sections.db", version: 1,
+  var add =await getApplicationDocumentsDirectory();
+  print(add.listSync().toString());
+   await openDatabase(add.path.toString()+"/sections.db", version: 1,
       onOpen: (Database db) async {
     List<String> queries = createQueries;
     queries.forEach((element) async {
@@ -29,7 +31,8 @@ Future<String> initialize() async {
 Future<void> add() async {
   id=await sfetch.readid();
   authkey=await sfetch.readauthKey();
-  var db =   await openDatabase("assets/sections.db", version: 1);
+   var add =await getApplicationDocumentsDirectory();
+  var db =   await openDatabase(add.path.toString()+"/sections.db", version: 1);
   await fetch.getall(id, authkey).then((Map<String,dynamic> allthedata)
   {
     allthedata.forEach((k,v)
@@ -219,12 +222,13 @@ Future<void> add() async {
 
 display() async {
   print('This display called');
-    openDatabase('assets/sections.db', version: 3,
+   var add =await getApplicationDocumentsDirectory();
+    openDatabase(add.path.toString()+'/sections.db', version: 3,
       onOpen: (Database db) async {
     print(  db.rawQuery("SELECT * FROM `cv-academic-projects`"));
     // print(  db
     //     .rawQuery("SELECT * FROM `create-cvsection` WHERE section=51105"));
-    DataPush();
+   // DataPush();
     print('execute');
   });
 }
@@ -242,6 +246,7 @@ display() async {
       if (status == true) {
       await display();
       } else {
+  
        await initialize();
          await add();
       }

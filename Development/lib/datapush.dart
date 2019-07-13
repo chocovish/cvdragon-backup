@@ -1,5 +1,6 @@
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 import 'dart:convert';
 import 'package:sqflite/sqflite.dart';
 var id = ""; //Rohit Agarwal 
@@ -29,24 +30,25 @@ Map<String,dynamic> contents_skills={
 //     // var res = await http.get(url);
 //     //  return res.body;
 //  }
- Future<int> displaylocal()async{
-    print('This display called');
-    await openDatabase('assets/sections.db', version: 3,
-        onOpen: (Database db) async {
-      print(await db.rawQuery("SELECT * FROM `create-cvprofilesection`"));
-      // DataPush();
-      print('execute');
-      return 1;
-    });
- }
-class DataPush{
-  DataPush(){
-    print('Server Data Pushed called');
-    // pushData().then((String message){
-    //   print(message);
-    // });
-    displaylocal().then((int status) {
-      print(status); 
-    });
-  }
-}
+//  Future<int> displaylocal()async{
+//     print('This display called');
+//     var add=await getApplicationDocumentsDirectory();
+//     await openDatabase(add.path+'/sections.db', version: 3,
+//         onOpen: (Database db) async {
+//       print(await db.rawQuery("SELECT * FROM `create-cvprofilesection`"));
+//       // DataPush();
+//       print('execute');
+//       return 1;
+//     });
+//  }
+// class DataPush{
+//   DataPush(){
+//     print('Server Data Pushed called');
+//     // pushData().then((String message){
+//     //   print(message);
+//     // });
+//     displaylocal().then((int status) {
+//       print(status); 
+//     });
+//   }
+// }

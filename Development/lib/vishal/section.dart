@@ -1,12 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import './Custom_dialog.dart';
-import './Custom_dialog_KeyPhrases.dart';
-import './UploadPage.dart';
-import './TN.dart';
-import 'Introduction.dart';
-import 'BasicInfo.dart';
-import 'PositionOfResponsibility.dart';
+import '../Custom_dialog.dart';
+import '../Custom_dialog_KeyPhrases.dart';
 import 'ProfileImage.dart';
 
 String secName = "MySection";

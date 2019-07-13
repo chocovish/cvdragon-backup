@@ -19,8 +19,8 @@ Future<String> readmail() async {
     }
 Future<bool> readalltablescreated() async {
       final prefs = await SharedPreferences.getInstance();
-      final value = prefs.getBool('alltablescreated') ?? null;
-      return (value==null?false:value);
+      final value = prefs.getBool('alltablescreated') ?? false;
+      return value;
     }
 Future<String> readid() async {
       final prefs = await SharedPreferences.getInstance();

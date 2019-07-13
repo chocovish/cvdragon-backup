@@ -38,10 +38,11 @@ class HomePagee extends StatefulWidget {
   }
 }
 
-bool profileselected = false;
+
 class _HomePagee extends State<HomePagee> {
   @override
   bool isLoading = true;
+  bool profileselected = false;
   
   void initState() {
     // TODO: implement initState
@@ -75,7 +76,44 @@ class _HomePagee extends State<HomePagee> {
       print(index);
     });
   }
-
+Widget dialogContent(BuildContext context,write,setState)
+{
+  return Center(
+    child: Container(
+      height: MediaQuery.of(context).size.height/3,
+      child: Dialog( 
+        child: ListView.builder(
+          physics: BouncingScrollPhysics(),
+          itemCount: profiles == null ? 0 : profiles.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        decoration: BoxDecoration(border: new Border.all(color: Colors.black),),
+                        child: InkWell(
+                         
+                          onTap: ()async{
+                           // print(profiles[index]['cvid'].toString());
+                            await write(profiles[index]['cvid'].toString());
+                             setState((){
+                               print("done");
+                               profileselected=true;
+                             });
+                          },
+                          child: Text(
+                           profiles[index]['profileName'],
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      );
+                    },
+                  
+        ),
+      ),
+    ),
+  );
+}
   @override
   Widget build(BuildContext context) {
     return isLoading
@@ -141,44 +179,7 @@ write(String cvid) async
   {
       await writeprofile(cvid);
   }
-Widget dialogContent(BuildContext context,write,setState)
-{
-  return Center(
-    child: Container(
-      height: MediaQuery.of(context).size.height/3,
-      child: Dialog( 
-        child: ListView.builder(
-          physics: BouncingScrollPhysics(),
-          itemCount: profiles == null ? 0 : profiles.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        decoration: BoxDecoration(border: new Border.all(color: Colors.black),),
-                        child: InkWell(
-                         
-                          onTap: ()async{
-                           // print(profiles[index]['cvid'].toString());
-                            await write(profiles[index]['cvid'].toString());
-                             setState((){
-                               print("done");
-                               profileselected=true;
-                             });
-                          },
-                          child: Text(
-                           profiles[index]['profileName'],
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      );
-                    },
-                  
-        ),
-      ),
-    ),
-  );
-}
+
 Widget _buildCardView(BuildContext context) {
   return Container(
       child: ListView(

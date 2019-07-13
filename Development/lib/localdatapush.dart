@@ -15,14 +15,15 @@ var authkey = '';
 var cvid = '';
 //var sectionID = '51122';
 //var data = 'projects';
-
+ 
 
 Future<int>pushData(String section,Map<String,dynamic> createddata) async{
+   var add =await getApplicationDocumentsDirectory();
       var timestamp=new DateTime.now().millisecondsSinceEpoch;
       id=await sfetch.readid();
       authkey=await sfetch.readauthKey();
       cvid= await sfetch.readprofiles();
-      var db=await openDatabase("assets/sections.db", version: 1);
+      var db=await openDatabase(add.path+"/sections.db", version: 1);
       Map<String, dynamic> contents = {
         'id':id,
         'refID':timestamp,
@@ -54,14 +55,9 @@ contents.addAll(createddata);
         return 1;
 }
 
-// Future<int>updateAcademicProject(String t,String d,Map<String,dynamic> data) async{
-// var db=await openDatabase("assets/sections.db", version: 1);
-// String sql="UPDATE `cv-academic-projects` SET title = \" "+t+" \" , description = \" "+d+"\" WHERE id="+id+" AND academicid="+data['academicid'].toString();
-//         await db.rawUpdate(sql);
-//         return 1;
-// }
 Future<int>updateData(String section,Map<String,dynamic> newdata,Map<String,dynamic> data) async{
-var db=await openDatabase("assets/sections.db", version: 1);
+   var add =await getApplicationDocumentsDirectory();
+var db=await openDatabase(add.path+"/sections.db", version: 1);
 id=await sfetch.readid();
 String sql="UPDATE "+tablename[section]+" SET ";
 newdata.forEach((k,v){

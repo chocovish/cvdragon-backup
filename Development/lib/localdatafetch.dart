@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:sqflite/sqflite.dart';
 import './maps.dart';
+import 'package:path_provider/path_provider.dart';
 Future<List> getDatabase(String section) async {
-var db=  await openDatabase('assets/sections.db', version: 3);
+   var add =await getApplicationDocumentsDirectory();
+var db=  await openDatabase(add.path.toString()+'/sections.db', version: 3);
 var cvid=await readprofiles();
    List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);
     print("response="+response.toString());//contains 2 which is not in database
@@ -28,7 +30,8 @@ var cvid=await readprofiles();
 }
 
 Future<List> getAddedData(String section) async {
-var db=  await openDatabase('assets/sections.db', version: 3);
+   var add =await getApplicationDocumentsDirectory();
+var db=  await openDatabase(add.path.toString()+'/sections.db', version: 3);
 var cvid=await readprofiles();
 print(section);
    List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);
@@ -56,19 +59,22 @@ print(section);
     }
 }
 Future<List> getDefaultSection(String section) async {
-var db=  await openDatabase('assets/sections.db', version: 3);
+   var add =await getApplicationDocumentsDirectory();
+var db=  await openDatabase(add.path+'/sections.db', version: 3);
    
    List response=await db.rawQuery("SELECT * FROM "+tablename[section]);
     return response;
 }
 Future<List> getProfiles(String id, String authkey) async {
-var db=  await openDatabase('assets/sections.db', version: 3);
+   var add =await getApplicationDocumentsDirectory();
+var db=  await openDatabase(add.path+'/sections.db', version: 3);
    List response=await db.rawQuery("SELECT * FROM `create-cvprofile`");
     return response;
 }
 
 Future<int>deleteFromProfile(String section,String subSection)async{
- var db=await openDatabase("assets/sections.db", version: 1);
+   var add =await getApplicationDocumentsDirectory();
+ var db=await openDatabase(add.path+"/sections.db", version: 1);
  var cvid=await readprofiles();
   List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);
   List res=json.decode(response[0]['subsection']);
@@ -92,7 +98,8 @@ if(element.toString()==subSection.toString())
 }
 
 Future<int>addintoProfile(String section,String subSection)async{
- var db=await openDatabase("assets/sections.db", version: 1);
+   var add =await getApplicationDocumentsDirectory();
+ var db=await openDatabase(add.path+"/sections.db", version: 1);
  var cvid=await readprofiles();
   List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);
   List res=json.decode(response[0]['subsection']);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './Custom_dialog.dart';
+import '../Custom_dialog.dart';
 
 class TN extends StatelessWidget {
   @override

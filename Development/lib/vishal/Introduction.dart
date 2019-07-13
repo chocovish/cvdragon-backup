@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './Custom_dialog.dart';
 
 class Introduction extends StatelessWidget {
   @override

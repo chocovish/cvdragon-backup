@@ -7,11 +7,13 @@ import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
 import 'dart:async';
-import './fetch.dart' as fetch;
+import './localdatafetch.dart' as lfetch;
+import './sharedfetch.dart' as sfetch;
 import 'package:http/http.dart' as http;
 import './create_section.dart';
 import './edit_section.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import './maps.dart'as  maps;
 
 class ProfileSections extends StatefulWidget {
   @override
@@ -22,18 +24,23 @@ class ProfileSections extends StatefulWidget {
 }
 
 class _ProfileSections extends State<ProfileSections> {
-  int id = 1;
-  int authkey = 1;
+  String id = "";
+  String  authkey = "" ;
+  String cvid="";
   bool _isLoading = true;
+  Map<String,dynamic> countoftotaldata={};
   List data;
 
-  void get() {
-    fetch.getSectionData().then((List res) {
+  void get() async{
+    id=await sfetch.readid();
+    authkey=await sfetch.readauthKey();
+    cvid=await sfetch.readprofiles();
+    data=await lfetch.getProfileSections(id,cvid);
+    countoftotaldata= await lfetch.getCount(data);
       setState(() {
-        data = res;
         _isLoading = false;
       });
-    });
+
   }
 
   Widget build(BuildContext context) {
@@ -107,7 +114,7 @@ class _ProfileSections extends State<ProfileSections> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   AutoSizeText(
-                                    data[index]['sectionName'].toString(),
+                                   maps.Sections[data[index]['section'].toString()].toString(),
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 22,
@@ -115,7 +122,7 @@ class _ProfileSections extends State<ProfileSections> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   CircleAvatar(backgroundColor: Colors.black,radius: 21,
-                                    child: Text("10"),),
+                                    child: Text(countoftotaldata[data[index]['section'].toString()]),),
                                 ],
                               ),
                             ),

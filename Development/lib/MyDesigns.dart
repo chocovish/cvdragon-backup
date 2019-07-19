@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
-import './fetch.dart' as fetch;
+import './localdatafetch.dart'as lfetch;
 class MyDesigns extends StatefulWidget {
   @override
   _MyDesigns createState() => new _MyDesigns();
@@ -24,7 +24,7 @@ class _MyDesigns extends State<MyDesigns> {
     get();
   }
 void get() async{
-    data=await fetch.getallDesigns();
+    data=await lfetch.getallDesigns();
 setState(() {
  isLoading=false; 
 });

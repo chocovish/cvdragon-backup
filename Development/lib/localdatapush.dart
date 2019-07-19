@@ -10,6 +10,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import './earlyfetch.dart';
+import './datapush.dart' as server;
 var id = '';
 var authkey = '';
 var cvid = '';
@@ -24,6 +25,7 @@ Future<int>pushData(String section,Map<String,dynamic> createddata) async{
       authkey=await sfetch.readauthKey();
       cvid= await sfetch.readprofiles();
       var db=await openDatabase(add.path+"/sections.db", version: 1);
+      
       Map<String, dynamic> contents = {
         'id':id,
         'refID':timestamp,
@@ -34,8 +36,11 @@ Future<int>pushData(String section,Map<String,dynamic> createddata) async{
 };
 print(createddata);
 contents.addAll(createddata);
+
         await db.insert(tablename[section],contents);
         await db.rawUpdate("UPDATE `create-cvsection` SET contentAdded = contentAdded+1, status=1 WHERE id="+id+" AND section="+section+" AND status=1");
+        String serversend=await  server.addData(timestamp.toString(),section,contents);
+        print(serversend);
         // insert a subsection the arrays of create-cvprofilesection => in subsection
         List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);
         print(response.toString());
@@ -53,6 +58,8 @@ contents.addAll(createddata);
         await db.rawUpdate(sql);
         print("Added a data in local data fetch");
         return 1;
+
+        
 }
 
 Future<int>updateData(String section,Map<String,dynamic> newdata,Map<String,dynamic> data) async{
@@ -66,5 +73,7 @@ newdata.forEach((k,v){
 sql=sql.substring(0,sql.length-1);
 sql+=" WHERE id="+id+" AND "+columnName[section]+"="+data[columnName[section]].toString();
         await db.rawUpdate(sql);
+        String serverupdate=await server.editData(data['refID'].toString(), section, newdata);
+        print(serverupdate);
         return 1;
 }

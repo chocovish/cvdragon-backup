@@ -1,6 +1,7 @@
+import './fonts.dart';
 import 'package:flutter/material.dart';
-import './designs.dart';
 import './home.dart';
+import './designs.dart';
 import './Design_Sections.dart';
 import './profile_sections.dart';
 import './Colors.dart';
@@ -57,28 +58,38 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
       }
 
       if(index == 3) {
-//        Navigator.of(context).push(
-//            MaterialPageRoute<Null>(builder: (BuildContext context) {
-//              return Colorset();
-//            }
-//            )
-        await showMenu<String>(
-          context: context,
-          position: RelativeRect.fromLTRB(500.0, 1000.0, 0.0, 0.0),
-          items: <PopupMenuItem<String>>[
-            new PopupMenuItem<String>(
-                child: const Text('Proof Read'), value: 'test1',),
-            new PopupMenuItem<String>(
-                child: const Text('Colors'), value: 'test2'),
-            new PopupMenuItem<String>(
-                child: const Text('Fonts'), value: 'test2'),
-            new PopupMenuItem<String>(
-                child: const Text('Advanced Setting'), value: 'test2'),
-          ],
-          elevation: 8.0,
-
-       );
+       Navigator.of(context).push(
+           MaterialPageRoute<Null>(builder: (BuildContext context) {
+             return Colorset();
+           }
+           ));
       }
+       if(index == 1) {
+       Navigator.of(context).push(
+           MaterialPageRoute<Null>(builder: (BuildContext context) {
+             return CVFont();
+           }
+           ));
+           }
+          
+      
+      //   await showMenu<String>(
+      //     context: context,
+      //     position: RelativeRect.fromLTRB(500.0, 1000.0, 0.0, 0.0),
+      //     items: <PopupMenuItem<String>>[
+      //       new PopupMenuItem<String>(
+      //           child: const Text('Proof Read'), value: 'test1',),
+      //       new PopupMenuItem<String>(
+      //           child: const Text('Colors'), value: 'test2'),
+      //       new PopupMenuItem<String>(
+      //           child: const Text('Fonts'), value: 'test2'),
+      //       new PopupMenuItem<String>(
+      //           child: const Text('Advanced Setting'), value: 'test2'),
+      //     ],
+      //     elevation: 8.0,
+
+      //  );
+      // }
 
      if(index == 0) {
        Navigator.of(context).push(
@@ -88,14 +99,14 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
            )
        );
      }
-     if(index == 1){
+    //  if(index == 1){
       
-       Navigator.of(context).push(MaterialPageRoute<Null>(builder: (BuildContext context){
-        return Designs();
-        }
-      )
-    );
-      }
+    //    Navigator.of(context).push(MaterialPageRoute<Null>(builder: (BuildContext context){
+    //     return Designs();
+    //     }
+    //   )
+    // );
+    //   }
       _selectedIndex = index;
    });
    

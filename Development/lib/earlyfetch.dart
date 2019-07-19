@@ -6,6 +6,7 @@ import './listofcreatequeries.dart';
 import 'package:sqflite/sqflite.dart';
 import './fetch.dart' as fetch;
 import './sharedfetch.dart' as sfetch;
+import './resourcesdata.dart';
 
 String id ="";
 String authkey = "";
@@ -44,6 +45,21 @@ Future<void> add() async {
       });
     });
   });
+List resourcetable=["`resource-all`",
+"`resource-tips`",
+"`resource-faqs`",
+"`resource-profiledesign`",
+"`resource-profilefont`",
+"`resource-profilesetting`",
+"`resource-section`",];
+int c=1;
+resourcetable.forEach((element){
+  List temp=table[c];
+    temp.forEach((values){
+      db.insert(element, values);
+    });
+    c++;
+});
 //   await fetch.getcvProject(id, authkey).then((List data) {
 //     data.forEach((element) {
 //       db.insert("`cv-project`", element);

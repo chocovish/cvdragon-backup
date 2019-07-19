@@ -6,7 +6,7 @@ import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
 import 'dart:async';
-import './fetch.dart' as fetch;
+import './localdatafetch.dart'as lfetch;
 import 'package:http/http.dart' as http;
 import 'main.dart' as main;
 
@@ -25,7 +25,7 @@ class _Sections extends State<Sections> {
   List data;
 
   void get() {
-    fetch.getSectionData().then((List res) {
+    lfetch.getSections().then((List res) {
       setState(() {
         data = res;
         _isLoading = false;

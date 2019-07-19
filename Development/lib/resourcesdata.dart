@@ -2,7 +2,7 @@ List allProfileFonts = [
   {
     "fontid": "1",
     "fontTypeName": "Font 13",
-    "fontType": ":Tahoma",
+    "fontType": "Tahoma",
     "fontSize": "2",
     "appliedOn": "",
     "downloadTime": "14050",
@@ -11,7 +11,7 @@ List allProfileFonts = [
   {
     "fontid": "2",
     "fontTypeName": "Font 2",
-    "fontType": ":helvetica",
+    "fontType": "helvetica",
     "fontSize": "2",
     "appliedOn": "",
     "downloadTime": "12587",
@@ -20,7 +20,7 @@ List allProfileFonts = [
   {
     "fontid": "4",
     "fontTypeName": "Font 4",
-    "fontType": ":timesnewroman",
+    "fontType": "timesnewroman",
     "fontSize": "2",
     "appliedOn": "",
     "downloadTime": "12853",
@@ -29,7 +29,7 @@ List allProfileFonts = [
   {
     "fontid": "5",
     "fontTypeName": "Font 5",
-    "fontType": ":Palatino Linotype",
+    "fontType": "Palatino Linotype",
     "fontSize": "2",
     "appliedOn": "",
     "downloadTime": "12986",
@@ -38,7 +38,7 @@ List allProfileFonts = [
   {
     "fontid": "6",
     "fontTypeName": "Font 6",
-    "fontType": ":Lucida Sans Unicode",
+    "fontType": "Lucida Sans Unicode",
     "fontSize": "2",
     "appliedOn": "",
     "downloadTime": "13119",
@@ -47,7 +47,7 @@ List allProfileFonts = [
   {
     "fontid": "7",
     "fontTypeName": "Font 7",
-    "fontType": ":MS Serif",
+    "fontType": "MS Serif",
     "fontSize": "2",
     "appliedOn": "",
     "downloadTime": "13252",
@@ -56,7 +56,7 @@ List allProfileFonts = [
   {
     "fontid": "8",
     "fontTypeName": "Font 8",
-    "fontType": ":Comic Sans MS",
+    "fontType": "Comic Sans MS",
     "fontSize": "2",
     "appliedOn": "",
     "downloadTime": "13385",
@@ -65,7 +65,7 @@ List allProfileFonts = [
   {
     "fontid": "10",
     "fontTypeName": "Font 10",
-    "fontType": ":Verdana",
+    "fontType": "Verdana",
     "fontSize": "2",
     "appliedOn": "",
     "downloadTime": "13651",
@@ -74,7 +74,7 @@ List allProfileFonts = [
   {
     "fontid": "12",
     "fontTypeName": "Font 12",
-    "fontType": ":arial",
+    "fontType": "arial",
     "fontSize": "2",
     "appliedOn": "",
     "downloadTime": "13917",
@@ -4131,3 +4131,13 @@ List tips = [
     "status": "1"
   }
 ];
+
+Map table={
+  1:keyPhrases,
+  2:tips,
+  3:fAQ,
+  4:allDesigns,
+  5:allProfileFonts,
+  6:allProfileSettings,
+  7:allSections
+};

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/services.dart';
 import 'package:reflected_mustache/mustache.dart';
+import './bottombar_preview.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import './maps.dart' show tablename;
 
@@ -29,12 +30,33 @@ class MyWebView extends StatefulWidget {
 }
 
 class _MyWebViewState extends State<MyWebView> {
+   void  _selectedTab(int index) {
+    setState(() {
+      print(index);
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    return WebView(initialUrl: "",onWebViewCreated: (WebViewController c){
-      webViewController = c;
-      loadTemplate();
-    },);
+    return Scaffold(
+      bottomNavigationBar: FABBottomAppBar(
+            notchedShape: CircularNotchedRectangle(),
+            color: Colors.white30,
+            centerItemText: "Download",
+            backgroundColor: Color(0xff232882),
+            selectedColor: Colors.white,
+            items: [
+              FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
+              FABBottomAppBarItem(iconData: Icons.edit, text: 'Designs'),
+              FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
+              FABBottomAppBarItem(iconData: Icons.more, text: 'More'),
+            ],
+            onTabSelected: _selectedTab,
+          ),
+          body: WebView(initialUrl: "",onWebViewCreated: (WebViewController c){
+        webViewController = c;
+        loadTemplate();
+      },),
+    );
   }
 }
 

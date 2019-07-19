@@ -1,20 +1,46 @@
+import 'package:cvdragonapp_v1/edit_section.dart';
 import 'package:flutter/material.dart';
-import '../Custom_dialog.dart';
-import '../Custom_dialog_KeyPhrases.dart';
+import '../localdatapush.dart'as lpush;
 
 Map<String, dynamic> faq;
-//List keyPhrases;
+int index3;
+String database;
+String y;
+
 String section;
 String secName;
+var data = [];
+var title = '';
+var patentOffice = '';
+var patentStatus = '';
+var patentApplication = '';
+var patentDate = '';
+var description = '';
 var dropdown = ValueNotifier('one');
 
 class CreatePatents extends StatelessWidget {
-  CreatePatents(String d2, String i2) {
-    section = d2;
+  CreatePatents(String d2, String i2, int i1, List d) {
+     section = d2;
     secName = i2;
+    index3 = i1;
+    data = d;
   }
+create(BuildContext context,String t, String po, String ps, String pa, String pd, String d) {
+    Map<String,dynamic> datatobecreated={
+      "title":t,
+    "patentOffice":po,
+    "patentStatus":ps,
+    "patentApplication":pa,
+    "patentDate":pd,
+    "description":d
+    };
+   lpush.pushData(section,datatobecreated).then((int status) {
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
 
-
+    });
+  }
 
   final _selectedVal = ValueNotifier("No Interest selected");
 
@@ -202,7 +228,7 @@ class CreatePatents extends StatelessWidget {
                                                       new Border.all(color: Colors.white)),
                                                   child: InkWell(
                                                     onTap: () {
-                                                      //update(context, title, description, data[index]);
+                                                      create(context, title, patentOffice, patentStatus, patentApplication, patentDate, description);
                                                     },
                                                     child: Row(
                                                       mainAxisAlignment: MainAxisAlignment.center,

@@ -83,7 +83,7 @@ class _ProfileSections extends State<ProfileSections> {
                         child: Stack(
                           children: <Widget>[
                             Image.asset(
-                              "assets/Profile Image.png",
+                              "assets/ProfileSection/"+data[index]['section'].toString()+"-01.png",
                               fit: BoxFit.cover,
                               width: MediaQuery.of(context).size.width,
                               //heighaQuery.of(context).size.height,

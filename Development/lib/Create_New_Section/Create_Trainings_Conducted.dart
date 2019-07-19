@@ -1,23 +1,49 @@
+import 'package:cvdragonapp_v1/edit_section.dart';
 import 'package:flutter/material.dart';
-import '../Custom_dialog.dart';
-import '../Custom_dialog_KeyPhrases.dart';
+import '../localdatapush.dart'as lpush;
 
 Map<String, dynamic> faq;
-//List keyPhrases;
+int index3;
+String database;
+String y;
+
 String section;
 String secName;
+var data = [];
+var training = '';
+var number = '';    
+var description ='';
 
 class CreateTrainingsConducted extends StatelessWidget {
-  CreateTrainingsConducted(String d2, String i2) {
-    section = d2;
+  CreateTrainingsConducted(String d2, String i2, int i1, List d) {
+      section = d2;
     secName = i2;
+    index3 = i1;
+    data = d;
   }
+
+  create(BuildContext context,String t, String n, String d) {
+    Map<String,dynamic> datatobecreated={
+      "training":t,
+      "number":n,
+      "description":d
+    };
+   lpush.pushData(section,datatobecreated).then((int status) {
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Form(
                                       child: Column(
                                         children: <Widget>[
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController(),
+                                  onChanged: (val) => training = val,
                                             style:
                                             TextStyle(color: Color(0xff232882)),
                                             decoration: InputDecoration(
@@ -28,16 +54,18 @@ class CreateTrainingsConducted extends StatelessWidget {
                                                 border: OutlineInputBorder(
                                                     borderRadius:
                                                     BorderRadius.circular(10))),
-                                            validator: (value) {
-                                              if (value.isEmpty) {
-                                                return 'Please enter a heading';
-                                              }
-                                            },
+                                            // validator: (value) {
+                                            //   if (value.isEmpty) {
+                                            //     return 'Please enter a heading';
+                                            //   }
+                                            // },
                                           ),
                                           Padding(
                                             padding: EdgeInsets.all(10),
                                           ),
-                                          TextFormField(keyboardType: TextInputType.numberWithOptions(decimal: false),
+                                          TextField(keyboardType: TextInputType.numberWithOptions(decimal: false),
+                                          controller: new TextEditingController(),
+                                  onChanged: (val) => number = val,
                                             style:
                                             TextStyle(color: Color(0xff232882)),
                                             scrollPadding: EdgeInsets.all(10.0),
@@ -54,7 +82,9 @@ class CreateTrainingsConducted extends StatelessWidget {
                                           Padding(
                                             padding: EdgeInsets.all(10),
                                           ),
-                                          TextFormField(
+                                          TextField(
+                                            controller: new TextEditingController(),
+                                  onChanged: (val) => description = val,
                                             style:
                                             TextStyle(color: Color(0xff232882)),
                                             scrollPadding: EdgeInsets.all(10.0),
@@ -98,7 +128,9 @@ class CreateTrainingsConducted extends StatelessWidget {
                                                         border: new Border.all(
                                                             color: Colors.white)),
                                                     child: InkWell(
-                                                      onTap: () {},
+                                                      onTap: () {
+                                                         create(context, training, number, description);
+                                                      },
                                                       child: Row(
                                                         mainAxisAlignment:
                                                         MainAxisAlignment.center,

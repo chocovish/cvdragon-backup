@@ -1,29 +1,52 @@
 import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
-
+import '../Custom dialog database.dart';
+import '../localdatapush.dart';
+import '../edit_section.dart';
 Map<String, dynamic> faq;
+int index;
+List databb3 = [];
+List databb1 = [];
+String database;
 List keyPhrases;
 String section;
 String secName;
-String database;
-int index;
 
 var data = [];
 var title = data[index]['title'];
-var year = data[index]['year'];
+var year = data[index]['year'].toString();
 var organization = data[index]['organization'];
 var description = data[index]['description'];
 
 
 class HonorsAwards extends StatelessWidget {
-  HonorsAwards(String d2, String i2, int i1, List d, List k2) {
+  HonorsAwards(String d2, String i2, int i1, List d, List k2, List d1, List d3) {
     section = d2;
     secName = i2;
-    keyPhrases = k2;
     index = i1;
     data = d;
+    databb1 = d3;
+    databb3 = d1;
+    keyPhrases = k2;
   }
+
+update(BuildContext context,String t, String y, String o, String d, Map<String, dynamic> initial) {
+   Map <String,dynamic> newdata={
+  "title":t,
+  "year":y,
+  "organization":o,
+  "description":d
+};
+    updateData(section,newdata,initial).then((int status) {
+
+       Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -31,7 +54,7 @@ class HonorsAwards extends StatelessWidget {
         body: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
+                    image: AssetImage('assets/FormSection/'+section+'-02.png'), fit: BoxFit.fill)),
             child: NestedScrollView(
                 headerSliverBuilder:
                     (BuildContext context, bool innerBoxIsScrolled) {
@@ -134,11 +157,7 @@ class HonorsAwards extends StatelessWidget {
                                           showDialog(
                                             context: context,
                                             builder: (BuildContext context) =>
-                                                CustomDialog(
-                                                  title: "DataBase",
-                                                  description:
-                                                  "Data Aaoo, Hum Darte Hai Kya ?",
-                                                  buttonText: "Okay",
+                                              CustomDialogDatabase("Database",data, databb3,section
                                                 ),
                                           );
                                         },
@@ -306,7 +325,9 @@ class HonorsAwards extends StatelessWidget {
                                                         border: new Border.all(
                                                             color: Colors.white)),
                                                     child: InkWell(
-                                                      onTap: () {},
+                                                      onTap: () {
+                                                        update(context, title, organization, year, description, data[index]);
+                                                      },
                                                       child: Row(
                                                         mainAxisAlignment:
                                                         MainAxisAlignment.center,
@@ -321,7 +342,7 @@ class HonorsAwards extends StatelessWidget {
                                                             ),
                                                           ),
                                                           Text(
-                                                            "Add Details",
+                                                            "Update section",
                                                             style: TextStyle(
                                                                 color: Colors.white,
                                                                 fontSize: 15.0,

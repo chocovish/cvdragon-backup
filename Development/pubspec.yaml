@@ -25,6 +25,7 @@ dependencies:
   path: ^1.5.1
   auto_size_text: ^2.0.1
   code_input: ^1.0.3
+  nice_button: ^0.1.6
 
   charts_flutter: ^0.6.0
   flutter_reactive_button: "^1.1.0"
@@ -97,6 +98,10 @@ flutter:
     - assets/Work Details.png
     - assets/Profile Image.png
     - assets/final structure-02.png
+    - assets/ProfileSection/
+    - assets/Edit Section/
+    - assets/FormSection/
+    - assets/AllSection/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

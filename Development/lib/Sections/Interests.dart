@@ -1,27 +1,48 @@
 import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
-
+import '../Custom dialog database.dart';
+import '../localdatapush.dart';
+import '../edit_section.dart';
 Map<String, dynamic> faq;
+int index;
+List databb3 = [];
+List databb1 = [];
+String database;
 List keyPhrases;
 String section;
 String secName;
-String database;
-int index;
 
 var data = [];
 var interest = data[index]['interest'];
 var level = data[index]['level'];
 
 class Interests extends StatelessWidget {
-  Interests(String d2, String i2, int i1, List d, List k2) {
+  Interests(String d2, String i2, int i1, List d, List k2, List d1, List d3) {
     section = d2;
     secName = i2;
-    keyPhrases = k2;
     index = i1;
     data = d;
+    databb1 = d3;
+    databb3 = d1;
+    keyPhrases = k2;
   }
 
+update(BuildContext context,String i, String l, Map<String, dynamic> initial) {
+   Map <String,dynamic> newdata={
+  "interest":i,
+  "level":l
+};
+    updateData(section,newdata,initial).then((int status) {
+
+       Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +51,7 @@ class Interests extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
+                  image: AssetImage('assets/FormSection/'+section+'-02.png'), fit: BoxFit.fill)),
           child: NestedScrollView(
               headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
                 return <Widget>[
@@ -120,11 +141,7 @@ class Interests extends StatelessWidget {
                                       onTap: () {
                                         showDialog(
                                           context: context,
-                                          builder: (BuildContext context) => CustomDialog(
-                                            title: "DataBase",
-                                            description:
-                                            "Data Aaoo, Hum Darte Hai Kya ?",
-                                            buttonText: "Okay",
+                                          builder: (BuildContext context) =>CustomDialogDatabase("Database",data, databb3,section
                                           ),
                                         );
                                       },
@@ -190,14 +207,14 @@ class Interests extends StatelessWidget {
                                                         onChanged: (v) {
                                                           _selectedVal.value = v;
                                                         }),
-                                                    Text("Interest"),
+                                                    Text("Hobby"),
                                                     Radio(
                                                         value: "Interest",
                                                         groupValue: val,
                                                         onChanged: (v) {
                                                           _selectedVal.value = v;
                                                         }),
-                                                    Text("Hobby"),
+                                                    Text("Interest"),
                                                     Radio(
                                                         value: "Passion",
                                                         groupValue: val,
@@ -228,9 +245,9 @@ class Interests extends StatelessWidget {
                                                       border:
                                                       new Border.all(color: Colors.white)),
                                                   child: InkWell(
-//                                                    onTap: () {
-//                                                      update(context, title, description, data[index]);
-//                                                    },
+                                                   onTap: () {
+                                                     update(context, interest, level, data[index]);
+                                                   },
 
                                                     child: Row(
                                                       mainAxisAlignment: MainAxisAlignment.center,

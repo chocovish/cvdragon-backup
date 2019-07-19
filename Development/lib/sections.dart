@@ -54,9 +54,7 @@ class _Sections extends State<Sections> {
                 padding: EdgeInsets.only(
                     top: 0.0, bottom: 15.0, right: 10.0, left: 10.0),
                 decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/cover.png"),
-                        fit: BoxFit.fill)),
+                   color: Colors.black),
                 child: Scrollbar(
                     child: ListView.builder(
                         physics: BouncingScrollPhysics(),
@@ -68,41 +66,47 @@ class _Sections extends State<Sections> {
                                   borderRadius: BorderRadius.circular(20.0)),
                               color: Colors.white,
                               child: Container(
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
+                                image: DecorationImage(
+                               image: AssetImage('assets/AllSection/'+data[index]['section']+'-04.png'), fit: BoxFit.fitWidth)),
                                   padding: EdgeInsets.only(
                                       top: 10, left: 10, right: 10, bottom: 30),
                                   child: Column(
                                     children: <Widget>[
                                       Row(children: <Widget>[
-                                        Container(
-                                          padding: EdgeInsets.only(right: 10),
-                                          child: Image(
-                                              // image: new AssetImage("assets/" +
-                                              //     data[index]['sectionName']
-                                              //         .toString() +
-                                              //     ".png"),
-                                              image: AssetImage("assets/Basic Info.png"),
-                                              color: null,
-                                              height: MediaQuery.of(context).size.height/22,
-                                              width: MediaQuery.of(context).size.width/9,
-                                              fit: BoxFit.fitHeight),
-                                        ),
+                                        // Container(
+                                        //   padding: EdgeInsets.only(right: 10),
+                                        //   child: Image(
+                                        //       // image: new AssetImage("assets/" +
+                                        //       //     data[index]['sectionName']
+                                        //       //         .toString() +
+                                        //       //     ".png"),
+                                        //       image: AssetImage("assets/Basic Info.png"),
+                                        //       color: null,
+                                        //       height: MediaQuery.of(context).size.height/22,
+                                        //       width: MediaQuery.of(context).size.width/9,
+                                        //       fit: BoxFit.fitHeight),
+                                        // ),
                                         Container(
                                           child: Text(
                                               data[index]['sectionName']
                                                   .toString(),
                                               style: TextStyle(
-                                                  color: Color(0xffff1e50),
-                                                  fontSize: 17,
+                                                  color: Colors.white,
+                                                  fontSize: 25,
                                                   fontWeight: FontWeight.bold)),
                                         ),
                                       ]),
+                                      Padding(
+                padding: EdgeInsets.all(10),
+              ),
                                       Container(
                                         padding: EdgeInsets.only(
-                                            left: 50.0, bottom: 10.0),
+                                             bottom: 10.0),
                                         child: Text(
                                           data[index]['sectionContentApp'],
                                           style: TextStyle(
-                                            color: Color(0xff232882),
+                                            color: Colors.white
                                           ),
                                         ),
                                       ),

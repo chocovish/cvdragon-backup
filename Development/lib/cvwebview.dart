@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/services.dart';
 import 'package:reflected_mustache/mustache.dart';
+import './bottombar_preview.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import './maps.dart' show tablename;
 
@@ -29,22 +30,37 @@ class MyWebView extends StatefulWidget {
 }
 
 class _MyWebViewState extends State<MyWebView> {
+   void  _selectedTab(int index) {
+    setState(() {
+      print(index);
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: loadTemplate(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (!snapshot.hasData) return CircularProgressIndicator();
-        return WebviewScaffold(
-          url: snapshot.data,
-          withZoom: true,
-        );
-      },
+    return Scaffold(
+      bottomNavigationBar: FABBottomAppBar(
+            notchedShape: CircularNotchedRectangle(),
+            color: Colors.white30,
+            centerItemText: "Download",
+            backgroundColor: Color(0xff232882),
+            selectedColor: Colors.white,
+            items: [
+              FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
+              FABBottomAppBarItem(iconData: Icons.edit, text: 'Designs'),
+              FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
+              FABBottomAppBarItem(iconData: Icons.more, text: 'More'),
+            ],
+            onTabSelected: _selectedTab,
+          ),
+          body: WebView(initialUrl: "",onWebViewCreated: (WebViewController c){
+        webViewController = c;
+        loadTemplate();
+      },),
     );
   }
 }
 
-Future loadTemplate() async {
+Future<void> loadTemplate() async {
   List addeddata = await getDefaultSection('51109');
   List exp = await getDefaultSection('51104');
   List certifications = await getDefaultSection('51110');
@@ -61,7 +77,10 @@ Future loadTemplate() async {
   List languages = await getDefaultSection('51120');
   List interests = await getDefaultSection('51119');
 
-  makeSendData();
+
+  print("GEneraring CV");
+  print(makeSendData().toString());
+  
 
 //print(interests);
 
@@ -88,11 +107,11 @@ Future loadTemplate() async {
   String fileText = await rootBundle.loadString('assets/myhtml.html');
   Template template = new Template(fileText, htmlEscapeValues: false);
   String res = template.renderString(senddata);
-  //print(res);
-  return Uri.dataFromString(res, mimeType: "text/html").toString();
-  webViewController.loadUrl(
-    Uri.dataFromString(res, mimeType: "text/html").toString(),
-  );
+  print(res);
+  //return Uri.dataFromString(res, mimeType: "text/html").toString();
+   webViewController.loadUrl(
+     Uri.dataFromString(res, mimeType: "text/html").toString(),
+   );
 }
 
 //...............Helper function... To be moved to another file....

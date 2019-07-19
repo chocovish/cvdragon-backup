@@ -3,20 +3,16 @@ import 'dart:convert';
  String   url2="https://cvdragon.com/data/app/appCVAPI.php";
  String usercreate(String name,String email,String countryCode,String phoneNumber,String typeoflogin,String socialid, String sectionType)
  {
-   Map<String,dynamic> userdetails={
-        'id':1,
-        'authkey':"cvDragonAppPublicKey12345",
-        'data':'createUser',
+   url+="?id=1&authkey=cvDragonAppPublicKey12345&data=createUser&contents=";
+   Map<String,dynamic> contents={
         'fullName':name,
         'emailAddress':email,
-        'countryCode':countryCode,
-        'phoneNumber':phoneNumber,
-        'socialType':typeoflogin,
-        'socialid':socialid,
-        'sectionType':sectionType,
+        
     };
     
-   return url+json.encode(userdetails);
+    url+=json.encode(contents);
+    url+="&countryCode="+countryCode+"&phoneNumber="+phoneNumber+"&socialType="+typeoflogin+"&socialid="+socialid+"&sectionType="+sectionType;
+    return url;
  }
 String all(String id,String authkey)
 {

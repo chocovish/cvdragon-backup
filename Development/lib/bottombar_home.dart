@@ -1,4 +1,6 @@
 import 'package:cvdragonapp_v1/CardView_NewProfile.dart';
+import 'package:cvdragonapp_v1/home.dart';
+import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:flutter/material.dart';
 import './profile_sections.dart';
 import './CardView_NewProfile.dart';
@@ -57,7 +59,7 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
     print("got index value $index");
     print("got selectedIndex value $_selectedIndex");
     if(_selectedIndex!=index) {
-      setState(() {
+      setState(() async{
         if (index == 1) {
           Navigator.of(context).push(
               MaterialPageRoute<Null>(builder: (BuildContext context) {
@@ -66,17 +68,14 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
               )
           );
         }
-        else if(index == 2)
-        {
-              Navigator.of(context).push(
+        else if (index==2) {
+          await writeprofile(null);
+         Navigator.of(context).push(
               MaterialPageRoute<Null>(builder: (BuildContext context) {
-                return CardProfiles();
+                return HomePagee();
               }
               )
           );
-        }
-        else if (index==3){
-
         }
         else if (index == 0) {
           Navigator.of(context).push(

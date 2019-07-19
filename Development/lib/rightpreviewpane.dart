@@ -111,7 +111,8 @@ class _PreviewPane extends State<PreviewPane> {
               FABBottomAppBarItem(iconData: Icons.more, text: 'More'),
             ],
             onTabSelected: _selectedTab,
-          )),
+          )
+          ),
     );
   }
 }

@@ -102,7 +102,7 @@ class CreateIntroduction extends StatelessWidget {
                                         ),
 
                                         Text(
-                                          "Add Introduction",
+                                          "Add Section",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 15.0,

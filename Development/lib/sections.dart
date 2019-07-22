@@ -68,7 +68,7 @@ class _Sections extends State<Sections> {
                               child: Container(
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
                                 image: DecorationImage(
-                               image: AssetImage('assets/AllSection/'+data[index]['section']+'-04.png'), fit: BoxFit.fitWidth)),
+                               image: AssetImage('assets/AllSection/'+data[index]['section'].toString()+'-04.png'), fit: BoxFit.fitWidth)),
                                   padding: EdgeInsets.only(
                                       top: 10, left: 10, right: 10, bottom: 30),
                                   child: Column(

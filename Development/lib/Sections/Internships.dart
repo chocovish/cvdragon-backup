@@ -383,7 +383,7 @@ class Internships extends StatelessWidget {
                                                 width: MediaQuery.of(context)
                                                     .size
                                                     .width /
-                                                    2.5,
+                                                    2.2,
                                                 alignment: FractionalOffset.center,
                                                 decoration: BoxDecoration(
                                                     color: Color(0xff232882),
@@ -409,7 +409,7 @@ class Internships extends StatelessWidget {
                                                         ),
                                                       ),
                                                       Text(
-                                                        "Update Internship",
+                                                        "Update Section",
                                                         style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 15.0,

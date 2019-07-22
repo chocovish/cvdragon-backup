@@ -181,7 +181,7 @@ class CreateHonorsAwards extends StatelessWidget {
                                                             ),
                                                           ),
                                                           Text(
-                                                            "Add Details",
+                                                            "Add Section",
                                                             style: TextStyle(
                                                                 color: Colors.white,
                                                                 fontSize: 15.0,

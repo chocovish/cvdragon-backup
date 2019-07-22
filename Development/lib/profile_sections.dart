@@ -76,7 +76,64 @@ class _ProfileSections extends State<ProfileSections> {
                   physics: BouncingScrollPhysics(),
                   itemCount: data == null ? 0 : data.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Dismissible(
+                    print(data[index].toString());
+                    if (data[index]['section'].toString()=="51100" || data[index]['section'].toString()=="51101" || data[index]['section'].toString()=="51102" || data[index]['section'].toString()=="51103" || data[index]['section'].toString()=="51109"){
+                    return  Card(
+                        child: Container(
+                          height: 120,
+                          width: MediaQuery.of(context).size.width,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        (EditSection(data[index]['section'].toString()))));
+                          },
+                          child: Stack(
+                            children: <Widget>[
+                              Image.asset(
+                                "assets/ProfileSection/"+data[index]['section'].toString()+"-01.png",
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width,
+                                //heighaQuery.of(context).size.height,
+                              ),
+                              Center(child:
+                              Container(
+                                padding: new EdgeInsets.symmetric(
+                                    vertical: 40, horizontal: MediaQuery.of(context).size.width/25),
+                                alignment: Alignment.center,               
+                                child: Row(
+
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    AutoSizeText(
+                                     maps.Sections[data[index]['section'].toString()].toString(),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 22,
+                                          letterSpacing: 0.5,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+
+                                    
+                                    CircleAvatar(backgroundColor: Colors.black,radius: 21,
+                                      child: Text("D"),),
+                                  ],
+                                ),
+                              ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        ),
+                      );
+                    }
+                    
+                    
+                    else {
+                      return
+                    Dismissible(
                       direction: DismissDirection.endToStart,
                 key: Key(data.toString()),
                 onDismissed: (direction) {
@@ -148,6 +205,11 @@ class _ProfileSections extends State<ProfileSections> {
                         ),
                       ),
                     );
+                    }
+                    
+
+                
+
                   },
                 ),
               ),

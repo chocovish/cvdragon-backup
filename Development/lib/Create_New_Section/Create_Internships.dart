@@ -197,7 +197,7 @@ create(BuildContext context,String o, String t, String des, String dur, String l
                                                 width: MediaQuery.of(context)
                                                     .size
                                                     .width /
-                                                    3,
+                                                    2.5,
                                                 alignment: FractionalOffset.center,
                                                 decoration: BoxDecoration(
                                                     color: Color(0xff232882),
@@ -223,7 +223,7 @@ create(BuildContext context,String o, String t, String des, String dur, String l
                                                         ),
                                                       ),
                                                       Text(
-                                                        "Add Internship",
+                                                        "Add Section",
                                                         style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 15.0,

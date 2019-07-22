@@ -419,7 +419,7 @@ update(BuildContext context,String t, String u, String l, String sp, String y, S
                                                     width: MediaQuery.of(context)
                                                         .size
                                                         .width /
-                                                        3,
+                                                        2.2,
                                                     alignment:
                                                     FractionalOffset.center,
                                                     decoration: BoxDecoration(

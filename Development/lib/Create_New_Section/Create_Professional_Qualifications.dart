@@ -225,7 +225,7 @@ class CreateProfessionalQualifications extends StatelessWidget {
                                                         ),
                                                       ),
                                                       Text(
-                                                        "Add Qualification",
+                                                        "Add Section",
                                                         style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 15.0,

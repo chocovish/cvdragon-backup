@@ -5,19 +5,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './Custom_dialog.dart';
 import './topmenu.dart';
+import './maps.dart';
 import './localdatafetch.dart'as lfetch;
 import 'dart:convert';
+
+String section='';
 class CardProfiles extends StatefulWidget {
   CardProfiles({Key key}) : super(key: key);
   @override
   _CardProfiles createState() => new _CardProfiles();
 }
-class _CardProfiles extends State<CardProfiles> {
-  List data=[];
+
+bool isLoading = true;
+ List data=[];
+  List databb = [];
+  var db0 = [];
+  List addeddata=[];
    List items=[];
   bool _isLoading=true;
   PageController controller;
   int currentpage = 0;
+
+class _CardProfiles extends State<CardProfiles> {
+ 
   @override
   initState() {
     super.initState();
@@ -29,6 +39,24 @@ class _CardProfiles extends State<CardProfiles> {
     );
   }
   void get()async{
+     addeddata=[];
+
+  lfetch.getDatabase(section)  // DataBase me jo hai vo aa rha hai
+        .then((List dd) {
+      setState(() {
+        databb = dd;
+        db0 += databb;
+      });
+    });
+
+lfetch.getAddedData(section)  // Profile me jo hai voh aa rha hai
+        .then((List res) {
+      setState(() {
+        addeddata = res;
+        db0 += addeddata;
+        isLoading=false;
+      });
+    });
 
  lfetch.getSections().then((List res) {
       setState(() {
@@ -86,7 +114,7 @@ class _CardProfiles extends State<CardProfiles> {
             
             
             Container(
-               height: MediaQuery.of(context).size.height/2,
+               height: MediaQuery.of(context).size.height/3,
         child: new PageView.builder(
           
           itemCount: items.length,
@@ -140,7 +168,7 @@ class _CardProfiles extends State<CardProfiles> {
                                     builder: (BuildContext context) => CustomDialog(
                                       title:Sections[secid],
                                       description: "Hello Moto",
-                                      buttonText: "Okay",
+                                      buttonText: "Submit",
                                     ),
                                   );
                   // Shows the information on Snackbar

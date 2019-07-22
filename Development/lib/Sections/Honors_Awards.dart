@@ -314,7 +314,7 @@ update(BuildContext context,String t, String y, String o, String d, Map<String, 
                                                     width: MediaQuery.of(context)
                                                         .size
                                                         .width /
-                                                        3,
+                                                        2.2,
                                                     alignment:
                                                     FractionalOffset.center,
                                                     decoration: BoxDecoration(

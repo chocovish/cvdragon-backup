@@ -281,7 +281,7 @@ class Achievments extends StatelessWidget {
                                                     ),
                                                   ),
                                                   Text(
-                                                    "Update Achievement",
+                                                    "Update Section",
                                                     style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 15.0,

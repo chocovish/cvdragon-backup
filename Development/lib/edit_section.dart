@@ -9,6 +9,8 @@ import './create_section.dart';
 import './fetch.dart';
 import './edit_section2.dart';
 import './maps.dart';
+import './vishBottomBar.dart';
+import './cvwebview.dart';
 
 String section='';
 class EditSection extends StatefulWidget {
@@ -97,7 +99,7 @@ class _EditSection extends State<EditSection> {
             Navigator.of(context).push(
               MaterialPageRoute<Null>(
                 builder: (BuildContext context) {
-                  return PreviewPane();
+                  return CVView();
                 },
               ),
             );
@@ -111,21 +113,22 @@ class _EditSection extends State<EditSection> {
         // bottomNavigationBar: BottomBar(),
         drawer: SideMenu(),
         endDrawer: PreviewPane(),
-        bottomNavigationBar: FABBottomAppBar(
-          onTabSelected: _selectedTab,
-          notchedShape: CircularNotchedRectangle(),
-          color: Colors.white30,
-          centerItemText: "Preview",
-          backgroundColor: Color(0xff232882),
-          selectedColor: Colors.white,
-          items: [
-            FABBottomAppBarItem(
-                iconData: Icons.import_contacts, text: 'Knowledge'),
-            FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
-            FABBottomAppBarItem(iconData: Icons.swap_vert, text: 'Profiles'),
-            FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
-          ],
-        ),
+        // bottomNavigationBar: FABBottomAppBar(
+        //   onTabSelected: _selectedTab,
+        //   notchedShape: CircularNotchedRectangle(),
+        //   color: Colors.white30,
+        //   centerItemText: "Preview",
+        //   backgroundColor: Color(0xff232882),
+        //   selectedColor: Colors.white,
+        //   items: [
+        //     FABBottomAppBarItem(
+        //         iconData: Icons.import_contacts, text: 'Knowledge'),
+        //     FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
+        //     FABBottomAppBarItem(iconData: Icons.swap_vert, text: 'Profiles'),
+        //     FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
+        //   ],
+        // ),
+        bottomNavigationBar: MybottomNav(1),
         body: ValueListenableBuilder(valueListenable: db0, builder: (context,data,child){
           return _buildCardView(context);
         }),

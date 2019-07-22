@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -39,67 +41,30 @@ class _MyWebViewState extends State<MyWebView> {
 }
 
 Future<void> loadTemplate() async {
-  List addeddata = await getDefaultSection('51109');
-  List exp = await getDefaultSection('51104');
-  List certifications = await getDefaultSection('51110');
-  List internships = await getDefaultSection('51106');
-  List projects = await getDefaultSection('51122');
-  List awards = await getDefaultSection('51115');
-  List presentations = await getDefaultSection('51125');
-  List technical = await getDefaultSection('51111');
-  List achievements = await getDefaultSection('51114');
-  List cocurricular = await getDefaultSection('51123');
-  List skills = await getDefaultSection('51118');
-  List contacts = await getDefaultSection('51101');
-  List basicInfo = await getDefaultSection('51100');
-  List languages = await getDefaultSection('51120');
-  List interests = await getDefaultSection('51119');
-
-
-  print("GEneraring CV");
-  print(makeSendData().toString());
   
-
-//print(interests);
-
-  Map senddata = {
-    'cobjective': "sasasa",
-    'profimg': "",
-    'tagline': "sasasa",
-    'education': addeddata,
-    'exp': exp,
-    'certifications': certifications,
-    'internships': internships,
-    'projects': projects,
-    'awards': awards,
-    'presentations': presentations,
-    'technical': technical,
-    'achievements': achievements,
-    'cocurricular': cocurricular,
-    'skills': skills,
-    'contacts': contacts,
-    'basicInfo': basicInfo,
-    'languages': languages,
-    'interests': interests,
-  };
+  Map senddata = await makeSendData();
   String fileText = await rootBundle.loadString('assets/myhtml.html');
-  Template template = new Template(fileText, htmlEscapeValues: false);
-  String res = template.renderString(senddata);
-  print(res);
-  //return Uri.dataFromString(res, mimeType: "text/html").toString();
+  Template template = new Template(fileText, htmlEscapeValues: false,lenient: false);
+  String res = template.renderString(senddata).replaceAll('“', '"').replaceAll('”', '"').replaceAll('´', "'").replaceAll("~", "");
+  //print(res);
+  var uri = Uri.dataFromString(res, mimeType: "text/html").toString();
+  //print("uri is $uri");
    webViewController.loadUrl(
-     Uri.dataFromString(res, mimeType: "text/html").toString(),
+     Uri.dataFromString(res, mimeType: "text/html",encoding: Latin1Codec(),base64: true)
+     .toString(),
    );
 }
 
 //...............Helper function... To be moved to another file....
 
-Future makeSendData() async {
-  Map m = {};
+Future<Map> makeSendData() async {
+  Map<String,List> m = {};
   String k;
   for (String key in tablename.keys) {
     k = tablename[key].replaceFirst("`cv-", "").replaceFirst("`", "");
     m[k] = await getDefaultSection(key);
   }
+  print(m["introduction"]);
+  //print(m);
   return m;
 }

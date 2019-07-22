@@ -107,7 +107,7 @@ class _Colorset extends State<Colorset> {
           ),
           Container(
             height: MediaQuery.of(context).size.height/1.4,
-            width: 148,
+             width: 148,
             //color: Colors.black,
             //decoration: BoxDecoration(color: Colors.black45,borderRadius: BorderRadius.only(bottomRight: Radius.circular(5.0),topRight: Radius.circular(5.0))),
             alignment: Alignment.topLeft,

@@ -103,7 +103,6 @@ class _OtpPage extends State<OtpPage> {
   }
 
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
         body: _isLoading
             ? DecoratedBox(
@@ -133,7 +132,7 @@ class _OtpPage extends State<OtpPage> {
   }
 
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     this.get();
   }

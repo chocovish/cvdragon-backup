@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import './profile_sections.dart';
 import './knowledge_centre.dart';
+import './home.dart';
+import './myprofiles.dart';
 
 class FABBottomAppBarItem {
   FABBottomAppBarItem({this.iconData, this.text});
@@ -19,7 +21,7 @@ class FABBottomAppBar extends StatefulWidget {
     this.selectedColor,
     this.notchedShape,
     this.onTabSelected,
-    this.selectedPage: 3,
+    this.selectedPage: -1,
   }) {
     assert(this.items.length == 2 || this.items.length == 4);
   }
@@ -39,7 +41,7 @@ class FABBottomAppBar extends StatefulWidget {
 }
 
 class FABBottomAppBarState extends State<FABBottomAppBar> {
-  int _selectedIndex = 3;
+  int _selectedIndex = -1;
   @override
   @override
   void initState() { 
@@ -63,8 +65,13 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
               )
           );
         }
+        else if (index==2){
+          var route = MaterialPageRoute(builder: (c)=>MyProfiles());
+          Navigator.of(context).push(route);
+        }
         else if (index==3){
-
+          var route = MaterialPageRoute(builder: (c)=>HomePagee());
+          Navigator.of(context).pushAndRemoveUntil(route, (r)=>false);
         }
         else if (index == 0) {
           Navigator.of(context).push(

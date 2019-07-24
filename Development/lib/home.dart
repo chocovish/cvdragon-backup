@@ -1,10 +1,15 @@
+import 'package:cvdragonapp_v1/CardView_NewProfile.dart';
+import 'package:cvdragonapp_v1/Sections/Educational_Background.dart';
 import 'package:cvdragonapp_v1/cvwebview.dart';
 import 'package:cvdragonapp_v1/donut.dart';
+import 'package:cvdragonapp_v1/institute.dart';
 import 'package:cvdragonapp_v1/rightpreviewpane.dart';
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:cvdragonapp_v1/vishBottomBar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import './institute.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
@@ -83,33 +88,53 @@ Widget dialogContent(BuildContext context,write,setState)
     child: Container(
       height: MediaQuery.of(context).size.height/3,
       child: Dialog( 
-        child: ListView.builder(
-          physics: BouncingScrollPhysics(),
-          itemCount: profiles == null ? 0 : profiles.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        decoration: BoxDecoration(border: new Border.all(color: Colors.black),),
-                        child: InkWell(
-                         
-                          onTap: ()async{
-                           // print(profiles[index]['cvid'].toString());
-                            await write(profiles[index]['cvid'].toString());
-                             setState((){
-                               print("done");
-                               profileselected=true;
-                             });
-                          },
-                          child: Text(
-                           profiles[index]['profileName'],
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      );
-                    },
-                  
+        child: Container(padding: EdgeInsets.only(bottom:10),
+                  child: Column(
+                                      children: <Widget>[Container(
+                                        height: MediaQuery.of(context).size.height/6,
+                                                                              child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemCount: profiles == null ? 0 : profiles.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                              decoration: BoxDecoration(border: new Border.all(color: Colors.black),),
+                              child: InkWell(
+                               
+                                onTap: ()async{
+                                 // print(profiles[index]['cvid'].toString());
+                                  await write(profiles[index]['cvid'].toString());
+                                   setState((){
+                                     print("done");
+                                     profileselected=true;
+                                   });
+                                },
+                                child: Text(
+                                 profiles[index]['profileName'],
+                                  style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            );
+                        },
+                      
+          ),
+                                      ),
+
+                                       Align(alignment: Alignment.bottomCenter,
+                          child: OutlineButton(splashColor: Colors.blue,
+                            onPressed: (){
+                               Navigator.of(context).push(
+              MaterialPageRoute<Null>(builder: (BuildContext context) {
+                return CardProfiles();
+              }
+              )
+          );
+                            },
+                            child: Text("Add New Profile"),color: Colors.blue),)
+                                      ],
+                  ),
         ),
       ),
     ),
@@ -223,86 +248,6 @@ Widget _buildCardView(BuildContext context) {
           child: DonutPieChart.withSampleData(),
         ),
       ),
-//      Card(
-//          shape:
-//              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-//          child: Column(children: <Widget>[
-//            ListTile(
-//              title: Text("PROFILE CREATED",
-//                  style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//                decoration: BoxDecoration(
-//                    shape: BoxShape.circle, color: Color(0xff232882)),
-//                child: Padding(
-//                    padding: const EdgeInsets.all(8.0),
-//                    child: Icon(
-//                      Icons.check,
-//                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
-//                      color: Colors.green,
-//                    )),
-//              ),
-//            ),
-//            ListTile(
-//              title: Text("FILL IN DATA",
-//                  style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//                decoration: BoxDecoration(
-//                    shape: BoxShape.circle, color: Color(0xff232882)),
-//                child: Padding(
-//                    padding: const EdgeInsets.all(8.0),
-//                    child: Icon(
-//                      Icons.check,
-//                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
-//                      color: Colors.green,
-//                    )),
-//              ),
-//            ),
-//            ListTile(
-//              title: Text("DESIGN SELECTED",
-//                  style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//                decoration: BoxDecoration(
-//                    shape: BoxShape.circle, color: Color(0xff232882)),
-//                child: Padding(
-//                    padding: const EdgeInsets.all(8.0),
-//                    child: Icon(
-//                      Icons.check,
-//                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
-//                      color: Colors.green,
-//                    )),
-//              ),
-//            ),
-//            ListTile(
-//              title: Text("SETTINGS CONFIRMED",
-//                  style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//                decoration: BoxDecoration(
-//                    shape: BoxShape.circle, color: Color(0xff232882)),
-//                child: Padding(
-//                    padding: const EdgeInsets.all(8.0),
-//                    child: Icon(
-//                      Icons.check,
-//                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
-//                      color: Colors.green,
-//                    )),
-//              ),
-//            ),
-//            ListTile(
-//              title: Text("DOWNLOAD RESUME",
-//                  style: TextStyle(color: Color(0xff232882))),
-//              leading: Container(
-//                decoration: BoxDecoration(
-//                    shape: BoxShape.circle, color: Color(0xff232882)),
-//                child: Padding(
-//                    padding: const EdgeInsets.all(8.0),
-//                    child: Icon(
-//                      Icons.close,
-//                      size: MediaQuery.of(context).size.aspectRatio * 40.0,
-//                      color: Colors.red,
-//                    )),
-//              ),
-//            ),
-//          ])),
     ],
   ));
 }

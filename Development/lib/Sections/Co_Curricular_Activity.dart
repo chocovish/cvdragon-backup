@@ -1,38 +1,49 @@
 import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
-
+import '../Custom dialog database.dart';
+import '../localdatapush.dart';
+import '../edit_section.dart';
 Map<String, dynamic> faq;
 int index;
+List databb3 = [];
+List databb1 = [];
+String database;
 List keyPhrases;
 String section;
 String secName;
-//Map<String,dynamic> passData={
-//"title":" ",
-//"description":" ",
-//};
 
 var data = [];
 var title = data[index]['title'];
 var description = data[index]['description'];
 
 class CoCurricularActivity extends StatelessWidget {
-  CoCurricularActivity(String d2, String i2, int i1, List d, List k2) {
+  CoCurricularActivity(String d2, String i2, int i1, List d, List k2, List d1, List d3) {
     section = d2;
     secName = i2;
     index = i1;
-    keyPhrases = k2;
     data = d;
+    databb1 = d3;
+    databb3 = d1;
+    keyPhrases = k2;
   }
 
-//  update(BuildContext context,passData Map<String, dynamic> initial) {
-//    updateCoCurricularActivity(passData, initial).then((int status) {
-//
-//      Navigator.pop(context);
-//      Navigator.pop(context);
-//
-//    });
-//  }
+
+  update(BuildContext context,String t, String d, Map<String, dynamic> initial) {
+   Map <String,dynamic> newdata={
+  "title":t,
+  "description":d
+};
+    updateData(section,newdata,initial).then((int status) {
+
+       Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +51,7 @@ class CoCurricularActivity extends StatelessWidget {
         body: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
+                    image: AssetImage('assets/FormSection/'+section+'-02.png'), fit: BoxFit.fill)),
             child: NestedScrollView(
                 headerSliverBuilder:
                     (BuildContext context, bool innerBoxIsScrolled) {
@@ -80,10 +91,7 @@ class CoCurricularActivity extends StatelessWidget {
                                           showDialog(
                                             context: context,
                                             builder: (BuildContext context) =>
-                                                CustomDialog(
-                                                  title: "FAQs",
-                                                  description: "You ask, we answer !",
-                                                  buttonText: "Okay",
+                                                CustomDialogDatabase("Database",data, databb3,section
                                                 ),
                                           );
                                         },
@@ -242,7 +250,7 @@ class CoCurricularActivity extends StatelessWidget {
                                                     width: MediaQuery.of(context)
                                                         .size
                                                         .width /
-                                                        3,
+                                                        2.2,
                                                     alignment:
                                                     FractionalOffset.center,
                                                     decoration: BoxDecoration(
@@ -254,7 +262,7 @@ class CoCurricularActivity extends StatelessWidget {
                                                             color: Colors.white)),
                                                     child: InkWell(
                                                       onTap: () {
-                                                        //update(context, passData, data[index]);
+                                                        update(context, title, description, data[index]);
                                                       },
                                                       child: Row(
                                                         mainAxisAlignment:
@@ -270,7 +278,7 @@ class CoCurricularActivity extends StatelessWidget {
                                                             ),
                                                           ),
                                                           Text(
-                                                            "Add Activity",
+                                                            "Update Section",
                                                             style: TextStyle(
                                                                 color: Colors.white,
                                                                 fontSize: 15.0,

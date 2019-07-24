@@ -1,8 +1,5 @@
 import 'package:cvdragonapp_v1/edit_section.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
-import '../Custom_dialog.dart';
-import '../Custom_dialog_KeyPhrases.dart';
 import '../localdatapush.dart'as lpush;
 
 Map<String, dynamic> faq;
@@ -12,9 +9,6 @@ String y;
 
 String section;
 String secName;
-//Map<String,dynamic> passData={
-//  ""
-//};
 var data = [];
 var title = '';
 var description ='';
@@ -88,7 +82,7 @@ class CreateAcademicProjects extends StatelessWidget {
                                       },
                                       child: Container(
                                         height: MediaQuery.of(context).size.height / 18,
-                                        width: MediaQuery.of(context).size.width / 3,
+                                        width: MediaQuery.of(context).size.width / 2.5,
                                         alignment: FractionalOffset.center,
                                         decoration: BoxDecoration(
                                             color: Color(0xff232882),

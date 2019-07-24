@@ -1,46 +1,48 @@
+import 'package:cvdragonapp_v1/edit_section.dart';
 import 'package:flutter/material.dart';
-import '../Custom_dialog.dart';
-import '../Custom_dialog_KeyPhrases.dart';
-import '../localdatapush.dart';
+import '../localdatapush.dart'as lpush;
 
 Map<String, dynamic> faq;
-int index;
+int index3;
 String database;
 String y;
-//List keyPhrases;
+
 String section;
 String secName;
-var title = data[index]['title'];
-var description = data[index]['description'];
 var data = [];
+var title = '';
+var description ='';
+
 
 class CreatePresentations extends StatelessWidget {
-  CreatePresentations(String d2, String i2,int i1, List d) {
+  CreatePresentations(String d2, String i2, int i1, List d) {
     section = d2;
     secName = i2;
-    index = i1;
+    index3 = i1;
     data = d;
   }
-  // update(BuildContext context,String t, String d, Map<String, dynamic> initial) {
-  //   updateAcademicProject(t, d, initial).then((int status) {
 
-  //     Navigator.pop(context);
-  //     Navigator.pop(context);
+  create(BuildContext context,String t, String d) {
+    Map<String,dynamic> datatobecreated={
+      "title":t,
+      "description":d
+    };
+   lpush.pushData(section,datatobecreated).then((int status) {
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
 
-  //   });
-  // }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
       child: Column(
         children: <Widget>[
           TextField(
-            controller: new TextEditingController.fromValue(
-                new TextEditingValue(
-                    text: data[index]['title'],
-                    selection: new TextSelection.collapsed(
-                        offset: title.length))),
-            onChanged: (val) => title = val,
+            controller: new TextEditingController(),
+                                  onChanged: (val) => title = val,
 
 
             style:
@@ -53,16 +55,14 @@ class CreatePresentations extends StatelessWidget {
                 border: OutlineInputBorder(
                     borderRadius:
                     BorderRadius.circular(10))),
-//                                            validator: (value) {
-//                                              if (value.isEmpty) {
-//                                                return 'Please enter a heading';
-//                                              }
-//                                            },
+
           ),
           Padding(
             padding: EdgeInsets.all(10),
           ),
-          TextFormField(
+          TextField(
+            controller: new TextEditingController(),
+            onChanged: (val) => description = val,
             style:
             TextStyle(color: Color(0xff232882)),
             scrollPadding: EdgeInsets.all(10.0),
@@ -98,7 +98,7 @@ class CreatePresentations extends StatelessWidget {
                         .of(context)
                         .size
                         .width /
-                        3,
+                        2.5,
                     alignment:
                     FractionalOffset.center,
                     decoration: BoxDecoration(
@@ -110,7 +110,7 @@ class CreatePresentations extends StatelessWidget {
                             color: Colors.white)),
                     child: InkWell(
                       onTap: () {
-                    //    update(context, title, description, data[index]);
+                         create(context, title, description);
                       },
                       child: Row(
                         mainAxisAlignment:
@@ -126,7 +126,7 @@ class CreatePresentations extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "Add Activity",
+                            "Add Section",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15.0,

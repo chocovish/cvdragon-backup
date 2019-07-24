@@ -100,6 +100,10 @@ flutter:
     - assets/Work Details.png
     - assets/Profile Image.png
     - assets/final structure-02.png
+    - assets/ProfileSection/
+    - assets/Edit Section/
+    - assets/FormSection/
+    - assets/AllSection/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

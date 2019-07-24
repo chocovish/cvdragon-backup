@@ -1,16 +1,47 @@
+import 'package:cvdragonapp_v1/Create_New_Section/Create_Work_Details.dart';
+import 'package:cvdragonapp_v1/edit_section.dart';
 import 'package:flutter/material.dart';
-import '../Custom_dialog.dart';
-import '../Custom_dialog_KeyPhrases.dart';
+import '../localdatapush.dart'as lpush;
 
 Map<String, dynamic> faq;
-//List keyPhrases;
+int index3;
+String database;
+String y;
+
 String section;
 String secName;
+var data = [];
+var organization = '';
+var position = '';
+var location = '';
+var dateJoining = '';
+var dateLeaving = '';
+var description = '';
+
 
 class CreateAssociatedMembers extends StatelessWidget {
-  CreateAssociatedMembers(String d2, String i2) {
+  CreateAssociatedMembers(String d2, String i2, int i1, List d) {
     section = d2;
     secName = i2;
+    index3 = i1;
+    data = d;
+  }
+
+   create(BuildContext context,String o, String p, String l, String dj, String dl, String d) {
+    Map<String,dynamic> datatobecreated={
+     "organization":o,
+  "position":p,
+  "location":l,
+  "dateJoining":dj,
+  "dateLeaving":dl,
+  "description":d
+    };
+   lpush.pushData(section,datatobecreated).then((int status) {
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+    });
   }
 
   @override
@@ -33,7 +64,9 @@ class CreateAssociatedMembers extends StatelessWidget {
     return Form(
       child: Column(
           children: <Widget>[
-            TextFormField(
+            TextField(
+               controller: new TextEditingController(),
+                                  onChanged: (val) => organization = val,
               style: TextStyle(color: Color(0xff232882)),
               decoration: InputDecoration(
                   labelStyle:
@@ -44,16 +77,18 @@ class CreateAssociatedMembers extends StatelessWidget {
                   border: OutlineInputBorder(
                       borderRadius:
                       BorderRadius.circular(10))),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter an Organization';
-                }
-              },
+              // validator: (value) {
+              //   if (value.isEmpty) {
+              //     return 'Please enter an Organization';
+              //   }
+              // },
             ),
             Padding(
               padding: EdgeInsets.all(10),
             ),
-            TextFormField(
+            TextField(
+               controller: new TextEditingController(),
+                                  onChanged: (val) => designation = val,
               style: TextStyle(color: Color(0xff232882)),
               scrollPadding: EdgeInsets.all(10.0),
               textAlign: TextAlign.start,
@@ -68,7 +103,9 @@ class CreateAssociatedMembers extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(10),
             ),
-            TextFormField(
+            TextField(
+               controller: new TextEditingController(),
+                                  onChanged: (val) => location = val,
               style: TextStyle(color: Color(0xff232882)),
               scrollPadding: EdgeInsets.all(10.0),
               textAlign: TextAlign.start,
@@ -177,7 +214,9 @@ class CreateAssociatedMembers extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(10),
             ),
-            TextFormField(
+            TextField(
+               controller: new TextEditingController(),
+                                  onChanged: (val) => description = val,
               style: TextStyle(color: Color(0xff232882)),
               scrollPadding: EdgeInsets.all(10.0),
               textAlign: TextAlign.start,
@@ -208,7 +247,7 @@ class CreateAssociatedMembers extends StatelessWidget {
                       width: MediaQuery
                           .of(context)
                           .size
-                          .width / 3,
+                          .width / 2.5,
                       alignment: FractionalOffset.center,
                       decoration: BoxDecoration(
                           color: Color(0xff232882),
@@ -217,7 +256,7 @@ class CreateAssociatedMembers extends StatelessWidget {
                           new Border.all(color: Colors.white)),
                       child: InkWell(
                         onTap: () {
-                          //update(context, title, description, data[index]);
+                         create(context, organization, position, location, dateJoining, dateLeaving, description);
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

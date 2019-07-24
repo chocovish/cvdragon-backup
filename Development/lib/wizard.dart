@@ -3,6 +3,9 @@ import 'package:cvdragonapp_v1/home.dart';
 import 'package:flutter/material.dart';
 import './urlgenerator.dart'as urlgenerator;
 import 'package:flutter/painting.dart';
+import 'package:http/http.dart'as http;
+import 'dart:convert';
+import './sharedfetch.dart';
 int typelogin;
 String mobile="";
 String socialid="";
@@ -86,14 +89,21 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                ),
                RaisedButton(
                  child: Text("Click Me"),
-                 onPressed: () {
-                   print(urlgenerator.usercreate(nameController.text, emailController.text, "91", phoneController.text, typelogin.toString(), socialid, _selectedVal.value));
-                   print(nameController.text);
-                   print(emailController.text);
-                   print(phoneController.text);
-                   print(_selectedVal.value);
-                  //  Navigator.push(context,
-                  //      MaterialPageRoute(builder: (context) => HomePagee()));
+                 onPressed: () async{
+                  String url=urlgenerator.usercreate(nameController.text, emailController.text, "91", phoneController.text, typelogin.toString(), socialid, _selectedVal.value);
+                  print(url);
+                   http.Response res=await http.get(url);
+                   List data=json.decode(res.body);
+                   print(res.body.toString());
+                   await writeid(data[0]['id']);
+                   await writeauthKey(data[0]['authkey']);
+                    await writeloginstatus(1);
+                  //  print(nameController.text);
+                  //  print(emailController.text);
+                  //  print(phoneController.text);
+                  //  print(_selectedVal.value);
+                   Navigator.push(context,
+                       MaterialPageRoute(builder: (context) => HomePagee()));
                  },
                ),
                Row(children: <Widget>[

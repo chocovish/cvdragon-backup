@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
-
+import '../Custom dialog database.dart';
+import '../localdatapush.dart';
+import '../edit_section.dart';
 Map<String, dynamic> faq;
 int index;
+List databb3 = [];
+List databb1 = [];
 String database;
 List keyPhrases;
 String section;
@@ -18,13 +22,37 @@ var dateLeaving = data[index]['dateLeaving'];
 var description = data[index]['description'];
 
 class VolunteerExperience extends StatelessWidget {
-  VolunteerExperience(String d2, String i2, int i1, List d, List k2) {
-    section = d2;
+  VolunteerExperience(String d2, String i2, int i1, List d, List k2, List d1, List d3) {
+     section = d2;
     secName = i2;
     index = i1;
-    keyPhrases = k2;
     data = d;
+    databb1 = d3;
+    databb3 = d1;
+    keyPhrases = k2;
   }
+
+  update(BuildContext context,String o, String c, String r, String dj, String dl, String d, Map<String, dynamic> initial) {
+    Map <String,dynamic> newdata={
+    "organization":o,
+    "cause":c,
+    "role":r,
+    "dateJoining":dj,
+    "dateLeaving":dl,
+    "description":d
+  };
+      updateData(section,newdata,initial).then((int status) {
+
+        Navigator.pop(context);
+        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+
+
+      });
+    }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +77,7 @@ class VolunteerExperience extends StatelessWidget {
         body: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
+                    image: AssetImage('assets/FormSection/'+section+'-02.png'), fit: BoxFit.fill)),
             child: NestedScrollView(
               headerSliverBuilder:
                   (BuildContext context, bool innerBoxIsScrolled) {
@@ -150,11 +178,7 @@ class VolunteerExperience extends StatelessWidget {
                                     showDialog(
                                       context: context,
                                       builder: (BuildContext context) =>
-                                          CustomDialog(
-                                            title: "DataBase",
-                                            description:
-                                                "Data Aaoo, Hum Darte Hai Kya ?",
-                                            buttonText: "Okay",
+                                         CustomDialogDatabase("Database",data, databb3,section
                                           ),
                                     );
                                   },
@@ -379,7 +403,7 @@ class VolunteerExperience extends StatelessWidget {
                                 InkWell(
                                   child: Container(
                                     height: MediaQuery.of(context).size.height / 18,
-                                    width: MediaQuery.of(context).size.width / 3,
+                                    width: MediaQuery.of(context).size.width / 2.2,
                                     alignment: FractionalOffset.center,
                                     decoration: BoxDecoration(
                                         color: Color(0xff232882),
@@ -388,7 +412,7 @@ class VolunteerExperience extends StatelessWidget {
                                         new Border.all(color: Colors.white)),
                                     child: InkWell(
                                       onTap: () {
-                                        //update(context, title, description, data[index]);
+                                      update(context, organization, cause, role, dateJoining, dateLeaving, description, data[index]);
                                       },
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -405,7 +429,7 @@ class VolunteerExperience extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            "Add Section",
+                                            "Update Section",
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 15.0,

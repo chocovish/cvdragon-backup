@@ -1,18 +1,23 @@
+import 'package:cvdragonapp_v1/Sections/Publications.dart';
+import 'package:cvdragonapp_v1/vishal/sections/WorkDetailsForm.dart';
 import 'package:flutter/material.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
 import './rightpreviewpane.dart';
 import './bottombar_createsection.dart';
 import './Sections/Volunteer_Experience.dart';
+import './Sections/Educational_Background.dart';
 import './Sections/Interests.dart';
+import './Sections/PositionOfResponsibility.dart';
 import './Sections/Academic_Projects.dart';
-import './Sections/Basic_Info.dart';
+import './Sections/BasicInfo.dart';
 import './Sections/Internships.dart';
 import './Sections/Introduction.dart';
 import './Sections/Professional_Qualifications.dart';
 import './Sections/Presentations.dart';
 import './Sections/Achievments.dart';
 import './Sections/Certificates.dart';
+import './Sections/Publications.dart';
 import './Sections/Honors_Awards.dart';
 import './Sections/Languages.dart';
 import './Sections/Co_Curricular_Activity.dart';
@@ -22,6 +27,9 @@ import './Sections/Work_Projects.dart';
 import './Sections/Trainings_Conducted.dart';
 import './Sections/Associated_Members.dart';
 import './Sections/Patents.dart';
+import './Sections/Contact_Details.dart';
+import './Sections/TN.dart';
+import './vishal/CustomForm.dart';
 import './maps.dart'as maps;
 
 List keyP;
@@ -109,43 +117,54 @@ class _EditSection2 extends State<EditSection2> {
 }
 
 Widget _buildCardView(BuildContext context) {
+  if (section == "51099")
+    return POR(section, secName, index, data, keyP, databb2, databb1);
   if (section == "51122")
     return AcademicProjects(section, secName, index, data, keyP, databb2, databb1); //Done
 //  else if (section == "51100")
-//    return BasicInfo(section, secName, index, data,keyP);
+//    return BasicInfo(section, secName, index, data, keyP, databb2, databb1);
   else if (section == "51106")
-    return Internships(section, secName, index, data,keyP); //Done
+    return Internships(section, secName, index, data, keyP, databb2, databb1); //Done
   else if (section == "51103")
-    return Introduction(section, secName, index, data,keyP);
+    return Introduction(section, secName, index, data, keyP, databb2, databb1);
   else if (section == "51108")
-    return ProfessionalQualifications(section, secName, index, data,keyP); //Done
+    return ProfessionalQualifications(section, secName, index, data, keyP, databb2, databb1); //Done
   else if (section == "51110")
-    return Certificates(section, secName, index, data,keyP);
+    return Certificates(section, secName, index, data, keyP, databb2, databb1);
   else if (section == "51114")
     return Achievments(section, secName, index, data, keyP, databb2, databb1); //Done
   else if (section == "51115")
-    return HonorsAwards(section, secName, index, data,keyP); //Done
+    return HonorsAwards(section, secName, index, data, keyP, databb2, databb1); //Done
   else if (section == "51118")
-    return SoftSkills(section, secName, index, data,keyP); //Done
+    return SoftSkills(section, secName, index, data, keyP, databb2, databb1); //Done
   else if (section == "51123")
-    return CoCurricularActivity(section, secName, index, data,keyP);
+    return CoCurricularActivity(section, secName, index, data, keyP, databb2, databb1);
   else if (section == "51125")
-    return Presentations(section, secName, index, data,keyP);
+    return Presentations(section, secName, index, data, keyP, databb2, databb1);
   else if (section == "51120")
-    return Languages(section, secName, index, data,keyP);
+    return Languages(section, secName, index, data, keyP, databb2, databb1);
   else if (section == "51119")
-    return Interests(section,  secName, index, data,keyP);
+    return Interests(section, secName, index, data, keyP, databb2, databb1);
   else if(section=="51117")
-    return VolunteerExperience(section, secName, index, data,keyP);
-  else if(section == "51104")
-    return WorkDetails(section, secName, index, data,keyP);
+    return VolunteerExperience(section, secName, index, data, keyP, databb2, databb1);
+  else if(section == "51104") return WorkDetailsForm(i: data[index]);
+  
+    //return WorkDetails(section, secName, index, data, keyP, databb2, databb1);
   else if(section == "51105")
-    return WorkProjects(section, secName, index, data,keyP);
+    return WorkProjects(section, secName, index, data, keyP, databb2, databb1);
   else if(section == "51107")
-    return TrainingsConducted(section, secName, index, data,keyP);
+    return TrainingsConducted(section, secName, index, data, keyP, databb2, databb1);
   else if(section == "51116")
     return AssociatedMembers(section, secName, index, data, keyP, databb2, databb1);
   else if(section=="51113")
-    return Patents(section, secName, index, data,keyP);
+    return Patents(section, secName, index, data, keyP, databb2, databb1);
+  else if(section=="51111")  
+    return TechnicalKnowledge(section, secName, index, data, keyP, databb2, databb1);
+  else if(section == "51112")
+    return Publications(section, secName, index, data, keyP, databb2, databb1);
+  else if(section == "51101")
+    return ContactDetails(section, secName, index, data, keyP, databb2, databb1);
+  else if(section == "51109")
+    return EducationalBackground(section, secName, index, data, keyP, databb2, databb1);
 }
 

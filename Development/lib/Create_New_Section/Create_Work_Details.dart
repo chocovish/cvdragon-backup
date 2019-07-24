@@ -1,18 +1,50 @@
+import 'package:cvdragonapp_v1/edit_section.dart';
 import 'package:flutter/material.dart';
-import '../Custom_dialog.dart';
-import '../Custom_dialog_KeyPhrases.dart';
+import '../localdatapush.dart'as lpush;
 
 Map<String, dynamic> faq;
-//List keyPhrases;
+int index3;
+String database;
+String y;
+
 String section;
 String secName;
+var data = [];
+var organization = '';
+var designation = '';
+var location = '';
+var dateJoined = '';
+var dateResigned = '';
+var workProfile ='';
+var currentWorking = '';
 
 class CreateWorkDetails extends StatelessWidget {
-  CreateWorkDetails(String d2, String i2) {
-    section = d2;
+  CreateWorkDetails(String d2, String i2, int i1, List d) {
+   section = d2;
     secName = i2;
+    index3 = i1;
+    data = d;
   }
 
+  create(BuildContext context,String o, String des, String l, String dj, String dl, String cw, String w) {
+    Map<String,dynamic> datatobecreated={
+       "organization":o,
+    "designation":des,
+    "location":l,
+    "dateJoined":dj,
+    "dateResigned":dl,
+    "currentWorking":cw.toString(),
+    "workProfile":w
+    
+    };
+   lpush.pushData(section,datatobecreated).then((int status) {
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+    });
+  }
+    final monVal = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
     ValueNotifier<String> _value = ValueNotifier("DD/MM/YYYY");
@@ -33,7 +65,9 @@ class CreateWorkDetails extends StatelessWidget {
     return Form(
         child: Column(
           children: <Widget>[
-            TextFormField(
+            TextField(
+               controller: new TextEditingController(),
+                                  onChanged: (val) => organization = val,
               style: TextStyle(color: Color(0xff232882)),
               decoration: InputDecoration(
                   labelStyle:
@@ -44,16 +78,18 @@ class CreateWorkDetails extends StatelessWidget {
                   border: OutlineInputBorder(
                       borderRadius:
                       BorderRadius.circular(10))),
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter an Organization';
-                }
-              },
+              // validator: (value) {
+              //   if (value.isEmpty) {
+              //     return 'Please enter an Organization';
+              //   }
+              // },
             ),
             Padding(
               padding: EdgeInsets.all(10),
             ),
-            TextFormField(
+            TextField(
+               controller: new TextEditingController(),
+                                  onChanged: (val) => designation = val,
               style: TextStyle(color: Color(0xff232882)),
               scrollPadding: EdgeInsets.all(10.0),
               textAlign: TextAlign.start,
@@ -69,7 +105,9 @@ class CreateWorkDetails extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(10),
             ),
-            TextFormField(
+            TextField(
+               controller: new TextEditingController(),
+                                  onChanged: (val) => location = val,
               style: TextStyle(color: Color(0xff232882)),
               scrollPadding: EdgeInsets.all(10.0),
               textAlign: TextAlign.start,
@@ -176,10 +214,28 @@ class CreateWorkDetails extends StatelessWidget {
                         ]),
                   ),
                 ]),
+
+                Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                ValueListenableBuilder(
+                                                    valueListenable: monVal,
+                                                    builder: (context, val, child) {
+                                                      return Checkbox(
+                                                        value: val,
+                                                        onChanged: (c) {
+                                                          monVal.value = c;
+                                                        },
+                                                      );
+                                                    }),
+                                                Text("currentWorking"),]),
             Padding(
               padding: EdgeInsets.all(10),
             ),
-            TextFormField(
+            TextField(
+               controller: new TextEditingController(),
+                                  onChanged: (val) => workProfile = val,
               style: TextStyle(color: Color(0xff232882)),
               scrollPadding: EdgeInsets.all(10.0),
               textAlign: TextAlign.start,
@@ -210,7 +266,7 @@ class CreateWorkDetails extends StatelessWidget {
                       width: MediaQuery
                           .of(context)
                           .size
-                          .width / 3,
+                          .width / 2.5,
                       alignment: FractionalOffset.center,
                       decoration: BoxDecoration(
                           color: Color(0xff232882),
@@ -219,7 +275,7 @@ class CreateWorkDetails extends StatelessWidget {
                           new Border.all(color: Colors.white)),
                       child: InkWell(
                         onTap: () {
-                          //update(context, title, description, data[index]);
+                          create(context, organization, designation, location, dateJoined, dateResigned, currentWorking, workProfile);
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

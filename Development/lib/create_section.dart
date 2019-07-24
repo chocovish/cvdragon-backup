@@ -1,3 +1,21 @@
+import 'package:cvdragonapp_v1/vishal/sections/AchievmentsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/AssociatedMembersForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/CertificatesForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/CoCurricularActivityForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/HonorsAwardsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/InterestsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/IntroductionForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/LanguagesForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/PORForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/PatentForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/PresentationsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/ProfessionalQualificationsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/PublicationsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/SoftSkillsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/TrainingsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/VolunteerForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/WorkDetailsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/WorkProjectsForm.dart';
 import 'package:flutter/material.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
@@ -7,9 +25,10 @@ import './vishBottomBar.dart';
 import './Custom_dialog.dart';
 import './Custom_dialog_KeyPhrases.dart';
 import './Create_New_Section/Create_Academic_Projects.dart';
+import './Create_New_Section/Create_Publications.dart';
 import './Create_New_Section/Create_Achievments.dart';
 import './Create_New_Section/Create_Associated_Members.dart';
-import './Create_New_Section/Create_Basic_Info.dart';
+import './Create_New_Section/Create_POR.dart';
 import './Create_New_Section/Create_Certificates.dart';
 import './Create_New_Section/Create_Co_Curricular_Activity.dart';
 import './Create_New_Section/Create_Honors_Awards.dart';
@@ -26,9 +45,13 @@ import './Create_New_Section/Create_Volunteer_Experience.dart';
 import './Custom dialog database.dart';
 import './Create_New_Section/Create_Work_Details.dart';
 import './Create_New_Section/Create_Work_Projects.dart';
+import './Create_New_Section/Create_Tech_Knowledge.dart';
 import './maps.dart' as maps;
-
+import './vishal/CustomForm.dart';
 import './fetch.dart';
+ 
+import './vishal/sections/AcademicProjects.dart';
+import './vishal/sections/InternshipsForm.dart';
 
 int index2;
 String database;
@@ -57,6 +80,11 @@ class CreateSection extends StatefulWidget {
 }
 
 class _CreateSection extends State<CreateSection> {
+  void _selectedTab(int index) {
+    setState(() {
+      print(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -243,41 +271,51 @@ class _CreateSection extends State<CreateSection> {
 }
 
 Widget _buildCardView(BuildContext context) {
-  if (section == "51122")
-    return CreateAcademicProjects(section, secName, index2, data);
-  else if (section == "51100")
-    return CreateBasicInfo(section, secName);
-  else if (section == "51106")
-    return CreateInternships(section, secName); //Done
-  else if (section == "51103")
-    return CreateIntroduction(section, secName);
-  else if (section == "51108")
-    return CreateProfessionalQualifications(section, secName); //Done
-  else if (section == "51110")
-    return CreateCertificates(section, secName);
-  else if (section == "51114")
-    return CreateAchievments(section, secName); //Done
-  else if (section == "51115")
-    return CreateHonorsAwards(section, secName); //Done
-  else if (section == "51118")
-    return CreateSoftSkills(section, secName); //Done
-  else if (section == "51123")
-    return CreateCoCurricularActivity(section, secName);
-  else if (section == "51125")
-    return CreatePresentations(section, secName, index, data);
-  else if (section == "51120")
-    return CreateLanguages(section, secName);
-  else if (section == "51119")
-    return CreateInterests(section, secName);
-  else if (section == "51117")
-    return CreateVolunteerExperience(section, secName);
+  print("$data and $index2");
+  //print(data[index2]);
+  if (section == "51122") return AcademicProjectsForm(i:index2==null?null:data[index2],);
+    //return CreateAcademicProjects(section, secName, index2, data); //Done
+//  else if (section == "51100")
+//    return CreateBasicInfo(section, secName, index2, data);
+  else if (section == "51106") return InternshipsForm(i:index2==null?null:data[index2]);
+    //return CreateInternships(section, secName, index2, data); //Done
+  else if (section == "51103") return IntroductionForm(i:index2==null?null:data[index2]);
+    //return CreateIntroduction(section, secName, index2, data);
+  else if (section == "51108") return ProfessionalQualificationsForm(i:index2==null?null:data[index2]);
+    //return CreateProfessionalQualifications(section, secName, index2, data);
+  else if (section == "51110") return CertificatesForm(i:index2==null?null:data[index2]);
+    //return CreateCertificates(section, secName, index2, data);
+  else if (section == "51114") return AchievementsForm(i:index2==null?null:data[index2]);
+    //return CreateAchievments(section, secName, index2, data); //Done
+  else if (section == "51115") return HonorsAwardsForm(i:index2==null?null:data[index2]);
+    //return CreateHonorsAwards(section, secName, index2, data);
+  else if (section == "51118") return SoftSkillsForm(i:index2==null?null:data[index2]);
+    //return CreateSoftSkills(section, secName, index2, data);
+  else if (section == "51123") return CoCurricularActivityForm(i:index2==null?null:data[index2]);
+    //return CreateCoCurricularActivity(section, secName, index2, data);
+  else if (section == "51125") return PresentationsForm(i:index2==null?null:data[index2]);
+    //return CreatePresentations(section, secName, index2, data); //Done
+  else if (section == "51120") return LanguagesForm(i:index2==null?null:data[index2]);
+    //return CreateLanguages(section, secName, index2, data);
+  else if (section == "51119") return InterestsForm(i:index2==null?null:data[index2]);
+    //return CreateInterests(section, secName, index2, data);
+  else if (section == "51117") return VolunteerForm(i:index2==null?null:data[index2]);
+    //return CreateVolunteerExperience(section, secName, index2, data);
   else if (section == "51104")
-    return CreateWorkDetails(section, secName);
-  else if (section == "51105")
-    return CreateWorkProjects(section, secName);
-  else if (section == "51107")
-    return CreateTrainingsConducted(section, secName);
-  else if (section == "51116")
-    return CreateAssociatedMembers(section, secName);
-  else if (section == "51113") return CreatePatents(section, secName);
+    return WorkDetailsForm(i:index2==null?null:data[index2]);
+    //return CreateWorkDetails(section, secName, index2, data);
+  else if (section == "51105") return WorkProjectsForm(i:index2==null?null:data[index2]);
+    //return CreateWorkProjects(section, secName, index2, data);
+  else if (section == "51107") return TrainingsForm(i:index2==null?null:data[index2]);
+    //return CreateTrainingsConducted(section, secName, index2, data);
+  else if (section == "51116") return AssociatedMembersForm(i:index2==null?null:data[index2]);
+    //return CreateAssociatedMembers(section, secName, index2, data);
+  else if (section == "51113") return PatentForm(i:index2==null?null:data[index2]);
+   // return CreatePatents(section, secName, index2, data);
+  else if (section == "51111")
+    return CreateTechnicalKnowledge(section, secName, index2, data);
+  else if (section == "51112") return PublicationForm(i:index2==null?null:data[index2]);
+    //return CreatePublications(section, secName, index2, data);
+  else if (section == "51099") return PORForm(i:index2==null?null:data[index2]);
+  //return CreatePOR(section, secName, index2, data);
 }

@@ -193,7 +193,7 @@ class Terms extends StatelessWidget {
         margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/35,left: 10,right:5),
         child: Column(
           children: <Widget>[
-            Container(margin: EdgeInsets.only(left: 15),
+            Container(margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height/40),
               child: Row(
                 children: <Widget>[
                   Text("Terms & Conditions",
@@ -205,8 +205,8 @@ class Terms extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(bottom: 15),
-              height: MediaQuery.of(context).size.height/1.36,
+              //padding: EdgeInsets.only(bottom: 15),
+              height: MediaQuery.of(context).size.height/1.5,
               child: new Markdown(data:abtext),
 
             )

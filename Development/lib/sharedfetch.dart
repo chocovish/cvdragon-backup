@@ -1,6 +1,6 @@
 
 import 'package:shared_preferences/shared_preferences.dart';
-
+List<String>querylist=[];
 Future<String> readname() async {
       final prefs = await SharedPreferences.getInstance();
       final value = prefs.getString('name');
@@ -75,4 +75,9 @@ Future<String> writealltablescreated(bool val) async {
       final prefs = await SharedPreferences.getInstance();
        prefs.setBool('alltablescreated',val);
        return "Success";
+      }
+Future<String> writeSyncQueue(String query) async {
+      querylist.add(query);
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setStringList('syncQuery',querylist);
       }

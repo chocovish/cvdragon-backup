@@ -5,12 +5,12 @@ import 'dart:convert';
 import 'dart:async';
 List sending_response;
 Map<String,dynamic> sendBasic;
- Future<List> getSectionData() async {
-  String url = urlgetter.allSectionsBasic("1","1");
-    var res = await http.get(url);
-    sending_response= json.decode(res.body);
-    return sending_response;
- }
+//  Future<List> getProfileSections() async {
+//   String url = urlgetter.allSectionsBasic("1","1");
+//     var res = await http.get(url);
+//     sending_response= json.decode(res.body);
+//     return sending_response;
+//  }
 Future<Map<String,dynamic>>getall(String id,String authkey) async{
   String url = urlgetter.all(id, authkey);
     var res = await http.get(url);
@@ -194,18 +194,18 @@ Future<List> getcvSection(String id,String authkey) async {
     sending_response= json.decode(res.body);
     return sending_response;
  }
- Future<Map<String,dynamic>> getFAQ(String sectionID)async {
-  String url = urlgetter.faq(sectionID);
-    var res = await http.get(url);
-    sendBasic= json.decode(res.body);
-    return sendBasic;
- }
-  Future<List> getKeyPhrases(String sectionid) async {
-  String url = urlgetter.keyPhrases(sectionid);
-    var res = await http.get(url);
-    sending_response= json.decode(res.body);
-    return sending_response;
- }
+//  Future<Map<String,dynamic>> getFAQ(String sectionID)async {
+//   String url = urlgetter.faq(sectionID);
+//     var res = await http.get(url);
+//     sendBasic= json.decode(res.body);
+//     return sendBasic;
+//  }
+//   Future<List> getKeyPhrases(String sectionid) async {
+//   String url = urlgetter.keyPhrases(sectionid);
+//     var res = await http.get(url);
+//     sending_response= json.decode(res.body);
+//     return sending_response;
+//  }
   Future<List> getOtp(String mobileno) async {
   String url = urlgetter.otpgenerator(mobileno);
   print(url);
@@ -254,12 +254,12 @@ Future<List> getcvSection(String id,String authkey) async {
     sending_response= json.decode(res.body);
     return sending_response ;
  }
- Future<List> getallDesigns() async {
-  String url = urlgetter.allDesigns();
-    var res = await http.get(url);
-    sending_response= json.decode(res.body);
-    return sending_response ;
- }
+//  Future<List> getallDesigns() async {
+//   String url = urlgetter.allDesigns();
+//     var res = await http.get(url);
+//     sending_response= json.decode(res.body);
+//     return sending_response ;
+//  }
  Future<List> getallProfileSttings() async {
   String url = urlgetter.allProfileSettings();
     var res = await http.get(url);

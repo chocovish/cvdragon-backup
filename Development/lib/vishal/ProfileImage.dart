@@ -6,10 +6,27 @@ import 'package:path/path.dart';
 import 'package:nice_button/nice_button.dart';
 import './utils.dart';
 
-class ProfileImageUpload extends StatelessWidget {
+class ProfileImageUpload extends StatefulWidget {
+  ProfileImageUpload(){
+    print("Calling from constructor.......");
+    
+  }
+
+  @override
+  _ProfileImageUploadState createState() => _ProfileImageUploadState();
+}
+
+class _ProfileImageUploadState extends State<ProfileImageUpload> {
+  @override
+  void initState() {
+    super.initState();
+    print("Calling from init State..");
+    _selectedImage.value = File("");
+  }
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return 
+    Container(
         padding: EdgeInsets.all(20.0),
         child: Center(
           child: Column(
@@ -26,13 +43,13 @@ class ProfileImageUpload extends StatelessWidget {
               SizedBox(height: 14),
               ProfilePicList(),
               SizedBox(height: 16),
-              NiceButton(
-                text: "Logout",
-                fontSize: 16,
-                width: 100,
-                onPressed: logout,
-                background: Colors.amber,
-              )
+              // NiceButton(
+              //   text: "Logout",
+              //   fontSize: 16,
+              //   width: 100,
+              //   onPressed: logout,
+              //   background: Colors.amber,
+              // )
             ],
           ),
         ));
@@ -85,7 +102,8 @@ class _SelectedImageWidget extends StatelessWidget {
   }
 }
 
-var _selectedImage = ValueNotifier(File(""));
+
+ValueNotifier<File> _selectedImage = ValueNotifier(File(""));
 
 Future _getImage() async {
   File image = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -103,6 +121,7 @@ Future _storeImage() async {
   _selectedImage.value.copySync(myImage.path);
   print("Done");
   _getStoredImage();
+  _selectedImage.value = File("");
 }
 
 Future<List<FileSystemEntity>> _getStoredImage() async {
@@ -110,41 +129,57 @@ Future<List<FileSystemEntity>> _getStoredImage() async {
   String imageDirPath = join(appDocDir.path, 'profile_images');
   Directory imageDir = Directory(imageDirPath);
   List<FileSystemEntity> l = imageDir.listSync();
-  print(l);
+  print(l.length);
   return l;
 }
 
 class ProfilePicList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder(
-        future: _getStoredImage(),
-        builder: (context, AsyncSnapshot<List<FileSystemEntity>> snapshot) {
-          if (!snapshot.hasData)
-            return Container(
-              child: Text("No Images"),
-            );
-          return Column(
-            children: snapshot.data.map((file) {
-              return Container(
-                decoration: BoxDecoration(color: Colors.amber,borderRadius: BorderRadius.circular(10)),
-                
-                margin: EdgeInsets.symmetric(horizontal: 4,vertical: 5),
-                padding: EdgeInsets.symmetric(horizontal: 4,vertical: 5),
-                child: ListTile(
-                  leading: ClipRRect(child: Image.file(file),borderRadius: BorderRadius.circular(10),),
-                  title: Text("FileName"),
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: (){},
-                  ),
-                ),
+    return ValueListenableBuilder(
+      valueListenable: _selectedImage,
+      builder: (context, val, child) {
+        return Container(
+          child: FutureBuilder(
+            future: _getStoredImage(),
+            builder: (context, AsyncSnapshot<List<FileSystemEntity>> snapshot) {
+              if (!snapshot.hasData)
+                return Container(
+                  child: Text("No Images"),
+                );
+              return Column(
+                children: snapshot.data.map((file) {
+                  return Container(
+                    decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(10)),
+                    margin: EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+                    child: ListTile(
+                      onTap: () {
+                        print("Deleter");
+                      },
+                      leading: ClipRRect(
+                        child: Image.file(file),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      title: Text("FileName"),
+                      trailing: IconButton(
+                        onPressed: () {
+                          print("Deleter");
+                          file.deleteSync();
+                          _selectedImage.value = File("");
+                        },
+                        icon: Icon(Icons.delete),
+                      ),
+                    ),
+                  );
+                }).toList(),
               );
-            }).toList(),
-          );
-        },
-      ),
+            },
+          ),
+        );
+      },
     );
   }
 }

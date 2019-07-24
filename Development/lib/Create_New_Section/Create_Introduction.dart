@@ -1,17 +1,40 @@
+import 'package:cvdragonapp_v1/edit_section.dart';
 import 'package:flutter/material.dart';
-import '../Custom_dialog.dart';
-import '../Custom_dialog_KeyPhrases.dart';
+import '../localdatapush.dart'as lpush;
 
 Map<String, dynamic> faq;
-//List keyPhrases;
+int index3;
+String database;
+String y;
+
 String section;
 String secName;
+var data = [];
+var title = '';
+var introduction = '';
+
 
 class CreateIntroduction extends StatelessWidget {
-  CreateIntroduction(String d2, String i2) {
-    section = d2;
+  CreateIntroduction(String d2, String i2, int i1, List d) {
+     section = d2;
     secName = i2;
+    index3 = i1;
+    data = d;
   }
+
+  create(BuildContext context,String t, String i) {
+    Map<String,dynamic> datatobecreated={
+    "title":t,
+  "introduction":i
+    };
+   lpush.pushData(section,datatobecreated).then((int status) {
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Form(
@@ -62,7 +85,9 @@ class CreateIntroduction extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(30.0),
                                       border: new Border.all(color: Colors.white)),
                                   child: InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      create(context, title, introduction);
+                                    },
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: <Widget>[
@@ -76,7 +101,7 @@ class CreateIntroduction extends StatelessWidget {
                                         ),
 
                                         Text(
-                                          "Add Introduction",
+                                          "Add Section",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 15.0,

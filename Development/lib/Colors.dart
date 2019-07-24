@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
-
+import './localdatafetch.dart' as lfetch;
 double value = 0.9;
-
-
+List colors=[];
+bool isLoading=true;
 class Colorset extends StatefulWidget {
   @override
   _Colorset  createState() => new _Colorset();
@@ -19,13 +19,19 @@ class _Colorset extends State<Colorset> {
   @override
   initState() {
     super.initState();
+    get();
     controller = new PageController(
       initialPage: currentpage,
       keepPage: false,
       viewportFraction: 0.9,
     );
   }
-
+void get()async{
+colors=await lfetch.getColors();
+setState(() {
+ isLoading=false; 
+});
+}
   @override
   dispose() {
     controller.dispose();
@@ -34,7 +40,17 @@ class _Colorset extends State<Colorset> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return isLoading?DecoratedBox(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/cover.png"), fit: BoxFit.fill)),
+              child: Center(
+                  child: Image(
+                      image: AssetImage("assets/logocv.gif"),
+                      height: MediaQuery.of(context).size.height/12,
+                      width: MediaQuery.of(context).size.width/6)),
+            )
+    :Scaffold(
       appBar: TopMenuBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
@@ -62,6 +78,7 @@ class _Colorset extends State<Colorset> {
       ),
       body: Container(
         child: new PageView.builder(
+            itemCount: colors == null ? 0 : colors.length,
             onPageChanged: (value) {
               setState(() {
                 currentpage = value;
@@ -100,7 +117,7 @@ class _Colorset extends State<Colorset> {
             height: MediaQuery.of(context).size.height/1.4,
             width: 160,
             //color: Colors.black,
-            decoration: BoxDecoration(color: Colors.deepOrange,borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5.0),topLeft: Radius.circular(5.0))),
+            decoration: BoxDecoration(color: Color(int.parse("0xff"+colors[index]['color1'].toString().substring(1))),borderRadius: BorderRadius.only(bottomLeft: Radius.circular(5.0),topLeft: Radius.circular(5.0))),
             alignment: Alignment.topLeft,
 
 
@@ -116,14 +133,14 @@ class _Colorset extends State<Colorset> {
                 Container(
                   height: MediaQuery.of(context).size.height/2.91,
                   width: 148,
-                  decoration: BoxDecoration(color: Color(0xff000580),borderRadius: BorderRadius.only(topRight: Radius.circular(5.0))),
+                  decoration: BoxDecoration(color: Color(int.parse("0xff"+colors[index]['color2'].toString().substring(1))),borderRadius: BorderRadius.only(topRight: Radius.circular(5.0))),
                   //color: Colors.red,
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height/2.895,
                   width: 148,
                   //color: Colors.blueGrey,
-                  decoration: BoxDecoration(color: Colors.blueGrey,borderRadius: BorderRadius.only(bottomRight: Radius.circular(5.0))),
+                  decoration: BoxDecoration(color: Color(int.parse("0xff"+colors[index]['color3'].toString().substring(1))),borderRadius: BorderRadius.only(bottomRight: Radius.circular(5.0))),
                 )
               ],
             ),

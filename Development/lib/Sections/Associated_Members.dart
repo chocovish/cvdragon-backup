@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
 import '../Custom dialog database.dart';
-
+import '../localdatapush.dart';
+import '../edit_section.dart';
 
 Map<String, dynamic> faq;
 int index;
@@ -12,6 +13,7 @@ String database;
 List keyPhrases;
 String section;
 String secName;
+
 
 var data = [];
 var organization = data[index]['organization'];
@@ -30,6 +32,26 @@ class AssociatedMembers extends StatelessWidget {
     databb1 = d3;
     databb3 = d1;
     keyPhrases = k2;
+  }
+
+  update(BuildContext context,String o, String p, String l, String dj, String dl, String d, Map<String, dynamic> initial) {
+   Map <String,dynamic> newdata={
+  "organization":o,
+  "position":p,
+  "location":l,
+  "dateJoining":dj,
+  "dateLeaving":dl,
+  "description":d
+};
+    updateData(section,newdata,initial).then((int status) {
+
+       Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+
+
+    });
   }
 
   @override
@@ -54,7 +76,7 @@ class AssociatedMembers extends StatelessWidget {
         body: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
+                    image: AssetImage('assets/FormSection/'+section+'-02.png'), fit: BoxFit.fill)),
             child: NestedScrollView(
               headerSliverBuilder:
                   (BuildContext context, bool innerBoxIsScrolled) {
@@ -380,7 +402,7 @@ class AssociatedMembers extends StatelessWidget {
                                     InkWell(
                                       child: Container(
                                         height: MediaQuery.of(context).size.height / 18,
-                                        width: MediaQuery.of(context).size.width / 3,
+                                        width: MediaQuery.of(context).size.width / 2.2,
                                         alignment: FractionalOffset.center,
                                         decoration: BoxDecoration(
                                             color: Color(0xff232882),
@@ -389,7 +411,7 @@ class AssociatedMembers extends StatelessWidget {
                                             new Border.all(color: Colors.white)),
                                         child: InkWell(
                                           onTap: () {
-                                            //update(context, title, description, data[index]);
+                                            update(context, organization, position, location, dateJoining, dateLeaving, description, data[index]);
                                           },
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.center,
@@ -406,7 +428,7 @@ class AssociatedMembers extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                "Add Section",
+                                                "Upate Section",
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 15.0,

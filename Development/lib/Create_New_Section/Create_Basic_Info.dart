@@ -216,7 +216,7 @@ class CreateBasicInfo extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                "Add Basic Info",
+                                                "Add Section",
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 15.0,

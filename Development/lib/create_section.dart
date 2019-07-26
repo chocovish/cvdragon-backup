@@ -1,10 +1,27 @@
-import 'package:cvdragonapp_v1/Create_New_Section/Create_Publications.dart'
-    as prefix0;
+import 'package:cvdragonapp_v1/vishal/sections/AchievmentsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/AssociatedMembersForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/CertificatesForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/CoCurricularActivityForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/HonorsAwardsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/InterestsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/IntroductionForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/LanguagesForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/PORForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/PatentForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/PresentationsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/ProfessionalQualificationsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/PublicationsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/SoftSkillsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/TrainingsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/VolunteerForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/WorkDetailsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/WorkProjectsForm.dart';
 import 'package:flutter/material.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
 import './rightpreviewpane.dart';
 import './bottombar_createsection.dart';
+import './vishBottomBar.dart';
 import './Custom_dialog.dart';
 import './Custom_dialog_KeyPhrases.dart';
 import './Create_New_Section/Create_Academic_Projects.dart';
@@ -30,8 +47,11 @@ import './Create_New_Section/Create_Work_Details.dart';
 import './Create_New_Section/Create_Work_Projects.dart';
 import './Create_New_Section/Create_Tech_Knowledge.dart';
 import './maps.dart' as maps;
-
+import './vishal/CustomForm.dart';
 import './fetch.dart';
+ 
+import './vishal/sections/AcademicProjects.dart';
+import './vishal/sections/InternshipsForm.dart';
 
 int index2;
 String database;
@@ -92,25 +112,26 @@ class _CreateSection extends State<CreateSection> {
         appBar: TopMenuBar(),
         drawer: SideMenu(),
         // endDrawer: PreviewPane(),
-        bottomNavigationBar: FABBottomAppBar(
-          onTabSelected: _selectedTab,
-          notchedShape: CircularNotchedRectangle(),
-          color: Colors.white30,
-          centerItemText: "Preview",
-          backgroundColor: Color(0xff232882),
-          selectedColor: Colors.white,
-          items: [
-            FABBottomAppBarItem(
-                iconData: Icons.import_contacts, text: 'Knowledge'),
-            FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
-            FABBottomAppBarItem(iconData: Icons.swap_vert, text: 'Profiles'),
-            FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
-          ],
-        ),
+        // bottomNavigationBar: FABBottomAppBar(
+        //   onTabSelected: _selectedTab,
+        //   notchedShape: CircularNotchedRectangle(),
+        //   color: Colors.white30,
+        //   centerItemText: "Preview",
+        //   backgroundColor: Color(0xff232882),
+        //   selectedColor: Colors.white,
+        //   items: [
+        //     FABBottomAppBarItem(
+        //         iconData: Icons.import_contacts, text: 'Knowledge'),
+        //     FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
+        //     FABBottomAppBarItem(iconData: Icons.swap_vert, text: 'Profiles'),
+        //     FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
+        //   ],
+        // ),
+        bottomNavigationBar: MybottomNav(-1) ,
         body: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/FormSection/'+section+'-02.png'), fit: BoxFit.fill)),
+                    image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
             child: NestedScrollView(
                 headerSliverBuilder:
                     (BuildContext context, bool innerBoxIsScrolled) {
@@ -149,10 +170,10 @@ class _CreateSection extends State<CreateSection> {
                                       context: context,
                                       builder: (BuildContext context) =>
                                           CustomDialog(
-                                            title: "FAQs",
-                                            description: "You ask, we answer !",
-                                            buttonText: "Okay",
-                                          ),
+                                        title: "FAQs",
+                                        description: "You ask, we answer !",
+                                        buttonText: "Okay",
+                                      ),
                                     );
                                   },
                                   child: Container(
@@ -250,47 +271,51 @@ class _CreateSection extends State<CreateSection> {
 }
 
 Widget _buildCardView(BuildContext context) {
-  if (section == "51122")
-    return CreateAcademicProjects(section, secName, index2, data); //Done
+  print("$data and $index2");
+  //print(data[index2]);
+  if (section == "51122") return AcademicProjectsForm(i:index2==null?null:data[index2],);
+    //return CreateAcademicProjects(section, secName, index2, data); //Done
 //  else if (section == "51100")
 //    return CreateBasicInfo(section, secName, index2, data);
-  else if (section == "51106")
-    return CreateInternships(section, secName, index2, data); //Done
-  else if (section == "51103")
-    return CreateIntroduction(section, secName, index2, data);
-  else if (section == "51108")
-    return CreateProfessionalQualifications(section, secName, index2, data);
-  else if (section == "51110")
-    return CreateCertificates(section, secName, index2, data);
-  else if (section == "51114")
-    return CreateAchievments(section, secName, index2, data); //Done
-  else if (section == "51115")
-    return CreateHonorsAwards(section, secName, index2, data);
-  else if (section == "51118")
-    return CreateSoftSkills(section, secName, index2, data);
-  else if (section == "51123")
-    return CreateCoCurricularActivity(section, secName, index2, data);
-  else if (section == "51125")
-    return CreatePresentations(section, secName, index2, data); //Done
-  else if (section == "51120")
-    return CreateLanguages(section, secName, index2, data);
-  else if (section == "51119")
-    return CreateInterests(section, secName, index2, data);
-  else if (section == "51117")
-    return CreateVolunteerExperience(section, secName, index2, data);
+  else if (section == "51106") return InternshipsForm(i:index2==null?null:data[index2]);
+    //return CreateInternships(section, secName, index2, data); //Done
+  else if (section == "51103") return IntroductionForm(i:index2==null?null:data[index2]);
+    //return CreateIntroduction(section, secName, index2, data);
+  else if (section == "51108") return ProfessionalQualificationsForm(i:index2==null?null:data[index2]);
+    //return CreateProfessionalQualifications(section, secName, index2, data);
+  else if (section == "51110") return CertificatesForm(i:index2==null?null:data[index2]);
+    //return CreateCertificates(section, secName, index2, data);
+  else if (section == "51114") return AchievementsForm(i:index2==null?null:data[index2]);
+    //return CreateAchievments(section, secName, index2, data); //Done
+  else if (section == "51115") return HonorsAwardsForm(i:index2==null?null:data[index2]);
+    //return CreateHonorsAwards(section, secName, index2, data);
+  else if (section == "51118") return SoftSkillsForm(i:index2==null?null:data[index2]);
+    //return CreateSoftSkills(section, secName, index2, data);
+  else if (section == "51123") return CoCurricularActivityForm(i:index2==null?null:data[index2]);
+    //return CreateCoCurricularActivity(section, secName, index2, data);
+  else if (section == "51125") return PresentationsForm(i:index2==null?null:data[index2]);
+    //return CreatePresentations(section, secName, index2, data); //Done
+  else if (section == "51120") return LanguagesForm(i:index2==null?null:data[index2]);
+    //return CreateLanguages(section, secName, index2, data);
+  else if (section == "51119") return InterestsForm(i:index2==null?null:data[index2]);
+    //return CreateInterests(section, secName, index2, data);
+  else if (section == "51117") return VolunteerForm(i:index2==null?null:data[index2]);
+    //return CreateVolunteerExperience(section, secName, index2, data);
   else if (section == "51104")
-    return CreateWorkDetails(section, secName, index2, data);
-  else if (section == "51105")
-    return CreateWorkProjects(section, secName, index2, data);
-  else if (section == "51107")
-    return CreateTrainingsConducted(section, secName, index2, data);
-  else if (section == "51116")
-    return CreateAssociatedMembers(section, secName, index2, data);
-  else if (section == "51113")
-    return CreatePatents(section, secName, index2, data);
+    return WorkDetailsForm(i:index2==null?null:data[index2]);
+    //return CreateWorkDetails(section, secName, index2, data);
+  else if (section == "51105") return WorkProjectsForm(i:index2==null?null:data[index2]);
+    //return CreateWorkProjects(section, secName, index2, data);
+  else if (section == "51107") return TrainingsForm(i:index2==null?null:data[index2]);
+    //return CreateTrainingsConducted(section, secName, index2, data);
+  else if (section == "51116") return AssociatedMembersForm(i:index2==null?null:data[index2]);
+    //return CreateAssociatedMembers(section, secName, index2, data);
+  else if (section == "51113") return PatentForm(i:index2==null?null:data[index2]);
+   // return CreatePatents(section, secName, index2, data);
   else if (section == "51111")
     return CreateTechnicalKnowledge(section, secName, index2, data);
-  else if (section == "51112")
-    return CreatePublications(section, secName, index2, data);
-  else if (section == "51099") return CreatePOR(section, secName, index2, data);
+  else if (section == "51112") return PublicationForm(i:index2==null?null:data[index2]);
+    //return CreatePublications(section, secName, index2, data);
+  else if (section == "51099") return PORForm(i:index2==null?null:data[index2]);
+  //return CreatePOR(section, secName, index2, data);
 }

@@ -110,10 +110,10 @@ Future<GoogleSignInAccount> _handleSignIn() async {
     status==1?
     HomePagee():
     Scaffold(
-      resizeToAvoidBottomInset: true,
-      resizeToAvoidBottomPadding: true,
+      //resizeToAvoidBottomInset: true,
+      //resizeToAvoidBottomPadding: true,
       body: Container(
-        height: MediaQuery.of(context).size.height,
+        //height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         
         decoration: BoxDecoration(color: Colors.black,
@@ -142,19 +142,6 @@ Future<GoogleSignInAccount> _handleSignIn() async {
                 controller: controller,
                 itemBuilder: (context, index) => builder(index)),
           ),
-                                    
-                                    
-                                    
-                                    
-                                    Align(
-                    alignment: Alignment.bottomCenter,
-                    child:
-                    new DotsIndicator(
-                      dotsCount: 3,
-                      position: 0,
-                      reversed: true,
-                    )
-                  ),
                                   ],
                 ),
                 
@@ -175,7 +162,7 @@ Future<GoogleSignInAccount> _handleSignIn() async {
             decoration: InputDecoration(
               counterText: '',
               hintText: "+91 Enter Phone Number",
-              border: InputBorder.none,
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               hintStyle: TextStyle(color: Colors.white54),
               icon: Icon(
                 Icons.phone,

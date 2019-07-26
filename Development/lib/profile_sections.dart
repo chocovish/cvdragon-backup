@@ -1,5 +1,6 @@
 import 'dart:ui' as prefix0;
 import 'dart:convert';
+import 'package:cvdragonapp_v1/edit_section.dart' as prefix1;
 import 'package:cvdragonapp_v1/localdatapush.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -111,7 +112,7 @@ class _ProfileSections extends State<ProfileSections> {
                                      maps.Sections[data[index]['section'].toString()].toString(),
                                       style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 22,
+                                          fontSize: 20,
                                           letterSpacing: 0.5,
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -184,11 +185,11 @@ class _ProfileSections extends State<ProfileSections> {
                                  // crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    AutoSizeText(
+                                    Text(
                                      maps.Sections[data[index]['section'].toString()].toString(),
                                       style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 22,
+                                          fontSize: 20,
                                           letterSpacing: 0.5,
                                           fontWeight: FontWeight.bold),
                                     ),

@@ -25,12 +25,13 @@ dependencies:
   path: ^1.5.1
   auto_size_text: ^2.0.1
   code_input: ^1.0.3
-  dots_indicator: ^1.0.0
+  connectivity: ^0.4.3+4
+  flutter_form_builder: ^3.2.8
   charts_flutter: ^0.6.0
   flutter_reactive_button: "^1.1.0"
   animator: ^0.1.2
   path_provider: ^1.1.0
-  
+  dots_indicator: ^1.0.0
   flutter_screenutil: ^0.3.0
   shared_preferences: ^0.4.3
   sqflite: ^1.0.0

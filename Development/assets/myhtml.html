@@ -26,21 +26,21 @@
 <table style="width:205mm; font-family:helvetica; text-align:center;">
 	<tbody><tr>
     	<td style="width:30mm; text-align:center;">
-<img src="data:image/jpeg;base64,{{profimg}}" style="width:30mm;">
+<img src="data:image/jpeg;base64," style="width:30mm;">
 		</td>
     	<td style="width:145mm; text-align:center; vertical-align:middle;">
         	<table cellpadding="0" cellspacing="0" style="text-align:center; width:100%;">
             	<tbody><tr>
                 <td style="font-size:1.8em; line-height:1.53em; color:#342E67;">
-                {{#basicInfo}} {{cvFullName}} {{/basicInfo}}                </td>
+                {{#basic-info}} {{cvFullName}} {{/basic-info}}                </td>
                 </tr>
                 <tr>
                 <td style="font-size:0.99em; line-height:1.44em;">
-                {{tagline}}                </td>
+                {{#introduction}} {{title}}  {{/introduction}}             </td>
                 </tr>
             	<tr>
                 <td style="font-size:0.81em; line-height:1.44em;">
-                        {{#contacts}} {{emailAddress}} {{/contacts}} | {{#contacts}} {{phoneNumber}} {{/contacts}}                </td>
+                        {{#contact}} {{emailAddress}} {{/contact}} | {{#contact}} {{phoneNumber}} {{/contact}}                </td>
                 </tr>
               </tbody></table>
 		</td>
@@ -57,6 +57,7 @@
 </tr>
 </tbody></table>
 
+{{#introduction}}
 <table style="padding:1mm; margin-bottom:1mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:justify; background-color:#EEE;">
 
 <tbody><tr>
@@ -67,16 +68,19 @@ CAREER OBJECTIVE
 </td>
 </tr>
 </tbody></table>
-<table style="padding:1.5mm; margin-bottom:2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:justify;">
+
+
+<table style="padding:1.5mm; margin-bottom:2mm; width:205mm; vertical-align:top;   font-family:helvetica; text-align:justify;">
 <tbody><tr>
 <td style="font-size:0.945em; color:#666; line-height:1.44em;" valign="middle">
 <span>
-<div>{{cobjective}}</div></span>
+<div> {{introduction}} </div></span>
 </td>
 </tr>
 </tbody></table>
+{{/introduction}}
 
-
+{{#work.isNotEmpty}}
 <table style="padding:1mm; margin-bottom:1mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:justify; background-color:#EEE;">
 <tbody><tr>
 <td style="font-size:0.9em; color:#342E67; line-height:0.99em;" valign="middle">
@@ -87,7 +91,9 @@ WORK EXPERIENCE
 </tr>
 </tbody></table>
 
-{{#exp}}
+{{/work.isNotEmpty}}
+
+{{#work}}
 
 <table style="page-break-inside:avoid;"><tbody><tr><td>
 <table style="padding:2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
@@ -113,10 +119,10 @@ WORK EXPERIENCE
 </tbody></table>
 </td></tr></tbody></table> 
 
-{{/exp}}
+{{/work}}
 
 
-
+{{#education.isNotEmpty}}
 
 <table style="padding:1mm; margin-bottom:1mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:justify; background-color:#EEE;">
 
@@ -171,9 +177,10 @@ ACADEMIC QUALIFICATION
 
 </tbody></table>
 
+{{/education.isNotEmpty}}
 
+{{#awards.isNotEmpty}}
 <table style="page-break-inside:avoid;"><tbody><tr><td>
-
 <table style="padding:1mm; margin-bottom:1mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:justify; background-color:#EEE;">
 <tbody><tr>
 <td style="font-size:0.9em; color:#342E67; line-height:0.99em;" valign="middle">
@@ -183,7 +190,7 @@ HONORS &amp; AWARDS
 </td>
 </tr>
 </tbody></table>
-
+{{/awards.isNotEmpty}}
  <table style="padding:0 2mm 1mm 2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
    <tbody><tr>
     <td style="width:195mm; text-align:left;">
@@ -205,7 +212,7 @@ HONORS &amp; AWARDS
 </td></tr></tbody></table>
 
 
-
+{{#certification.isNotEmpty}}
 <table style="page-break-inside:avoid;"><tbody><tr><td>
 
 <table style="padding:1mm; margin-bottom:1mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:justify; background-color:#EEE;">
@@ -217,6 +224,7 @@ CERTIFICATIONS
 </td>
 </tr>
 </tbody></table>
+{{/certification.isNotEmpty}}
 
  <table style="padding:0 2mm 1mm 2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
    <tbody><tr>
@@ -224,7 +232,7 @@ CERTIFICATIONS
     <table>
     <tbody>
 
-    {{#certifications}}
+    {{#certification}}
 
     <tr>
     <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
@@ -236,7 +244,7 @@ CERTIFICATIONS
     </tr>
 
 
-    {{/certifications}}
+    {{/certification}}
     
 </tbody></table>
 </td></tr></tbody></table>
@@ -244,7 +252,7 @@ CERTIFICATIONS
 
 
 
-
+{{#internship.isNotEmpty}}
 <table style="padding:1mm; margin-bottom:1mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:justify; background-color:#EEE;">
 <tbody><tr>
 <td style="font-size:0.9em; color:#342E67; line-height:0.99em;" valign="middle">
@@ -254,8 +262,9 @@ INTERNSHIPS
 </td>
 </tr>
 </tbody></table>
+{{/internship.isNotEmpty}}
 
-{{#internships}}
+{{#internship}}
 
 <table style="page-break-inside:avoid;"><tbody><tr><td>
 <table style="padding:2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
@@ -281,9 +290,9 @@ INTERNSHIPS
 </tbody></table>
 </td></tr></tbody></table> 
 
-{{/internships}}
+{{/internship}}
 
-
+{{#academic-projects.isNotEmpty}}
 <table style="page-break-inside:avoid;"><tbody><tr><td>
 
 <table style="padding:1mm; margin-bottom:1mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:justify; background-color:#EEE;">
@@ -295,24 +304,21 @@ KEY PROJECTS
 </td>
 </tr>
 </tbody></table>
-
- <table style="padding:0 2mm 1mm 2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
+{{/academic-projects.isNotEmpty}}
+ 
+<table style="padding:0 2mm 1mm 2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
    <tbody><tr>
     <td style="width:195mm; text-align:left;">
     <table>
     <tbody>
-        {{#projects}}
+        {{#academic-projects}}
     <tr>
     <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
         <span style="color:#000C29; font-weight:bold;">{{title}}</span> - {{description}}   </td>
     </tr>
-    <tr>
-        {{/projects}}
+    
+        {{/academic-projects}}
 
-
-    <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
-<span style="color:#000C29; font-weight:bold;">Future Group</span> - A detailed study of the company based on the various aspects of management studies    </td>
-    </tr>
 </tbody></table>
 
     </td>
@@ -320,7 +326,7 @@ KEY PROJECTS
 </tbody></table>
 </td></tr></tbody></table>
 
-
+{{#presentations.isNotEmpty}}
 <table style="page-break-inside:avoid;"><tbody><tr><td>
 
 <table style="padding:1mm; margin-bottom:1mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:justify; background-color:#EEE;">
@@ -332,6 +338,7 @@ PRESENTATION &amp; SEMINARS
 </td>
 </tr>
 </tbody></table>
+{{/presentations.isNotEmpty}}
 
  <table style="padding:0 2mm 1mm 2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
    <tbody><tr>
@@ -353,7 +360,7 @@ PRESENTATION &amp; SEMINARS
 
 
 
-
+{{#technical.isNotEmpty}}
 <table style="page-break-inside:avoid;"><tbody><tr><td>
 
 <table style="padding:1mm; margin-bottom:1mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:justify; background-color:#EEE;">
@@ -365,6 +372,7 @@ TECHNICAL KNOWLEDGE
 </td>
 </tr>
 </tbody></table>
+{{/technical.isNotEmpty}}
 
  <table style="padding:0 2mm 1mm 2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
    <tbody>
@@ -386,7 +394,7 @@ TECHNICAL KNOWLEDGE
 </td></tr></tbody></table>
 
 
-
+{{#achievements.isNotEmpty}}
 <table style="page-break-inside:avoid;"><tbody><tr><td>
 
 <table style="padding:1mm; margin-bottom:1mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:justify; background-color:#EEE;">
@@ -398,6 +406,7 @@ ACHIEVEMENTS
 </td>
 </tr>
 </tbody></table>
+{{/achievements.isNotEmpty}}
 
  <table style="padding:0 2mm 1mm 2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
    <tbody><tr>
@@ -420,7 +429,7 @@ ACHIEVEMENTS
 </td></tr></tbody></table>
 
 
-
+{{#co-curricular-activities.isNotEmpty}}
 <table style="page-break-inside:avoid;"><tbody><tr><td>
 
 <table style="padding:1mm; margin-bottom:1mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:justify; background-color:#EEE;">
@@ -432,18 +441,19 @@ CO - CURRICULAR ACTIVITIES
 </td>
 </tr>
 </tbody></table>
+{{/co-curricular-activities.isNotEmpty}}
 
  <table style="padding:0 2mm 1mm 2mm; width:205mm; vertical-align:top; font-family:helvetica; text-align:center;" cellpadding="0" cellspacing="0">
    <tbody><tr>
     <td style="width:195mm; text-align:left;">
     <table>
     <tbody>
-        {{#cocurricular}}
+        {{#co-curricular-activities}}
     <tr>
     <td style="padding-bottom:2mm; font-size:0.81em; line-height:1.44em;">
 <span style="color:#000C29; font-weight:bold;">{{title}}</span> - {{description}}   </td>
     </tr>
-    {{/cocurricular}}
+    {{/co-curricular-activities}}
 </tbody></table>
 
     </td>
@@ -473,7 +483,7 @@ OTHER INFORMATION
         
 
 
-    {{#basicInfo}}
+    {{#basic-info}}
     {{#linkedinLink.isNotEmpty}}
 <table cellspacing="2mm">
 <tbody>
@@ -486,12 +496,12 @@ OTHER INFORMATION
     </tr>
 </tbody></table>
     {{/linkedinLink.isNotEmpty}}
-    {{/basicInfo}}
+    {{/basic-info}}
 
 
     
 
-    {{#basicInfo}}
+    {{#basic-info}}
     {{#facebookLink.isNotEmpty}}
 <table cellspacing="2mm">
 <tbody>
@@ -504,11 +514,11 @@ OTHER INFORMATION
     </tr>
 </tbody></table>
     {{/facebookLink.isNotEmpty}}
-    {{/basicInfo}}
+    {{/basic-info}}
 
 
 
-    {{#basicInfo}}
+    {{#basic-info}}
     {{#twitterLink.isNotEmpty}}
 <table cellspacing="2mm">
 <tbody>
@@ -521,7 +531,7 @@ OTHER INFORMATION
     </tr>
 </tbody></table>
     {{/twitterLink.isNotEmpty}}
-    {{/basicInfo}}
+    {{/basic-info}}
 
 
 
@@ -546,10 +556,9 @@ OTHER INFORMATION
         Hobbies
         </td>
         <td style="width:160mm; font-size:0.81em; line-height:1.44em; padding:2mm;  border:thin; border-color:#999; border-width:thin; border-style:solid;" valign="middle" align="left">
-Bowling,   
-Dancing &amp; Singing,   
-Listening to music,   
-Playing Cricket  
+{{#interests}}
+            {{interest}}, &nbsp;
+{{/interests}}
 
         </td>
 </tr>
@@ -574,14 +583,14 @@ Playing Cricket
         Date of Birth
         </td>
         <td style="width:160mm; font-size:0.81em; line-height:1.44em; padding:2mm;  border:thin; border-color:#999; border-width:thin; border-style:solid;" valign="middle" align="left">
-                {{#basicInfo}} {{dateBirth}} {{/basicInfo}}        </td>
+                {{#basic-info}} {{dateBirth}} {{/basic-info}}        </td>
 </tr>
        <tr>
         <td style="width:30mm; font-size:0.81em; line-height:1.44em; padding:2mm; background-color:#EEE; border:1px; border-color:#999; border-width:1px; border-style:solid;" valign="middle" align="left">
         Address
         </td>
         <td style="width:160mm; font-size:0.81em; line-height:1.44em; padding:2mm;  border:thin; border-color:#999; border-width:thin; border-style:solid;" valign="middle" align="left">
-         {{#contacts}} {{fullAddress}} {{/contacts}}        </td>
+         {{#contact}} {{fullAddress}} {{/contact}}        </td>
 </tr>
 </tbody></table>
 </td></tr></tbody></table>

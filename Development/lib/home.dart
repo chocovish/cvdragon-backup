@@ -5,6 +5,7 @@ import 'package:cvdragonapp_v1/donut.dart';
 import 'package:cvdragonapp_v1/institute.dart';
 import 'package:cvdragonapp_v1/rightpreviewpane.dart';
 import 'package:cvdragonapp_v1/sharedfetch.dart';
+import 'package:cvdragonapp_v1/vishBottomBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -181,23 +182,24 @@ Widget dialogContent(BuildContext context,write,setState)
             body: profileselected?
             _buildCardView(context):
             dialogContent(context, write,setState),
-            bottomNavigationBar: FABBottomAppBar(
-              selectedPage: 3,
-              onTabSelected: _selectedTab,
-              notchedShape: CircularNotchedRectangle(),
-              color: Colors.white30,
-              centerItemText: "Preview",
-              backgroundColor: Color(0xff232882),
-              selectedColor: Colors.white,
-              items: [
-                FABBottomAppBarItem(
-                    iconData: Icons.import_contacts, text: 'Knowledge'),
-                FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
-                FABBottomAppBarItem(
-                    iconData: Icons.swap_vert, text: 'Profiles'),
-                FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
-              ],
-            ),
+            // bottomNavigationBar: FABBottomAppBar(
+            //   selectedPage: 3,
+            //   onTabSelected: _selectedTab,
+            //   notchedShape: CircularNotchedRectangle(),
+            //   color: Colors.white30,
+            //   centerItemText: "Preview",
+            //   backgroundColor: Color(0xff232882),
+            //   selectedColor: Colors.white,
+            //   items: [
+            //     FABBottomAppBarItem(
+            //         iconData: Icons.import_contacts, text: 'Knowledge'),
+            //     FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
+            //     FABBottomAppBarItem(
+            //         iconData: Icons.swap_vert, text: 'Profiles'),
+            //     FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
+            //   ],
+            // ),
+            bottomNavigationBar: MybottomNav(3),
           );
   }
 }

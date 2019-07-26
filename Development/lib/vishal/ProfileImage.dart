@@ -6,10 +6,27 @@ import 'package:path/path.dart';
 import 'package:nice_button/nice_button.dart';
 import './utils.dart';
 
-class ProfileImageUpload extends StatelessWidget {
+class ProfileImageUpload extends StatefulWidget {
+  ProfileImageUpload(){
+    print("Calling from constructor.......");
+    
+  }
+
+  @override
+  _ProfileImageUploadState createState() => _ProfileImageUploadState();
+}
+
+class _ProfileImageUploadState extends State<ProfileImageUpload> {
+  @override
+  void initState() {
+    super.initState();
+    print("Calling from init State..");
+    _selectedImage.value = File("");
+  }
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return 
+    Container(
         padding: EdgeInsets.all(20.0),
         child: Center(
           child: Column(
@@ -26,13 +43,13 @@ class ProfileImageUpload extends StatelessWidget {
               SizedBox(height: 14),
               ProfilePicList(),
               SizedBox(height: 16),
-              NiceButton(
-                text: "Logout",
-                fontSize: 16,
-                width: 100,
-                onPressed: logout,
-                background: Colors.amber,
-              )
+              // NiceButton(
+              //   text: "Logout",
+              //   fontSize: 16,
+              //   width: 100,
+              //   onPressed: logout,
+              //   background: Colors.amber,
+              // )
             ],
           ),
         ));
@@ -107,8 +124,10 @@ Future _storeImage() async {
 
 Future<List<FileSystemEntity>> _getStoredImage() async {
   Directory appDocDir = await getApplicationDocumentsDirectory();
+  appDocDir.createSync(recursive: true);
   String imageDirPath = join(appDocDir.path, 'profile_images');
   Directory imageDir = Directory(imageDirPath);
+  imageDir.createSync(recursive: true);
   List<FileSystemEntity> l = imageDir.listSync();
   print(l);
   return l;

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
-import 'package:dropdownfield/dropdownfield.dart';
+import '../Custom dialog database.dart';
+import '../localdatapush.dart';
+import '../edit_section.dart'; 
 
 Map<String, dynamic> faq;
+int index;
+List databb3 = [];
+List databb1 = [];
+String database;
 List keyPhrases;
 String section;
 String secName;
-int index;
-String database;
 
 var data = [];
 
@@ -32,17 +36,38 @@ class Internships extends StatelessWidget {
   ];
 
   //String accountname = data[index]['designation'].toString();
-  Internships(String d2, String i2, int i1, List d,List k2) {
+  Internships(String d2, String i2, int i1, List d, List k2, List d1, List d3) {
     section = d2;
     secName = i2;
     index = i1;
     data = d;
+    databb1 = d3;
+    databb3 = d1;
     keyPhrases = k2;
     print(data[index].toString());
     formData = {
       'accountname': data[index]['designation'].toString(),
     };
     //print("data is $data");
+  }
+  update(BuildContext context,String o, String t, String des, String dur, String loc, String d, Map<String, dynamic> initial) {
+   Map <String,dynamic> newdata={
+     "organization":o,
+  "title":t,
+  "designation":des,
+  "duration":dur,
+  "location":loc,
+  "description":d
+};
+    updateData(section,newdata,initial).then((int status) {
+
+       Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+
+
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -51,7 +76,7 @@ class Internships extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
+                image: AssetImage('assets/FormSection/'+section+'-02.png'), fit: BoxFit.fill)),
         child: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
@@ -148,11 +173,7 @@ class Internships extends StatelessWidget {
                                   showDialog(
                                     context: context,
                                     builder: (BuildContext context) =>
-                                        CustomDialog(
-                                          title: "DataBase",
-                                          description:
-                                          "Data Aaoo, Hum Darte Hai Kya ?",
-                                          buttonText: "Okay",
+                                        CustomDialogDatabase("Database",data, databb3,section
                                         ),
                                   );
                                 },
@@ -235,52 +256,33 @@ class Internships extends StatelessWidget {
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-
-                                      Row(mainAxisAlignment: MainAxisAlignment.start,
-                                        children: <Widget>[Container(
-                                          child: Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Container(
-                                                    padding: EdgeInsets.only(
-                                                        bottom: 10),
-                                                    child: Text(
-                                                      "Designation",
-                                                      textAlign: TextAlign.left,
-                                                    )),
-                                                Container(
-                                                    decoration:
-                                                    BoxDecoration(
-                                                        color:
-                                                        Colors.red),
-                                                    height: 40,
-                                                    width: MediaQuery.of(context).size.width/2,
-                                                    child: Row(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                        children: <Widget>[
-
-                                                          Text("Project Intern"
-                                                          ),
-
-                                                          InkWell(
-                                                            onTap: (){
-                                                              showDialog(
-                                                                context: context,
-                                                                builder: (BuildContext context) =>
-                                                                    CustomDialog(title: "Des", description: "123", buttonText: "Okay"),
-                                                              );
-                                                            },
-                                                            child: Icon(Icons
-
-                                                                .arrow_drop_down_circle),
-                                                          ),
-                                                        ])),
-                                              ]),
-                                        ),],
-                                      ),
+                                TextField(
+                 controller: new TextEditingController.fromValue(
+                                      new TextEditingValue(
+                                          text: data[index]['designation'],
+                                          selection: new TextSelection.collapsed(
+                                              offset: designation.toString().length))),
+                                  onChanged: (val) => designation = val,
+                                  style: TextStyle(color: Color(0xff232882)),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                          labelStyle: TextStyle(color: Color(0xffff1e50)),
+                      labelText: "Designation",
+                      
+                      suffix: IconButton(
+                        icon: Icon(Icons.arrow_drop_down_circle),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return CustomDialog(
+                                    buttonText: "Set",
+                                    title: "Set",
+                                    description: "Dummy Data");
+                              });
+                        },
+                      ))),
 
 //                                      DropDownField(
 //                                          value: formData['accountname'],
@@ -381,7 +383,7 @@ class Internships extends StatelessWidget {
                                                 width: MediaQuery.of(context)
                                                     .size
                                                     .width /
-                                                    3,
+                                                    2.5,
                                                 alignment: FractionalOffset.center,
                                                 decoration: BoxDecoration(
                                                     color: Color(0xff232882),
@@ -390,7 +392,9 @@ class Internships extends StatelessWidget {
                                                     border: new Border.all(
                                                         color: Colors.white)),
                                                 child: InkWell(
-                                                  onTap: () {},
+                                                  onTap: () {
+                                                     update(context, organization, title, designation, duration, location, description, data[index]);
+                                                  },
                                                   child: Row(
                                                     mainAxisAlignment:
                                                     MainAxisAlignment.center,
@@ -405,7 +409,7 @@ class Internships extends StatelessWidget {
                                                         ),
                                                       ),
                                                       Text(
-                                                        "Add Internship",
+                                                        "Update Internship",
                                                         style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 15.0,

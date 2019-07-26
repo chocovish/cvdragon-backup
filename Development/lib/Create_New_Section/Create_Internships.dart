@@ -1,38 +1,60 @@
 import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
-import '../Custom_dialog_KeyPhrases.dart';
-import 'package:dropdownfield/dropdownfield.dart';
+import 'package:cvdragonapp_v1/edit_section.dart';
+import '../localdatapush.dart'as lpush;
 
 Map<String, dynamic> faq;
-//List keyPhrases;
+int index3;
+String database;
+String y;
+
 String section;
 String secName;
+var data = [];
+var organization = '';
+var title = '';
+var designation = '';
+var duration = '';
+var location = '';
+var description = '';
 
 class CreateInternships extends StatelessWidget {
-  Map<String, dynamic> formData = {};
-  List<String> accountNames = <String>[
-    'Article Clerk',
-    'Winter Trainee',
-    'Summer Trainee',
-    'Apprentice',
-    'Industrial Trainee'
-  ];
-  String accountname = 'abcf';
-  CreateInternships(String d2, String i2) {
-    section = d2;
+  CreateInternships(String d2, String i2, int i1, List d) {
+   section = d2;
     secName = i2;
-    formData = {
-      'accountname': 'abcd',
-    };
+    index3 = i1;
+    data = d;
   }
+
+create(BuildContext context,String o, String t, String des, String dur, String loc, String d) {
+  
+    Map<String,dynamic> datatobecreated={
+     "organization":o,
+  "title":t,
+  "designation":des,
+  "duration":dur,
+  "location":loc,
+  "description":d,
+  
+    };
+    print(datatobecreated.toString());
+   lpush.pushData(section,datatobecreated).then((int status) {
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return
                                 Form(
                                   child: Column(
                                     children: <Widget>[
-                                      TextFormField(
+                                      TextField(
+                                         controller: new TextEditingController(),
+                                onChanged: (val) => organization = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         decoration: InputDecoration(
                                             labelStyle:
@@ -42,16 +64,18 @@ class CreateInternships extends StatelessWidget {
                                             border: OutlineInputBorder(
                                                 borderRadius:
                                                 BorderRadius.circular(10))),
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter the name of the organization';
-                                          }
-                                        },
+                                        // validator: (value) {
+                                        //   if (value.isEmpty) {
+                                        //     return 'Please enter the name of the organization';
+                                        //   }
+                                        // },
                                       ),
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                         controller: new TextEditingController(),
+                                onChanged: (val) => title = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         textAlign: TextAlign.start,
@@ -63,28 +87,44 @@ class CreateInternships extends StatelessWidget {
                                             TextStyle(color: Color(0xffff1e50)),
                                             labelText: 'Internship Title',
                                             hintText: "Name of the project"),
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter an Internship Title';
-                                          }
-                                        },
+                                        // validator: (value) {
+                                        //   if (value.isEmpty) {
+                                        //     return 'Please enter an Internship Title';
+                                        //   }
+                                        // },
                                       ),
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      DropDownField(
-                                          value: formData['accountname'],
-                                          required: true,
-                                          labelText: 'Account Name *',
-                                          icon: Icon(Icons.account_balance),
-                                          items: accountNames,
-                                          setter: (dynamic newValue) {
-                                            formData['accountname'] = newValue;
-                                          }),
+                                      TextField(
+                controller: new TextEditingController(),
+                                  onChanged: (val) => designation = val,
+                                  style: TextStyle(color: Color(0xff232882)),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                          labelStyle: TextStyle(color: Color(0xffff1e50)),
+                      labelText: "Designation",
+                      
+                      suffix: IconButton(
+                        icon: Icon(Icons.arrow_drop_down_circle,color: Colors.black,),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return CustomDialog(
+                                    buttonText: "Set",
+                                    title: "Set",
+                                    description: "Dummy Data");
+                              });
+                        },
+                      ))),
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                         controller: new TextEditingController(),
+                                onChanged: (val) => location = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         textAlign: TextAlign.start,
@@ -96,16 +136,18 @@ class CreateInternships extends StatelessWidget {
                                             TextStyle(color: Color(0xffff1e50)),
                                             labelText: 'Location',
                                             hintText: "City"),
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return 'Please enter Internship Location';
-                                          }
-                                        },
+                                        // validator: (value) {
+                                        //   if (value.isEmpty) {
+                                        //     return 'Please enter Internship Location';
+                                        //   }
+                                        // },
                                       ),
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                         controller: new TextEditingController(),
+                                onChanged: (val) => duration = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         textAlign: TextAlign.start,
@@ -121,7 +163,9 @@ class CreateInternships extends StatelessWidget {
                                       Padding(
                                         padding: EdgeInsets.all(10),
                                       ),
-                                      TextFormField(
+                                      TextField(
+                                         controller: new TextEditingController(),
+                                onChanged: (val) => description = val,
                                         style: TextStyle(color: Color(0xff232882)),
                                         scrollPadding: EdgeInsets.all(10.0),
                                         textAlign: TextAlign.start,
@@ -162,7 +206,9 @@ class CreateInternships extends StatelessWidget {
                                                     border: new Border.all(
                                                         color: Colors.white)),
                                                 child: InkWell(
-                                                  onTap: () {},
+                                                  onTap: () {
+                                                    create(context, organization, title, designation, duration, location, description);
+                                                  },
                                                   child: Row(
                                                     mainAxisAlignment:
                                                     MainAxisAlignment.center,

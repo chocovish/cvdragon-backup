@@ -47,7 +47,59 @@ Future<String> writeid(String id) async {
       final value = prefs.getString('authKey');
       return value;
     }
+   Future<String> readcolor() async {
+      final prefs = await SharedPreferences.getInstance();
+      final value = prefs.getString('cvcolor')??"0";
+      return value;
+    }
+   Future<String> readfont() async {
+      final prefs = await SharedPreferences.getInstance();
+      final value = prefs.getString('cvfont')??"0";
+      return value;
+    }
+Future<String> readdesign() async {
+      final prefs = await SharedPreferences.getInstance();
+      final value = prefs.getString('cvdesign')??"0";
+      return value;
+    }
+Future<String> readfontsize() async {
+      final prefs = await SharedPreferences.getInstance();
+      final value = prefs.getString('cvfontsize')??"0";
+      return value;
+    }
+Future<String> readdatetimeformat() async {
+      final prefs = await SharedPreferences.getInstance();
+      final value = prefs.getString('cvdatetimeformat')??"0";
+      return value;
+    }
 
+Future<String> writefontsize(String fontsize) async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('cvfontsize',fontsize);
+      return "Success";
+}
+Future<String> writedatetimeformat(String datetimeformat) async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('cvdatetimeformat',datetimeformat);
+      return "Success";
+}
+Future<String> writedesign(String design) async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('cvdesign',design);
+      return "Success";
+}
+Future<String> writefont(String font) async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('cvfont',font);
+      return "Success";
+    }
+
+
+Future<String> writecolor(String color) async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('cvcolor', color);
+      return "Success";
+    }
 Future<String> writeauthKey(String id) async {
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('authKey', id);
@@ -80,6 +132,10 @@ Future<String> writeSyncQueue(String query) async {
       old.add(query);
       final prefs = await SharedPreferences.getInstance();
       prefs.setStringList('syncQuery',old);
+      }
+      Future<String> writeSyncQueueList(List query) async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setStringList('syncQuery',query);
       }
   Future<List<String>> readSyncQueue() async {
       final prefs = await SharedPreferences.getInstance();

@@ -1,34 +1,59 @@
 import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
-
+import '../Custom dialog database.dart';
+import '../localdatapush.dart';
+import '../edit_section.dart';
 Map<String, dynamic> faq;
+int index;
+List databb3 = [];
+List databb1 = [];
+String database;
 List keyPhrases;
 String section;
 String secName;
-String database;
-int index;
+
 
 var data = [];
 var training = data[index]['training'];
-var number = data[index]['number'];
+String number = data[index]['number'].toString();
 var description = data[index]['description'];
 
 class TrainingsConducted extends StatelessWidget {
-  TrainingsConducted(String d2, String i2, int i1, List d, List k2) {
-    section = d2;
+  TrainingsConducted(String d2, String i2, int i1, List d, List k2, List d1, List d3) {
+  section = d2;
     secName = i2;
-    keyPhrases = k2;
     index = i1;
     data = d;
+    databb1 = d3;
+    databb3 = d1;
+    keyPhrases = k2;
   }
+
+  update(BuildContext context,String t, String n, String d, Map<String, dynamic> initial) {
+    Map <String,dynamic> newdata={
+    "training":t,
+    "number":n,
+    "description":d
+  };
+      updateData(section,newdata,initial).then((int status) {
+
+        Navigator.pop(context);
+        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+
+
+      });
+    }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
+                    image: AssetImage('assets/FormSection/'+section+'-02.png'), fit: BoxFit.fill)),
             child: NestedScrollView(
                 headerSliverBuilder:
                     (BuildContext context, bool innerBoxIsScrolled) {
@@ -131,11 +156,7 @@ class TrainingsConducted extends StatelessWidget {
                                           showDialog(
                                             context: context,
                                             builder: (BuildContext context) =>
-                                                CustomDialog(
-                                                  title: "DataBase",
-                                                  description:
-                                                  "Data Aaoo, Hum Darte Hai Kya ?",
-                                                  buttonText: "Okay",
+                                                CustomDialogDatabase("Database",data, databb3,section
                                                 ),
                                           );
                                         },
@@ -180,7 +201,7 @@ class TrainingsConducted extends StatelessWidget {
                                             decoration: InputDecoration(
                                                 labelStyle: TextStyle(
                                                     color: Color(0xffff1e50)),
-                                                labelText: 'Type of Traing',
+                                                labelText: 'Type of Training',
                                                 //hintText: "Heading",
                                                 border: OutlineInputBorder(
                                                     borderRadius:
@@ -200,7 +221,7 @@ class TrainingsConducted extends StatelessWidget {
                                                     text: data[index]['number'].toString(),
                                                     selection: new TextSelection.collapsed(
                                                         offset: number.toString().length))),
-                                            onChanged: (val) => number = val,
+                                            onChanged: (val) => number = val.toString(),
                                             keyboardType: TextInputType.numberWithOptions(decimal: false),
                                             style:
                                             TextStyle(color: Color(0xff232882)),
@@ -257,7 +278,7 @@ class TrainingsConducted extends StatelessWidget {
                                                     width: MediaQuery.of(context)
                                                         .size
                                                         .width /
-                                                        3,
+                                                        2.5,
                                                     alignment:
                                                     FractionalOffset.center,
                                                     decoration: BoxDecoration(
@@ -268,7 +289,9 @@ class TrainingsConducted extends StatelessWidget {
                                                         border: new Border.all(
                                                             color: Colors.white)),
                                                     child: InkWell(
-                                                      onTap: () {},
+                                                      onTap: () {
+                                                        update(context, training, number, description, data[index]);
+                                                      },
                                                       child: Row(
                                                         mainAxisAlignment:
                                                         MainAxisAlignment.center,
@@ -283,7 +306,7 @@ class TrainingsConducted extends StatelessWidget {
                                                             ),
                                                           ),
                                                           Text(
-                                                            "Add Training",
+                                                            "Update Section",
                                                             style: TextStyle(
                                                                 color: Colors.white,
                                                                 fontSize: 15.0,

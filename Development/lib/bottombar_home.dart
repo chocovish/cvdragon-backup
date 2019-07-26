@@ -1,8 +1,11 @@
+import 'package:cvdragonapp_v1/CardView_NewProfile.dart';
 import 'package:cvdragonapp_v1/home.dart';
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:flutter/material.dart';
 import './profile_sections.dart';
+import './CardView_NewProfile.dart';
 import './knowledge_centre.dart';
+import './Expanded_Profile.dart';
 
 class FABBottomAppBarItem {
   FABBottomAppBarItem({this.iconData, this.text});

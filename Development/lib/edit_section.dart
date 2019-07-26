@@ -1,14 +1,19 @@
+import 'package:cvdragonapp_v1/Sections/BasicInfo.dart' as BI;
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/maps.dart';
+import 'package:cvdragonapp_v1/vishal/ProfileImage.dart';
 import 'package:flutter/material.dart';
 import './topmenu.dart';
+import './vishal/ProfileImage.dart';
 import './sidemenu.dart';
 import './rightpreviewpane.dart';
 import './bottombar_createsection.dart';
 import './create_section.dart';
 import './fetch.dart';
 import './edit_section2.dart';
+import 'Edit_Section_Basic_Info.dart';
 import './maps.dart';
+import './Edit_Section_Educational_Background.dart';
 
 String section='';
 class EditSection extends StatefulWidget {
@@ -37,7 +42,10 @@ class _EditSection extends State<EditSection> {
 
   }
   void get() async{
+    databb=[];
+    addeddata=[];
     db0.value = [];
+
     key = [];
     await getKeyPhrases(section)
         .then((List k) {
@@ -127,6 +135,13 @@ class _EditSection extends State<EditSection> {
           ],
         ),
         body: ValueListenableBuilder(valueListenable: db0, builder: (context,data,child){
+          if (section=="51102")
+          return ProfileImageUpload();
+          else if (section == "51100")
+          return BI.BasicInfo(section,Sections[section], db0.value);
+          else if(section == "51109")
+          return EditSectionEB(section);
+          else
           return _buildCardView(context);
         }),
       );
@@ -144,7 +159,7 @@ Widget _buildCardView(BuildContext context) {
               width: MediaQuery.of(context).size.width,
 
               decoration: BoxDecoration( image: DecorationImage(
-                  image: AssetImage('assets/Work Details.png'),alignment: Alignment.topCenter,fit: BoxFit.scaleDown )),
+                  image: AssetImage('assets/Edit Section/'+section+'-03.png'),alignment: Alignment.topCenter,fit: BoxFit.scaleDown )),
               child: Container(
                 margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/20),
                 child: Column(
@@ -237,7 +252,7 @@ Widget _buildCardView(BuildContext context) {
                   margin: EdgeInsets.only(top: 10, left: 5, right: 5),
                   elevation: 5.0,
                   child: Container(
-                    decoration: addeddata.contains(db0.value[index]) ? BoxDecoration(image: DecorationImage(image: AssetImage("assets/Untitled-2.png"),fit: BoxFit.cover),
+                    decoration: addeddata.contains(db0.value[index]) ? BoxDecoration(image: DecorationImage(image: AssetImage("assets/51122-04.png"),fit: BoxFit.cover),
                         borderRadius: BorderRadius.circular(8.0)): BoxDecoration(color: Colors.blue,
                         borderRadius: BorderRadius.circular(4.0)),
 
@@ -262,6 +277,7 @@ Widget _buildCardView(BuildContext context) {
                           width: MediaQuery.of(context).size.width / 8,
                           child: InkWell(
                             onTap: () {
+                              //print(db0.value[index][AddedDataColumn[section]]);
                               Navigator.push(context,MaterialPageRoute(builder: (context) => (EditSection2(db0.value,index, section,key, databb,addeddata))));
                             },
                             child: Icon(Icons.mode_edit,

@@ -1,24 +1,51 @@
+import 'package:cvdragonapp_v1/edit_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as prefix0;
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
+import '../localdatapush.dart'as lpush;
 
 Map<String, dynamic> faq;
-//List keyPhrases;
+int index3;
+String database;
+String y;
+
 String section;
 String secName;
+var data = [];
+var certificate = '';
+var year = '';
+var authority = '';
 
 class CreateCertificates extends StatelessWidget {
-  CreateCertificates(String d2, String i2) {
-    section = d2;
+  CreateCertificates(String d2, String i2, int i1, List d) {
+   section = d2;
     secName = i2;
+    index3 = i1;
+    data = d;
   }
+create(BuildContext context,String c, String y, String a) {
+    Map<String,dynamic> datatobecreated={
+       "certificate":c,
+  "year":y,
+  "authority":a
+    };
+   lpush.pushData(section,datatobecreated).then((int status) {
+      Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return  Form(
                               child: Column(
                                 children: <Widget>[
-                                  TextFormField(
+                                  TextField(
+                                     controller: new TextEditingController(),
+                                  onChanged: (val) => certificate = val,
                                     style: TextStyle(color: Color(0xff232882)),
                                     decoration: InputDecoration(
                                         labelStyle:
@@ -35,7 +62,9 @@ class CreateCertificates extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                   ),
-                                  TextFormField(
+                                  TextField(
+                                     controller: new TextEditingController(),
+                                  onChanged: (val) => year = val,
                                     style: TextStyle(color: Color(0xff232882)),
                                     scrollPadding: EdgeInsets.all(10.0),
                                     maxLength: 4,
@@ -52,7 +81,9 @@ class CreateCertificates extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsets.all(10),
                                   ),
-                                  TextFormField(
+                                  TextField(
+                                     controller: new TextEditingController(),
+                                  onChanged: (val) => authority = val,
                                     keyboardType: TextInputType.number,
                                     style: TextStyle(color: Color(0xff232882)),
                                     decoration: InputDecoration(
@@ -87,7 +118,9 @@ class CreateCertificates extends StatelessWidget {
                                                 border: new Border.all(
                                                     color: Colors.white)),
                                             child: InkWell(
-                                              onTap: () {},
+                                              onTap: () {
+                                                create(context, certificate, year, authority);
+                                              },
                                               child: Row(
                                                 mainAxisAlignment:
                                                 MainAxisAlignment.center,

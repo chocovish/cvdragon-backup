@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';
 import '../Custom dialog database.dart';
+import '../localdatapush.dart';
+import '../edit_section.dart';
 
 
 Map<String, dynamic> faq;
@@ -29,6 +31,22 @@ class Achievments extends StatelessWidget {
     databb3 = d1;
     keyPhrases = k2;
   }
+   update(BuildContext context,String a, String y, String d, Map<String, dynamic> initial) {
+   Map <String,dynamic> newdata={
+  "achievement":a,
+  "year":y,
+  "description":d
+};
+    updateData(section,newdata,initial).then((int status) {
+
+       Navigator.pop(context);
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> EditSection(section)));
+
+
+
+    });
+  }
 
 
   @override
@@ -38,7 +56,7 @@ class Achievments extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
+                image: AssetImage('assets/FormSection/'+section+'-02.png'), fit: BoxFit.fill)),
         child: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
@@ -65,7 +83,7 @@ class Achievments extends StatelessWidget {
                 child: ListView(
                   padding: EdgeInsets.only(bottom: 30.0),
                   children: <Widget>[
-                    Column(
+                    Column( 
                       children: <Widget>[
                         Container(
                           padding: EdgeInsets.only(top: 5.0, bottom: 20.0),
@@ -237,7 +255,7 @@ class Achievments extends StatelessWidget {
                                             MediaQuery.of(context).size.height /
                                                 18,
                                             width: MediaQuery.of(context).size.width /
-                                                2.5,
+                                                2.2,
                                             alignment: FractionalOffset.center,
                                             decoration: BoxDecoration(
                                                 color: Color(0xff232882),
@@ -246,7 +264,9 @@ class Achievments extends StatelessWidget {
                                                 border: new Border.all(
                                                     color: Colors.white)),
                                             child: InkWell(
-                                              onTap: () {},
+                                              onTap: () {
+                                                update(context, achievement, year, description, data[index]);
+                                              },
                                               child: Row(
                                                 mainAxisAlignment:
                                                 MainAxisAlignment.center,
@@ -261,7 +281,7 @@ class Achievments extends StatelessWidget {
                                                     ),
                                                   ),
                                                   Text(
-                                                    "Add Achievement",
+                                                    "Update Achievement",
                                                     style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 15.0,

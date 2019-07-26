@@ -8,14 +8,16 @@ import './topmenu.dart';
 import './sidemenu.dart';
 import 'dart:async';
 import './localdatafetch.dart' as lfetch;
+import './localdatapush.dart' as lpush;
 import './sharedfetch.dart' as sfetch;
 import 'package:http/http.dart' as http;
 import './create_section.dart';
 import './edit_section.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import './maps.dart'as  maps;
+import './maps.dart' as maps;
 
 class ProfileSections extends StatefulWidget {
+  ProfileSections({Key key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -25,22 +27,26 @@ class ProfileSections extends StatefulWidget {
 
 class _ProfileSections extends State<ProfileSections> {
   String id = "";
-  String  authkey = "" ;
-  String cvid="";
+  String authkey = "";
+  String cvid = "";
   bool _isLoading = true;
-  Map<String,dynamic> countoftotaldata={};
-  List data;
+  Map<String, dynamic> countoftotaldata = {};
+  List data2;
+  List data = [];
 
-  void get() async{
-    id=await sfetch.readid();
-    authkey=await sfetch.readauthKey();
-    cvid=await sfetch.readprofiles();
-    data=await lfetch.getProfileSections(id,cvid);
-    countoftotaldata= await lfetch.getCount(data);
-      setState(() {
-        _isLoading = false;
+  void get() async {
+    id = await sfetch.readid();
+    authkey = await sfetch.readauthKey();
+    cvid = await sfetch.readprofiles();
+    data2 = await lfetch.getProfileSections(id, cvid);
+    countoftotaldata = await lfetch.getCount(data2);
+    setState(() {
+      data2.forEach((element) {
+        data.add(json.decode(element['section'].toString()));
       });
-
+      print(data.toString());
+      _isLoading = false;
+    });
   }
 
   Widget build(BuildContext context) {
@@ -75,31 +81,51 @@ class _ProfileSections extends State<ProfileSections> {
                   physics: BouncingScrollPhysics(),
                   itemCount: data == null ? 0 : data.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      child: Container(
-                        height: 120,
-                        width: MediaQuery.of(context).size.width,
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      (EditSection(data[index]['section'].toString()))));
-                        },
-                        child: Stack(
-                          children: <Widget>[
-                            Image.asset(
-                              "assets/Profile Image.png",
-                              fit: BoxFit.cover,
-                              width: MediaQuery.of(context).size.width,
-                              //heighaQuery.of(context).size.height,
-                            ),
-                            Center(child:
-                            Container(
-                              padding: new EdgeInsets.symmetric(
-                                  vertical: 40, horizontal: MediaQuery.of(context).size.width/25),
-                              alignment: Alignment.center,
+                    return Dismissible(
+                      direction: DismissDirection.endToStart,
+                      key: Key(data.toString()),
+                      onDismissed: (direction) {
+                        // Removes that item the list on swipwe
+                        setState(() {
+                          print("from profilesection.dart"+data[index].toString());
+                          lpush.removeSection(data[index].toString());
+                          data.removeAt(index);
+                        });
+                        // Shows the information on Snackbar
+                        Scaffold.of(context)
+                            .showSnackBar(SnackBar(content: Text("dismissed")));
+                      },
+                      background: Container(color: Colors.red),
+                      child: Card(
+                        child: Container(
+                          height: 120,
+                          width: MediaQuery.of(context).size.width,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => (EditSection(
+                                          data[index].toString()))));
+                            },
+                            child: Stack(
+                              children: <Widget>[
+                                Image.asset(
+                                  "assets/ProfileSection/" +
+                                      data[index].toString() +
+                                      "-01.png",
+                                  fit: BoxFit.cover,
+                                  width: MediaQuery.of(context).size.width,
+                                  //heighaQuery.of(context).size.height,
+                                ),
+                                Center(
+                                  child: Container(
+                                    padding: new EdgeInsets.symmetric(
+                                        vertical: 40,
+                                        horizontal:
+                                            MediaQuery.of(context).size.width /
+                                                25),
+                                    alignment: Alignment.center,
 //                      margin: EdgeInsets.only(top: MediaQuery
 //                          .of(context)
 //                          .size
@@ -107,29 +133,37 @@ class _ProfileSections extends State<ProfileSections> {
 //                          .of(context)
 //                          .size
 //                          .width / 33),
-                              //alignment: Alignment.centerLeft,
-                              //margin: new EdgeInsets.fromLTRB(12.0, 50.0, 40.0, 50.0),
-                              child: Row(
-                               // crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  AutoSizeText(
-                                   maps.Sections[data[index]['section'].toString()].toString(),
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 22,
-                                        letterSpacing: 0.5,
-                                        fontWeight: FontWeight.bold),
+                                    //alignment: Alignment.centerLeft,
+                                    //margin: new EdgeInsets.fromLTRB(12.0, 50.0, 40.0, 50.0),
+                                    child: Row(
+                                      // crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        AutoSizeText(
+                                          maps.Sections[data[index].toString()]
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 22,
+                                              letterSpacing: 0.5,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        CircleAvatar(
+                                          backgroundColor: Colors.black,
+                                          radius: 21,
+                          
+                                          child: Text(countoftotaldata[
+                                              data[index].toString()]),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  CircleAvatar(backgroundColor: Colors.black,radius: 21,
-                                    child: Text(countoftotaldata[data[index]['section'].toString()]),),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
                       ),
                     );
                   },

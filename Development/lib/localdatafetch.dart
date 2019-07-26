@@ -125,7 +125,7 @@ var db=  await openDatabase(add.path+'/sections.db', version: 3);
 Future<List> getallDesigns() async {
    var add =await getApplicationDocumentsDirectory();
 var db=  await openDatabase(add.path+'/sections.db', version: 3);
-   List response=await db.rawQuery("SELECT * FROM `resource-profiledesign`");
+   List response=await db.rawQuery("SELECT * FROM `resource-profiledesign` ORDER BY category");
     return response;
 }
 

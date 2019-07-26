@@ -1,12 +1,16 @@
+import 'package:cvdragonapp_v1/Sections/BasicInfo.dart';
 import 'package:cvdragonapp_v1/home.dart';
 import 'package:cvdragonapp_v1/otppage.dart';
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:flutter/material.dart';
+import 'package:cvdragonapp_v1/form_card.dart';
+import 'package:cvdragonapp_v1/social_login.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:linkedin_login/linkedin_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'dart:convert';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:http/http.dart' as http;
 final String redirectUrl = 'https://cvdragon.com/loginRedirect';
 final String clientId = '81jxugmo6b2dop';
@@ -19,6 +23,9 @@ class DemoLogin extends StatefulWidget{
 }
 class _DemoLogin extends State<DemoLogin>
 {
+  PageController controller;
+  int currentpage = 0;
+  var hcont = 0;
   GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: ['email'],
 );
@@ -73,6 +80,11 @@ Future<GoogleSignInAccount> _handleSignIn() async {
         
     mycontroller.text="";
     super.initState();
+     controller = new PageController(
+      initialPage: currentpage,
+      keepPage: false,
+      viewportFraction: 0.7,
+    );
     
   }
    get()async{
@@ -98,97 +110,273 @@ Future<GoogleSignInAccount> _handleSignIn() async {
     status==1?
     HomePagee():
     Scaffold(
+      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomPadding: true,
       body: Container(
-        decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/cover.png"),
-        fit: BoxFit.cover)),
-        child: Column(
-          children: <Widget>[
-            Padding(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        
+        decoration: BoxDecoration(color: Colors.black,
+        ),
+        child: ListView(
+                  children: <Widget>[Column(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(bottom: 10),
+                decoration: BoxDecoration(color:Colors.yellow,borderRadius: BorderRadius.only(bottomLeft:  const  Radius.circular(30.0),
+                bottomRight:  const  Radius.circular(30.0),)),
+                height: MediaQuery.of(context).size.height/1.8,
+                width: MediaQuery.of(context).size.width,
+                child:Column(
+                                  children:<Widget>[ 
+                                    Container(
+              height: MediaQuery.of(context).size.height/2,
+              width: MediaQuery.of(context).size.width,
+            child: new PageView.builder(
+                 itemCount: 3,
+                onPageChanged: (value) {
+                  setState(() {
+                    currentpage = value;
+                  });
+                },
+                controller: controller,
+                itemBuilder: (context, index) => builder(index)),
+          ),
+                                    
+                                    
+                                    
+                                    
+                                    Align(
+                    alignment: Alignment.bottomCenter,
+                    child:
+                    new DotsIndicator(
+                      dotsCount: 3,
+                      position: 0,
+                      reversed: true,
+                    )
+                  ),
+                                  ],
+                ),
+                
+
+              ),
+
+
+
+              Padding(
       padding: const EdgeInsets.all(8.0),
       child: Align(
-        alignment: Alignment.centerRight,
-        child: TextField(
-          controller: mycontroller,
-          style: TextStyle(color: Colors.white, fontSize: 18),
-          maxLength: 10,
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-            counterText: '',
-            hintText: "+91 Enter Phone Number",
-            border: InputBorder.none,
-            hintStyle: TextStyle(color: Colors.white54),
-            icon: Icon(
-              Icons.phone,
-              size: 22,
-              color: Colors.white,
-            ),
+          alignment: Alignment.centerRight,
+          child: TextField(
+            controller: mycontroller,
+            style: TextStyle(color: Colors.white, fontSize: 18),
+            maxLength: 10,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              counterText: '',
+              hintText: "+91 Enter Phone Number",
+              border: InputBorder.none,
+              hintStyle: TextStyle(color: Colors.white54),
+              icon: Icon(
+                Icons.phone,
+                size: 22,
+                color: Colors.white,
+              ),
 //            labelText: '+91',
 //            labelStyle: TextStyle(
 //              fontSize: 22,
 //              color: Colors.white,
+            ),
+            //border: InputBorder.none,
           ),
-          //border: InputBorder.none,
-        ),
       ),
     ),
-           Align(
+             Align(
       alignment: Alignment.center,
       child: Padding(
-        padding: const EdgeInsets.only(top: 40.0),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(mycontroller.text.toString(),"",1)));
-          },
-          child: Container(
-            height: 50.0,
-            width: 150.0,
-            alignment: FractionalOffset.center,
-            decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(30.0),
-                border: new Border.all(color: Colors.white)),
-            child: InkWell(
-              onTap: (){
-              // local.pushAcademicProject().then((int status){
-              //   if(status==1)
-                   Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(mycontroller.text.toString(),"",1)));
-              // });
-              }
-              ,child: Text(
-                "Verify",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.0),
+          padding: const EdgeInsets.only(top: 10,bottom: 10),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(mycontroller.text.toString(),"",1)));
+            },
+            child: Container(
+              height: 50.0,
+              width: 150.0,
+              alignment: FractionalOffset.center,
+              decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(30.0),
+                  border: new Border.all(color: Colors.white)),
+              child: InkWell(
+                onTap: (){
+                // local.pushAcademicProject().then((int status){
+                //   if(status==1)
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(mycontroller.text.toString(),"",1)));
+                // });
+                }
+                ,child: Text(
+                  "Verify",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.0),
+                ),
               ),
             ),
           ),
-        ),
       ),
     ),
 
-    RaisedButton(child: Text("Facebook"),onPressed: (){
-          fbb(context);
-    },),
-    RaisedButton(child: Text("LinkedIn"),onPressed: (){
-        Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => buildLinkedIn(context)));
-    }),
-    RaisedButton(child: Text("Google"),onPressed: (){
-        _handleSignIn().then((GoogleSignInAccount acc){
-          if(acc!=null)
-          {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage("",acc.id.toString(),3)));
-          }
-        });
-    }),
-          ],
+     _buildTextSocialLogin(),
+     Padding(padding: EdgeInsets.only(bottom:10)),
+                    Container(
+                      width: MediaQuery.of(context).size.width/1.5,
+                      child: Row(
+//            crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                InkWell(
+                                      onTap: (){
+                                        print("FB");
+                                         fbb(context);
+                                      },
+                child:Container(
+                  //padding: EdgeInsets.only(left: 10),
+                                    child: CircleAvatar(
+
+                      backgroundImage: ExactAssetImage('assets/facebook.jpg'),
+                      minRadius: 20,
+                      maxRadius: 20,
+                  ),
+                ),),
+                
+                InkWell(
+                  onTap:(){
+                     _handleSignIn().then((GoogleSignInAccount acc){
+                      if(acc!=null)
+                        {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage("",acc.id.toString(),3)));
+                        }
+                    });
+                  },
+                                  child: Container(
+                    //padding: EdgeInsets.only(left: 20),
+                    child:  CircleAvatar(
+                    backgroundImage: ExactAssetImage('assets/google.png'),
+                    minRadius: 20,
+                    maxRadius: 20,
+                  ),),
+                ),
+
+                InkWell(
+                  onTap:(){
+                    Navigator.of(context)    
+                    .push(MaterialPageRoute(builder: (context) => buildLinkedIn(context)));
+                  },
+                                  child: Container(
+                    //padding: EdgeInsets.only(left: 20),
+                  
+                  child: CircleAvatar(
+                    backgroundImage: ExactAssetImage('assets/linkedin.jpg'),
+                    minRadius: 20,
+                    maxRadius: 20,
+                  ),
+                  ),
+                ),
+              ]),
+                    )
+
+
+    // RaisedButton(child: Text("Facebook"),onPressed: (){
+    //       fbb(context);
+    // },),
+    // RaisedButton(child: Text("LinkedIn"),onPressed: (){
+    //     Navigator.of(context)
+    //     .push(MaterialPageRoute(builder: (context) => buildLinkedIn(context)));
+    // }),
+    // RaisedButton(child: Text("Google"),onPressed: (){
+    //     _handleSignIn().then((GoogleSignInAccount acc){
+    //       if(acc!=null)
+    //       {
+    //         Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage("",acc.id.toString(),3)));
+    //       }
+    //     });
+    // }),
+            ],
+          ),
+                  ],
         ),
       ),
     );
   }
+  builder(int index) {
+    
+    return new AnimatedBuilder(
+      animation: controller,
+      builder: (context, child) {
+        double value = 0.9;
+        return new Center(
+          child: new SizedBox(
+            height: MediaQuery.of(context).size.height / 2.2,
+            width: Curves.easeOut.transform(value) * 500,
+            child: child,
+          ),
+        );
+      },
+      child: new Card(
+        
+        child:Text("Card"),
+        // child: Container(decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/resumeDesignsLarge/1.jpg"))),),
+        elevation: 15.0,
+        margin: const EdgeInsets.all(8.0),
+        color: index % 2 == 0 ? Colors.blue : Colors.red,
+      ),
+    );
+  }
 }
+
+ 
+
+Widget _buildTextSocialLogin() {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      _buildHorizontalLine(),
+      Text(
+        "Social Login",
+        style: TextStyle(color: Colors.white, fontSize: 16.0),
+      ),
+      _buildHorizontalLine(),
+    ],
+  );
+}
+
+Widget _buildHorizontalLine() {
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Container(
+      width: 60.0, //context wala problem
+      height: 1.0,
+      color: Colors.white,
+    ),
+  );
+}
+
+Widget _buildSocialMediaIcon() {
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        SocialIcon(
+          onPressed: () {},
+        )
+      ],
+    ),
+  );
+}
+
 
 
 Widget buildLinkedIn(BuildContext context) {

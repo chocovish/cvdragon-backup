@@ -130,8 +130,7 @@ class _ProfileSections extends State<ProfileSections> {
                       );
                     }
                     
-                    
-                    else {
+                                        else {
                       return
                     Dismissible(
                       direction: DismissDirection.endToStart,

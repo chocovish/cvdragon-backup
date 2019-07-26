@@ -62,6 +62,7 @@ class CustomDialogDatabase extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
+                    fontFamily: "cvFonts",
                     fontSize: 24.0,
                     fontWeight: FontWeight.w700,
                   ),

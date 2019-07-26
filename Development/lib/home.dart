@@ -110,6 +110,7 @@ Widget dialogContent(BuildContext context,write,setState)
                                 child: Text(
                                  profiles[index]['profileName'],
                                   style: TextStyle(
+                                    fontFamily: "cvFonts",
                                         color: Colors.black,
                                         fontSize: 15.0,
                                         fontWeight: FontWeight.bold),

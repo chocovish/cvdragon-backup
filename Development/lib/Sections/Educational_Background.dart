@@ -92,107 +92,107 @@ update(BuildContext context,String t, String u, String l, String sp, String y, S
                           children: <Widget>[
                             Column(
                               children: <Widget>[
-                                Container(
-                                  padding: EdgeInsets.only(top: 5.0, bottom: 20.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: <Widget>[
-                                      InkWell(
-                                        onTap: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                                CustomDialog(
-                                                  title: "FAQs",
-                                                  description: "You ask, we answer !",
-                                                  buttonText: "Okay",
-                                                ),
-                                          );
-                                        },
-                                        child: Container(
-                                          height:
-                                          MediaQuery.of(context).size.height / 18,
-                                          width:
-                                          MediaQuery.of(context).size.width / 4,
-                                          alignment: FractionalOffset.center,
-                                          decoration: BoxDecoration(
-                                              color: Color(0xff232882),
-                                              borderRadius:
-                                              BorderRadius.circular(30.0),
-                                              border: new Border.all(
-                                                  color: Colors.white)),
-                                          child: Text(
-                                            "FAQs",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15.0,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                                CustomDialogKeyPhrases(
-                                                    "Key Phrases", keyPhrases),
-                                          );
-                                        },
-                                        child: Container(
-                                          height:
-                                          MediaQuery.of(context).size.height / 18,
-                                          width:
-                                          MediaQuery.of(context).size.width / 4,
-                                          alignment: FractionalOffset.center,
-                                          decoration: BoxDecoration(
-                                              color: Color(0xff232882),
-                                              borderRadius:
-                                              BorderRadius.circular(30.0),
-                                              border: new Border.all(
-                                                  color: Colors.white)),
-                                          child: Text(
-                                            "Key Phrases",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15.0,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                              CustomDialogDatabase("Database",data, databb3,section
-                                                ),
-                                          );
-                                        },
-                                        child: Container(
-                                          height:
-                                          MediaQuery.of(context).size.height / 18,
-                                          width:
-                                          MediaQuery.of(context).size.width / 4,
-                                          alignment: FractionalOffset.center,
-                                          decoration: BoxDecoration(
-                                              color: Color(0xff232882),
-                                              borderRadius:
-                                              BorderRadius.circular(30.0),
-                                              border: new Border.all(
-                                                  color: Colors.white)),
-                                          child: Text(
-                                            "Database",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 15.0,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                // Container(
+                                //   padding: EdgeInsets.only(top: 5.0, bottom: 20.0),
+                                //   child: Row(
+                                //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                //     children: <Widget>[
+                                //       InkWell(
+                                //         onTap: () {
+                                //           showDialog(
+                                //             context: context,
+                                //             builder: (BuildContext context) =>
+                                //                 CustomDialog(
+                                //                   title: "FAQs",
+                                //                   description: "You ask, we answer !",
+                                //                   buttonText: "Okay",
+                                //                 ),
+                                //           );
+                                //         },
+                                //         child: Container(
+                                //           height:
+                                //           MediaQuery.of(context).size.height / 18,
+                                //           width:
+                                //           MediaQuery.of(context).size.width / 4,
+                                //           alignment: FractionalOffset.center,
+                                //           decoration: BoxDecoration(
+                                //               color: Color(0xff232882),
+                                //               borderRadius:
+                                //               BorderRadius.circular(30.0),
+                                //               border: new Border.all(
+                                //                   color: Colors.white)),
+                                //           child: Text(
+                                //             "FAQs",
+                                //             style: TextStyle(
+                                //                 color: Colors.white,
+                                //                 fontSize: 15.0,
+                                //                 fontWeight: FontWeight.bold),
+                                //           ),
+                                //         ),
+                                //       ),
+                                //       InkWell(
+                                //         onTap: () {
+                                //           showDialog(
+                                //             context: context,
+                                //             builder: (BuildContext context) =>
+                                //                 CustomDialogKeyPhrases(
+                                //                     "Key Phrases", keyPhrases),
+                                //           );
+                                //         },
+                                //         child: Container(
+                                //           height:
+                                //           MediaQuery.of(context).size.height / 18,
+                                //           width:
+                                //           MediaQuery.of(context).size.width / 4,
+                                //           alignment: FractionalOffset.center,
+                                //           decoration: BoxDecoration(
+                                //               color: Color(0xff232882),
+                                //               borderRadius:
+                                //               BorderRadius.circular(30.0),
+                                //               border: new Border.all(
+                                //                   color: Colors.white)),
+                                //           child: Text(
+                                //             "Key Phrases",
+                                //             style: TextStyle(
+                                //                 color: Colors.white,
+                                //                 fontSize: 15.0,
+                                //                 fontWeight: FontWeight.bold),
+                                //           ),
+                                //         ),
+                                //       ),
+                                //       InkWell(
+                                //         onTap: () {
+                                //           showDialog(
+                                //             context: context,
+                                //             builder: (BuildContext context) =>
+                                //               CustomDialogDatabase("Database",data, databb3,section
+                                //                 ),
+                                //           );
+                                //         },
+                                //         child: Container(
+                                //           height:
+                                //           MediaQuery.of(context).size.height / 18,
+                                //           width:
+                                //           MediaQuery.of(context).size.width / 4,
+                                //           alignment: FractionalOffset.center,
+                                //           decoration: BoxDecoration(
+                                //               color: Color(0xff232882),
+                                //               borderRadius:
+                                //               BorderRadius.circular(30.0),
+                                //               border: new Border.all(
+                                //                   color: Colors.white)),
+                                //           child: Text(
+                                //             "Database",
+                                //             style: TextStyle(
+                                //                 color: Colors.white,
+                                //                 fontSize: 15.0,
+                                //                 fontWeight: FontWeight.bold),
+                                //           ),
+                                //         ),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
                                 Container(
                                     padding: EdgeInsets.all(20.0),
                                     child: Form(

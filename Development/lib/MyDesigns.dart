@@ -11,6 +11,7 @@ class MyDesigns extends StatefulWidget {
 class _MyDesigns extends State<MyDesigns> {
   PageController controller;
   int currentpage = 0;
+   int _selectedIndex = 0;
   List data=[];
   bool isLoading=true;
   @override
@@ -37,10 +38,10 @@ setState(() {
 
   @override
   Widget build(BuildContext context) {
-    int _selectedIndex = 0;
+   
     void _onItemTapped(int index) {
       setState(() {
-        print(index);
+        //print(index);
         _selectedIndex = index;
       });
     }
@@ -112,9 +113,19 @@ setState(() {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children:<Widget>[ InkWell(
+                  onTap: (){
+                     if (controller.hasClients) {
+                      controller.animateToPage(
+                        0,
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                    
+                  },
                   child: Container(
                     height: MediaQuery.of(context).size.height / 18,
-                    width: MediaQuery.of(context).size.width / 3.7,
+                    width: MediaQuery.of(context).size.width / 4.3,
                     alignment: FractionalOffset.center,
                     decoration: BoxDecoration(
                         color: Color(0xff232882),
@@ -122,15 +133,22 @@ setState(() {
                         border:
                         new Border.all(color: Colors.white)),
                     child: InkWell(
-                      onTap: () {
-                        //update(context, title, description, data[index]);
-                      },
+                      onTap: (){
+                     if (controller.hasClients) {
+                      controller.animateToPage(
+                        0,
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                    
+                  },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
 
                           Text(
-                            "Professional",
+                            "Attitude",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14.0,
@@ -143,9 +161,20 @@ setState(() {
                 ),
 
               InkWell(
+                onTap: (){
+                     if (controller.hasClients) {
+                      controller.animateToPage(
+                        11  ,
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                    
+                  
+                    },
                 child: Container(
                   height: MediaQuery.of(context).size.height / 18,
-                  width: MediaQuery.of(context).size.width / 4.4,
+                  width: MediaQuery.of(context).size.width / 4.3,
                   alignment: FractionalOffset.center,
                   decoration: BoxDecoration(
                       color: Color(0xff232882),
@@ -153,8 +182,17 @@ setState(() {
                       border:
                       new Border.all(color: Colors.white)),
                   child: InkWell(
-                    onTap: () {
-                      //update(context, title, description, data[index]);
+                   
+                        onTap: (){
+                     if (controller.hasClients) {
+                      controller.animateToPage(
+                        11  ,
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                    
+                  
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -172,9 +210,20 @@ setState(() {
                 ),
               ),
               InkWell(
+                onTap: (){
+                     if (controller.hasClients) {
+                      controller.animateToPage(
+                        19  ,
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                    
+                  
+                    },
                 child: Container(
                   height: MediaQuery.of(context).size.height / 18,
-                  width: MediaQuery.of(context).size.width / 4.4,
+                  width: MediaQuery.of(context).size.width / 4.3,
                   alignment: FractionalOffset.center,
                   decoration: BoxDecoration(
                       color: Color(0xff232882),
@@ -182,14 +231,22 @@ setState(() {
                       border:
                       new Border.all(color: Colors.white)),
                   child: InkWell(
-                    onTap: () {
-                      //update(context, title, description, data[index]);
+                        onTap: (){
+                     if (controller.hasClients) {
+                      controller.animateToPage(
+                        19  ,
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                    
+                  
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "Attitude",
+                          "Creativity",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 14.0,
@@ -201,9 +258,19 @@ setState(() {
                 ),
               ),
                 InkWell(
+                    onTap: (){
+                     if (controller.hasClients) {
+                      controller.animateToPage(
+                        23,
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                    
+                  },
                   child: Container(
                     height: MediaQuery.of(context).size.height / 18,
-                    width: MediaQuery.of(context).size.width / 4.4,
+                    width: MediaQuery.of(context).size.width / 4.3,
                     alignment: FractionalOffset.center,
                     decoration: BoxDecoration(
                         color: Color(0xff232882),
@@ -211,14 +278,21 @@ setState(() {
                         border:
                         new Border.all(color: Colors.white)),
                     child: InkWell(
-                      onTap: () {
-                        //update(context, title, description, data[index]);
-                      },
+                       onTap: (){
+                     if (controller.hasClients) {
+                      controller.animateToPage(
+                        23,
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                    
+                  },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "My Design",
+                            "Institutes",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14.0,
@@ -254,11 +328,12 @@ setState(() {
   }
 
   builder(int index) {
+    
     return new AnimatedBuilder(
       animation: controller,
       builder: (context, child) {
         double value = 0.9;
-
+        print(data[index]['category'].toString());
         return new Center(
           child: new SizedBox(
             height: MediaQuery.of(context).size.height / 1.8,
@@ -268,7 +343,8 @@ setState(() {
         );
       },
       child: new Card(
-        child:Image(image: new AssetImage("assets/resumeDesignsLarge/"+data[index]['designid'].toString()+".jpg"),),
+        
+        child:Image(image: new AssetImage("assets/resumeDesignsLarge/"+data[index]['designid'].toString()+".jpg"),fit: BoxFit.fill,),
         // child: Container(decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/resumeDesignsLarge/1.jpg"))),),
         elevation: 15.0,
         margin: const EdgeInsets.all(8.0),

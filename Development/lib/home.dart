@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './institute.dart';
+import './Create_new_profile_Name.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
@@ -128,7 +129,7 @@ Widget dialogContent(BuildContext context,write,setState)
                             onPressed: (){
                                Navigator.of(context).push(
               MaterialPageRoute<Null>(builder: (BuildContext context) {
-                return CardProfiles();
+                return CardProfilesName();
               }
               )
           );

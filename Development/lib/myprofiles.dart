@@ -32,6 +32,7 @@ void get() async
   id=await readid();
   authkey=await readauthKey();
 data =await lfetch.getProfiles(id, authkey);
+//data.add(99);
 setState(() {
  isLoading=false;
 });
@@ -112,6 +113,7 @@ setState(() {
             onPageChanged: (value) {
               setState(() {
                 currentpage = value;
+                print (currentpage);
               });
             },
             controller: controller,
@@ -136,10 +138,12 @@ setState(() {
         );
       },
       child: new Card(
+        //print("Index is $index"),
         child: Text(data[index].toString()),
         elevation: 15.0,
         margin: const EdgeInsets.all(8.0),
         color: index % 2 == 0 ? Colors.blue : Colors.red,
+        
       ),
     );
   }

@@ -272,6 +272,7 @@ Widget _buildCardView(BuildContext context) {
                     margin: EdgeInsets.only(top: 10, left: 5, right: 5),
                     elevation: 5.0,
                     child: Container(
+                      height: 70,
                       decoration: addeddata.contains(db0.value[index])
                           ? BoxDecoration(
                               image: DecorationImage(

@@ -1,5 +1,6 @@
-import 'package:cvdragonapp_v1/Custom_dialog.dart';
-import 'package:cvdragonapp_v1/edit_section.dart' as prefix0;
+import 'package:cvdragonapp_v1/CustomDialogNewProfile.dart';
+import 'package:cvdragonapp_v1/home.dart';
+import './datapush.dart'as server;
 import 'package:cvdragonapp_v1/maps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -8,26 +9,22 @@ import './topmenu.dart';
 import './maps.dart';
 import './localdatafetch.dart'as lfetch;
 import 'dart:convert';
-
-String section='';
+  Map<String,dynamic> datatobesent={};
 class CardProfiles extends StatefulWidget {
   CardProfiles({Key key}) : super(key: key);
   @override
   _CardProfiles createState() => new _CardProfiles();
 }
-
-bool isLoading = true;
- List data=[];
-  List databb = [];
-  var db0 = [];
-  List addeddata=[];
+class _CardProfiles extends State<CardProfiles> {
+  TextEditingController con=new TextEditingController();
+  List data=[];
    List items=[];
+   Map<String,dynamic> totaldata={};
+ 
   bool _isLoading=true;
   PageController controller;
   int currentpage = 0;
 
-class _CardProfiles extends State<CardProfiles> {
- 
   @override
   initState() {
     super.initState();
@@ -39,35 +36,23 @@ class _CardProfiles extends State<CardProfiles> {
     );
   }
   void get()async{
-     addeddata=[];
-
-  lfetch.getDatabase(section)  // DataBase me jo hai vo aa rha hai
-        .then((List dd) {
-      setState(() {
-        databb = dd;
-        db0 += databb;
-      });
-    });
-
-lfetch.getAddedData(section)  // Profile me jo hai voh aa rha hai
-        .then((List res) {
-      setState(() {
-        addeddata = res;
-        db0 += addeddata;
-        isLoading=false;
-      });
-    });
-
- lfetch.getSections().then((List res) {
-      setState(() {
-        data=res;
-        data.forEach((element){
-          items.add(json.decode(element['section'].toString()));
-        });
-       
+datatobesent={};
+ List data=await lfetch.getSections();
+        for(var element in data)
+        {
+          String it=element['section'].toString();
+          if(it!="51100"&&it!="51101"&&it!="51102"&&it!="51103"&&it!="51109")
+         {
+          items.add(json.decode(it));
+          List d1= await lfetch.getDefaultSection(element['section'].toString());
+          totaldata[element['section'].toString()]=d1;
+        }
+        }
+       setState(() {
+         totaldata={};
         _isLoading = false;
-      });
-    });
+       });
+        
   }
   @override
   dispose() {
@@ -103,12 +88,26 @@ lfetch.getAddedData(section)  // Profile me jo hai voh aa rha hai
             : Column(
               
               children:<Widget>[
-                Container(
+                Column(
+                  children: <Widget>[
+                    Container(
+                      
+                      decoration: BoxDecoration(color: Colors.deepPurple),
+                      height: MediaQuery.of(context).size.height/2.5,
+                      width: MediaQuery.of(context).size.width,
+                      child: Center(child: Text("CHOOSE YOUR SECTIONS !",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),))
+                    ),
+                    RaisedButton(child: Text("click to create"),
                   
-                  decoration: BoxDecoration(color: Colors.deepPurple),
-                  height: MediaQuery.of(context).size.height/2.5,
-                  width: MediaQuery.of(context).size.width,
-                  child: Center(child: Text("CHOOSE YOUR SECTIONS !",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25),))
+                    onPressed: ()async{
+                      print(datatobesent.toString());
+                      String x=await server.createProfile(datatobesent,con.text.toString());
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePagee()));
+
+
+                    },),
+                    TextField(controller: con,)
+                  ],
                 ),
             
             
@@ -139,6 +138,7 @@ lfetch.getAddedData(section)  // Profile me jo hai voh aa rha hai
       builder: (context, child) {
         double value = 0.9;
          var item = items[index].toString();
+         
         return Dismissible(direction: DismissDirection.vertical, key: Key(item),     
         onDismissed: (direction ) {
           if (direction == DismissDirection.up){
@@ -165,10 +165,11 @@ lfetch.getAddedData(section)  // Profile me jo hai voh aa rha hai
                       .showSnackBar(SnackBar(content: Text("dismissed")));
                       return showDialog(
                                     context: context,
-                                    builder: (BuildContext context) => CustomDialog(
+                                    builder: (BuildContext context) => CustomDialogNewProfile(
                                       title:Sections[secid],
-                                      description: "Hello Moto",
+                                      description: totaldata[secid],
                                       buttonText: "Submit",
+                                      sectionId: secid,
                                     ),
                                   );
                   // Shows the information on Snackbar
@@ -186,6 +187,7 @@ lfetch.getAddedData(section)  // Profile me jo hai voh aa rha hai
             ),
           ),
         );
+         
       },
       child: new Card(
         child: Text(items[index].toString()),

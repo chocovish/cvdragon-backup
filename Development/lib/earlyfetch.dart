@@ -7,11 +7,47 @@ import 'package:sqflite/sqflite.dart';
 import './fetch.dart' as fetch;
 import './sharedfetch.dart' as sfetch;
 import './resourcesdata.dart';
+import './maps.dart' as maps;
 
 String id ="";
 String authkey = "";
 List datafrmserver;
 Database database;
+
+Future<String> deletetables() async {
+  print('delete tables called');
+  var add =await getApplicationDocumentsDirectory();
+   var db =   await openDatabase(add.path.toString()+"/sections.db", version: 1);
+   List resourcetable=["`resource-all`",
+"`resource-tips`",
+"`resource-faqs`",
+"`resource-profiledesign`",
+"`resource-profilefont`",
+"`resource-profilesetting`",
+"`resource-section`", 
+"`create-clprofile`",
+"`create-cvprofile`",
+"`create-cvprofilesection`",
+"`create-cvsection`",
+"`users`",
+"`user-basic`",
+"`user-proofRead`",
+"`user-subscription`",
+"`associate-proofRead`",
+"`associate-subscription`",
+"`cv-cover`",
+"`cv-publicprofile`",
+"`cv-resumedownload`",
+];
+resourcetable.forEach((element){
+db.delete(element);
+});
+maps.tablename.forEach((k,v){
+db.delete(v);
+});
+}
+
+
 Future<String> initialize() async {
   print('initialized called');
   var add =await getApplicationDocumentsDirectory();
@@ -260,6 +296,8 @@ display() async {
     print("basicData retrieved ");
   bool status=await sfetch.readalltablescreated();
       if (status == true) {
+      await deletetables();
+      await add();
       await display();
       } else {
   

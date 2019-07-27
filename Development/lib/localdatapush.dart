@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:cvdragonapp_v1/datapush.dart';
+import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/maps.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:convert';
@@ -78,4 +81,88 @@ sql+=" WHERE id="+id+" AND "+columnName[section]+"="+data[columnName[section]].t
         String serverupdate=await server.editData(data['refID'].toString(), section, newdata);
         print(serverupdate);
         return 1;
+}
+
+
+Future<int>removeSection(String section) async{
+   var add =await getApplicationDocumentsDirectory();
+      id=await sfetch.readid();
+      cvid= await sfetch.readprofiles();
+      var db=await openDatabase(add.path+"/sections.db", version: 1);
+      List res=await db.rawQuery("SELECT sections FROM `create-cvprofile` WHERE id="+id+" AND cvid="+cvid+" AND status=1");
+      List sections=json.decode(res[0]['sections']);
+      sections.remove(section);
+      await db.rawUpdate("UPDATE `create-cvprofile` SET sections=\""+sections.toString()+"\" WHERE id="+id+" AND cvid="+cvid+" AND status=1");
+      await db.rawUpdate("DELETE FROM `create-cvprofilesection` WHERE section="+section+" AND id="+id+" AND cvid="+cvid+" AND status=1");
+      String serversend=await  server.deleteSection(section);
+        print(serversend);
+        return 1;
+}
+
+
+Future<int>addSection(String section) async{
+   var add =await getApplicationDocumentsDirectory();
+      id=await sfetch.readid();
+      cvid= await sfetch.readprofiles();
+      var db=await openDatabase(add.path+"/sections.db", version: 1);
+      List res=await db.rawQuery("SELECT sections FROM `create-cvprofile` WHERE id="+id+" AND cvid="+cvid+" AND status=1");
+      List sections=json.decode(res[0]['sections']);
+      sections.add(section);
+      await db.rawUpdate("UPDATE `create-cvprofile` SET sections=\""+sections.toString()+"\" WHERE id="+id+" AND cvid="+cvid+" AND status=1");
+     List< Map<String,dynamic>> createdatainprofile=[{
+        'id':id,
+        'cvid':cvid,
+        'section':section,
+        'subsection':"",
+        'status':1
+      }];
+      await db.rawInsert( "`create-cvprofilesection`",createdatainprofile);
+      String serversend=await  server.deleteSection(section);
+        print(serversend);
+        return 1;
+}
+
+
+
+Future<String>generateresumeid() async{
+   var add =await getApplicationDocumentsDirectory();
+  id=await sfetch.readid();
+  cvid= await sfetch.readprofiles();
+     var color=await sfetch.readcolor();
+      var font= await sfetch.readfont();
+      var fsize=await sfetch.readfontsize();
+      var dtformat=await sfetch.readdatetimeformat();
+      var design=await sfetch.readdesign();
+      List profilesectionslist=await getProfileSections(id, cvid);
+      List profilesections=[];
+      profilesectionslist.forEach((element){
+          profilesections.add(element['section'].toString());
+      });
+      var db=await openDatabase(add.path+"/sections.db", version: 1);
+      List res=await db.rawQuery("SELECT resumeid FROM `cv-resumedownload` WHERE id="+id+" AND profileID="+cvid+" AND ProfileSections=\""+profilesections.toString()+"\" AND profileDesign="+design.toString()+" AND workTimeFormat="+dtformat+"  AND profileFont="+font+" AND fontSize="+fsize+" AND profileSetting="+color.toString());
+      print(res.toString());
+      if(res.toString()=="[]")
+      {
+       var timestamp=new DateTime.now().millisecondsSinceEpoch;
+       var random= Random.secure();
+       Map<String,dynamic> d={
+         'resumeid':timestamp.toString(),
+         'resume':timestamp.toString()+(random.nextInt(1000)).toString(),
+         'profileID':cvid,
+          'id':id,
+           'ProfileSections':"\""+profilesections.toString()+"\"",
+           'profileDesign':design,
+            'workTimeFormat': dtformat,
+             'profileFont': font,
+              'fontSize':fsize,
+               'profileSetting':color
+       };
+       db.insert('`cv-resumedownload`', d);
+       print("new/"+timestamp.toString());
+      }
+     else
+     {
+        print("old/"+res.toString());
+     }
+        return res.toString();
 }

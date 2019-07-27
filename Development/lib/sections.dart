@@ -104,7 +104,7 @@ class _Sections extends State<Sections> {
                                         padding: EdgeInsets.only(
                                              bottom: 10.0),
                                         child: Text(
-                                          data[index]['sectionContentApp'],
+                                          data[index]['sectionContentApp'].toString(),
                                           style: TextStyle(
                                             color: Colors.white
                                           ),

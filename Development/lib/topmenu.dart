@@ -1,3 +1,4 @@
+import 'package:cvdragonapp_v1/sync.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -17,7 +18,9 @@ class TopMenuBar extends StatelessWidget with PreferredSizeWidget {
       backgroundColor: Colors.black,
       actions: <Widget>[
         IconButton(
-          onPressed: () {},
+          onPressed: (){
+            syncthedata();
+          },
           icon: Icon(
             Icons.sync,
             color: Colors.white,

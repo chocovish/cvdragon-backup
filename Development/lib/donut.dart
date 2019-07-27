@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 class DonutPieChart extends StatelessWidget {
   final List<charts.Series> seriesList;
   final bool animate;
-
-  DonutPieChart(this.seriesList, {this.animate});
+int a1,b1;
+  DonutPieChart(this.seriesList,this.a1,this.b1,{this.animate});
 
   /// Creates a [PieChart] with sample data and no transition.
-  factory DonutPieChart.withSampleData() {
+  factory DonutPieChart.withSampleData(int a,int b) {
     return new DonutPieChart(
-      _createSampleData(),
+      _createSampleData(a,b),a,b,
       // Disable animations for image tests.
       animate: true,
     );
@@ -18,18 +18,21 @@ class DonutPieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new charts.PieChart(seriesList,
+    return Stack(children: <Widget>[Center(child: Text(a1.toString()+"/"+b1.toString(),style:TextStyle(fontSize: 20)),),
+      charts.PieChart(seriesList,
         animate: animate,animationDuration: Duration(milliseconds: 1500),
         // Configure the width of the pie slices to 60px. The remaining space in
         // the chart will be left as a hole in the center.
-        defaultRenderer: new charts.ArcRendererConfig(arcWidth: 18));
-  }
+        defaultRenderer:  charts.ArcRendererConfig(arcWidth: 18))
+
+  ]); 
+}
 
   /// Create one series with sample hard coded data.
-  static List<charts.Series<LinearSales, int>> _createSampleData() {
+  static List<charts.Series<LinearSales, int>> _createSampleData(int a,int b) {
     final data = [
-      new LinearSales(0, 100),
-      new LinearSales(1, 60),
+      new LinearSales(0,100),
+      new LinearSales(1, ((a/b)*100).floor()),
       //new LinearSales(2, 25),
       //new LinearSales(3, 5),
     ];

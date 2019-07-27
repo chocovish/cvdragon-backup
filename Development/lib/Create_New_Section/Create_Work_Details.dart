@@ -266,7 +266,7 @@ class CreateWorkDetails extends StatelessWidget {
                       width: MediaQuery
                           .of(context)
                           .size
-                          .width / 3,
+                          .width / 2.5,
                       alignment: FractionalOffset.center,
                       decoration: BoxDecoration(
                           color: Color(0xff232882),

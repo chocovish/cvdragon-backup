@@ -250,7 +250,7 @@ class CoCurricularActivity extends StatelessWidget {
                                                     width: MediaQuery.of(context)
                                                         .size
                                                         .width /
-                                                        3,
+                                                        2.2,
                                                     alignment:
                                                     FractionalOffset.center,
                                                     decoration: BoxDecoration(

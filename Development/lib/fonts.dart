@@ -117,7 +117,7 @@ setState(() {
         );
       },
       child: new Card(
-        child: Center(child: Text(font[index]['fontType'].toString(),style: TextStyle(fontSize: 50,fontFamily: "RobotoItalic"),)),
+        child: Center(child: Text("The Quick Brown Fox Jumps Over The Lazy Dog",style: TextStyle(fontSize: 25,fontFamily: font[index]["fontType"].toString()),)),
         elevation: 15.0,
         margin: const EdgeInsets.all(8.0),
         color: Colors.white,

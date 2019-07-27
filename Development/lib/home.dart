@@ -7,6 +7,7 @@ import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart';
 import 'package:cvdragonapp_v1/rightpreviewpane.dart';
 import 'package:cvdragonapp_v1/sharedfetch.dart';
+import 'package:cvdragonapp_v1/vishBottomBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -24,19 +25,7 @@ var authkey = '';
 var selectedprofile='';
 List profiles;
 int filled=14,total=27;
-Map<String, dynamic> contents = {
-  'id': id,
-  'projectid': 1,
-  'organization': 'jsdn',
-  'designation': 'ww',
-  'workid': 3,
-  'duration': '2 weeks',
-  'location': 'howrah',
-  'proofRead': 0,
-  'title': 'New Project Added by Rohit 2 ',
-  'description': 'Description of New Project',
-  'status': 1
-};
+
 
 class HomePagee extends StatefulWidget {
   @override
@@ -123,6 +112,7 @@ Widget dialogContent(BuildContext context,write,setState)
                                 child: Text(
                                  profiles[index]['profileName'],
                                   style: TextStyle(
+                                    fontFamily: "cvFonts",
                                         color: Colors.black,
                                         fontSize: 15.0,
                                         fontWeight: FontWeight.bold),
@@ -194,23 +184,24 @@ Widget dialogContent(BuildContext context,write,setState)
             body: profileselected?
             _buildCardView(context):
             dialogContent(context, write,setState),
-            bottomNavigationBar: FABBottomAppBar(
-              selectedPage: 3,
-              onTabSelected: _selectedTab,
-              notchedShape: CircularNotchedRectangle(),
-              color: Colors.white30,
-              centerItemText: "Preview",
-              backgroundColor: Color(0xff232882),
-              selectedColor: Colors.white,
-              items: [
-                FABBottomAppBarItem(
-                    iconData: Icons.import_contacts, text: 'Knowledge'),
-                FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
-                FABBottomAppBarItem(
-                    iconData: Icons.swap_vert, text: 'Profiles'),
-                FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
-              ],
-            ),
+            // bottomNavigationBar: FABBottomAppBar(
+            //   selectedPage: 3,
+            //   onTabSelected: _selectedTab,
+            //   notchedShape: CircularNotchedRectangle(),
+            //   color: Colors.white30,
+            //   centerItemText: "Preview",
+            //   backgroundColor: Color(0xff232882),
+            //   selectedColor: Colors.white,
+            //   items: [
+            //     FABBottomAppBarItem(
+            //         iconData: Icons.import_contacts, text: 'Knowledge'),
+            //     FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
+            //     FABBottomAppBarItem(
+            //         iconData: Icons.swap_vert, text: 'Profiles'),
+            //     FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
+            //   ],
+            // ),
+            bottomNavigationBar: MybottomNav(3),
           );
   }
 }

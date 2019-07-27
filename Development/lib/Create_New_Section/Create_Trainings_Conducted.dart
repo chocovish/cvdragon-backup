@@ -117,7 +117,7 @@ class CreateTrainingsConducted extends StatelessWidget {
                                                     width: MediaQuery.of(context)
                                                         .size
                                                         .width /
-                                                        3,
+                                                        2.5,
                                                     alignment:
                                                     FractionalOffset.center,
                                                     decoration: BoxDecoration(

@@ -126,7 +126,7 @@ class CreatePresentations extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "Add Activity",
+                            "Add Section",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15.0,

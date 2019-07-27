@@ -18,7 +18,7 @@ int a1,b1;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: <Widget>[Center(child: Text(a1.toString()+"/"+b1.toString(),style:TextStyle(fontSize: 80)),),
+    return Stack(children: <Widget>[Center(child: Text(a1.toString()+"/"+b1.toString(),style:TextStyle(fontSize: 20)),),
       charts.PieChart(seriesList,
         animate: animate,animationDuration: Duration(milliseconds: 1500),
         // Configure the width of the pie slices to 60px. The remaining space in

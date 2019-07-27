@@ -338,7 +338,7 @@ class Publications extends StatelessWidget {
                       width: MediaQuery
                             .of(context)
                             .size
-                            .width / 3,
+                            .width / 2.2,
                       alignment: FractionalOffset.center,
                       decoration: BoxDecoration(
                             color: Color(0xff232882),
@@ -365,7 +365,7 @@ class Publications extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "Add Section",
+                                "Update Section",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15.0,

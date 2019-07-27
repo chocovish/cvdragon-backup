@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './Custom_dialog.dart';
 import './topmenu.dart';
+import './maps.dart';
 import './localdatafetch.dart'as lfetch;
 import 'dart:convert';
   Map<String,dynamic> datatobesent={};
@@ -23,6 +24,7 @@ class _CardProfiles extends State<CardProfiles> {
   bool _isLoading=true;
   PageController controller;
   int currentpage = 0;
+
   @override
   initState() {
     super.initState();
@@ -111,7 +113,7 @@ datatobesent={};
             
             
             Container(
-               height: MediaQuery.of(context).size.height/2,
+               height: MediaQuery.of(context).size.height/3,
         child: new PageView.builder(
           
           itemCount: items.length,

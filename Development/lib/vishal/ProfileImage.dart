@@ -102,7 +102,8 @@ class _SelectedImageWidget extends StatelessWidget {
   }
 }
 
-var _selectedImage = ValueNotifier(File(""));
+
+ValueNotifier<File> _selectedImage = ValueNotifier(File(""));
 
 Future _getImage() async {
   File image = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -120,50 +121,65 @@ Future _storeImage() async {
   _selectedImage.value.copySync(myImage.path);
   print("Done");
   _getStoredImage();
+  _selectedImage.value = File("");
 }
 
 Future<List<FileSystemEntity>> _getStoredImage() async {
   Directory appDocDir = await getApplicationDocumentsDirectory();
-  appDocDir.createSync(recursive: true);
   String imageDirPath = join(appDocDir.path, 'profile_images');
   Directory imageDir = Directory(imageDirPath);
-  imageDir.createSync(recursive: true);
   List<FileSystemEntity> l = imageDir.listSync();
-  print(l);
+  print(l.length);
   return l;
 }
 
 class ProfilePicList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: FutureBuilder(
-        future: _getStoredImage(),
-        builder: (context, AsyncSnapshot<List<FileSystemEntity>> snapshot) {
-          if (!snapshot.hasData)
-            return Container(
-              child: Text("No Images"),
-            );
-          return Column(
-            children: snapshot.data.map((file) {
-              return Container(
-                decoration: BoxDecoration(color: Colors.amber,borderRadius: BorderRadius.circular(10)),
-                
-                margin: EdgeInsets.symmetric(horizontal: 4,vertical: 5),
-                padding: EdgeInsets.symmetric(horizontal: 4,vertical: 5),
-                child: ListTile(
-                  leading: ClipRRect(child: Image.file(file),borderRadius: BorderRadius.circular(10),),
-                  title: Text("FileName"),
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: (){},
-                  ),
-                ),
+    return ValueListenableBuilder(
+      valueListenable: _selectedImage,
+      builder: (context, val, child) {
+        return Container(
+          child: FutureBuilder(
+            future: _getStoredImage(),
+            builder: (context, AsyncSnapshot<List<FileSystemEntity>> snapshot) {
+              if (!snapshot.hasData)
+                return Container(
+                  child: Text("No Images"),
+                );
+              return Column(
+                children: snapshot.data.map((file) {
+                  return Container(
+                    decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(10)),
+                    margin: EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+                    child: ListTile(
+                      onTap: () {
+                        print("Deleter");
+                      },
+                      leading: ClipRRect(
+                        child: Image.file(file),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      title: Text("FileName"),
+                      trailing: IconButton(
+                        onPressed: () {
+                          print("Deleter");
+                          file.deleteSync();
+                          _selectedImage.value = File("");
+                        },
+                        icon: Icon(Icons.delete),
+                      ),
+                    ),
+                  );
+                }).toList(),
               );
-            }).toList(),
-          );
-        },
-      ),
+            },
+          ),
+        );
+      },
     );
   }
 }

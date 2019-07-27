@@ -1,4 +1,5 @@
 import 'package:cvdragonapp_v1/Sections/Publications.dart';
+import 'package:cvdragonapp_v1/vishal/sections/WorkDetailsForm.dart';
 import 'package:flutter/material.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
@@ -28,6 +29,7 @@ import './Sections/Associated_Members.dart';
 import './Sections/Patents.dart';
 import './Sections/Contact_Details.dart';
 import './Sections/TN.dart';
+import './vishal/CustomForm.dart';
 import './maps.dart'as maps;
 
 List keyP;
@@ -145,8 +147,9 @@ Widget _buildCardView(BuildContext context) {
     return Interests(section, secName, index, data, keyP, databb2, databb1);
   else if(section=="51117")
     return VolunteerExperience(section, secName, index, data, keyP, databb2, databb1);
-  else if(section == "51104")
-    return WorkDetails(section, secName, index, data, keyP, databb2, databb1);
+  else if(section == "51104") return WorkDetailsForm(i: data[index]);
+  
+    //return WorkDetails(section, secName, index, data, keyP, databb2, databb1);
   else if(section == "51105")
     return WorkProjects(section, secName, index, data, keyP, databb2, databb1);
   else if(section == "51107")

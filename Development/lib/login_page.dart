@@ -21,8 +21,8 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-      resizeToAvoidBottomPadding: true,
+      // resizeToAvoidBottomInset: true,
+      // resizeToAvoidBottomPadding: true,
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(

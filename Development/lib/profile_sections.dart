@@ -1,17 +1,12 @@
 import 'dart:ui' as prefix0;
 import 'dart:convert';
-import 'package:cvdragonapp_v1/localdatapush.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
-import 'dart:async';
 import './localdatafetch.dart' as lfetch;
 import './localdatapush.dart' as lpush;
 import './sharedfetch.dart' as sfetch;
-import 'package:http/http.dart' as http;
-import './create_section.dart';
 import './edit_section.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import './maps.dart' as maps;
@@ -40,11 +35,12 @@ class _ProfileSections extends State<ProfileSections> {
     cvid = await sfetch.readprofiles();
     data2 = await lfetch.getProfileSections(id, cvid);
     countoftotaldata = await lfetch.getCount(data2);
-    setState(() {
-      data2.forEach((element) {
+    data2.forEach((element) {
         data.add(json.decode(element['section'].toString()));
       });
-      print(data.toString());
+    setState(() {
+     
+    
       _isLoading = false;
     });
   }
@@ -81,13 +77,69 @@ class _ProfileSections extends State<ProfileSections> {
                   physics: BouncingScrollPhysics(),
                   itemCount: data == null ? 0 : data.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Dismissible(
+                    
+                    if (data[index].toString()=="51100" || data[index].toString()=="51101" || data[index].toString()=="51102" || data[index].toString()=="51103" || data[index].toString()=="51109"){
+                    return  Card(
+                        child: Container(
+                          height: 120,
+                          width: MediaQuery.of(context).size.width,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        (EditSection(data[index].toString()))));
+                          },
+                          child: Stack(
+                            children: <Widget>[
+                              Image.asset(
+                                "assets/ProfileSection/"+data[index].toString()+"-01.png",
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width,
+                                //heighaQuery.of(context).size.height,
+                              ),
+                              Center(child:
+                              Container(
+                                padding: new EdgeInsets.symmetric(
+                                    vertical: 40, horizontal: MediaQuery.of(context).size.width/25),
+                                alignment: Alignment.center,
+                                child: Row(
+
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    AutoSizeText(
+                                     maps.Sections[data[index].toString()].toString(),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          letterSpacing: 0.5,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+
+                                    
+                                    CircleAvatar(backgroundColor: Colors.black,radius: 21,
+                                      child: Text("D"),),
+                                  ],
+                                ),
+                              ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        ),
+                      );
+                    }
+                    
+                                        else {
+                      return
+                    Dismissible(
                       direction: DismissDirection.endToStart,
                       key: Key(data.toString()),
                       onDismissed: (direction) {
                         // Removes that item the list on swipwe
                         setState(() {
-                          print("from profilesection.dart"+data[index].toString());
+                       
                           lpush.removeSection(data[index].toString());
                           data.removeAt(index);
                         });
@@ -166,6 +218,11 @@ class _ProfileSections extends State<ProfileSections> {
                         ),
                       ),
                     );
+                    }
+                    
+
+                
+
                   },
                 ),
               ),

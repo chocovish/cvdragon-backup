@@ -278,7 +278,7 @@ update(BuildContext context,String l, String rl, String wl, String sl, Map<Strin
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width /
-                                                3,
+                                                2.2,
                                             alignment: FractionalOffset.center,
                                             decoration: BoxDecoration(
                                                 color: Color(0xff232882),

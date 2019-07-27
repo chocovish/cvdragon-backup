@@ -37,7 +37,6 @@ class CreateIntroduction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return  Form(
                     child: Column(
                       children: <Widget>[
@@ -102,7 +101,7 @@ class CreateIntroduction extends StatelessWidget {
                                         ),
 
                                         Text(
-                                          "Add Introduction",
+                                          "Add Section",
                                           style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 15.0,

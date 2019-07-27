@@ -135,7 +135,7 @@ create(BuildContext context,String c, String y, String a) {
                                                     ),
                                                   ),
                                                   Text(
-                                                    "Add Achievement",
+                                                    "Add Section",
                                                     style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 15.0,

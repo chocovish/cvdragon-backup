@@ -297,7 +297,7 @@ class ContactDetails extends StatelessWidget {
                                       },
                                       child: Container(
                                         height: MediaQuery.of(context).size.height / 18,
-                                        width: MediaQuery.of(context).size.width / 2,
+                                        width: MediaQuery.of(context).size.width / 2.2,
                                         alignment: FractionalOffset.center,
                                         decoration: BoxDecoration(
                                             color: Color(0xff232882),

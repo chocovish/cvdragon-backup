@@ -132,7 +132,7 @@ class CreateAchievments extends StatelessWidget {
                                                       ),
                                                     ),
                                                     Text(
-                                                      "Add Achievement",
+                                                      "Add Section",
                                                       style: TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 15.0,

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import './profile_sections.dart';
 import './CardView_NewProfile.dart';
 import './knowledge_centre.dart';
+import './home.dart';
+import './myprofiles.dart';
 import './Expanded_Profile.dart';
 
 class FABBottomAppBarItem {
@@ -24,7 +26,7 @@ class FABBottomAppBar extends StatefulWidget {
     this.selectedColor,
     this.notchedShape,
     this.onTabSelected,
-    this.selectedPage: 3,
+    this.selectedPage: -1,
   }) {
     assert(this.items.length == 2 || this.items.length == 4);
   }
@@ -44,7 +46,7 @@ class FABBottomAppBar extends StatefulWidget {
 }
 
 class FABBottomAppBarState extends State<FABBottomAppBar> {
-  int _selectedIndex = 3;
+  int _selectedIndex = -1;
   @override
   @override
   void initState() { 

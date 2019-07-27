@@ -98,7 +98,7 @@ section = d2;
                                                     width: MediaQuery.of(context)
                                                         .size
                                                         .width /
-                                                        2.2,
+                                                        2.5,
                                                     alignment:
                                                     FractionalOffset.center,
                                                     decoration: BoxDecoration(
@@ -126,7 +126,7 @@ section = d2;
                                                             ),
                                                           ),
                                                           Text(
-                                                            "Add Activity",
+                                                            "Add Section",
                                                             style: TextStyle(
                                                                 color: Colors.white,
                                                                 fontSize: 15.0,

@@ -237,7 +237,7 @@ update(BuildContext context,String i, String l, Map<String, dynamic> initial) {
 
                                                 child: Container(
                                                   height: MediaQuery.of(context).size.height / 18,
-                                                  width: MediaQuery.of(context).size.width / 3,
+                                                  width: MediaQuery.of(context).size.width / 2.2,
                                                   alignment: FractionalOffset.center,
                                                   decoration: BoxDecoration(
                                                       color: Color(0xff232882),
@@ -264,7 +264,7 @@ update(BuildContext context,String i, String l, Map<String, dynamic> initial) {
                                                           ),
                                                         ),
                                                         Text(
-                                                          "Add Section",
+                                                          "Update Section",
                                                           style: TextStyle(
                                                               color: Colors.white,
                                                               fontSize: 15.0,

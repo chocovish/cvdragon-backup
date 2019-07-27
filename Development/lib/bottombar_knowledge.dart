@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './profile_sections.dart';
 import './knowledge_centre.dart';
 import './home.dart';
+
 class FABBottomAppBarItem {
   FABBottomAppBarItem({this.iconData, this.text});
   IconData iconData;
@@ -19,6 +20,8 @@ class FABBottomAppBar extends StatefulWidget {
     this.selectedColor,
     this.notchedShape,
     this.onTabSelected,
+    this.selectedIndex,
+  
   }) {
     assert(this.items.length == 2 || this.items.length == 4);
   }
@@ -31,27 +34,81 @@ class FABBottomAppBar extends StatefulWidget {
   final Color selectedColor;
   final NotchedShape notchedShape;
   final ValueChanged<int> onTabSelected;
+  final int selectedIndex;
 
   @override
   State<StatefulWidget> createState() => FABBottomAppBarState();
 }
 
 class FABBottomAppBarState extends State<FABBottomAppBar> {
-  int _selectedIndex = 5;
+  int _selectedIndex;
+  @override
+  @override
+  void initState() { 
+    super.initState();
+    _selectedIndex = widget.selectedIndex;
+  }
 
   _updateIndex(int index) {
-
     widget.onTabSelected(index);
-     {
-      setState(() {
+    setState(() {
+      _selectedIndex = index;
+    });
+    
 
-
-
-        _selectedIndex = index;
-      }
-      );
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushReplacement(route("FAQ",0));
+        break;
+      case 1:
+        Navigator.of(context).pushReplacement(route("Tips",1));
+        break;
+      case 2:
+        Navigator.of(context).pushReplacement(route("Videos",2));
+        break;
+      case 3:
+        Navigator.of(context).pushReplacement(route("News Feed",3));
+        break;
     }
   }
+
+// ------------------ Demo Route Page ----------------------- //
+
+MaterialPageRoute route(String t,int i) {
+      return MaterialPageRoute(builder: (BuildContext context) {
+        return Scaffold(
+          body: Container(
+              alignment: Alignment.center,
+              child: Text(
+                t,
+                style: Theme.of(context).textTheme.display1,
+              )),
+          bottomNavigationBar: FABBottomAppBar(
+            onTabSelected: (i){},
+            notchedShape: CircularNotchedRectangle(),
+            color: Colors.white30,
+            centerItemText: "Home",
+            backgroundColor: Color(0xff232882),
+            selectedColor: Colors.white,
+            selectedIndex: i,
+            items: [
+              FABBottomAppBarItem(iconData: Icons.info, text: 'FAQs'),
+              FABBottomAppBarItem(
+                  iconData: Icons.lightbulb_outline, text: 'Tips'),
+              FABBottomAppBarItem(
+                  iconData: Icons.ondemand_video, text: 'Videos'),
+              FABBottomAppBarItem(iconData: Icons.rss_feed, text: 'News Feed'),
+            ],
+          ),
+        );
+      });
+    }
+
+
+// ------------------ Demo Route Page ----------------------- //
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +156,7 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
     int index,
     ValueChanged<int> onPressed,
   }) {
-    Color color = _selectedIndex == index ? widget.selectedColor : widget.color;
+    Color color = widget.selectedIndex == index ? widget.selectedColor : widget.color;
     return Expanded(
       child: SizedBox(
         height: widget.height,
@@ -114,7 +171,7 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
                 Icon(item.iconData, color: color, size: widget.iconSize),
                 Text(
                   item.text,
-                  style: TextStyle(color: color,fontSize: 12),
+                  style: TextStyle(color: color, fontSize: 12),
                 )
               ],
             ),

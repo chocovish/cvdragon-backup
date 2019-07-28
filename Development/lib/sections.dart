@@ -13,7 +13,7 @@ import 'main.dart' as main;
 class Sections extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+
     return _Sections();
   }
 }

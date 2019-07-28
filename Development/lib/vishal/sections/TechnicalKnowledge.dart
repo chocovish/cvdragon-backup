@@ -1,3 +1,4 @@
+
 import 'package:cvdragonapp_v1/localdatapush.dart';
 import 'package:cvdragonapp_v1/vishal/myFormFields.dart';
 import 'package:flutter/material.dart';
@@ -6,22 +7,23 @@ import 'package:nice_button/nice_button.dart';
 import '../../localdatapush.dart' show updateData;
 import '../myFormFields.dart';
 
-class InterestsForm extends StatefulWidget {
+
+class TechnicalKnowledgeForm extends StatefulWidget {
   Map instance;
 
-  InterestsForm({Map i}) : instance = i ?? {};
+  TechnicalKnowledgeForm({Map i}) : instance = i ?? {};
 
   @override
-  _InterestsFormState createState() => _InterestsFormState();
+  _TechnicalKnowledgeFormState createState() => _TechnicalKnowledgeFormState();
 }
 
-class _InterestsFormState extends State<InterestsForm> {
-  final section = "51119";
-  GlobalKey<FormBuilderState> _formKey;
+class _TechnicalKnowledgeFormState extends State<TechnicalKnowledgeForm> {
+  final section = "51111";
+   GlobalKey<FormBuilderState> _formKey;
 
   @override
   void initState() {
-    _formKey = GlobalKey<FormBuilderState>();
+    _formKey =  GlobalKey<FormBuilderState>();
     super.initState();
   }
 
@@ -30,17 +32,15 @@ class _InterestsFormState extends State<InterestsForm> {
     print(widget.instance);
     return Container(
       color: Colors.white,
+      
       child: FormBuilder(
         key: _formKey,
         child: Column(
           children: <Widget>[
-            myTextField("interest", initialValue: widget.instance["interest"]),
-            myRadioButton("level",initialValue: widget.instance["level"], options: [
-              FormBuilderFieldOption(label: "Interest", value: "Interest"),
-              FormBuilderFieldOption(label: "Hobby", value: "Hobby"),
-              FormBuilderFieldOption(label: "Passion", value: "Passion"),
-            ]),
-
+            myTextField("technical",initialValue: widget.instance["technical"]),
+            myTextField("type",initialValue: widget.instance["type"]),
+            mySegmentField("level",initialValue: widget.instance["level"],options: ["Beginner","Intermideate",'Advanced']),
+            myTextField("description",maxLines: 6,initialValue: widget.instance["description"]),
             // ---- Submit Button ---- //
             NiceButton(
               text: "Save",
@@ -54,9 +54,6 @@ class _InterestsFormState extends State<InterestsForm> {
               onPressed: () {
                 _formKey.currentState.save();
                 var newdata = _formKey.currentState.value;
-                // newdata["readLanguage"] = bool2num(newdata["readLanguage"]);
-                // newdata["writeLanguage"] = bool2num(newdata["writeLanguage"]);
-                // newdata["speakLanguage"] = bool2num(newdata["speakLanguage"]);
                 print(newdata);
                 widget.instance.isEmpty
                     ? pushData(section, newdata).then((onValue) {

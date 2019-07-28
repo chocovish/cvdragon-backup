@@ -1,3 +1,5 @@
+import 'package:cvdragonapp_v1/vishBottomBar.dart';
+
 import './localdatafetch.dart' as lfetch;
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:flutter/material.dart';
@@ -64,48 +66,52 @@ setState(() {
             )
     : Scaffold(
       appBar: TopMenuBar(),
-      bottomNavigationBar: new Theme(
-        data: Theme.of(context).copyWith(
-            // sets the background color of the `BottomNavigationBar`
-            canvasColor: Color(0xff232882),
-            // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-            primaryColor: Colors.red,
-            textTheme: Theme.of(context)
-                .textTheme
-                .copyWith(caption: new TextStyle(color: Colors.white))),
-        // sets the inactive color of the `BottomNavigationBar`
-        child: new BottomNavigationBar(
-          elevation: 5.0,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: 0,
-          items: [
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.add,size: 15,),
-              title: new Text("Add"),
-            ),
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.add,size: 15,),
-              title: new Text("Add"),
-            ),
-            new BottomNavigationBarItem(
-              icon: Container(
-                padding: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.pink),
-                child: new Icon(Icons.add),
-              ),
-              title: new Text("Add"),
-            ),
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.add,size: 15,),
-              title: new Text("Add"),
-            ),
-            new BottomNavigationBarItem(
-              icon: new Icon(Icons.delete,size: 15,),
-              title: new Text("Delete"),
-            )
-          ],
-        ),
-      ),
+      // bottomNavigationBar: new Theme(
+      //   data: Theme.of(context).copyWith(
+      //       // sets the background color of the `BottomNavigationBar`
+      //       canvasColor: Color(0xff232882),
+      //       // sets the active color of the `BottomNavigationBar` if `Brightness` is light
+      //       primaryColor: Colors.red,
+      //       textTheme: Theme.of(context)
+      //           .textTheme
+      //           .copyWith(caption: new TextStyle(color: Colors.white))),
+      //   // sets the inactive color of the `BottomNavigationBar`
+      //   child: new BottomNavigationBar(
+          
+      //     elevation: 5.0,
+      //     type: BottomNavigationBarType.fixed,
+      //     currentIndex: 0,
+      //     items: [
+      //       new BottomNavigationBarItem(
+      //         icon: new Icon(Icons.add,size: 15,),
+      //         title: new Text("Add"),
+      //       ),
+      //       new BottomNavigationBarItem(
+      //         icon: new Icon(Icons.add,size: 15,),
+      //         title: new Text("Add"),
+      //       ),
+      //       new BottomNavigationBarItem(
+      //         icon: Container(
+      //           padding: EdgeInsets.all(10.0),
+      //           decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.pink),
+      //           child: new Icon(Icons.add),
+      //         ),
+      //         title: new Text("Add"),
+      //       ),
+      //       new BottomNavigationBarItem(
+      //         icon: new Icon(Icons.add,size: 15,),
+      //         title: new Text("Add"),
+      //       ),
+      //       new BottomNavigationBarItem(
+      //         icon: new Icon(Icons.delete,size: 15,),
+      //         title: new Text("Delete"),
+      //       )
+      //     ],
+      //   ),
+      // ),
+      bottomNavigationBar: MybottomNav(2),
+      floatingActionButton: FloatingActionButton(child: Icon(Icons.done_outline),onPressed: (){},),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Container(
         child: new PageView.builder(
           itemCount: data == null ? 0 : data.length,

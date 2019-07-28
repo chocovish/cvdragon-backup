@@ -3,6 +3,9 @@ import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/maps.dart';
 import 'package:cvdragonapp_v1/vishal/CustomForm.dart' as prefix0;
 import 'package:cvdragonapp_v1/vishal/ProfileImage.dart';
+import 'package:cvdragonapp_v1/vishal/sections/ContactDetailsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/EducationalBackgroundForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/PreferencesForm.dart';
 import 'package:flutter/material.dart';
 import './topmenu.dart';
 import './vishal/ProfileImage.dart';
@@ -78,9 +81,7 @@ class _EditSection extends State<EditSection> {
   }
 
   void _selectedTab(int index) {
-    setState(() {
       print(index);
-    });
   }
 
   @override
@@ -145,8 +146,10 @@ class _EditSection extends State<EditSection> {
                   else if (section == "51100")
                   return BasicInfo(i: db0.value[0]);
                    // return BI.BasicInfo(section, Sections[section], db0.value);
-                  else if (section == "51109")
+                  else if (section == "51109") //return EducationalBackgroundForm(i: db0.value[1]);
                     return EditSectionEB(section);
+                  else if (section=="51101") return ContactDetailsForm(i: db0.value[0]);
+                  else if(section=="51121") return PreferencesForm(i: db0.value[0]);
                   else
                     return _buildCardView(context);
                 }),

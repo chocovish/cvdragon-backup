@@ -12,6 +12,7 @@ import 'package:cvdragonapp_v1/vishal/sections/PresentationsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/ProfessionalQualificationsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/PublicationsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/SoftSkillsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/TechnicalKnowledge.dart';
 import 'package:cvdragonapp_v1/vishal/sections/TrainingsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/VolunteerForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/WorkDetailsForm.dart';
@@ -312,8 +313,8 @@ Widget _buildCardView(BuildContext context) {
     //return CreateAssociatedMembers(section, secName, index2, data);
   else if (section == "51113") return PatentForm(i:index2==null?null:data[index2]);
    // return CreatePatents(section, secName, index2, data);
-  else if (section == "51111")
-    return CreateTechnicalKnowledge(section, secName, index2, data);
+  else if (section == "51111") return TechnicalKnowledgeForm(i:index2==null?null:data[index2]);
+    //return CreateTechnicalKnowledge(section, secName, index2, data);
   else if (section == "51112") return PublicationForm(i:index2==null?null:data[index2]);
     //return CreatePublications(section, secName, index2, data);
   else if (section == "51099") return PORForm(i:index2==null?null:data[index2]);

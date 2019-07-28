@@ -72,7 +72,7 @@ Widget myRadioButton(String title,
 }
 
 Widget mySegmentField(String title,
-    {String initialValue, @required List<String> options}) {
+    {String initialValue, @required List<String> options,List optionLabel}) {
   return Padding(
     padding: const EdgeInsets.all(12.0),
     child: FormBuilderSegmentedControl(
@@ -82,7 +82,7 @@ Widget mySegmentField(String title,
       ),
       attribute: title,
       initialValue: initialValue,
-      options: options.map((i) => FormBuilderFieldOption(value: i)).toList(),
+      options: options.map((i) => FormBuilderFieldOption(label:optionLabel!=null?optionLabel[options.indexOf(i)]:i ,value: i)).toList(),
     ),
   );
 }

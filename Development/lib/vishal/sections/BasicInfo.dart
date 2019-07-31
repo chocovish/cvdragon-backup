@@ -27,6 +27,7 @@ class _CertificatesFormState extends State<BasicInfo> {
 
   @override
   Widget build(BuildContext context) {
+    print("got data {$widget.instance}");
     return Container(
       color: Colors.white,
       child: FormBuilder(
@@ -47,7 +48,7 @@ class _CertificatesFormState extends State<BasicInfo> {
               ),
               // myTextField("maritalStatus",
               //     initialValue: widget.instance["maritalStatus"]),
-              mySegmentField("maritalStatus",options: ["Unmarried","Married","Widowed"]),
+              mySegmentField("maritalStatus",options: ["Unmarried","Married"]),
               myTextField("facebookLink",
                   initialValue: widget.instance["facebookLink"]),
               myTextField("twitterLink",
@@ -70,7 +71,7 @@ class _CertificatesFormState extends State<BasicInfo> {
                 onPressed: () {
                   _formKey.currentState.save();
                   var newdata = _formKey.currentState.value;
-                  print(newdata);
+                  print("new data is $newdata");
                   updateData(section, newdata, widget.instance).then((onValue) {
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();

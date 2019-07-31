@@ -65,19 +65,20 @@ class _OtpPage extends State<OtpPage> {
         var data = await fetch.getverifyUser(mobileno);
         print(data);
         if (data == 0)
-          Navigator.push(
+          Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      FirstTimeWizard(typeoflogin, mobileno)));
+                      FirstTimeWizard(typeoflogin, mobileno)),
+                      (r)=>false);
         else {
           Map<String, dynamic> basic_data =
               await fetch.getUserDetaisMobile(mobileno);
           await writeid(basic_data['id']);
           await writeauthKey(basic_data['authKey']);
           await writeloginstatus(1);
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePagee()));
+          Navigator.pushAndRemoveUntil(
+              context, MaterialPageRoute(builder: (context) => HomePagee()),(r)=>false); 
         }
       } else
         print("Wrong otp");
@@ -132,7 +133,6 @@ class _OtpPage extends State<OtpPage> {
   }
 
   void initState() {
-
     super.initState();
     this.get();
   }

@@ -1,12 +1,15 @@
 import './localdatafetch.dart' as lfetch;
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:flutter/material.dart';
+import './Create_new_profile_Name.dart';
 import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
 String id="";
 String authkey="";
+List data2;
 List data;
+int pgindex;
 bool isLoading=true;
 class MyProfiles extends StatefulWidget {
   @override
@@ -29,10 +32,14 @@ class _MyProfiles extends State<MyProfiles> {
   }
 void get() async
 {
+  data=[];
   id=await readid();
   authkey=await readauthKey();
-data =await lfetch.getProfiles(id, authkey);
-//data.add(99);
+data2 =await lfetch.getProfiles(id, authkey);
+data2.forEach((element){
+data.add({'cvid':element['cvid'].toString(),'profileName':element['profileName'].toString(),'sections':element['sections'].toString(),});
+});
+data.add({"Add Profile":"1"});
 setState(() {
  isLoading=false;
 });
@@ -111,10 +118,10 @@ setState(() {
         child: new PageView.builder(
           itemCount: data == null ? 0 : data.length,
             onPageChanged: (value) {
-              setState(() {
                 currentpage = value;
-                print (currentpage);
-              });
+                pgindex = currentpage;
+                print("Page Index $pgindex");
+              
             },
             controller: controller,
             itemBuilder: (context, index) => builder(index)),
@@ -128,23 +135,70 @@ setState(() {
       animation: controller,
       builder: (context, child) {
         double value = 0.9;
+         if (data[index]['Add Profile']=='1'){
+          return new Center(
+          child: new SizedBox(
+            height: MediaQuery.of(context).size.height / 1.4,
+            width: Curves.easeOut.transform(value) * 500,
+            child: new Card(
+         elevation: 15.0,
+        margin: const EdgeInsets.all(8.0),
+        color: Colors.black,
+        child: 
+       
+        Center(
+          
+          child:InkWell(
+            onTap: (){
+              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => (CardProfilesName())));
+            },
+                      child: Container(
+              height: MediaQuery.of(context).size.height / 3,
+              width: MediaQuery.of(context).size.width/1.5,
+              child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.add_circle,size: 60,color: Colors.white,),
+                  Text("Add New Profile",style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
+                ],
+              ),
+            ),
+          ),
+       
+        
+      ),
+          ),
+          ),
+        );
+         }
+         else
+        
 
         return new Center(
           child: new SizedBox(
             height: MediaQuery.of(context).size.height / 1.4,
             width: Curves.easeOut.transform(value) * 500,
-            child: child,
-          ),
-        );
-      },
-      child: new Card(
-        //print("Index is $index"),
-        child: Text(data[index].toString()),
+            child: new Card(
+        
+        child: 
+       
+        Text(data[index].toString()),
         elevation: 15.0,
         margin: const EdgeInsets.all(8.0),
         color: index % 2 == 0 ? Colors.blue : Colors.red,
         
       ),
+          ),
+        );
+        
+      
+      },
+
+      
+      
+    
     );
   }
 }

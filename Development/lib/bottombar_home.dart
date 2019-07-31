@@ -74,7 +74,7 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
           await writeprofile(null);
          Navigator.of(context).push(
               MaterialPageRoute<Null>(builder: (BuildContext context) {
-                return HomePagee();
+                return MyProfiles();
               }
               )
           );

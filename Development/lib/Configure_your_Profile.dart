@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './Custom_dialog.dart';
 import './topmenu.dart';
+import './Congrats.dart';
 import './maps.dart';
 import './vishal/myFormFields.dart';
 import './localdatafetch.dart'as lfetch;
@@ -12,15 +13,13 @@ import './CardView_NewProfile.dart';
 import 'dart:convert';
 
 
-class CardProfilesName extends StatefulWidget {
+class ConfigureProfile extends StatefulWidget {
   @override
-  _CardProfilesName createState() => new _CardProfilesName();
+  _ConfigureProfile createState() => new _ConfigureProfile();
 }
 
 bool _isLoading=false;
-String pname = "";
-class _CardProfilesName extends State<CardProfilesName> {
-   var pnameController = TextEditingController();
+class _ConfigureProfile extends State<ConfigureProfile> {
 @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -40,10 +39,12 @@ class _CardProfilesName extends State<CardProfilesName> {
                           height: MediaQuery.of(context).size.height/12,
                           width: MediaQuery.of(context).size.width/6)),
                 )
-              : ListView(children:<Widget>[Column(
+              : Column(
+                mainAxisSize: MainAxisSize.max,
                 
                 children:<Widget>[
-                  Container(
+                 Container(
+                   margin: EdgeInsets.only(bottom: 50),
                     padding: EdgeInsets.only(bottom: 10),
                      decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -66,7 +67,7 @@ class _CardProfilesName extends State<CardProfilesName> {
                         Container(
                            padding: EdgeInsets.all(10),
                           child:Align(alignment: Alignment.topRight,
-                          child: Text("Step 1/3",style: TextStyle(color: Colors.white,fontSize: 15,fontWeight:FontWeight.bold),),)),
+                          child: Text("Step 3/3",style: TextStyle(color: Colors.white,fontSize: 15,fontWeight:FontWeight.bold),),)),
                           Padding(padding: EdgeInsets.only(bottom: 10),),
                           Align(
                       alignment: Alignment.center,
@@ -78,66 +79,21 @@ class _CardProfilesName extends State<CardProfilesName> {
                    
                      Align(
                       alignment: Alignment.center,
-                      child: Text("NAME YOUR PROFILE",
+                      child: Text("CONFIGURE YOUR PROFILE",
                       style: TextStyle(color: Colors.white,
                       fontWeight: FontWeight.bold,fontSize: 25),),
                     ),
-                        // Container(
-                        //   height: MediaQuery.of(context).size.height/3,
-                        //   child: Center(
-                        //     child: Text("NAME YOUR PROFILE !",
-                        //     style: TextStyle(color: Colors.white,
-                        //     fontWeight: FontWeight.bold,fontSize: 25),))),
+                      
                       ],
                     )
                   ),
-
-                Container(
-                      margin: EdgeInsets.only(top: 30,bottom: 30),
-                      width: MediaQuery.of(context).size.width/1.2,
-                      height: 45,
-                      padding: EdgeInsets.only(
-                        top: 4,left: 16, right: 16, bottom: 4
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(50)
-                        ),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 5
-                          )
-                        ]
-                      ),
-                      child: TextField(
-                         controller: pnameController,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          icon: Icon(Icons.person_outline,
-                              color: Colors.grey,
-                          ),
-                            hintText: 'Name',
-                        ),
-                      ),
-                    ),
-
-
-                InkWell(
+                  InkWell(
                   onTap: (){
-                    if(pnameController.text=="")
-                        {
-                          showDialog(context: context,
-                          child:Dialog(backgroundColor: Colors.transparent,elevation: 20,
-                          child: Text("Please Enter Your Profile Name",style: TextStyle(color: Colors.red)),));
-                        }
-                        else{
-                     Navigator.of(context).push(
-                MaterialPageRoute<Null>(builder: (BuildContext context) {
-                  return CardProfiles();
+                       Navigator.of(context).push(
+                MaterialPageRoute<Null>(builder: (BuildContext context) {return
+                  Congrats();
                   }));
-                  }
+                  
                   
                   },
                                   child: Container(
@@ -155,7 +111,7 @@ class _CardProfilesName extends State<CardProfilesName> {
                             )
                           ),
                           child: Center(
-                            child: Text('Continue'.toUpperCase(),
+                            child: Text('CLICK TO CONFIGURE',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold
@@ -164,27 +120,7 @@ class _CardProfilesName extends State<CardProfilesName> {
                           ),
                         ),
                 ),
-                // OutlineButton(
-                //   onPressed: (){
-                //      if(pname=="")
-                //         {
-                //           showDialog(context: context,
-                //           child:Dialog(backgroundColor: Colors.transparent,elevation: 20,
-                //           child: Text("Please Enter Your Profile Name",style: TextStyle(color: Colors.red)),));
-                //         }
-                //         else{
-                //      Navigator.of(context).push(
-                // MaterialPageRoute<Null>(builder: (BuildContext context) {
-                //   return CardProfiles();
-                //   }));
-                //   }
-                //   },
-                //   textColor: Colors.black,splashColor: Colors.yellow,
-                //   color: Colors.orange,
-                // child: Text("  Continue  "),)
                 ]
-              ),
-              ],
               ),
       )
     );

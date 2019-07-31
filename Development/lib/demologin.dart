@@ -15,6 +15,7 @@ import 'package:http/http.dart' as http;
 final String redirectUrl = 'https://cvdragon.com/loginRedirect';
 final String clientId = '81jxugmo6b2dop';
 final String clientSecret = 'cZFQqJV6IdgPsBpv';
+
 class DemoLogin extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -123,9 +124,15 @@ Future<GoogleSignInAccount> _handleSignIn() async {
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(bottom: 10),
-                decoration: BoxDecoration(color:Colors.yellow,borderRadius: BorderRadius.only(bottomLeft:  const  Radius.circular(30.0),
-                bottomRight:  const  Radius.circular(30.0),)),
-                height: MediaQuery.of(context).size.height/1.8,
+                decoration: BoxDecoration(color:Colors.yellow,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(90),
+                  
+                //borderRadius: BorderRadius.only(bottomLeft:  const  Radius.circular(30.0),
+                //bottomRight:  const  Radius.circular(30.0),
+                )
+                ),
+                height: MediaQuery.of(context).size.height/1.9,
                 width: MediaQuery.of(context).size.width,
                 child:Column(
                                   children:<Widget>[ 
@@ -148,46 +155,76 @@ Future<GoogleSignInAccount> _handleSignIn() async {
 
               ),
 
-
-
-              Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Align(
-          alignment: Alignment.centerRight,
-          child: TextField(
-            controller: mycontroller,
-            style: TextStyle(color: Colors.white, fontSize: 18),
-            maxLength: 10,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              counterText: '',
-              hintText: "+91 Enter Phone Number",
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-              hintStyle: TextStyle(color: Colors.white54),
-              icon: Icon(
-                Icons.phone,
-                size: 22,
-                color: Colors.white,
-              ),
-//            labelText: '+91',
-//            labelStyle: TextStyle(
-//              fontSize: 22,
-//              color: Colors.white,
-            ),
-            //border: InputBorder.none,
-          ),
-      ),
-    ),
+Container(
+                      margin: EdgeInsets.only(top: 20),
+                      width: MediaQuery.of(context).size.width/1.15,
+                      height: 45,
+                      padding: EdgeInsets.only(
+                        top: 4,left: 16, right: 16, bottom: 4
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50)
+                        ),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 5
+                          )
+                        ]
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                         controller: mycontroller,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          icon: Icon(Icons.phone,
+                              color: Colors.grey,
+                          ),
+                            hintText: 'Phone',
+                        ),
+                      ),
+                  
+),
+//               Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: Align(
+//           alignment: Alignment.centerRight,
+//           child: TextField(
+//             controller: mycontroller,
+//             style: TextStyle(color: Colors.white, fontSize: 18),
+//             maxLength: 10,
+//             keyboardType: TextInputType.number,
+//             decoration: InputDecoration(
+//               counterText: '',
+//               hintText: "+91 Enter Phone Number",
+//               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+//               hintStyle: TextStyle(color: Colors.white54),
+//               icon: Icon(
+//                 Icons.phone,
+//                 size: 22,
+//                 color: Colors.white,
+//               ),
+// //            labelText: '+91',
+// //            labelStyle: TextStyle(
+// //              fontSize: 22,
+// //              color: Colors.white,
+//             ),
+//             //border: InputBorder.none,
+//           ),
+//       ),
+//     ),
              Align(
       alignment: Alignment.center,
       child: Padding(
-          padding: const EdgeInsets.only(top: 10,bottom: 10),
+          padding: const EdgeInsets.only(top: 20,bottom: 10),
           child: InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(mycontroller.text.toString(),"",1)));
             },
             child: Container(
-              height: 50.0,
+              height: 40.0,
               width: 150.0,
               alignment: FractionalOffset.center,
               decoration: BoxDecoration(
@@ -198,7 +235,8 @@ Future<GoogleSignInAccount> _handleSignIn() async {
                 onTap: (){
                 // local.pushAcademicProject().then((int status){
                 //   if(status==1)
-                     Navigator.push(context, MaterialPageRoute(builder: (context)=>OtpPage(mycontroller.text.toString(),"",1)));
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                     OtpPage(mycontroller.text.toString(),"",1)));
                 // });
                 }
                 ,child: Text(

@@ -73,7 +73,9 @@ Widget myRadioButton(String title,
 
 Widget mySegmentField(String title,
     {String initialValue, @required List<String> options,List optionLabel}) {
-  return Padding(
+      if(initialValue=="") initialValue = null;
+      else print("it has something $initialValue");
+      return Padding(
     padding: const EdgeInsets.all(12.0),
     child: FormBuilderSegmentedControl(
       decoration: InputDecoration(

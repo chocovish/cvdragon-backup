@@ -29,20 +29,19 @@ class _EducationalBackgroundFormState extends State<EducationalBackgroundForm> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.instance);
+    print("widget instance is  ${widget.instance}");
     return Material(
-          child: Container(
-        color: Colors.white,
-        height: MediaQuery.of(context).size.height,
+          child: ListView(
+        //color: Colors.white,
+        //height: MediaQuery.of(context).size.height,
         
-        child: FormBuilder(
+        children: <Widget>[FormBuilder(
           key: _formKey,
-          child: SingleChildScrollView(
-                      child: Column(
+          child: Column(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(14.0),
-                      child: Text("ContactDetails"),
+          padding: const EdgeInsets.all(14.0),
+          child: Text("ContactDetails"),
                     ),
                     myTextField("institute",initialValue: widget.instance["institute"]),
                     myTextField("university",initialValue: widget.instance["university"]),
@@ -51,7 +50,7 @@ class _EducationalBackgroundFormState extends State<EducationalBackgroundForm> {
                     myTextField("grade",initialValue: widget.instance["grade"]),
                     myTextField("year",initialValue: widget.instance["year"].toString()),
                     myTextField("score",initialValue: widget.instance["score"].toString()),
-                    myTextField("fullAddress",maxLines: 6,initialValue: widget.instance["fullAddress"]),
+                    myTextField("category",initialValue: widget.instance["category"]),
                     // ---- Submit Button ---- //
                     NiceButton(
             text: "Save",
@@ -84,8 +83,8 @@ class _EducationalBackgroundFormState extends State<EducationalBackgroundForm> {
                     )
                   ],
                 ),
-          ),
         ),
+        ],
       ),
     );
   }

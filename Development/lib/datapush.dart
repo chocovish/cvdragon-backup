@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'dart:convert';
 import 'package:sqflite/sqflite.dart';
+import 'package:http/http.dart' as http;
 var id = ""; //Rohit Agarwal 
 var authkey = "";
 // var id		 = '15363407469796';
@@ -47,3 +48,58 @@ Future<String> editData(String refid,String section,Map<String,dynamic> contents
     // var res = await http.get(url);
     //  return res.body;
  }
+
+Future<String> addintoProfile(String refid,String section) async {
+  id=await readid();
+  authkey=await readauthKey();
+  cvid=await readprofiles();
+   String url="https://cvdragon.com/data/app/appCVAddDatabaseSubsectionAPI.php?"+"id="+id+"&authkey="+authkey+"&CVID="+cvid+"&sectionID="+section+"&refID="+refid;
+     await writeSyncQueue(url);
+     return url;
+    // var res = await http.get(url);
+    //  return res.body;
+ }
+Future<String> deleteSection(String section) async {
+  id=await readid();
+  authkey=await readauthKey();
+  cvid=await readprofiles();
+   String url="https://cvdragon.com/data/app/appCVdeleteSectionAPI.php?"+"id="+id+"&authkey="+authkey+"&CVID="+cvid+"&sectionID="+section;
+     await writeSyncQueue(url);
+     return url;
+    // var res = await http.get(url);
+    //  return res.body;
+ }
+
+
+Future<String> addSection(String section) async {
+  id=await readid();
+  authkey=await readauthKey();
+  cvid=await readprofiles();
+   String url="https://cvdragon.com/data/app/addCVsectionAPI.php?"+"id="+id+"&authkey="+authkey+"&CVID="+cvid+"&sectionID="+section;
+     await writeSyncQueue(url);
+     return url;
+    // var res = await http.get(url);
+    //  return res.body;
+ }
+
+Future<String> createProfile(Map<String,dynamic> data,String profilename) async {
+  id=await readid();
+  authkey=await readauthKey();
+  cvid=await readprofiles();
+  data["51100"]=[];
+  data["51101"]=[];
+  data["51102"]=[];
+  data["51103"]=[];
+  data["51109"]=[];
+   String url="https://cvdragon.com/data/app/appCVprofileAPI.php?"+"id="+id+"&authkey="+authkey+"&profileName=";
+   url=url+json.encode(profilename)+"&contents=";
+   url+=json.encode(data).toString();
+   var res=await http.get(url);
+   print(res.body);
+   await writeprofile(res.body);
+   return url;
+    // var res = await http.get(url);
+    //  return res.body;
+ }
+
+

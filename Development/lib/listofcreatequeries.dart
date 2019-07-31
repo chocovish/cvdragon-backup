@@ -21,7 +21,7 @@ List<String> createQueries = [
 
        "CREATE TABLE `cv-certification` (  `certificateid` int(11) NOT NULL UNIQUE ,  `id` bigint(20) NOT NULL,`refID` bigint(30),  `certificate` varchar(100) NOT NULL,  `authority` varchar(150) NOT NULL,  `year` year(4) NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` tinyint(1) NOT NULL,  PRIMARY KEY (`id`,`certificate`,`authority`,`year`)  ) ;",
 
-       "CREATE TABLE `cv-co-curricular-activities` (  `activityid` int(11) NOT NULL UNIQUE ,  `id` bigint(20) NOT NULL,`refID` bigint(30),  `title` varchar(100) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,  PRIMARY KEY (`id`,`title`)) ;",
+       "CREATE TABLE `cv-co-curricular-activities` (  `activityid` int(11) NOT NULL UNIQUE ,  `id` bigint(20) NOT NULL,`refID` bigint(30),  `title` varchar(100) NOT NULL,  `description` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,  PRIMARY KEY (`id`,`title`)) ;",
 
        "CREATE TABLE `cv-contact` (  `id` bigint(20) NOT NULL, `refID` bigint(30), `phoneNumber` varchar(30) DEFAULT NULL,  `emailAddress` varchar(50) NOT NULL,  `location` varchar(50) NOT NULL,  `fullAddress` text NOT NULL,  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP   ,  `proofRead` tinyint(4) NOT NULL,  `proofReadDate` date NOT NULL,  `status` smallint(1) NOT NULL,  PRIMARY KEY (`id`)) ;",
       

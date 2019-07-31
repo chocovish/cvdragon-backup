@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.34.3"
+  animated_splash:
+    dependency: "direct main"
+    description:
+      name: animated_splash
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   animator:
     dependency: "direct main"
     description:
@@ -147,7 +154,7 @@ packages:
       name: connectivity
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.3+4"
+    version: "0.4.3+6"
   convert:
     dependency: transitive
     description:
@@ -190,6 +197,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
+  dots_indicator:
+    dependency: "direct main"
+    description:
+      name: dots_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   dropdownfield:
     dependency: "direct main"
     description:
@@ -236,7 +250,7 @@ packages:
       name: flutter_form_builder
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.8"
+    version: "3.2.9"
   flutter_markdown:
     dependency: "direct main"
     description:
@@ -430,7 +444,7 @@ packages:
       name: nice_button
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.6"
+    version: "0.1.7"
   package_config:
     dependency: transitive
     description:
@@ -458,7 +472,7 @@ packages:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.2"
+    version: "1.2.0"
   pedantic:
     dependency: transitive
     description:

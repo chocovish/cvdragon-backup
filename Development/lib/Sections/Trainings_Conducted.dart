@@ -16,7 +16,7 @@ String secName;
 
 var data = [];
 var training = data[index]['training'];
-var number = data[index]['number'];
+String number = data[index]['number'].toString();
 var description = data[index]['description'];
 
 class TrainingsConducted extends StatelessWidget {
@@ -201,7 +201,7 @@ class TrainingsConducted extends StatelessWidget {
                                             decoration: InputDecoration(
                                                 labelStyle: TextStyle(
                                                     color: Color(0xffff1e50)),
-                                                labelText: 'Type of Traing',
+                                                labelText: 'Type of Training',
                                                 //hintText: "Heading",
                                                 border: OutlineInputBorder(
                                                     borderRadius:
@@ -221,7 +221,7 @@ class TrainingsConducted extends StatelessWidget {
                                                     text: data[index]['number'].toString(),
                                                     selection: new TextSelection.collapsed(
                                                         offset: number.toString().length))),
-                                            onChanged: (val) => number = val,
+                                            onChanged: (val) => number = val.toString(),
                                             keyboardType: TextInputType.numberWithOptions(decimal: false),
                                             style:
                                             TextStyle(color: Color(0xff232882)),

@@ -3,6 +3,8 @@ import 'package:cvdragonapp_v1/Sections/Educational_Background.dart';
 import 'package:cvdragonapp_v1/cvwebview.dart';
 import 'package:cvdragonapp_v1/donut.dart';
 import 'package:cvdragonapp_v1/institute.dart';
+import 'package:cvdragonapp_v1/localdatafetch.dart';
+import 'package:cvdragonapp_v1/localdatapush.dart';
 import 'package:cvdragonapp_v1/rightpreviewpane.dart';
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:cvdragonapp_v1/vishBottomBar.dart';
@@ -10,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './institute.dart';
+import './Create_new_profile_Name.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
@@ -22,19 +25,8 @@ var id = '';
 var authkey = '';
 var selectedprofile='';
 List profiles;
-Map<String, dynamic> contents = {
-  'id': id,
-  'projectid': 1,
-  'organization': 'jsdn',
-  'designation': 'ww',
-  'workid': 3,
-  'duration': '2 weeks',
-  'location': 'howrah',
-  'proofRead': 0,
-  'title': 'New Project Added by Rohit 2 ',
-  'description': 'Description of New Project',
-  'status': 1
-};
+int filled=14,total=27;
+
 
 class HomePagee extends StatefulWidget {
   @override
@@ -58,16 +50,25 @@ class _HomePagee extends State<HomePagee> {
 
   void get() async{
   
-    
+    total=14;
+    filled=27;
     int val=await efetch.get();
       if(val==1){
          id=await readid();
           authkey=await readauthKey();
         name=await readname();
         selectedprofile=await readprofiles();
+        //total=await getTotalSections(id);
+        //filled=await getFilledSections(id);
+        
         if(selectedprofile!=" ")
-        profileselected=true;
-        print("selected prfilrd is "+selectedprofile);
+        {
+        print("total is"+total.toString());
+        print("filled is"+filled.toString());
+          profileselected=true;
+        }
+
+        print("selected profile id is "+selectedprofile);
        profiles=await fetch.getcvProfiles(id, authkey);
         print(name);
         setState(() {
@@ -105,12 +106,14 @@ Widget dialogContent(BuildContext context,write,setState)
                                   await write(profiles[index]['cvid'].toString());
                                    setState((){
                                      print("done");
+                                         
                                      profileselected=true;
                                    });
                                 },
                                 child: Text(
                                  profiles[index]['profileName'],
                                   style: TextStyle(
+                                    fontFamily: "cvFonts",
                                         color: Colors.black,
                                         fontSize: 15.0,
                                         fontWeight: FontWeight.bold),
@@ -127,7 +130,7 @@ Widget dialogContent(BuildContext context,write,setState)
                             onPressed: (){
                                Navigator.of(context).push(
               MaterialPageRoute<Null>(builder: (BuildContext context) {
-                return CardProfiles();
+                return CardProfilesName();
               }
               )
           );
@@ -159,7 +162,8 @@ Widget dialogContent(BuildContext context,write,setState)
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
               backgroundColor: Colors.pinkAccent,
-              onPressed: () {
+              onPressed: () async{
+              await generateresumeid();
                 Navigator.of(context).push(
                   MaterialPageRoute<Null>(
                     builder: (BuildContext context) {
@@ -245,7 +249,7 @@ Widget _buildCardView(BuildContext context) {
         child: SizedBox(
           height: MediaQuery.of(context).size.height / 3,
           width: MediaQuery.of(context).size.width,
-          child: DonutPieChart.withSampleData(),
+          child: DonutPieChart.withSampleData(total,filled),
         ),
       ),
     ],

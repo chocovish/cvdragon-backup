@@ -1,4 +1,5 @@
 //import 'package:cvdragonapp_v1/Sections/BasicInfo.dart' as BI;
+import 'package:cvdragonapp_v1/Sections/Contact_Details.dart' as prefix1;
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/maps.dart';
 import 'package:cvdragonapp_v1/vishal/CustomForm.dart' as prefix0;
@@ -26,6 +27,7 @@ import './vishal/sections/BasicInfo.dart';
 String section = '';
 
 class EditSection extends StatefulWidget {
+  //EditSection({Key key}) : super(key: key);
   @override
   EditSection(String sectionid) {
     section = sectionid;
@@ -145,6 +147,8 @@ class _EditSection extends State<EditSection> {
                     return ProfileImageUpload();
                   else if (section == "51100")
                   return BasicInfo(i: db0.value[0]);
+                  // else if (section == "51101")
+                  // return prefix1.ContactDetails()
                    // return BI.BasicInfo(section, Sections[section], db0.value);
                   else if (section == "51109") //return EducationalBackgroundForm(i: db0.value[1]);
                     return EditSectionEB(section);
@@ -253,123 +257,138 @@ Widget _buildCardView(BuildContext context) {
               physics: BouncingScrollPhysics(),
               itemCount: db0 == null ? 0 : db0.value.length,
               itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  //color: Colors.transparent,
-                  margin: EdgeInsets.only(top: 10, left: 5, right: 5),
-                  elevation: 5.0,
-                  child: Container(
-                    decoration: addeddata.contains(db0.value[index])
-                        ? BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage("assets/51122-04.png"),
-                                fit: BoxFit.cover),
-                            borderRadius: BorderRadius.circular(8.0))
-                        : BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(4.0)),
-                    padding: EdgeInsets.only(left: 10),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.only(top: 5, bottom: 5),
-                          height: MediaQuery.of(context).size.height / 12,
-                          width: MediaQuery.of(context).size.width / 1.5,
-                          child: Text(
-                            db0.value[index][AddedDataColumn[section]]
-                                .toString(),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white),
+                return Dismissible(
+                  direction: DismissDirection.endToStart,
+                  background: Container(color: Colors.red),
+                key: Key(db0.toString()),
+                onDismissed: (direction) {
+                  // Removes that item the list on swipwe
+              
+                    db0.value.removeAt(index);
+                 
+                  // Shows the information on Snackbar
+                  // Scaffold.of(context)
+                  //     .showSnackBar(SnackBar(content: Text("dismissed")));
+                },
+                                  child: Card(
+                    //color: Colors.transparent,
+                    margin: EdgeInsets.only(top: 10, left: 5, right: 5),
+                    elevation: 5.0,
+                    child: Container(
+                      height: 70,
+                      decoration: addeddata.contains(db0.value[index])
+                          ? BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage("assets/51122-04.png"),
+                                  fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(8.0))
+                          : BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(4.0)),
+                      padding: EdgeInsets.only(left: 10),
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.only(top: 5, bottom: 5),
+                            height: MediaQuery.of(context).size.height / 12,
+                            width: MediaQuery.of(context).size.width / 1.5,
+                            child: Text(
+                              db0.value[index][AddedDataColumn[section]]
+                                  .toString(),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
-                        ),
-                        addeddata.contains(db0.value[index])
-                            ? Row(children: <Widget>[
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height / 14,
-                                  width: MediaQuery.of(context).size.width / 8,
-                                  child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => (CreateSection(
-                                          db0.value,
-                                          index,
-                                          section,
-                                          key,
-                                          databb,
-                                          addeddata))));
-                                      //print(db0.value[index][AddedDataColumn[section]]);
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //             (EditSection2(
-                                      //                 db0.value,
-                                      //                 index,
-                                      //                 section,
-                                      //                 key,
-                                      //                 databb,
-                                      //                 addeddata))));
-                                    },
-                                    child: Icon(Icons.mode_edit,
-                                        size: 30, color: Colors.white70),
+                          addeddata.contains(db0.value[index])
+                              ? Row(children: <Widget>[
+                                  Container(
+                                    height:
+                                        MediaQuery.of(context).size.height / 14,
+                                    width: MediaQuery.of(context).size.width / 8,
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => (CreateSection(
+                                            db0.value,
+                                            index,
+                                            section,
+                                            key,
+                                            databb,
+                                            addeddata))));
+                                        //print(db0.value[index][AddedDataColumn[section]]);
+                                        // Navigator.push(
+                                        //     context,
+                                        //     MaterialPageRoute(
+                                        //         builder: (context) =>
+                                        //             (EditSection2(
+                                        //                 db0.value,
+                                        //                 index,
+                                        //                 section,
+                                        //                 key,
+                                        //                 databb,
+                                        //                 addeddata))));
+                                      },
+                                      child: Icon(Icons.mode_edit,
+                                          size: 30, color: Colors.white70),
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height / 14,
-                                  width: MediaQuery.of(context).size.width / 8,
+                                  Container(
+                                    height:
+                                        MediaQuery.of(context).size.height / 14,
+                                    width: MediaQuery.of(context).size.width / 8,
+                                    child: InkWell(
+                                      onTap: () async {
+                                        print(index);
+                                        await deleteFromProfile(
+                                            section,
+                                            db0.value[index][columnName[section]]
+                                                .toString());
+                                        addeddata.remove(db0.value[index]);
+                                        databb.add(db0.value[index]);
+                                        db0.value = databb + addeddata;
+                                      },
+                                      // onTap: deletefromprofile,
+                                      child: Icon(Icons.delete,
+                                          size: 30, color: Colors.white70),
+                                    ),
+                                  )
+                                ])
+                              : Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50.0),
+                                      color: Colors.green),
+                                  height: MediaQuery.of(context).size.height / 18,
+                                  width: MediaQuery.of(context).size.width / 4.5,
                                   child: InkWell(
                                     onTap: () async {
-                                      print(index);
-                                      await deleteFromProfile(
+                                      await addintoProfile(
                                           section,
                                           db0.value[index][columnName[section]]
                                               .toString());
-                                      addeddata.remove(db0.value[index]);
-                                      databb.add(db0.value[index]);
+                                      databb.remove(db0.value[index]);
+                                      addeddata.add(db0.value[index]);
                                       db0.value = databb + addeddata;
                                     },
-                                    // onTap: deletefromprofile,
-                                    child: Icon(Icons.delete,
-                                        size: 30, color: Colors.white70),
-                                  ),
-                                )
-                              ])
-                            : Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50.0),
-                                    color: Colors.green),
-                                height: MediaQuery.of(context).size.height / 18,
-                                width: MediaQuery.of(context).size.width / 4.5,
-                                child: InkWell(
-                                  onTap: () async {
-                                    await addintoProfile(
-                                        section,
-                                        db0.value[index][columnName[section]]
-                                            .toString());
-                                    databb.remove(db0.value[index]);
-                                    addeddata.add(db0.value[index]);
-                                    db0.value = databb + addeddata;
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: <Widget>[
-                                      Icon(Icons.add_circle,
-                                          size: 20, color: Colors.white70),
-                                      Text("Add",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15.0,
-                                              fontWeight: FontWeight.bold)),
-                                    ],
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: <Widget>[
+                                        Icon(Icons.add_circle,
+                                            size: 20, color: Colors.white70),
+                                        Text("Add",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 15.0,
+                                                fontWeight: FontWeight.bold)),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );

@@ -12,7 +12,7 @@ public class MainActivity extends FlutterActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    getWindow().addFlags(LayoutParams.FLAG_SECURE); //For disableing screenshot
+    //getWindow().addFlags(LayoutParams.FLAG_SECURE); //For disableing screenshot
     GeneratedPluginRegistrant.registerWith(this);
   }
 }

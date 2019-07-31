@@ -35,7 +35,7 @@ Future<List> getAddedData(String section) async {
 var db=  await openDatabase(add.path.toString()+'/sections.db', version: 3);
 var cvid=await readprofiles();
 print(section);
-   List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND `section` = "+section);
+   List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND status=1 AND `section` = "+section);
 
     print("Added data base case - "+response.toString());//contains 2 which is not in database
    List response2=await db.rawQuery("SELECT * FROM "+tablename[section]);
@@ -44,7 +44,7 @@ print(section);
     List data=[];
     if(response.isEmpty==true)
     {
-      return data;  
+      return data;
     }
     else
     {
@@ -64,13 +64,28 @@ Future<Map<String,dynamic>> getCount(List sections) async {
   var add =await getApplicationDocumentsDirectory();
   var db=  await openDatabase(add.path.toString()+'/sections.db', version: 3);
   var cvid=await readprofiles();
-  Map<String,dynamic> response={};
+  var id =await readid();
+  Map<String,dynamic> res={};
   for(var element in sections)
   {
-    var count = await db.rawQuery("SELECT COUNT(*) FROM "+tablename[element['section'].toString()]);
-    response[element['section'].toString()]=count[0]["COUNT(*)"].toString();
+   List response=await db.rawQuery("SELECT subsection FROM `create-cvprofilesection` WHERE `cvid`= "+cvid+" AND status=1 AND `section` = "+element['section'].toString());
+
+    if(element['section'].toString()=="51100"||element['section'].toString()=="51101"||element['section'].toString()=="51102"||element['section'].toString()=="51103"||element['section'].toString()=="51109")
+    {
+       res[element['section'].toString()]="D";
+    }
+    else if(response[0]['subsection'].toString()==""||response[0]['subsection'].toString()=="[]")
+    {
+        res[element['section'].toString()]="0";
+    }
+    else
+    {
+      List l=json.decode(response[0]['subsection']);
+      res[element['section'].toString()]=l.length.toString();
+    }
+
   }
-  return response;
+  return res;
 }
 
 
@@ -78,8 +93,49 @@ Future<List> getProfileSections(String id,String cvid) async {
    var add =await getApplicationDocumentsDirectory();
 var db=  await openDatabase(add.path+'/sections.db', version: 3);
    
-   List response=await db.rawQuery("SELECT * FROM `create-cvprofilesection` WHERE id="+id+" AND cvid="+cvid);
+   List response=await db.rawQuery("SELECT * FROM `create-cvprofilesection` WHERE id="+id+" AND cvid="+cvid+" AND status=1");
     return response; 
+}
+
+Future<int> getTotalSections(String id) async {
+   var add =await getApplicationDocumentsDirectory();
+   var cvid=await readprofiles();
+var db=  await openDatabase(add.path+'/sections.db', version: 3);
+   
+   List response=await db.rawQuery("SELECT * FROM `create-cvprofilesection` WHERE id="+id+" AND cvid="+cvid+" AND status=1");
+    return response.length; 
+}
+
+Future<int> getFilledSections(String id) async {
+  int c=0;
+   var add =await getApplicationDocumentsDirectory();
+   var cvid=await readprofiles();
+   List sec=await getProfileSections(id, cvid);
+   var count=await getCount(sec);
+   print(count.toString());
+var db=  await openDatabase(add.path+'/sections.db', version: 3);
+  for(var element in sec){
+     if(element['section'].toString()=="51100"||element['section'].toString()=="51101"||element['section'].toString()=="51102"||element['section'].toString()=="51103"||element['section'].toString()=="51109")
+      {
+           List response=await db.rawQuery("SELECT contentStatus FROM `create-cvsection` WHERE id="+id+" AND status=1 AND section="+element['section'].toString());
+print(response[0]['contentStatus'].toString());
+    if(response[0]['contentStatus'].toString()=="1")
+    {
+      
+      c+=1;
+    }
+     }
+     else{
+       print(count[element['section'].toString()].toString());
+        if(count[element['section'].toString()].toString().trim()!="0"&&count[element['section'].toString()].toString().trim()!="D")
+        {
+          print("found");
+          c++;
+        }
+     }
+   }     
+   print(c);
+   return c;
 }
 
 Future<List> getDefaultSection(String section) async {
@@ -125,7 +181,7 @@ var db=  await openDatabase(add.path+'/sections.db', version: 3);
 Future<List> getallDesigns() async {
    var add =await getApplicationDocumentsDirectory();
 var db=  await openDatabase(add.path+'/sections.db', version: 3);
-   List response=await db.rawQuery("SELECT * FROM `resource-profiledesign`");
+   List response=await db.rawQuery("SELECT * FROM `resource-profiledesign` ORDER BY category");
     return response;
 }
 
@@ -196,5 +252,9 @@ Future<int>addintoProfile(String section,String subSection)async{
   String sql="UPDATE `create-cvprofilesection` SET subsection=\""+res.toString()+"\" WHERE `cvid`= "+cvid+" AND `section` = "+section;
   print(sql);
  await db.rawUpdate(sql);
+  String refsql="SELECT refID FROM "+tablename[section]+" WHERE "+columnName[section]+"="+subSection.toString();
+var resrefid= await db.rawQuery(refsql);
+ String addquery = await server.addintoProfile(resrefid[0]['refID'].toString(), section);
+ print(addquery);
 }
 

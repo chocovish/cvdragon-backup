@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart' show DateFormat;
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart'
-    show InputType;
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart' show InputType;
+
+    
 
 var _labelStyle = TextStyle();
 
@@ -80,7 +81,7 @@ Widget mySegmentField(String title,
     child: FormBuilderSegmentedControl(
       decoration: InputDecoration(
         labelText: title,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
       ),
       attribute: title,
       initialValue: initialValue,

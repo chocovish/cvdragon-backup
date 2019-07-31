@@ -6,6 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:nice_button/nice_button.dart';
 import '../../localdatapush.dart' show updateData;
 import '../myFormFields.dart';
+import '../../edit_section.dart';
 
 
 class LanguagesForm extends StatefulWidget {
@@ -64,11 +65,13 @@ class _LanguagesFormState extends State<LanguagesForm> {
                     ? pushData(section, newdata).then((onValue) {
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
                       })
                     : updateData(section, newdata, widget.instance)
                         .then((onValue) {
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
                       });
               },
               elevation: 8,

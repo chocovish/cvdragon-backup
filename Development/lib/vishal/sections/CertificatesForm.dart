@@ -6,7 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:nice_button/nice_button.dart';
 import '../../localdatapush.dart' show updateData;
 import '../myFormFields.dart';
-
+import '../../edit_section.dart';
 
 class CertificatesForm extends StatefulWidget {
   Map instance;
@@ -39,6 +39,7 @@ class _CertificatesFormState extends State<CertificatesForm> {
             myTextField("certificate",initialValue: widget.instance["certificate"]),
             myTextField("year",initialValue: widget.instance["year"].toString()),
             myTextField("authority",initialValue: widget.instance["authority"]),
+            
 
            
             // ---- Submit Button ---- //
@@ -59,11 +60,13 @@ class _CertificatesFormState extends State<CertificatesForm> {
                     ? pushData(section, newdata).then((onValue) {
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
                       })
                     : updateData(section, newdata, widget.instance)
                         .then((onValue) {
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
                       });
               },
               elevation: 8,

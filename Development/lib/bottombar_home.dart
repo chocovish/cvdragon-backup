@@ -79,6 +79,11 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
               )
           );
         }
+        else if (index==3){
+          Navigator.of(context).popUntil((Route route){
+            return route.isFirst;
+          });
+        }
         else if (index == 0) {
           Navigator.of(context).push(
               MaterialPageRoute<Null>(builder: (BuildContext context) {

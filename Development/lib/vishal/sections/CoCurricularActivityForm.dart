@@ -6,7 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:nice_button/nice_button.dart';
 import '../../localdatapush.dart' show updateData;
 import '../myFormFields.dart';
-
+import '../../edit_section.dart';
 
 class CoCurricularActivityForm extends StatefulWidget {
   Map instance;
@@ -59,11 +59,13 @@ class _CoCurricularActivityFormState extends State<CoCurricularActivityForm> {
                     ? pushData(section, newdata).then((onValue) {
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
                       })
                     : updateData(section, newdata, widget.instance)
                         .then((onValue) {
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
                       });
               },
               elevation: 8,

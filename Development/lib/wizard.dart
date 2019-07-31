@@ -37,7 +37,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
  @override
  Widget build(BuildContext context) {
    return Scaffold(
-       backgroundColor: Color(0xff232882),
+       backgroundColor: Colors.black,
         body: Container(
         child: ListView(
                   children: <Widget>[

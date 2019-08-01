@@ -17,7 +17,7 @@ try {
         break;}
       print(queue[i]);
       http.Response res=await http.get(queue[i]);
-      print(res.body);
+      print(" response is ${res.body}");
         if(res.body=="1")
         {
           c=0;

@@ -3,7 +3,6 @@ import './bottombar_home.dart';
 import './profile_sections.dart';
 import './knowledge_centre.dart';
 import './myprofiles.dart';
-import 'package:cvdragonapp_v1/sharedfetch.dart';
 
 class MybottomNav extends StatelessWidget {
   final int selectedPage;

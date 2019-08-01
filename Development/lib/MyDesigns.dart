@@ -65,7 +65,7 @@ class _MyDesigns extends State<MyDesigns> {
             appBar: TopMenuBar(),
             bottomNavigationBar: MybottomNav(-1,"Select"),
             floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: FloatingActionButton(child: Icon(Icons.done_outline),onPressed: (){},),
+            floatingActionButton: FloatingActionButton(child: Icon(Icons.done_outline  ),onPressed: (){},),
             // bottomNavigationBar: new Theme(
             //   data: Theme.of(context).copyWith(
             //       // sets the background color of the `BottomNavigationBar`

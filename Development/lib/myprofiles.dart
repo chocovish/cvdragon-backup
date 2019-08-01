@@ -7,6 +7,8 @@ import './Create_new_profile_Name.dart';
 import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
+import "./sharedfetch.dart";
+
 String id="";
 String authkey="";
 List data2;
@@ -55,10 +57,16 @@ setState(() {
   @override
   Widget build(BuildContext context) {
     int _selectedIndex = 0;
-    void _onItemTapped(int index) {
-      setState(() {
-        print(index);
-        _selectedIndex = index;
+
+    onFloatPressed() async {
+      var sd = data[currentpage];
+      print("sd is $sd");
+      Dialog dlg = Dialog(child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text("Selected Profile ${sd['profileName']}"),
+      ));
+      writeprofile(sd["cvid"]).then((_){
+        showDialog(context: context,builder: (_)=>dlg);
       });
     }
 
@@ -117,8 +125,8 @@ setState(() {
       //     ],
       //   ),
       // ),
-      bottomNavigationBar: MybottomNav(2),
-      floatingActionButton: FloatingActionButton(child: Icon(Icons.done_outline),onPressed: (){},),
+      bottomNavigationBar: MybottomNav(2,"Set"),
+      floatingActionButton: FloatingActionButton(child: Icon(Icons.done_outline),onPressed: onFloatPressed,),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Container(
         child: new PageView.builder(

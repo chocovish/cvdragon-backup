@@ -19,7 +19,7 @@ class TopMenuBar extends StatelessWidget with PreferredSizeWidget {
       actions: <Widget>[
         IconButton(
           onPressed: (){
-            syncthedata();
+            syncthedata(context);
           },
           icon: Icon(
             Icons.sync,

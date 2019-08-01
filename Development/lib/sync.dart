@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './sharedfetch.dart' as sfetch;
 import 'dart:io';
 import 'package:http/http.dart'as http;
 
-void syncthedata()async{
+void syncthedata(BuildContext context) async{
+Scaffold.of(context).showSnackBar(SnackBar(content: Text("Started Sync"),backgroundColor: Colors.amber,));
 try {
   final result = await InternetAddress.lookup('google.com');
   if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
@@ -37,6 +39,7 @@ try {
    await sfetch.writeSyncQueueList(queue);
   }
 } on SocketException catch (_) {
-  print('not connected');
+  Scaffold.of(context).showSnackBar(SnackBar(content: Text("No Internet"),backgroundColor: Colors.amber,));
 }
+Scaffold.of(context).showSnackBar(SnackBar(content: Text("Done"),backgroundColor: Colors.amber,));
 }

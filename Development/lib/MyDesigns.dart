@@ -1,3 +1,4 @@
+import 'package:cvdragonapp_v1/vishBottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
@@ -62,62 +63,65 @@ class _MyDesigns extends State<MyDesigns> {
           )
         : Scaffold(
             appBar: TopMenuBar(),
-            bottomNavigationBar: new Theme(
-              data: Theme.of(context).copyWith(
-                  // sets the background color of the `BottomNavigationBar`
-                  canvasColor: Color(0xff232882),
-                  // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-                  primaryColor: Colors.red,
-                  textTheme: Theme.of(context)
-                      .textTheme
-                      .copyWith(caption: new TextStyle(color: Colors.white))),
-              // sets the inactive color of the `BottomNavigationBar`
+            bottomNavigationBar: MybottomNav(-1,"Select"),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: FloatingActionButton(child: Icon(Icons.done_outline),onPressed: (){},),
+            // bottomNavigationBar: new Theme(
+            //   data: Theme.of(context).copyWith(
+            //       // sets the background color of the `BottomNavigationBar`
+            //       canvasColor: Color(0xff232882),
+            //       // sets the active color of the `BottomNavigationBar` if `Brightness` is light
+            //       primaryColor: Colors.red,
+            //       textTheme: Theme.of(context)
+            //           .textTheme
+            //           .copyWith(caption: new TextStyle(color: Colors.white))),
+            //   // sets the inactive color of the `BottomNavigationBar`
 
-              child: new BottomNavigationBar(
-                elevation: 5.0,
-                type: BottomNavigationBarType.fixed,
-                currentIndex: 0,
-                items: [
-                  new BottomNavigationBarItem(
-                    icon: new Icon(
-                      Icons.add,
-                      size: 15,
-                    ),
-                    title: new Text("Add"),
-                  ),
-                  new BottomNavigationBarItem(
-                    icon: new Icon(
-                      Icons.add,
-                      size: 15,
-                    ),
-                    title: new Text("Add"),
-                  ),
-                  new BottomNavigationBarItem(
-                    icon: Container(
-                      padding: EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle, color: Colors.pink),
-                      child: new Icon(Icons.add),
-                    ),
-                    title: new Text("Add"),
-                  ),
-                  new BottomNavigationBarItem(
-                    icon: new Icon(
-                      Icons.add,
-                      size: 15,
-                    ),
-                    title: new Text("Add"),
-                  ),
-                  new BottomNavigationBarItem(
-                    icon: new Icon(
-                      Icons.delete,
-                      size: 15,
-                    ),
-                    title: new Text("Delete"),
-                  )
-                ],
-              ),
-            ),
+            //   child: new BottomNavigationBar(
+            //     elevation: 5.0,
+            //     type: BottomNavigationBarType.fixed,
+            //     currentIndex: 0,
+            //     items: [
+            //       new BottomNavigationBarItem(
+            //         icon: new Icon(
+            //           Icons.add,
+            //           size: 15,
+            //         ),
+            //         title: new Text("Add"),
+            //       ),
+            //       new BottomNavigationBarItem(
+            //         icon: new Icon(
+            //           Icons.add,
+            //           size: 15,
+            //         ),
+            //         title: new Text("Add"),
+            //       ),
+            //       new BottomNavigationBarItem(
+            //         icon: Container(
+            //           padding: EdgeInsets.all(10.0),
+            //           decoration: BoxDecoration(
+            //               shape: BoxShape.circle, color: Colors.pink),
+            //           child: new Icon(Icons.add),
+            //         ),
+            //         title: new Text("Add"),
+            //       ),
+            //       new BottomNavigationBarItem(
+            //         icon: new Icon(
+            //           Icons.add,
+            //           size: 15,
+            //         ),
+            //         title: new Text("Add"),
+            //       ),
+            //       new BottomNavigationBarItem(
+            //         icon: new Icon(
+            //           Icons.delete,
+            //           size: 15,
+            //         ),
+            //         title: new Text("Delete"),
+            //       )
+            //     ],
+            //   ),
+            // ),
             body: Container(
               margin:
                   EdgeInsets.only(top: MediaQuery.of(context).size.height / 25),
@@ -303,7 +307,7 @@ class _MyDesigns extends State<MyDesigns> {
           image: new AssetImage("assets/resumeDesignsLarge/" +
               data[index]['designid'].toString() +
               ".jpg"),
-          fit: BoxFit.fill,
+          fit: BoxFit.scaleDown,
         ),
         // child: Container(decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/resumeDesignsLarge/1.jpg"))),),
         elevation: 15.0,

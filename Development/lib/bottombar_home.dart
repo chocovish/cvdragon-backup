@@ -1,13 +1,4 @@
-import 'package:cvdragonapp_v1/CardView_NewProfile.dart';
-import 'package:cvdragonapp_v1/home.dart';
-import 'package:cvdragonapp_v1/sharedfetch.dart';
-import 'package:flutter/material.dart';
-import './profile_sections.dart';
-import './CardView_NewProfile.dart';
-import './knowledge_centre.dart';
-import './home.dart';
-import './myprofiles.dart';
-import './Expanded_Profile.dart';
+import 'package:flutter/material.dart'; 
 
 class FABBottomAppBarItem {
   FABBottomAppBarItem({this.iconData, this.text});
@@ -38,7 +29,7 @@ class FABBottomAppBar extends StatefulWidget {
   final Color color;
   final Color selectedColor;
   final NotchedShape notchedShape;
-  final ValueChanged<int> onTabSelected;
+  final Function onTabSelected;
   final int selectedPage;
 
   @override
@@ -55,49 +46,7 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
     
   }
 
-  _updateIndex(int index) {
-
-    //widget.onTabSelected(index);
-    print("got index value $index");
-    print("got selectedIndex value $_selectedIndex");
-    if(_selectedIndex!=index) {
-      setState(() async{
-        if (index == 1) {
-          Navigator.of(context).push(
-              MaterialPageRoute<Null>(builder: (BuildContext context) {
-                return ProfileSections();
-              }
-              )
-          );
-        }
-        else if (index==2) {
-          await writeprofile(null);
-         Navigator.of(context).push(
-              MaterialPageRoute<Null>(builder: (BuildContext context) {
-                return MyProfiles();
-              }
-              )
-          );
-        }
-        else if (index==3){
-          Navigator.of(context).popUntil((Route route){
-            return route.isFirst;
-          });
-        }
-        else if (index == 0) {
-          Navigator.of(context).push(
-              MaterialPageRoute<Null>(builder: (BuildContext context) {
-                return Knowledge();
-              }
-              )
-          );
-        }
-
-        _selectedIndex = index;
-      }
-      );
-    }
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +55,9 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
       return _buildTabItem(
         item: widget.items[index],
         index: index,
-        onPressed: _updateIndex,
+        onPressed: (int index){
+          widget.onTabSelected(context,index,_selectedIndex);
+        },
       );
     });
     items.insert(items.length >> 1, _buildMiddleTabItem());

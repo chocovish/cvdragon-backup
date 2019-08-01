@@ -202,7 +202,7 @@ Widget dialogContent(BuildContext context,write,setState)
             //     FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
             //   ],
             // ),
-            bottomNavigationBar: MybottomNav(3),
+            bottomNavigationBar: MybottomNav(0),
           );
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cvdragonapp_v1/Colors.dart';
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -33,7 +34,7 @@ class MyWebView extends StatefulWidget {
 
 class _MyWebViewState extends State<MyWebView> {
   void _selectedTab(int index, BuildContext context) {
-    showBottomSheet(
+    if(index==3) showBottomSheet(
         context: context,
         builder: (_) => Column(
               mainAxisSize: MainAxisSize.min,
@@ -43,7 +44,10 @@ class _MyWebViewState extends State<MyWebView> {
                   title: Text("Fonts"),
                 ),
                 ListTile(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.of(context).pop();
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Colorset()));
+                  },
                   title: Text("Colors"),
                 ),
                 ListTile(

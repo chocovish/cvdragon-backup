@@ -47,68 +47,67 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
 
  _updateIndex(int index) {
    widget.onTabSelected(index);
-  //  setState(() async {
-  //     if(index == 2) {
-  //       Navigator.of(context).push(
-  //           MaterialPageRoute<Null>(builder: (BuildContext context) {
-  //             return ProfileSections();
-  //           }
-  //           )
-  //       );
-  //     }
+      if(index == 2) {
+        Navigator.of(context).push(
+            MaterialPageRoute<Null>(builder: (BuildContext context) {
+              return ProfileSections();
+            }
+            )
+        );
+      }
 
-  //     if(index == 3) {
-  //      Navigator.of(context).push(
-  //          MaterialPageRoute<Null>(builder: (BuildContext context) {
-  //            return Colorset();
-  //          }
-  //          ));
-  //     }
-  //      if(index == 1) {
-  //      Navigator.of(context).push(
-  //          MaterialPageRoute<Null>(builder: (BuildContext context) {
-  //            return CVFont();
-  //          }
-  //          ));
-  //          }
+      if(index == 3) {
+      //  Navigator.of(context).push(
+      //      MaterialPageRoute<Null>(builder: (BuildContext context) {
+      //        return Colorset();
+      //      }
+      //      ));
+      }
+       if(index == 1) {
+       Navigator.of(context).push(
+           MaterialPageRoute<Null>(builder: (BuildContext context) {
+             return CVFont();
+           }
+           ));
+           }
           
       
-  //     //   await showMenu<String>(
-  //     //     context: context,
-  //     //     position: RelativeRect.fromLTRB(500.0, 1000.0, 0.0, 0.0),
-  //     //     items: <PopupMenuItem<String>>[
-  //     //       new PopupMenuItem<String>(
-  //     //           child: const Text('Proof Read'), value: 'test1',),
-  //     //       new PopupMenuItem<String>(
-  //     //           child: const Text('Colors'), value: 'test2'),
-  //     //       new PopupMenuItem<String>(
-  //     //           child: const Text('Fonts'), value: 'test2'),
-  //     //       new PopupMenuItem<String>(
-  //     //           child: const Text('Advanced Setting'), value: 'test2'),
-  //     //     ],
-  //     //     elevation: 8.0,
+      //   await showMenu<String>(
+      //     context: context,
+      //     position: RelativeRect.fromLTRB(500.0, 1000.0, 0.0, 0.0),
+      //     items: <PopupMenuItem<String>>[
+      //       new PopupMenuItem<String>(
+      //           child: const Text('Proof Read'), value: 'test1',),
+      //       new PopupMenuItem<String>(
+      //           child: const Text('Colors'), value: 'test2'),
+      //       new PopupMenuItem<String>(
+      //           child: const Text('Fonts'), value: 'test2'),
+      //       new PopupMenuItem<String>(
+      //           child: const Text('Advanced Setting'), value: 'test2'),
+      //     ],
+      //     elevation: 8.0,
 
-  //     //  );
-  //     // }
+      //  );
+      // }
 
-  //    if(index == 0) {
-  //      Navigator.of(context).push(
-  //          MaterialPageRoute<Null>(builder: (BuildContext context) {
-  //            return HomePagee();
-  //          }
-  //          )
-  //      );
-  //    }
-  //   //  if(index == 1){
+     if(index == 0) {
+       Navigator.of(context).push(
+           MaterialPageRoute<Null>(builder: (BuildContext context) {
+             return HomePagee();
+           }
+           )
+       );
+     }
+    //  if(index == 1){
       
-  //   //    Navigator.of(context).push(MaterialPageRoute<Null>(builder: (BuildContext context){
-  //   //     return Designs();
-  //   //     }
-  //   //   )
-  //   // );
-  //   //   }
-  //     _selectedIndex = index;
-  //  });
+    //    Navigator.of(context).push(MaterialPageRoute<Null>(builder: (BuildContext context){
+    //     return Designs();
+    //     }
+    //   )
+    // );
+    //   }
+      _selectedIndex = index;
+   
    
  }
 

@@ -4,9 +4,11 @@ import 'package:cvdragonapp_v1/Colors.dart';
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import './MyDesigns.dart';
 import 'package:flutter/services.dart';
 import 'package:reflected_mustache/mustache.dart';
 import './bottombar_preview.dart';
+import './fonts.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import './maps.dart' show tablename;
 
@@ -34,33 +36,71 @@ class MyWebView extends StatefulWidget {
 
 class _MyWebViewState extends State<MyWebView> {
   void _selectedTab(int index, BuildContext context) {
-    if(index==3) showBottomSheet(
-        context: context,
-        builder: (_) => Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                ListTile(
-                  onTap: (){},
-                  title: Text("Fonts"),
-                ),
-                ListTile(
-                  onTap: (){
-                    Navigator.of(context).pop();
+    if(index==3) showModalBottomSheet<void>(context: context,
+    builder: (BuildContext context) {
+      return new Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          new ListTile(
+            leading: new Icon(Icons.font_download),
+            title: new Text('Fonts'),
+            onTap: () {
+               Navigator.of(context).pop();
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CVFont()));
+            },          
+          ),
+          new ListTile(
+            leading: new Icon(Icons.colorize),
+            title: new Text('Colors'),
+            onTap: (){
+                 Navigator.of(context).pop();
                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Colorset()));
-                  },
-                  title: Text("Colors"),
-                ),
-                ListTile(
-                  onTap: (){},
-                  title: Text("Designs"),
-                ),
-                ListTile(
-                  onTap: (){},
-                  title: Text("Blala"),
-                ),
+            },          
+          ),
+          new ListTile(
+            leading: new Icon(Icons.edit),
+            title: new Text('Designs'),
+            onTap: (){
+                Navigator.of(context).pop();
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MyDesigns()));
+            },          
+          ),
+          new ListTile(
+            leading: new Icon(Icons.event),
+            title: new Text('Proof Read'),
+            onTap: (){},          
+          ),
+        ],
+      );
+   });
+
+    // showBottomSheet(
+    //     context: context,
+    //     builder: (_) => Column(
+    //           mainAxisSize: MainAxisSize.min,
+    //           children: <Widget>[
+    //             ListTile(
+    //               onTap: (){},
+    //               title: Text("Fonts"),
+    //             ),
+    //             ListTile(
+    //               onTap: (){
+    //                 Navigator.of(context).pop();
+    //                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Colorset()));
+    //               },
+    //               title: Text("Colors"),
+    //             ),
+    //             ListTile(
+    //               onTap: (){},
+    //               title: Text("Designs"),
+    //             ),
+    //             ListTile(
+    //               onTap: (){},
+    //               title: Text("Blala"),
+    //             ),
                 
-              ],
-            ));
+    //           ],
+    //         ));
   }
 
   @override
@@ -74,7 +114,7 @@ class _MyWebViewState extends State<MyWebView> {
           backgroundColor: Color(0xff232882),
           selectedColor: Colors.white,
           items: [
-            FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
+            FABBottomAppBarItem(iconData: Icons.home, text: 'Home',),
             FABBottomAppBarItem(iconData: Icons.edit, text: 'Designs'),
             FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
             FABBottomAppBarItem(iconData: Icons.more, text: 'More'),

@@ -1,5 +1,4 @@
 import 'package:cvdragonapp_v1/vishBottomBar.dart';
-
 import './localdatafetch.dart' as lfetch;
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:flutter/material.dart';

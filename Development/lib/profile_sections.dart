@@ -7,7 +7,9 @@ import './sidemenu.dart';
 import './localdatafetch.dart' as lfetch;
 import './localdatapush.dart' as lpush;
 import './sharedfetch.dart' as sfetch;
+import './Add_New_Section.dart';
 import './edit_section.dart';
+import './CardView_NewProfile.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import './maps.dart' as maps;
 
@@ -28,6 +30,7 @@ class _ProfileSections extends State<ProfileSections> {
   Map<String, dynamic> countoftotaldata = {};
   List data2;
   List data = [];
+  List data3 = [];
 
   void get() async {
     id = await sfetch.readid();
@@ -39,11 +42,14 @@ class _ProfileSections extends State<ProfileSections> {
         data.add(json.decode(element['section'].toString()));
       });
     setState(() {
-     
-    
-      _isLoading = false;
+       _isLoading = false;
     });
+     data.add("Add a New Section");
+     data3 = data2 - data;
+     data3.add("Add a New Section");
+     
   }
+ 
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,8 +83,122 @@ class _ProfileSections extends State<ProfileSections> {
                   physics: BouncingScrollPhysics(),
                   itemCount: data == null ? 0 : data.length,
                   itemBuilder: (BuildContext context, int index) {
+                     if (data[index].toString()=="51126")
+                     {
+                       
+                       print("New Section loop executed");
+                       
+                     }
+                         
+                    //     child: Container(
+                    //       height: 120,
+                    //       width: MediaQuery.of(context).size.width,
+                    //     child: InkWell(
+                    //       onTap: () {
+                    //         Navigator.push(
+                    //             context,
+                    //             MaterialPageRoute(
+                    //                 builder: (context) =>
+                    //                     (CardProfiles())));
+                    //       },
+                    //       child: Stack(
+                    //         children: <Widget>[
+                    //           Image.asset(
+                    //             "51125-01.png",
+                    //             fit: BoxFit.cover,
+                    //             width: MediaQuery.of(context).size.width,
+                    //             //heighaQuery.of(context).size.height,
+                    //           ),
+                    //           Center(child:
+                    //           Container(
+                    //             padding: new EdgeInsets.symmetric(
+                    //                 vertical: 40, horizontal: MediaQuery.of(context).size.width/25),
+                    //             alignment: Alignment.center,
+                    //             child: Row(
+
+                    //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //               children: <Widget>[
+                    //                 AutoSizeText(
+                    //                 "Add a Section",
+                    //                   style: TextStyle(
+                    //                       color: Colors.white,
+                    //                       fontSize: 20,
+                    //                       letterSpacing: 0.5,
+                    //                       fontWeight: FontWeight.bold),
+                    //                 ),
+
+                                    
+                    //                 // CircleAvatar(backgroundColor: Colors.black,radius: 21,
+                    //                 //   child: Text("D"),),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     ),
+                    //   );
+
+                    //  }
+                     else 
+                    if (data[index].toString()=="Add a New Section")
+                    {
+                       return  Card(
+                        child: Container(
+                          height: 120,
+                          width: MediaQuery.of(context).size.width,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        (AddNewSection(data))));
+                          },
+                          child: Stack(
+                            children: <Widget>[
+                              Image.asset(
+                                "assets/ProfileSection/51102-01.png",
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width,
+                                //heighaQuery.of(context).size.height,
+                              ),
+                              Center(child:
+                              Container(
+                                padding: new EdgeInsets.symmetric(
+                                    vertical: 40, horizontal: MediaQuery.of(context).size.width/25),
+                                alignment: Alignment.center,
+                                child: Row(
+
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    AutoSizeText(
+                                   "Add a New Section",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          letterSpacing: 0.5,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+
+                                    
+                                    // CircleAvatar(backgroundColor: Colors.black,radius: 21,
+                                    //   child: Text("D"),),
+                                  ],
+                                ),
+                              ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        ),
+                      );
+                    }
                     
-                    if (data[index].toString()=="51100" || data[index].toString()=="51101" || data[index].toString()=="51102" || data[index].toString()=="51103" || data[index].toString()=="51109"){
+                    else 
+                    if (data[index].toString()=="51100" || data[index].toString()=="51101" || data[index].toString()=="51102" || data[index].toString()=="51103" || data[index].toString()=="51109")
+                    {
                     return  Card(
                         child: Container(
                           height: 120,
@@ -109,7 +229,7 @@ class _ProfileSections extends State<ProfileSections> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     AutoSizeText(
-                                     maps.Sections[data[index].toString()].toString(),
+                                   maps.Sections[data[index].toString()].toString(),
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 20,
@@ -133,22 +253,8 @@ class _ProfileSections extends State<ProfileSections> {
                     
                                         else {
                       return
-                    Dismissible(
-                      direction: DismissDirection.endToStart,
-                      key: Key(data.toString()),
-                      onDismissed: (direction) {
-                        // Removes that item the list on swipwe
-                        setState(() {
-                       
-                          lpush.removeSection(data[index].toString());
-                          data.removeAt(index);
-                        });
-                        // Shows the information on Snackbar
-                        Scaffold.of(context)
-                            .showSnackBar(SnackBar(content: Text("dismissed")));
-                      },
-                      background: Container(color: Colors.red),
-                      child: Card(
+                    
+                       Card(
                         child: Container(
                           height: 120,
                           width: MediaQuery.of(context).size.width,
@@ -178,15 +284,6 @@ class _ProfileSections extends State<ProfileSections> {
                                             MediaQuery.of(context).size.width /
                                                 25),
                                     alignment: Alignment.center,
-//                      margin: EdgeInsets.only(top: MediaQuery
-//                          .of(context)
-//                          .size
-//                          .height / 13, left: MediaQuery
-//                          .of(context)
-//                          .size
-//                          .width / 33),
-                                    //alignment: Alignment.centerLeft,
-                                    //margin: new EdgeInsets.fromLTRB(12.0, 50.0, 40.0, 50.0),
                                     child: Row(
                                       // crossAxisAlignment: CrossAxisAlignment.center,
                                       mainAxisAlignment:
@@ -216,8 +313,8 @@ class _ProfileSections extends State<ProfileSections> {
                             ),
                           ),
                         ),
-                      ),
-                    );
+                      );
+                    
                     }
                     
 

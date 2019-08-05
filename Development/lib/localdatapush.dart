@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import './Notifiers.dart' show syncNotifier;
 import 'package:cvdragonapp_v1/datapush.dart';
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/maps.dart';
@@ -60,8 +60,11 @@ contents.addAll(createddata);
         String sql="UPDATE `create-cvprofilesection` SET subsection=\""+res.toString()+"\" WHERE `cvid`= "+cvid+" AND `section` = "+section;
         await db.rawUpdate(sql);
         print("Added a data in local data fetch");
-        return 1;
+syncNotifier.value = true;
+return 1;
 
+
+    
         
 }
 
@@ -80,7 +83,10 @@ sql+=" WHERE id="+id+" AND "+columnName[section]+"="+data[columnName[section]].t
         await db.rawUpdate(sql);
         String serverupdate=await server.editData(data['refID'].toString(), section, newdata);
         print(serverupdate);
-        return 1;
+
+syncNotifier.value = true;
+return 1;
+
 }
 
 
@@ -96,7 +102,10 @@ Future<int>removeSection(String section) async{
       await db.rawUpdate("DELETE FROM `create-cvprofilesection` WHERE section="+section+" AND id="+id+" AND cvid="+cvid+" AND status=1");
       String serversend=await  server.deleteSection(section);
         print(serversend);
-        return 1;
+syncNotifier.value = true;
+return 1;
+
+        
 }
 
 
@@ -119,7 +128,10 @@ Future<int>addSection(String section) async{
       await db.rawInsert( "`create-cvprofilesection`",createdatainprofile);
       String serversend=await  server.deleteSection(section);
         print(serversend);
+        syncNotifier.value = true;
         return 1;
+
+        
 }
 
 

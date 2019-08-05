@@ -40,7 +40,7 @@ class _TechnicalKnowledgeFormState extends State<TechnicalKnowledgeForm> {
             myTextField("type", initialValue: widget.instance["type"]),
             mySegmentField("level",
                 initialValue: widget.instance["level"],
-                options: ["Beginner", "Intermideate", 'Proficient']),
+                options: ["Beginner", "Intermediate","Proficient", 'Advanced']),
             myTextField("description",
                 maxLines: 6, initialValue: widget.instance["description"]),
             // ---- Submit Button ---- //

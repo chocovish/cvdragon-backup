@@ -5,6 +5,28 @@ import 'dart:io';
 import 'package:http/http.dart'as http;
 import './Notifiers.dart';
 
+
+syncMsg(BuildContext context) {
+    CupertinoAlertDialog d = CupertinoAlertDialog(
+      content: Text("Some Error happened!",style: TextStyle(color: Colors.red),),
+      actions: <Widget>[
+        CupertinoButton(
+          child: Text("OK!"),
+          onPressed: Navigator.of(context).pop,
+        )
+      ],
+    );
+
+    showCupertinoDialog(context: context, builder: (_) => d);
+  }
+
+
+
+
+
+
+
+
 void syncthedata(BuildContext context) async{
   syncOnGoing.value = true;
 //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Started Sync"),backgroundColor: Colors.amber,));
@@ -38,6 +60,7 @@ try {
     print("Before " +queue.length.toString());
    queue.removeWhere((item) => item== "1");
    print("After " +queue.length.toString());
+   if(queue.length>0) syncMsg(context); 
    await sfetch.writeSyncQueueList(queue);
    syncNotifier.value = false;
 

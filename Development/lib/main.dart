@@ -10,10 +10,10 @@ String name, email;
 void main() {
 
   //Turning of landscape mode..
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
-  ]);
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown
+  // ]);
   //debugPaintSizeEnabled = true;
   runApp(MyApp());
 }
@@ -42,7 +42,7 @@ class _MyApp extends State<MyApp> {
   }
 
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    // SystemChrome.setEnabledSystemUIOverlays([]); //add for hiding navand status bar
 
     return MaterialApp(
 

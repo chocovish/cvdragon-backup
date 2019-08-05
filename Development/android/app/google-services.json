@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "455532156792-kb97f1c1gten88mnonhfu92ot654m8u0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cvdragonapp_v1",
+            "certificate_hash": "e569b434371fdc71da6ab8f5e05ac13532b7915f"
+          }
+        },
+        {
           "client_id": "455532156792-fh5ftri0cmca5uj1k4v93f9b4adpnijs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

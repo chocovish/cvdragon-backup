@@ -45,7 +45,9 @@ class _ProfileSections extends State<ProfileSections> {
        _isLoading = false;
     });
      data.add("Add a New Section");
-     data3 = data2 - data;
+     data3 = data2;
+     for(var i in data)  data3.remove(i);
+
      data3.add("Add a New Section");
      
   }

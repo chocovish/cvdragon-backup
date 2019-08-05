@@ -146,23 +146,42 @@ Future<String>generateresumeid() async{
        var timestamp=new DateTime.now().millisecondsSinceEpoch;
        var random= Random.secure();
        Map<String,dynamic> d={
-         'resumeid':timestamp.toString(),
-         'resume':timestamp.toString()+(random.nextInt(1000)).toString(),
-         'profileID':cvid,
-          'id':id,
-           'ProfileSections':"\""+profilesections.toString()+"\"",
-           'profileDesign':design,
-            'workTimeFormat': dtformat,
-             'profileFont': font,
-              'fontSize':fsize,
-               'profileSetting':color
+        'resumeid':timestamp.toString(),
+        'resume':timestamp.toString()+(random.nextInt(1000)).toString(),
+        'profileID':cvid,
+        'id':id,
+        'ProfileSections':"\""+profilesections.toString()+"\"",
+        'profileDesign':design,
+        'workTimeFormat': dtformat,
+        'profileFont': font,
+        'fontSize':fsize,
+        'profileSetting':color,
+        'sectionsBreak': '[]',
+        'imageLink':"",
+        'isPublic': 0,
+        'status': 1,
+
        };
        db.insert('`cv-resumedownload`', d);
        print("new/"+timestamp.toString());
+       return timestamp.toString();
       }
      else
      {
         print("old/"+res.toString());
      }
         return res.toString();
+}
+
+
+// Made by Vishal.. get CV details from cvid //
+
+Future getResumeDetails(String resumeid) async {
+  var add =await getApplicationDocumentsDirectory();
+  Database db=await openDatabase(add.path+"/sections.db", version: 1);
+  String sql = "select * from `cv-resumedownload` where resumeid=$resumeid";
+   var res =  await db.rawQuery(sql);
+
+   return res[0];
+
 }

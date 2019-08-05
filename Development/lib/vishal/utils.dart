@@ -10,11 +10,12 @@ Future<void> logout(BuildContext context) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString("authKey", null);
   prefs.setInt("loginstatus", null);  
-   prefs.setString("name", null);
-   prefs.setString("email", null);
-    prefs.setBool("alltablescreated",null);
-    prefs.setString("cvid", null);
-     prefs.setString("id", null);
+  prefs.setString("name", null);
+  prefs.setString("email", null);
+  prefs.setBool("alltablescreated",null);
+  prefs.setString("cvid", null);
+  prefs.setString("id", null);
+  prefs.setStringList('syncQuery',null);
   Directory appDocDir = await getApplicationDocumentsDirectory();
  var db=await  openDatabase(appDocDir.path.toString()+"/sections.db");
  db.close();

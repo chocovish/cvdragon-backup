@@ -4,6 +4,7 @@ import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/maps.dart';
 import 'package:cvdragonapp_v1/vishal/ProfileImage.dart';
 import 'package:cvdragonapp_v1/vishal/sections/ContactDetailsForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/IntroductionForm.dart';
 
 import 'package:cvdragonapp_v1/vishal/sections/PreferencesForm.dart';
 import 'package:flutter/material.dart';
@@ -36,15 +37,15 @@ class EditSection extends StatefulWidget {
   }
 }
 
-bool isLoading = true;
-//Map<String, dynamic> faq;
-//List keyPhrases;
+
 List addeddata ;
 List databb ;
 ValueNotifier<List> db0 = ValueNotifier(null);
 List key;
 
 class _EditSection extends State<EditSection> {
+
+  bool pageLoading = true;
   
   @override
   void initState() {
@@ -68,7 +69,7 @@ class _EditSection extends State<EditSection> {
     print("NOW DB0 IS ${db0.value}");
 
     setState(() {
-     isLoading = false; 
+     pageLoading = false; 
     });
   
     // await getAddedData(section) // Profile me jo hai voh aa rha hai
@@ -83,7 +84,8 @@ class _EditSection extends State<EditSection> {
 
   @override
   Widget build(BuildContext context) {
-    return isLoading
+    print(pageLoading);
+    return pageLoading
         ? DecoratedBox(
             decoration: BoxDecoration(
                 image: DecorationImage(
@@ -148,7 +150,8 @@ class _EditSection extends State<EditSection> {
                   else if (section == "51109") //return EducationalBackgroundForm(i: db0.value[1]);
                     return EditSectionEB(section);
                   else if (section=="51101") return ContactDetailsForm(i: db0.value[0]);
-                  else if(section=="51121") return PreferencesForm(i: db0.value[0]);
+                  else if(section=="51103") return IntroductionForm(i: db0.value[0]);
+                  
                   else
                     return _buildCardView(context);
                 }),

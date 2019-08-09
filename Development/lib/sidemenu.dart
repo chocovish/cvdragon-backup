@@ -13,6 +13,8 @@ import './sharedfetch.dart'as sfetch;
 import './About.dart';
 import './main.dart'as main;
 import './vishal/utils.dart';
+import './textformfield.dart';
+import './pimage.dart';
 String name;
 String email;
 class SideMenu extends StatefulWidget {
@@ -203,7 +205,7 @@ class _SideMenu extends State<SideMenu> {
                         IconButton(
                           padding: EdgeInsets.only(bottom: 15.0),
                           onPressed: () {
-                            Navigator.push(context,MaterialPageRoute(builder: (context) => (About())));
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => (Pimage())));
                           },
                           icon: Icon(
                             Icons.info,

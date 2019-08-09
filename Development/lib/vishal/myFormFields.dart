@@ -7,8 +7,7 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart' show I
 
 var _labelStyle = TextStyle();
 
-Widget myTextField(String title, {int maxLines: 1, String initialValue, validators}  ) {
-  print("----------------within myTextField Function..");
+Widget myTextField(String title, {int maxLines: 1, String initialValue,validators}) {
   if (initialValue == "null") initialValue = null;
   return Padding(
     padding: const EdgeInsets.all(8.0),
@@ -68,7 +67,7 @@ Widget myCheckBox(String title, {bool initialValue, Function onChanged}) {
 
 Widget myRadioButton(String title,
     {String initialValue, @required List<FormBuilderFieldOption> options}) {
-  print("initial value is $initialValue");
+  
   return FormBuilderRadio(
     initialValue: initialValue,
     attribute: title,
@@ -78,8 +77,7 @@ Widget myRadioButton(String title,
 
 Widget mySegmentField(String title,
     {String initialValue, @required List<String> options,List optionLabel}) {
-      if(initialValue=="") initialValue = null;
-      else print("it has something $initialValue");
+      if(initialValue==""||initialValue=="null") initialValue = null;
       return Padding(
     padding: const EdgeInsets.all(12.0),
     child: FormBuilderSegmentedControl(

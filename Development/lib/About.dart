@@ -8,6 +8,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import './sidemenu.dart';
 import './rightpreviewpane.dart';
 
+
 String abtext = """# **About Us**
 
 cvDragon is an online platform which will cater to the need of an organized and systematic resume. Resumes have become the first criteria for selection for every selector.
@@ -28,41 +29,41 @@ class About extends StatelessWidget {
     
     return Scaffold(
       appBar: TopMenuBar(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.pinkAccent,
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute<Null>(
-              builder: (BuildContext context) {
-                return CVView();
-              },
-            ),
-          );
-        },
-        child: Icon(
-          Icons.visibility,
-          color: Colors.white,
-        ),
-        elevation: 0.0,
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.pinkAccent,
+      //   onPressed: () {
+      //     Navigator.of(context).push(
+      //       MaterialPageRoute<Null>(
+      //         builder: (BuildContext context) {
+      //           return CVView();
+      //         },
+      //       ),
+      //     );
+      //   },
+      //   child: Icon(
+      //     Icons.visibility,
+      //     color: Colors.white,
+      //   ),
+      //   elevation: 0.0,
+      // ),
       drawer: SideMenu(),
       endDrawer: PreviewPane(),
-      bottomNavigationBar: FABBottomAppBar(
-        //onTabSelected: _selectedTab,
-        notchedShape: CircularNotchedRectangle(),
-        color: Colors.white30,
-        centerItemText: "Preview",
-        backgroundColor: Color(0xff232882),
-        selectedColor: Colors.white,
-        items: [
-          FABBottomAppBarItem(
-              iconData: Icons.import_contacts, text: 'Knowledge'),
-          FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
-          FABBottomAppBarItem(iconData: Icons.swap_vert, text: 'Profiles'),
-          FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
-        ],
-      ),
+      // bottomNavigationBar: FABBottomAppBar(
+      //   //onTabSelected: _selectedTab,
+      //   notchedShape: CircularNotchedRectangle(),
+      //   color: Colors.white30,
+      //   centerItemText: "Preview",
+      //   backgroundColor: Color(0xff232882),
+      //   selectedColor: Colors.white,
+      //   items: [
+      //     FABBottomAppBarItem(
+      //         iconData: Icons.import_contacts, text: 'Knowledge'),
+      //     FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
+      //     FABBottomAppBarItem(iconData: Icons.swap_vert, text: 'Profiles'),
+      //     FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
+      //   ],
+      // ),
       body: Container(
         margin: EdgeInsets.only(top: 5,left: 10,right:5,),
 

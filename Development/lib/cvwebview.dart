@@ -1,18 +1,23 @@
 import 'dart:convert';
-import 'dart:convert' show jsonDecode;
+import 'dart:io';
 
 import 'package:cvdragonapp_v1/Colors.dart';
+import 'package:cvdragonapp_v1/MyPdfScaffold.dart';
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_full_pdf_viewer/flutter_full_pdf_viewer.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import './MyDesigns.dart';
 import 'package:flutter/services.dart';
 import 'package:reflected_mustache/mustache.dart';
 import './bottombar_preview.dart';
 import './fonts.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import './maps.dart' show tablename;
+
+import 'package:flutter_html_to_pdf/flutter_html_to_pdf.dart';
+import 'package:path_provider/path_provider.dart';
 
 WebViewController webViewController;
 
@@ -38,6 +43,7 @@ class MyWebView extends StatefulWidget {
 
 class _MyWebViewState extends State<MyWebView> {
   void _selectedTab(int index, BuildContext context) {
+    Navigator.of(context).pop();
     if (index == 3)
       showModalBottomSheet<void>(
           context: context,
@@ -82,51 +88,115 @@ class _MyWebViewState extends State<MyWebView> {
           });
   }
 
-  showDownloadMSG(){
-    showDialog(context: context,builder: (context)=>Dialog(child: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Text("Download link will be sent to your email!"),
-    ),));
+  showDownloadMSG() {
+    showDialog(
+        context: context,
+        builder: (context) => Dialog(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text("Download link will be sent to your email!"),
+              ),
+            ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.arrow_downward),
-        onPressed: showDownloadMSG,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: Builder(
-        builder: (_) => FABBottomAppBar(
-          notchedShape: CircularNotchedRectangle(),
-          color: Colors.white30,
-          centerItemText: "Download",
-          backgroundColor: Color(0xff232882),
-          selectedColor: Colors.white,
-          items: [
-            FABBottomAppBarItem(
-              iconData: Icons.home,
-              text: 'Home',
+    // return Scaffold(
+
+    //   floatingActionButton: FloatingActionButton(
+    //     child: Icon(Icons.arrow_downward),
+    //     onPressed: showDownloadMSG,
+    //   ),
+    //   floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    //   bottomNavigationBar: Builder(
+    //     builder: (_) => FABBottomAppBar(
+    //       notchedShape: CircularNotchedRectangle(),
+    //       color: Colors.white30,
+    //       centerItemText: "Download",
+    //       backgroundColor: Color(0xff232882),
+    //       selectedColor: Colors.white,
+    //       items: [
+    //         FABBottomAppBarItem(
+    //           iconData: Icons.home,
+    //           text: 'Home',
+    //         ),
+    //         FABBottomAppBarItem(iconData: Icons.edit, text: 'Designs'),
+    //         FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
+    //         FABBottomAppBarItem(iconData: Icons.more, text: 'More'),
+    //       ],
+    //       onTabSelected: (int index) {
+    //         _selectedTab(index, _);
+    //       },
+    //     ),
+    //   ),
+    //   // body:
+    //   body: FutureBuilder(
+    //       future: loadTemplate(),
+    //       builder: (context, snapshot) {
+    //         if (!snapshot.hasData) return Center(child: CupertinoActivityIndicator(),);
+    //         return PDFViewerScaffold(
+    //           path: snapshot.data.path,
+    //           primary: true,
+    //           appBar: AppBar(title: Text("Preview"),),
+    //         );
+    //       }),
+    // );
+    return FutureBuilder(
+      future: loadTemplate(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData)
+          return Center(child: CupertinoActivityIndicator());
+        return MyPdfScaffold(
+          path: snapshot.data.path,
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.arrow_downward),
+            onPressed: showDownloadMSG,
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          bottomNavigationBar: Builder(
+            builder: (_) => FABBottomAppBar(
+              notchedShape: CircularNotchedRectangle(),
+              color: Colors.white30,
+              centerItemText: "Download",
+              backgroundColor: Color(0xff232882),
+              selectedColor: Colors.white,
+              items: [
+                FABBottomAppBarItem(
+                  iconData: Icons.home,
+                  text: 'Home',
+                ),
+                FABBottomAppBarItem(iconData: Icons.edit, text: 'Designs'),
+                FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
+                FABBottomAppBarItem(iconData: Icons.more, text: 'More'),
+              ],
+              onTabSelected: (int index) {
+                _selectedTab(index, _);
+              },
             ),
-            FABBottomAppBarItem(iconData: Icons.edit, text: 'Designs'),
-            FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
-            FABBottomAppBarItem(iconData: Icons.more, text: 'More'),
-          ],
-          onTabSelected: (int index) {
-            _selectedTab(index, _);
-          },
-        ),
-      ),
-      body: WebView(
-        initialUrl: "",
-        onWebViewCreated: (WebViewController c) {
-          webViewController = c;
-          loadTemplate();
-        },
-      ),
+          ),
+          // body:
+        );
+      },
     );
   }
+}
+
+Future<File> genPDF(String htmldata) async {
+  Directory appDir = await getApplicationDocumentsDirectory();
+  print(appDir.path);
+  var targetPath = appDir.path;
+  var targetFileName = "example";
+
+  print("Started creating PDF");
+  var strtedtime = DateTime.now();
+  var generatedPDF = await FlutterHtmlToPdf.convertFromHtmlContent(
+      htmldata, targetPath, targetFileName);
+
+  print("Done creating PDF");
+  var diff = DateTime.now().difference(strtedtime);
+  print(diff.inMicroseconds);
+  return generatedPDF;
 }
 
 Future<void> loadTemplate() async {
@@ -137,6 +207,11 @@ Future<void> loadTemplate() async {
 
   //RegExp regExp = RegExp("[^0-9a-zA-Z:,\[ \\\;!-+*?&%\$\#@={}()<>\"'\^]");
   String res = template.renderString(senddata);
+
+  File mypdf = await genPDF(res);
+
+  return mypdf;
+
   //print(res);
   var uri = Uri.dataFromString(res, mimeType: "text/html").toString();
   //print("uri is $uri");
@@ -155,7 +230,10 @@ Future<Map> makeSendData() async {
   print("runtime type: ${result.runtimeType}");
   print("got result...: $result");
   String sectionstring = result["ProfileSections"];
-  List sections = sectionstring.substring(2,sectionstring.length-2).replaceAll(" ", "").split(",");
+  List sections = sectionstring
+      .substring(2, sectionstring.length - 2)
+      .replaceAll(" ", "")
+      .split(",");
   print(sections);
 
   Map<String, List> m = {};

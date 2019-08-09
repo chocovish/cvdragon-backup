@@ -97,7 +97,7 @@ class _OtpPage extends State<OtpPage> {
         await writeid(basic_data['id']);
         await writeauthKey(basic_data['authKey']);
         await writeloginstatus(1);
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => HomePagee()));
       }
     }

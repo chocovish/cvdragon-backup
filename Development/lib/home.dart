@@ -78,11 +78,7 @@ class _HomePagee extends State<HomePagee> {
   }
   }
 
-  void  _selectedTab(int index) {
-    setState(() {
-      print(index);
-    });
-  }
+  
 Widget dialogContent(BuildContext context,write,setState)
 {
   return Center(

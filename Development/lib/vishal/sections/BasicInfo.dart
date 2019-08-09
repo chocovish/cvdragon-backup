@@ -27,7 +27,7 @@ class _CertificatesFormState extends State<BasicInfo> {
 
   @override
   Widget build(BuildContext context) {
-    print("got data {$widget.instance}");
+    print("got BAsicInfo data: ${widget.instance}");
     return Container(
       color: Colors.white,
       child: FormBuilder(
@@ -38,7 +38,7 @@ class _CertificatesFormState extends State<BasicInfo> {
               Text("Basic Info", style: Theme.of(context).textTheme.display1),
               myTextField("nationality",
                   initialValue: widget.instance["nationality"]),
-              mySegmentField("gender",options: ["Male","Female","Other"]),
+              mySegmentField("gender",options: ["Male","Female","Other"],initialValue: widget.instance["gender"]),
               Row(
                 children: <Widget>[
                   myDateField("dateBirth",
@@ -46,7 +46,7 @@ class _CertificatesFormState extends State<BasicInfo> {
                 ],
               ),
 
-              mySegmentField("maritalStatus",options: ["Unmarried","Married"]),
+              mySegmentField("maritalStatus",options: ["Unmarried","Married"],initialValue: widget.instance["maritalStatus"]),
               myTextField("facebookLink",
                   initialValue: widget.instance["facebookLink"]),
               myTextField("twitterLink",

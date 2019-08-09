@@ -38,6 +38,10 @@ class _IntroductionFormState extends State<IntroductionForm> {
         key: _formKey,
         child: Column(
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text("Introduction"),
+            ),
             myTextField("title",initialValue: widget.instance["title"]),
             myTextField("introduction",maxLines: 6,initialValue: widget.instance["introduction"]),
             // ---- Submit Button ---- //

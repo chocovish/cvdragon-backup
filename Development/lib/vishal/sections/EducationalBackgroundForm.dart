@@ -42,7 +42,7 @@ class _EducationalBackgroundFormState extends State<EducationalBackgroundForm> {
                   children: <Widget>[
                     Padding(
           padding: const EdgeInsets.all(14.0),
-          child: Text("ContactDetails"),
+          child: Text("Educational Background"),
                     ),
                     myTextField("institute",initialValue: widget.instance["institute"]),
                     myTextField("university",initialValue: widget.instance["university"]),

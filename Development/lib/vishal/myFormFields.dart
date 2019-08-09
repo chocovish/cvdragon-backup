@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart' show DateFormat;
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart' show InputType;
-
-    
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart'
+    show InputType;
 
 var _labelStyle = TextStyle();
 
@@ -23,33 +22,7 @@ Widget myTextField(String title, {int maxLines: 1, String initialValue}) {
   );
 }
 
-Widget myDateField(String title, {String initialValue}) {
-  DateTime ival;
-  if (initialValue != null && initialValue != "null") {
-    print("Starting parse with $initialValue");
-    ival = DateTime.parse(initialValue);
-    print("parsing done");
-  }
-  return Expanded(
-    child: Padding(
-      padding: EdgeInsets.all(8.0),
-      child: FormBuilderDateTimePicker(
-        //enabled: false,
-        autovalidate: true,
-        // readonly: true,
-        keyboardType: TextInputType.datetime,
-        attribute: title,
-        initialValue: ival,
-        decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-            labelText: title,
-            labelStyle: _labelStyle),
-        inputType: InputType.date,
-        format: DateFormat("dd-MM-yyyy"),
-      ),
-    ),
-  );
-}
+
 
 Widget myCheckBox(String title, {bool initialValue, Function onChanged}) {
   return FormBuilderCheckbox(
@@ -64,7 +37,6 @@ Widget myCheckBox(String title, {bool initialValue, Function onChanged}) {
 
 Widget myRadioButton(String title,
     {String initialValue, @required List<FormBuilderFieldOption> options}) {
-  
   return FormBuilderRadio(
     initialValue: initialValue,
     attribute: title,
@@ -73,9 +45,9 @@ Widget myRadioButton(String title,
 }
 
 Widget mySegmentField(String title,
-    {String initialValue, @required List<String> options,List optionLabel}) {
-      if(initialValue==""||initialValue=="null") initialValue = null;
-      return Padding(
+    {String initialValue, @required List<String> options, List optionLabel}) {
+  if (initialValue == "" || initialValue == "null") initialValue = null;
+  return Padding(
     padding: const EdgeInsets.all(12.0),
     child: FormBuilderSegmentedControl(
       decoration: InputDecoration(
@@ -84,15 +56,78 @@ Widget mySegmentField(String title,
       ),
       attribute: title,
       initialValue: initialValue,
-      options: options.map((i) => FormBuilderFieldOption(label:optionLabel!=null?optionLabel[options.indexOf(i)]:i ,value: i)).toList(),
+      options: options
+          .map((i) => FormBuilderFieldOption(
+              label: optionLabel != null ? optionLabel[options.indexOf(i)] : i,
+              value: i))
+          .toList(),
     ),
   );
+}
+
+myDropdownField(String title,
+    {@required List items, String initialValue, String hint}) {
+  return FormBuilderDropdown(
+    attribute: title,
+    decoration: InputDecoration(labelText: title),
+    initialValue: initialValue,
+    hint: Text(hint),
+    validators: [FormBuilderValidators.required()],
+    items: items
+        .map(
+            (gender) => DropdownMenuItem(value: gender, child: Text("$gender")))
+        .toList(),
+  );
+}
+
+myDateField(String title,{String initialValue}) {
+  String date = initialValue??"Select Date";
+  return FormBuilderCustomField(
+    attribute: title,
+    validators: [
+      FormBuilderValidators.required(),
+    ],
+    formField: FormField(
+      enabled: true,
+      builder: (FormFieldState<dynamic> field) {
+        return InputDecorator(
+          decoration: InputDecoration(
+            labelText: "Select Date",
+            contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
+            border: null,
+          ),
+          child: StatefulBuilder(
+            builder: (context, setState) => InkWell(
+              child: Container(
+                padding: EdgeInsets.all(8),
+                  height: 40, alignment: Alignment.center, child: Text(date)),
+              onTap: () async {
+                DateTime dateTime = await showDatePicker(
+                  context: context,
+                  firstDate: DateTime(1),
+                  initialDate: DateTime.now(),
+                  lastDate: DateTime(2100),
+                );
+                print(dateTime);
+                setState(() {
+                  if(dateTime!=null) date = dateTime.toString().split(" ")[0];
+                });
+                print(date);
+                field.didChange(date);
+              },
+            ),
+          ),
+        );
+      },
+    ),
+  );
+// field.didChange(value);
 }
 
 //  ---------------------------- utility functions.. -------------------- //
 
 bool num2bool(num) {
-  if (num == null||num=="null") return null;
+  if (num == null || num == "null") return null;
   int n = int.parse(num);
   return n == 1;
 }

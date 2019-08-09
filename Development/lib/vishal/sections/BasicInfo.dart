@@ -39,12 +39,14 @@ class _CertificatesFormState extends State<BasicInfo> {
               myTextField("nationality",
                   initialValue: widget.instance["nationality"]),
               mySegmentField("gender",options: ["Male","Female","Other"],initialValue: widget.instance["gender"]),
-              Row(
-                children: <Widget>[
-                  myDateField("dateBirth",
-                      initialValue: widget.instance["dateBirth"]),
-                ],
-              ),
+              // Row(
+              //   children: <Widget>[
+              //     myDateField("dateBirth",
+              //         initialValue: widget.instance["dateBirth"]),
+              //   ],
+              // ),
+
+              myDateField("dateBirth",initialValue: widget.instance["dateBirth"]),
 
               mySegmentField("maritalStatus",options: ["Unmarried","Married"],initialValue: widget.instance["maritalStatus"]),
               myTextField("facebookLink",
@@ -69,7 +71,7 @@ class _CertificatesFormState extends State<BasicInfo> {
                 onPressed: () {
                   _formKey.currentState.save();
                   var newdata = _formKey.currentState.value;
-                  newdata["dateBirth"] = newdata["dateBirth"].toString().split(" ")[0];
+                  //newdata["dateBirth"] = newdata["dateBirth"].toString().split(" ")[0];
                   print("new data is $newdata");
                   updateData(section, newdata, widget.instance).then((onValue) {
                     Navigator.of(context).pop();

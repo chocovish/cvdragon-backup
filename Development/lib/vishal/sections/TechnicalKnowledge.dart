@@ -1,3 +1,4 @@
+import 'package:cvdragonapp_v1/Create_New_Section/Create_Co_Curricular_Activity.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart';
 import 'package:cvdragonapp_v1/vishal/myFormFields.dart';
 import 'package:flutter/material.dart';
@@ -38,9 +39,17 @@ class _TechnicalKnowledgeFormState extends State<TechnicalKnowledgeForm> {
             myTextField("technical",
                 initialValue: widget.instance["technical"]),
             myTextField("type", initialValue: widget.instance["type"]),
-            mySegmentField("level",
+            myDropdownField("level",
                 initialValue: widget.instance["level"],
-                options: ["Beginner", "Intermediate","Proficient", 'Advanced']),
+                items: [
+                  "Trainee",
+                  "Beginner",
+                  "Intermediate",
+                  "Proficient",
+                  "Expert",
+                  "Advanced",
+                ],
+                hint: "Select Level"),
             myTextField("description",
                 maxLines: 6, initialValue: widget.instance["description"]),
             // ---- Submit Button ---- //
@@ -61,13 +70,15 @@ class _TechnicalKnowledgeFormState extends State<TechnicalKnowledgeForm> {
                     ? pushData(section, newdata).then((onValue) {
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => EditSection(section)));
                       })
                     : updateData(section, newdata, widget.instance)
                         .then((onValue) {
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => EditSection(section)));
                       });
               },
               elevation: 8,

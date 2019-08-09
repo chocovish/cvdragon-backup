@@ -8,6 +8,7 @@ import 'package:cvdragonapp_v1/vishal/sections/IntroductionForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/LanguagesForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/PORForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/PatentForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/PreferencesForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/PresentationsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/ProfessionalQualificationsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/PublicationsForm.dart';
@@ -299,6 +300,9 @@ Widget _buildCardView(BuildContext context) {
   else if (section == "51120") return LanguagesForm(i:index2==null?null:data[index2]);
     //return CreateLanguages(section, secName, index2, data);
   else if (section == "51119") return InterestsForm(i:index2==null?null:data[index2]);
+
+  else if (section == "51121") return PreferencesForm(i:index2==null?null:data[index2]);
+
     //return CreateInterests(section, secName, index2, data);
   else if (section == "51117") return VolunteerForm(i:index2==null?null:data[index2]);
     //return CreateVolunteerExperience(section, secName, index2, data);

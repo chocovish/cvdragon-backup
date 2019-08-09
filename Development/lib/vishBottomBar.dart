@@ -42,7 +42,7 @@ _updateIndex(BuildContext context,int index, int selectedIndex) {
   
         if (index == 1) {
           Navigator.of(context).push(
-              MaterialPageRoute<Null>(builder: (BuildContext context) {
+              MaterialPageRoute(builder: (BuildContext context) {
                 return ProfileSections();
               }
               )
@@ -51,7 +51,7 @@ _updateIndex(BuildContext context,int index, int selectedIndex) {
         else if (index==2) {
           //writeprofile(null);
          Navigator.of(context).push(
-              MaterialPageRoute<Null>(builder: (BuildContext context) {
+              MaterialPageRoute(builder: (BuildContext context) {
                 return MyProfiles();
               }
               )
@@ -64,7 +64,7 @@ _updateIndex(BuildContext context,int index, int selectedIndex) {
         }
         else if (index == 3) {
           Navigator.of(context).push(
-              MaterialPageRoute<Null>(builder: (BuildContext context) {
+              MaterialPageRoute(builder: (BuildContext context) {
                 return Knowledge();
               }
               )

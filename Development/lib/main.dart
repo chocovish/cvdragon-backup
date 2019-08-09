@@ -32,14 +32,8 @@ class _MyApp extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    this.get();
+    
 }
-  void get()async {
-//  efetch.DatabaseFetch().get().then((onValue){
-//       print("Done");
-//     });
-
-  }
 
   Widget build(BuildContext context) {
     // SystemChrome.setEnabledSystemUIOverlays([]); //add for hiding navand status bar

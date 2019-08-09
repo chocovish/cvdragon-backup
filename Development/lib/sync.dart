@@ -46,8 +46,7 @@ try {
       print(" response is ${res.body}");
         if(res.body=="1")
         {
-          c=0;
-          queue[i]="1";
+           queue[i]="1";
         }
         else
         {
@@ -60,7 +59,7 @@ try {
     print("Before " +queue.length.toString());
    queue.removeWhere((item) => item== "1");
    print("After " +queue.length.toString());
-   if(queue.length>0) syncMsg(context); 
+   if(queue.length>0) syncMsg(context);   
    await sfetch.writeSyncQueueList(queue);
    syncNotifier.value = false;
 

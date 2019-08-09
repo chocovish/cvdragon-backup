@@ -25,7 +25,7 @@ With more than 50 resume formats and styles of resume templates, every job seeke
 class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return Scaffold(
       appBar: TopMenuBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

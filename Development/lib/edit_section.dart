@@ -1,27 +1,26 @@
 //import 'package:cvdragonapp_v1/Sections/BasicInfo.dart' as BI;
-import 'package:cvdragonapp_v1/Sections/Contact_Details.dart' as prefix1;
+
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/maps.dart';
-import 'package:cvdragonapp_v1/vishal/CustomForm.dart' as prefix0;
 import 'package:cvdragonapp_v1/vishal/ProfileImage.dart';
 import 'package:cvdragonapp_v1/vishal/sections/ContactDetailsForm.dart';
-import 'package:cvdragonapp_v1/vishal/sections/EducationalBackgroundForm.dart';
+
 import 'package:cvdragonapp_v1/vishal/sections/PreferencesForm.dart';
 import 'package:flutter/material.dart';
 import './topmenu.dart';
 import './vishal/ProfileImage.dart';
 import './sidemenu.dart';
 import './rightpreviewpane.dart';
-import './bottombar_createsection.dart';
+
 import './create_section.dart';
-import './fetch.dart';
+
 import './edit_section2.dart';
-import 'Edit_Section_Basic_Info.dart';
+
 import './maps.dart';
 import './vishBottomBar.dart';
 import './cvwebview.dart';
 import './Edit_Section_Educational_Background.dart';
-import './vishal/CustomForm.dart';
+
 import './vishal/sections/BasicInfo.dart';
 
 String section = '';
@@ -40,12 +39,13 @@ class EditSection extends StatefulWidget {
 bool isLoading = true;
 //Map<String, dynamic> faq;
 //List keyPhrases;
-List addeddata = [];
-List databb = [];
-var db0 = ValueNotifier([]);
-List key = [];
+List addeddata ;
+List databb ;
+ValueNotifier<List> db0 = ValueNotifier(null);
+List key;
 
 class _EditSection extends State<EditSection> {
+  
   @override
   void initState() {
     super.initState();
@@ -53,37 +53,32 @@ class _EditSection extends State<EditSection> {
   }
 
   void get() async {
-    databb = [];
-    addeddata = [];
-    db0.value = [];
+    // databb = [];
+    // addeddata = [];
+    // db0.value = [];
+    
+    key = await getKeyPhrases(section);
 
-    key = [];
-    await getKeyPhrases(section).then((List k) {
-      setState(() {
-        key = k;
-      });
+    databb =  await getDatabase(section); // DataBase me jo hai vo aa rha hai
+    db0.value = databb;
+    print("DB0 IS ${db0.value}");
+
+    addeddata = await getAddedData(section);
+    db0.value +=  addeddata;
+    print("NOW DB0 IS ${db0.value}");
+
+    setState(() {
+     isLoading = false; 
     });
-
-    await getDatabase(section) // DataBase me jo hai vo aa rha hai
-        .then((List dd) {
-      setState(() {
-        databb = dd;
-        db0.value += databb;
-      });
-    });
-
-    await getAddedData(section) // Profile me jo hai voh aa rha hai
-        .then((List res) {
-      setState(() {
-        addeddata = res;
-        db0.value += addeddata;
-        isLoading = false;
-      });
-    });
-  }
-
-  void _selectedTab(int index) {
-      print(index);
+  
+    // await getAddedData(section) // Profile me jo hai voh aa rha hai
+    //     .then((List res) {
+    //   setState(() {
+    //     addeddata = res;
+    //     db0.value += addeddata;
+    //     isLoading = false;
+    //   });
+    // });
   }
 
   @override

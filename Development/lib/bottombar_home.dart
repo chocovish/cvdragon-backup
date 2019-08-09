@@ -38,15 +38,6 @@ class FABBottomAppBar extends StatefulWidget {
 
 class FABBottomAppBarState extends State<FABBottomAppBar> {
   int _selectedIndex = -1;
-  @override
-  @override
-  void initState() { 
-    super.initState();
-    print("printing from initstate");
-    
-  }
-
-  
 
   @override
   Widget build(BuildContext context) {

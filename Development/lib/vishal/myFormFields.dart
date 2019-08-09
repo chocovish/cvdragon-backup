@@ -8,7 +8,8 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart' show I
 var _labelStyle = TextStyle();
 
 Widget myTextField(String title, {int maxLines: 1, String initialValue}) {
-  if (initialValue == "null") initialValue = "";
+  print("----------------within myTextField Function..");
+  if (initialValue == "null") initialValue = null;
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: FormBuilderTextField(

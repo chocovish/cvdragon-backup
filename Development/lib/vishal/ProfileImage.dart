@@ -32,7 +32,7 @@ class _ProfileImageUploadState extends State<ProfileImageUpload> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _uploadButton(context),
+             // _uploadButton(context),
               SizedBox(
                 height: 20,
               ),

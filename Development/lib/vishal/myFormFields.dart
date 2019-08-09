@@ -6,11 +6,14 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart'
 
 var _labelStyle = TextStyle();
 
-Widget myTextField(String title, {int maxLines: 1, String initialValue}) {
+Widget myTextField(String title, {int maxLines: 1, String initialValue,validators}) {
   if (initialValue == "null") initialValue = null;
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: FormBuilderTextField(
+     
+    
+      validators: validators,
         enabled: false,
         attribute: title,
         initialValue: initialValue,

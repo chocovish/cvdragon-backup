@@ -7,7 +7,9 @@ import 'package:nice_button/nice_button.dart';
 import '../../localdatapush.dart' show updateData;
 import '../myFormFields.dart';
 import '../../edit_section.dart';
+import 'package:validators/validators.dart';
 
+GlobalKey<FormBuilderState> _formKey;
 
 class AcademicProjectsForm extends StatefulWidget {
   Map instance;
@@ -21,7 +23,7 @@ class AcademicProjectsForm extends StatefulWidget {
 
 class _AcademicProjectsFormState extends State<AcademicProjectsForm> {
   final section = "51122";
-   GlobalKey<FormBuilderState> _formKey;
+   
 
   @override
   void initState() {
@@ -38,7 +40,14 @@ class _AcademicProjectsFormState extends State<AcademicProjectsForm> {
         key: _formKey,
         child: Column(
           children: <Widget>[
-            myTextField("title",initialValue:widget.instance["title"]),
+            myTextField("title",initialValue:widget.instance["title"],validators:
+             [
+              FormBuilderValidators.requiredTrue(
+                errorText:
+                    "You must enter Title to continue",
+              ),
+            ],
+            ),
             myTextField("description",maxLines: 6,initialValue: widget.instance["description"]),
 
             // ---- Submit Button ---- //
@@ -53,6 +62,8 @@ class _AcademicProjectsFormState extends State<AcademicProjectsForm> {
               radius: 25,
               onPressed: () {
                 _formKey.currentState.save();
+                if(_formKey.currentState.validate())
+                {
                 var newdata = _formKey.currentState.value;
                 print(newdata);
                 widget.instance.isEmpty
@@ -67,6 +78,7 @@ class _AcademicProjectsFormState extends State<AcademicProjectsForm> {
                         Navigator.of(context).pop();
                         Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
                       });
+              }
               },
               elevation: 8,
             ),

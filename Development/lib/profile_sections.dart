@@ -41,6 +41,7 @@ class _ProfileSections extends State<ProfileSections> {
     cvid = await sfetch.readprofiles();
     data2 = await lfetch.getProfileSections(id, cvid);
     countoftotaldata = await lfetch.getCount(data2);
+    
     data2.forEach((element) {
       data.add(json.decode(element['section'].toString()));
     });

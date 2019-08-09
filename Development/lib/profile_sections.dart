@@ -33,7 +33,7 @@ class _ProfileSections extends State<ProfileSections> {
   List data3 = [];
 
 
-  Future get() async {
+  Future get() async {print("Get Function");
     data2 = [];
     data = [];
     data3 = [];
@@ -46,8 +46,8 @@ class _ProfileSections extends State<ProfileSections> {
       data.add(json.decode(element['section'].toString()));
     });
     data.add("Add a New Section");
-    data3 = data2;
-    for (var i in data) data3.remove(i);
+    // data3 = data2;
+    // for (var i in data) data3.remove(i);
 
     //data3.add("Add a New Section");
   }

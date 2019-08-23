@@ -37,7 +37,7 @@ class _SoftSkillsFormState extends State<SoftSkillsForm> {
         child: Column(
           children: <Widget>[
             myTextField("skill",initialValue: widget.instance["skill"]),
-            myTextField("description",maxLines: 6,initialValue: widget.instance["description"]),
+            myTextField("description",maxLines: 6,initialValue: widget.instance["description"]),  
 
            
             // ---- Submit Button ---- //

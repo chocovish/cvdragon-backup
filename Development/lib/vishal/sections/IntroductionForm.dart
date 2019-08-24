@@ -61,14 +61,14 @@ class _IntroductionFormState extends State<IntroductionForm> {
                 widget.instance.isEmpty
                     ? pushData(section, newdata).then((onValue) {
                         Navigator.of(context).pop();
-                        Navigator.of(context).pop();
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
+                        //Navigator.of(context).pop();
+                        //Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
                       })
                     : updateData(section, newdata, widget.instance)
                         .then((onValue) {
                         Navigator.of(context).pop();
-                        Navigator.of(context).pop();
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
+                        //Navigator.of(context).pop();
+                        //Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
                       });
               },
               elevation: 8,

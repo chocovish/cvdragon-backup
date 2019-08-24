@@ -75,7 +75,11 @@ class _SideMenu extends State<SideMenu> {
               ),
               otherAccountsPictures: <Widget>[
                 Icon(
-                  Icons.edit,
+                  Icons.home,
+                  color: Colors.white,
+                ),
+                Icon(
+                  Icons.notifications,
                   color: Colors.white,
                 )
               ],
@@ -121,24 +125,7 @@ class _SideMenu extends State<SideMenu> {
               },
             ),
             Divider(color: Colors.white30),
-            ListTile(
-              title: Text('Sections',
-                  style: TextStyle(color: Colors.white, fontSize: 15.0)),
-              leading: Icon(
-                Icons.edit,
-                size: MediaQuery.of(context).size.aspectRatio*55.0,
-                color: Colors.white,
-              ),
-              subtitle: Text('View your sections',
-                  style: TextStyle(color: Colors.white)),
-              trailing: Icon(Icons.arrow_forward, color: Colors.white),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Sections()));
-              },
-            ),
-            Divider(color: Colors.white30),
+           
             ListTile(
               title: Text('Designs',
                   style: TextStyle(color: Colors.white, fontSize: 15.0)),
@@ -191,6 +178,24 @@ class _SideMenu extends State<SideMenu> {
                 Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => PublicProfile()));
+              },
+            ),
+            Divider(color: Colors.white30),
+             ListTile(
+              title: Text('Reviews and Ratings',
+                  style: TextStyle(color: Colors.white, fontSize: 15.0)),
+              leading: Icon(
+                Icons.rate_review,
+                size: MediaQuery.of(context).size.aspectRatio*55.0,
+                color: Colors.white,
+              ),
+              subtitle: Text('Liked cvDragon ? Rate us !',
+                  style: TextStyle(color: Colors.white)),
+              trailing: Icon(Icons.arrow_forward, color: Colors.white),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Sections()));
               },
             ),
             Divider(color: Colors.white30),

@@ -92,7 +92,7 @@ class _CreateSection extends State<CreateSection> {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.pinkAccent,
           onPressed: () {
@@ -110,25 +110,6 @@ class _CreateSection extends State<CreateSection> {
           ),
           elevation: 0.0,
         ),
-        // bottomNavigationBar: BottomBar(),
-        appBar: TopMenuBar(),
-        drawer: SideMenu(),
-        // endDrawer: PreviewPane(),
-        // bottomNavigationBar: FABBottomAppBar(
-        //   onTabSelected: _selectedTab,
-        //   notchedShape: CircularNotchedRectangle(),
-        //   color: Colors.white30,
-        //   centerItemText: "Preview",
-        //   backgroundColor: Color(0xff232882),
-        //   selectedColor: Colors.white,
-        //   items: [
-        //     FABBottomAppBarItem(
-        //         iconData: Icons.import_contacts, text: 'Knowledge'),
-        //     FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
-        //     FABBottomAppBarItem(iconData: Icons.swap_vert, text: 'Profiles'),
-        //     FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
-        //   ],
-        // ),
         bottomNavigationBar: MybottomNav(-1) ,
         body: Container(
             decoration: BoxDecoration(
@@ -139,19 +120,31 @@ class _CreateSection extends State<CreateSection> {
                     (BuildContext context, bool innerBoxIsScrolled) {
                   return <Widget>[
                     SliverAppBar(
-                        automaticallyImplyLeading: false,
-                        backgroundColor: Colors.transparent,
-                        expandedHeight: 140.0,
+                        
+                        // automaticallyImplyLeading: false,
+                        //backgroundColor: ,
+                        expandedHeight: 160.0,
                         floating: false,
                         pinned: true,
-                        flexibleSpace: FlexibleSpaceBar(
+                        flexibleSpace: 
+                        Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0xff2727ff),
+                      Color(0xff00003b),
+                    ],
+                  ),
+                ),child: FlexibleSpaceBar(
+              
                           centerTitle: true,
                           title: Text(secName,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16.0,
                               )),
-                        )),
+                        ),
+                        ),),
                   ];
                 },
                 body: Card(

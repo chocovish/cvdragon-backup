@@ -292,7 +292,7 @@ class _ProfileSections extends State<ProfileSections> {
                                                 .toString(),
                                             style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 22,
+                                                fontSize: 20,
                                                 letterSpacing: 0.5,
                                                 fontWeight: FontWeight.bold),
                                           ),

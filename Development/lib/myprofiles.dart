@@ -4,13 +4,16 @@ import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:flutter/material.dart';
 import './Create_new_profile_Name.dart';
 import 'package:flutter/painting.dart';
+import 'package:cvdragonapp_v1/donut.dart';
 import './bottombar_home.dart';
+import 'GaugeChart.dart';
 import './topmenu.dart';
 import "./sharedfetch.dart";
 
 String id="";
 String authkey="";
 List data2;
+int filled=14,total=27;
 List data;
 int pgindex;
 bool isLoading=true;
@@ -196,11 +199,27 @@ setState(() {
             child: new Card(
         
         child: 
-       
-        Text(data[index].toString()),
+        Container(
+          margin: EdgeInsets.only(top: 20,bottom: 200,left: 20,right: 20),
+          //color: Colors.white,
+    child: Stack(children: [
+         GaugeChart.fromValue(value: 0.40, color: Colors.green),
+        Center(
+            child: Text(
+        '${(0.4*100).toInt()}%',
+        ))
+    ])),
+        // GaugeChart.fromValue(value: 0.34, color: Colors.black),
+        // SizedBox(
+        //   height: MediaQuery.of(context).size.height / 4,
+        //   width: MediaQuery.of(context).size.width,
+        //   child: DonutPieChart.withSampleData(total,filled),
+        // ),
+      
+        //Text(data[index].toString()),
         elevation: 15.0,
         margin: const EdgeInsets.all(8.0),
-        color: index % 2 == 0 ? Colors.blue : Colors.red,
+        color: Colors.white,
         
       ),
           ),

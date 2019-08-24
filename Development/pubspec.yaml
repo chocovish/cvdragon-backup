@@ -19,6 +19,7 @@ environment:
 dependencies:
   validators: 
   animated_splash: ^1.0.0
+  modern_charts: 
   flutter_circular_chart: ^0.1.0
   flutter:
     sdk: flutter

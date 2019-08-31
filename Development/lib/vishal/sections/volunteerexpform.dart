@@ -7,22 +7,23 @@ import 'package:nice_button/nice_button.dart';
 import '../../localdatapush.dart' show updateData;
 import '../myFormFields.dart';
 import '../../edit_section.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:html/dom.dart' as dom;
+import 'package:validators/validators.dart';
 
+GlobalKey<FormBuilderState> _formKey;
 
-class IntroductionForm extends StatefulWidget {
+class VolunteerExpForm  extends StatefulWidget {
   Map instance;
 
-  IntroductionForm({Map i}) : instance = i ?? {};
+
+  VolunteerExpForm({Map i}) : instance = i ?? {};
 
   @override
-  _IntroductionFormState createState() => _IntroductionFormState();
+  _VolunteerExpFormState createState() => _VolunteerExpFormState();
 }
 
-class _IntroductionFormState extends State<IntroductionForm> {
-  final section = "51103";
-   GlobalKey<FormBuilderState> _formKey;
+class _VolunteerExpFormState extends State<VolunteerExpForm> {
+  final section = "51117";
+   
 
   @override
   void initState() {
@@ -32,7 +33,6 @@ class _IntroductionFormState extends State<IntroductionForm> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.instance);
     return Container(
       color: Colors.white,
       
@@ -40,13 +40,18 @@ class _IntroductionFormState extends State<IntroductionForm> {
         key: _formKey,
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Introduction"),
+            myTextField("organization",initialValue:widget.instance["organization"],validators:
+             [
+              FormBuilderValidators.minLength(0,errorText: "Enter the title to continue")
+            ],
             ),
-            myTextField("title",initialValue: widget.instance["title"]),
-            myTextField("introduction",maxLines: 6,initialValue: widget.instance["introduction"]),
-            //Container( child: Html(data: widget.instance["introduction"],),),
+            myTextField("role",maxLines: 6,initialValue: widget.instance["role"]),
+            myTextField("cause",maxLines: 6,initialValue: widget.instance["cause"]),
+            myDateField("dateJoining",initialValue: widget.instance["dateJoining"]),
+            myDateField("dateLeaving",initialValue: widget.instance["dateLeaving"]),
+            myCheckBox("description",initialValue: widget.instance["present"]==1),
+            myTextField("contribution",maxLines: 6,initialValue: widget.instance["contribution"]),
+
             // ---- Submit Button ---- //
             NiceButton(
               text: "Save",
@@ -59,20 +64,23 @@ class _IntroductionFormState extends State<IntroductionForm> {
               radius: 25,
               onPressed: () {
                 _formKey.currentState.save();
+                if(_formKey.currentState.validate())
+                {
                 var newdata = _formKey.currentState.value;
                 print(newdata);
                 widget.instance.isEmpty
                     ? pushData(section, newdata).then((onValue) {
                         Navigator.of(context).pop();
-                        //Navigator.of(context).pop();
-                        //Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
+                        Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
                       })
                     : updateData(section, newdata, widget.instance)
                         .then((onValue) {
                         Navigator.of(context).pop();
-                        //Navigator.of(context).pop();
-                        //Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
+                        Navigator.of(context).pop();
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>EditSection(section)));
                       });
+              }
               },
               elevation: 8,
             ),

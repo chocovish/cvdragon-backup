@@ -3,6 +3,7 @@ import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:sqflite/sqflite.dart';
 import './maps.dart';
 import './datapush.dart' as server;
+import './Notifiers.dart' show syncNotifier;
 import 'package:path_provider/path_provider.dart';
 Future<List> getDatabase(String section) async {
    var add =await getApplicationDocumentsDirectory();
@@ -227,6 +228,7 @@ if(element.toString()==subSection.toString())
  String refsql="SELECT refID FROM "+tablename[section]+" WHERE "+columnName[section]+"="+subSection.toString();
 var resrefid= await db.rawQuery(refsql);
  String deletequery = await server.deleteData(resrefid[0]['refID'].toString(), section);
+syncNotifier.value = true;
  print(deletequery);
 }
 
@@ -255,6 +257,7 @@ Future<int>addintoProfile(String section,String subSection)async{
   String refsql="SELECT refID FROM "+tablename[section]+" WHERE "+columnName[section]+"="+subSection.toString();
 var resrefid= await db.rawQuery(refsql);
  String addquery = await server.addintoProfile(resrefid[0]['refID'].toString(), section);
+ syncNotifier.value = true;
  print(addquery);
 }
 

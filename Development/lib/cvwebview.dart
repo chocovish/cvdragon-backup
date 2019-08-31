@@ -88,13 +88,17 @@ class _MyWebViewState extends State<MyWebView> {
           });
   }
 
-  showDownloadMSG() {
+  showDownloadMSG(BuildContext context) {
+    Navigator.pop(context);
+    File mfile = File("/sdcard/cvdragon/cv_${DateTime.now().toIso8601String()}.pdf");
+    mfile.createSync(recursive: true);
+    finalpdf.copySync(mfile.path);
     showDialog(
         context: context,
         builder: (context) => Dialog(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Text("Download link will be sent to your email!"),
+                child: Text("File has been saved to /sdcard/cvdragon/"),
               ),
             ));
   }
@@ -150,7 +154,7 @@ class _MyWebViewState extends State<MyWebView> {
           path: snapshot.data.path,
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.arrow_downward),
-            onPressed: showDownloadMSG,
+            onPressed: ()=>showDownloadMSG(context),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
@@ -182,6 +186,8 @@ class _MyWebViewState extends State<MyWebView> {
   }
 }
 
+File finalpdf;
+
 Future<File> genPDF(String htmldata) async {
   Directory appDir = await getApplicationDocumentsDirectory();
   print(appDir.path);
@@ -208,18 +214,18 @@ Future<void> loadTemplate() async {
   //RegExp regExp = RegExp("[^0-9a-zA-Z:,\[ \\\;!-+*?&%\$\#@={}()<>\"'\^]");
   String res = template.renderString(senddata);
 
-  File mypdf = await genPDF(res);
+  finalpdf = await genPDF(res);
 
-  return mypdf;
+  return finalpdf;
 
   //print(res);
-  var uri = Uri.dataFromString(res, mimeType: "text/html").toString();
-  //print("uri is $uri");
-  webViewController.loadUrl(
-    Uri.dataFromString(res,
-            mimeType: "text/html", encoding: Latin1Codec(), base64: true)
-        .toString(),
-  );
+  // var uri = Uri.dataFromString(res, mimeType: "text/html").toString();
+  // print("uri is $uri");
+  // webViewController.loadUrl(
+  //   Uri.dataFromString(res,
+  //           mimeType: "text/html", encoding: Latin1Codec(), base64: true)
+  //       .toString(),
+  // );
 }
 
 //...............Helper function... To be moved to another file....

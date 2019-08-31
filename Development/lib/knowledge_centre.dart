@@ -50,7 +50,7 @@ class _Knowledge extends State<Knowledge> {
         style: TextStyle(fontSize: 40.0),
       )),
 
-      bottomNavigationBar: MybottomNav(0, "Favourite"),
+      bottomNavigationBar: MybottomNav(3, "Favourite"),
 
       // bottomNavigationBar: FABBottomAppBar(
       //   onTabSelected: _selectedTab,

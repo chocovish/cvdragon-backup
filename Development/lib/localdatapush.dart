@@ -40,7 +40,7 @@ Future<int> pushData(String section, Map<String, dynamic> createddata) async {
   print(createddata);
   contents.addAll(createddata);
 
-  await db.insert(tablename[section], contents);
+  await db.                                 insert(tablename[section], contents);
   await db.rawUpdate(
       "UPDATE `create-cvsection` SET contentAdded = contentAdded+1, status=1 WHERE id=" +
           id +
@@ -98,7 +98,6 @@ Future<int> updateData(String section, Map<String, dynamic> newdata,
   String serverupdate =
       await server.editData(data['refID'].toString(), section, newdata);
   print(serverupdate);
-
   syncNotifier.value = true;
   return 1;
 }

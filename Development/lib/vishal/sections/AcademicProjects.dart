@@ -42,10 +42,7 @@ class _AcademicProjectsFormState extends State<AcademicProjectsForm> {
           children: <Widget>[
             myTextField("title",initialValue:widget.instance["title"],validators:
              [
-              FormBuilderValidators.requiredTrue(
-                errorText:
-                    "You must enter Title to continue",
-              ),
+              FormBuilderValidators.minLength(0,errorText: "Enter the title to continue")
             ],
             ),
             myTextField("description",maxLines: 6,initialValue: widget.instance["description"]),

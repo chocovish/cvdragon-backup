@@ -11,8 +11,6 @@ Widget myTextField(String title, {int maxLines: 1, String initialValue,validator
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: FormBuilderTextField(
-     
-    
       validators: validators,
         enabled: false,
         attribute: title,

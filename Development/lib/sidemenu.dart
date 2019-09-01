@@ -1,3 +1,4 @@
+import 'package:cvdragonapp_v1/home.dart';
 import 'package:flutter/material.dart';
 import './myprofiles.dart';
 import './coverletters.dart';
@@ -74,14 +75,21 @@ class _SideMenu extends State<SideMenu> {
                 backgroundColor: Colors.white,
               ),
               otherAccountsPictures: <Widget>[
-                Icon(
-                  Icons.home,
+                IconButton(
+                 
+                  icon: Icon(Icons.home),
                   color: Colors.white,
+                  onPressed:(){
+
+                  Navigator.of(context).popUntil((Route route){
+                   //  Navigator.pop(context);
+            return route.isFirst;
+          });},
                 ),
                 Icon(
                   Icons.notifications,
                   color: Colors.white,
-                )
+                ),
               ],
             )),
             Divider(color: Colors.white30),
@@ -193,9 +201,7 @@ class _SideMenu extends State<SideMenu> {
                   style: TextStyle(color: Colors.white)),
               trailing: Icon(Icons.arrow_forward, color: Colors.white),
               onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Sections()));
+               
               },
             ),
             Divider(color: Colors.white30),

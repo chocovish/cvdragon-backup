@@ -33,7 +33,7 @@ class _AddNewSection extends State<AddNewSection> {
   @override
   initState() {
     super.initState();
-    //get();
+    get();
     controller = new PageController(
       initialPage: currentpage,
       keepPage: false,
@@ -41,33 +41,31 @@ class _AddNewSection extends State<AddNewSection> {
     );
   
   }
-//   void get()async{
-// datatobesent={};
-//    data=await lfetch.getSections();
-//   //  data2.forEach((element){
-//   //   data.add({'sections':element['sections'].toString(),});
-//   //   });
-//   // data.add({"Add Profile":"1"});
+  List d3=[];
+  void get()async{
+  datatobesent={};
+ List  data2=await lfetch.getSections();
+ print("data="+data.toString());
+ print("data2="+data2.toString());
+  // List d4=[];
+  
+  // List d5=[];
+  // data2.forEach((e){
+  //   d5.add(e['section'].toString());
 
-//         for(var element in data)
-//         {
-//           String it=element['section'].toString();
-//           if(it!="51100"&&it!="51101"&&it!="51102"&&it!="51103"&&it!="51109")
-//          {
-//           items.add(json.decode(it));
-//           List d1= await lfetch.getDefaultSection(it);
-//           totaldata[element['section'].toString()]=d1;
-          
-//         }
-//         }
-//          items.add("q");
-       
-//        setState(() {
-//          totaldata={};  
-//         _isLoading = false;
-//        });
+  // });
+  
+  // for (var element in d5){
+  //   if (d4.contains(element)==false){
+  //     d3.add(element);
+  //   }
+  // }
+       setState(() {
+         totaldata={};  
+        _isLoading = false;
+       });
         
-//   }
+  }
   @override
   dispose() {
     controller.dispose();
@@ -161,7 +159,7 @@ class _AddNewSection extends State<AddNewSection> {
                  height: MediaQuery.of(context).size.height/3,
           child: new PageView.builder(
             
-            itemCount: data.length,
+            itemCount: d3.length,
               onPageChanged: (value) {
                 setState(() {
                   currentpage = value;
@@ -185,9 +183,9 @@ class _AddNewSection extends State<AddNewSection> {
       animation: controller,
       builder: (context, child) {
         double value = 0.9;
-         var item = data[index].toString();
+         var item = d3[index].toString();
 
-         if(data[index]=='Add a New Section'){
+         if(d3[index]=='Add a New Section'){
            return new Center(
             child: new SizedBox(
               height: MediaQuery.of(context).size.height / 4,
@@ -250,7 +248,7 @@ class _AddNewSection extends State<AddNewSection> {
                   // Removes that item the list on swipwe
                   setState(() {
                
-                 data.removeAt(index);
+                 d3.removeAt(index);
                  
                   });
                   // Shows the information on Snackbar
@@ -262,8 +260,8 @@ class _AddNewSection extends State<AddNewSection> {
             var secid ="";
                   // Removes that item the list on swipwe
                   setState(()  {
-                    secid=data[index].toString();
-                 data.removeAt(index);
+                    secid=d3[index].toString();
+                 d3.removeAt(index);
                    
                   });
                   Scaffold.of(context)
@@ -303,7 +301,9 @@ class _AddNewSection extends State<AddNewSection> {
                 ),
         child: Align(
           alignment: Alignment.center,
-          child: Text(data[index].toString(),style: TextStyle(fontSize: 25,color:Colors.white, fontWeight:FontWeight.bold),)),
+          child: Text( Sections[
+                                                    d3[index].toString()]
+                                                .toString(),style: TextStyle(fontSize: 25,color:Colors.white, fontWeight:FontWeight.bold),)),
         //elevation: 15.0,
         margin: const EdgeInsets.all(8.0),
         

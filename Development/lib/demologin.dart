@@ -380,11 +380,13 @@ class _DemoLogin extends State<DemoLogin> {
         );
       },
       child: new Card(
-        child: Text("Card"),
-        // child: Container(decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/resumeDesignsLarge/1.jpg"))),),
+        //child: Text("Card"),
+        child: Container(decoration: BoxDecoration(image: DecorationImage(image: 
+        AssetImage("assets/cv"+index.toString()+".jpg"),fit: BoxFit.cover)
+        ),),
         elevation: 15.0,
         margin: const EdgeInsets.all(8.0),
-        color: index % 2 == 0 ? Colors.blue : Colors.red,
+        //color: index % 2 == 0 ? Colors.blue : Colors.red,
       ),
     );
   }

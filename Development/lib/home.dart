@@ -242,6 +242,29 @@ Widget _buildCardView(BuildContext context) {
       Card(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+             ListTile(
+              leading: Icon(
+                Icons.add_to_home_screen,
+                size: 30.0,
+                color: Color(0xff232882),
+              ),
+              title: Text(
+              "You have an active subscription: Dummy",
+                style: TextStyle(
+                    color: Color(0xff232882),
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+          ],
+        ),
+      ),
+      Card(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: SizedBox(
           height: MediaQuery.of(context).size.height / 3,
           width: MediaQuery.of(context).size.width,

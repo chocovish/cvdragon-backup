@@ -6,7 +6,7 @@ import 'package:flutter/painting.dart';
 import 'package:http/http.dart'as http;
 import 'dart:convert';
 import './sharedfetch.dart';
-import './vishal/myFormFields.dart';
+// import './vishal/myFormFields.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter/cupertino.dart';
 int typelogin;
@@ -22,16 +22,16 @@ class FirstTimeWizard extends StatefulWidget {
   socialid=details;
  }
  State<StatefulWidget> createState() {
-   // TODO: implement createState
+   
    return _FirstTimeWizard();
  }
 }
 final _selectedVal = ValueNotifier("None Selected");
 class _FirstTimeWizard extends State<FirstTimeWizard> {
- var nameController = TextEditingController();
- var emailController = TextEditingController();
-  var phonecodeController = TextEditingController();
- var phoneController = TextEditingController(text: mobile);
+ var nameController = TextEditingController(text: " ");
+ var emailController = TextEditingController(text:  " ");
+  var phonecodeController = TextEditingController(text: " ");
+ var phoneController = TextEditingController(text: " ");
  var category;
 
  @override

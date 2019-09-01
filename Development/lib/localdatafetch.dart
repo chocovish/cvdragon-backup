@@ -101,10 +101,10 @@ var db=  await openDatabase(add.path+'/sections.db', version: 3);
 Future<int> getTotalSections(String id) async {
    var add =await getApplicationDocumentsDirectory();
    var cvid=await readprofiles();
-var db=  await openDatabase(add.path+'/sections.db', version: 3);
+   var db=  await openDatabase(add.path+'/sections.db', version: 3);
    
    List response=await db.rawQuery("SELECT * FROM `create-cvprofilesection` WHERE id="+id+" AND cvid="+cvid+" AND status=1");
-    return response.length; 
+   return response.length; 
 }
 
 Future<int> getFilledSections(String id) async {
@@ -114,12 +114,12 @@ Future<int> getFilledSections(String id) async {
    List sec=await getProfileSections(id, cvid);
    var count=await getCount(sec);
    print(count.toString());
-var db=  await openDatabase(add.path+'/sections.db', version: 3);
-  for(var element in sec){
+   var db=  await openDatabase(add.path+'/sections.db', version: 3);
+   for(var element in sec){
      if(element['section'].toString()=="51100"||element['section'].toString()=="51101"||element['section'].toString()=="51102"||element['section'].toString()=="51103"||element['section'].toString()=="51109")
       {
            List response=await db.rawQuery("SELECT contentStatus FROM `create-cvsection` WHERE id="+id+" AND status=1 AND section="+element['section'].toString());
-print(response[0]['contentStatus'].toString());
+          print(response[0]['contentStatus'].toString());
     if(response[0]['contentStatus'].toString()=="1")
     {
       
@@ -201,7 +201,7 @@ var db=  await openDatabase(add.path+'/sections.db', version: 3);
 }
 
 
-Future<int>deleteFromProfile(String section,String subSection)async{
+Future<void>deleteFromProfile(String section,String subSection)async{
    var add =await getApplicationDocumentsDirectory();
  var db=await openDatabase(add.path+"/sections.db", version: 1);
  var cvid=await readprofiles();
@@ -232,7 +232,7 @@ syncNotifier.value = true;
  print(deletequery);
 }
 
-Future<int>addintoProfile(String section,String subSection)async{
+Future<void>addintoProfile(String section,String subSection)async{
    var add =await getApplicationDocumentsDirectory();
  var db=await openDatabase(add.path+"/sections.db", version: 1);
  var cvid=await readprofiles();

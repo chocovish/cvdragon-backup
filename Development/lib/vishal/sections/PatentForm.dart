@@ -29,7 +29,9 @@ class _PatentFormState extends State<PatentForm> {
 
   @override
   Widget build(BuildContext context) {
+    print("In patent form");
     print(widget.instance);
+    //return Container(child:Text("hello World"));
     return Container(
       color: Colors.white,
       child: FormBuilder(
@@ -49,6 +51,7 @@ class _PatentFormState extends State<PatentForm> {
               myDateField("patentDate",
                 initialValue: widget.instance["patentDate"]),
             ],),
+            
 
             myTextField("description",maxLines: 6,initialValue: widget.instance["description"]),
             // ---- Submit Button ---- //

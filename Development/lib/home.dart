@@ -50,22 +50,28 @@ class _HomePagee extends State<HomePagee> {
 
   void get() async{
   
-    total=14;
-    filled=27;
+    total=0;
+    filled=0;
     int val=await efetch.get();
       if(val==1){
          id=await readid();
           authkey=await readauthKey();
         name=await readname();
         selectedprofile=await readprofiles();
-        //total=await getTotalSections(id);
-        //filled=await getFilledSections(id);
+        
         
         if(selectedprofile!=" ")
+        profileselected=true;
+        if(profileselected==true)
         {
+          total=await getTotalSections(id);
+        filled=await getFilledSections(id);
         print("total is"+total.toString());
         print("filled is"+filled.toString());
-          profileselected=true;
+        }
+        else{
+          total=1;
+          filled=1;
         }
 
         print("selected profile id is "+selectedprofile);
@@ -268,7 +274,7 @@ Widget _buildCardView(BuildContext context) {
         child: SizedBox(
           height: MediaQuery.of(context).size.height / 3,
           width: MediaQuery.of(context).size.width,
-          child: DonutPieChart.withSampleData(total,filled),
+          child: DonutPieChart.withSampleData(filled,total),
         ),
       ),
     ],

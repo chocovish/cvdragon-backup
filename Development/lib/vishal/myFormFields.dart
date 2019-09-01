@@ -91,31 +91,33 @@ myDateField(String title,{String initialValue}) {
     formField: FormField(
       enabled: true,
       builder: (FormFieldState<dynamic> field) {
-        return InputDecorator(
-          decoration: InputDecoration(
-            labelText: "Select Date",
-            contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
-            border: null,
-          ),
-          child: StatefulBuilder(
-            builder: (context, setState) => InkWell(
-              child: Container(
-                padding: EdgeInsets.all(8),
-                  height: 40, alignment: Alignment.center, child: Text(date)),
-              onTap: () async {
-                DateTime dateTime = await showDatePicker(
-                  context: context,
-                  firstDate: DateTime(1),
-                  initialDate: DateTime.now(),
-                  lastDate: DateTime(2100),
-                );
-                print(dateTime);
-                setState(() {
-                  if(dateTime!=null) date = dateTime.toString().split(" ")[0];
-                });
-                print(date);
-                field.didChange(date);
-              },
+        return Flexible(
+                  child: InputDecorator(
+            decoration: InputDecoration(
+              labelText: "Select Date",
+              contentPadding: EdgeInsets.only(top: 10.0, bottom: 0.0),
+              border: null,
+            ),
+            child: StatefulBuilder(
+              builder: (context, setState) => InkWell(
+                child: Container(
+                  padding: EdgeInsets.all(8),
+                    height: 40, alignment: Alignment.center, child: Text(date)),
+                onTap: () async {
+                  DateTime dateTime = await showDatePicker(
+                    context: context,
+                    firstDate: DateTime(1),
+                    initialDate: DateTime.now(),
+                    lastDate: DateTime(2100),
+                  );
+                  print(dateTime);
+                  setState(() {
+                    if(dateTime!=null) date = dateTime.toString().split(" ")[0];
+                  });
+                  print(date);
+                  field.didChange(date);
+                },
+              ),
             ),
           ),
         );

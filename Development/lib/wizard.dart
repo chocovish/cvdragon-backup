@@ -211,6 +211,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                     padding: EdgeInsets.symmetric(horizontal: 18),
                     child:
                      FormBuilderSegmentedControl(
+                       initialValue: "Fresher",
                        onChanged: (s){
                          category = s;
                          print (category);

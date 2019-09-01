@@ -29,6 +29,7 @@ class _PatentFormState extends State<PatentForm> {
 
   @override
   Widget build(BuildContext context) {
+    print("In patent form");
     print(widget.instance);
     return Container(
       color: Colors.white,

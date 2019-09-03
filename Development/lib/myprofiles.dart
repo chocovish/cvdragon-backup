@@ -200,15 +200,9 @@ setState(() {
         
         child: 
         Container(
-          margin: EdgeInsets.only(top: 20,bottom: 200,left: 20,right: 20),
+          margin: EdgeInsets.only(top: 20,bottom: 20,left: 20,right: 20),
           //color: Colors.white,
-    child: Stack(children: [
-         GaugeChart.fromValue(value: 0.40, color: Colors.green),
-        Center(
-            child: Text(
-        '${(0.4*100).toInt()}%',
-        ))
-    ])),
+    child: Center(child: Text(data[index]['profileName'].toString(),style: TextStyle(fontSize: 25),)),),
         // GaugeChart.fromValue(value: 0.34, color: Colors.black),
         // SizedBox(
         //   height: MediaQuery.of(context).size.height / 4,

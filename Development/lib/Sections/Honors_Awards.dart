@@ -154,12 +154,13 @@ update(BuildContext context,String t, String y, String o, String d, Map<String, 
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                              CustomDialogDatabase("Database",data, databb3,section
-                                                ),
-                                          );
+                                          // showDialog(
+                                          //   context: context,
+                                          //   builder: (BuildContext context) =>
+                                          //     CustomDialogDatabase("Database",data, databb3,section
+                                          //       ),
+                                          // );
+                                          Navigator.pop(context);
                                         },
                                         child: Container(
                                           height:

@@ -21,7 +21,14 @@ Future<void> logout(BuildContext context) async {
  db.close();
  await deleteDatabase(appDocDir.path.toString()+"/sections.db");
       print(appDocDir.listSync().toString());
-  appDocDir.deleteSync(recursive: true);
+  try
+  {
+    appDocDir.deleteSync(recursive: true);
+  }
+  catch(e)
+  {
+    print("ignore the error");
+  }
  // print(appDocDir.listSync().toString());
   print("deleted");
   var route = MaterialPageRoute(builder: (context)=>DemoLogin());

@@ -216,7 +216,7 @@ class _SideMenu extends State<SideMenu> {
                         IconButton(
                           padding: EdgeInsets.only(bottom: 15.0),
                           onPressed: () {
-                            Navigator.push(context,MaterialPageRoute(builder: (context) => (Pimage())));
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => (About())));
                           },
                           icon: Icon(
                             Icons.info,

@@ -224,12 +224,13 @@ class _CreateSection extends State<CreateSection> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) =>
-                                          CustomDialogDatabase("Database", data,
-                                              databb1, section),
-                                    );
+                                    Navigator.pop(context);
+                                    // showDialog(
+                                    //   context: context,
+                                    //   builder: (BuildContext context) =>
+                                    //       CustomDialogDatabase("Database", data,
+                                    //           databb1, section),
+                                    // );
                                   },
                                   child: Container(
                                     height:

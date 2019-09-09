@@ -88,12 +88,13 @@ class CoCurricularActivity extends StatelessWidget {
                                     children: <Widget>[
                                       InkWell(
                                         onTap: () {
-                                          showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) =>
-                                                CustomDialogDatabase("Database",data, databb3,section
-                                                ),
-                                          );
+                                          // showDialog(
+                                          //   context: context,
+                                          //   builder: (BuildContext context) =>
+                                          //       CustomDialogDatabase("Database",data, databb3,section
+                                          //       ),
+                                          // );
+                                          Navigator.pop(context);
                                         },
                                         child: Container(
                                           height:

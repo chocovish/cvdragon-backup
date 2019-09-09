@@ -59,12 +59,12 @@ class _ProfileSections extends State<ProfileSections> {
   Widget build(BuildContext context) {
     return Scaffold(
       //floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add_circle),
-        backgroundColor: Colors.green,
-        //label: Text("Add Profile"),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   child: Icon(Icons.add_circle),
+      //   backgroundColor: Colors.green,
+      //   //label: Text("Add Profile"),
+      // ),
       appBar: TopMenuBar(),
       // bottomNavigationBar: BottomBar(),
       drawer: SideMenu(),

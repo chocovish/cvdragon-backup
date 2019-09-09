@@ -5,6 +5,7 @@ import 'package:cvdragonapp_v1/donut.dart';
 import 'package:cvdragonapp_v1/institute.dart';
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart';
+import 'package:cvdragonapp_v1/myprofiles.dart';
 import 'package:cvdragonapp_v1/rightpreviewpane.dart';
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:cvdragonapp_v1/vishBottomBar.dart';
@@ -26,7 +27,7 @@ var authkey = '';
 var selectedprofile='';
 List profiles;
 int filled=14,total=27;
-
+String pname="";
 
 class HomePagee extends StatefulWidget {
   @override
@@ -58,24 +59,31 @@ class _HomePagee extends State<HomePagee> {
           authkey=await readauthKey();
         name=await readname();
         selectedprofile=await readprofiles();
-        
+         profiles=await fetch.getcvProfiles(id, authkey);
         
         if(selectedprofile!=" ")
         profileselected=true;
         if(profileselected==true)
         {
+          for(var element in profiles){
+            if(element['cvid'].toString()==selectedprofile){
+              pname=element['profileName'].toString();
+            }
+          }
           total=await getTotalSections(id);
         filled=await getFilledSections(id);
         print("total is"+total.toString());
         print("filled is"+filled.toString());
         }
         else{
+          
           total=1;
           filled=1;
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> MyProfiles()));
         }
 
         print("selected profile id is "+selectedprofile);
-       profiles=await fetch.getcvProfiles(id, authkey);
+      
         print(name);
         setState(() {
         print(val);
@@ -85,66 +93,66 @@ class _HomePagee extends State<HomePagee> {
   }
 
   
-Widget dialogContent(BuildContext context,write,setState)
-{
-  return Center(
-    child: Container(
-      height: MediaQuery.of(context).size.height/3,
-      child: Dialog( 
-        child: Container(padding: EdgeInsets.only(bottom:10),
-                  child: Column(
-                                      children: <Widget>[Container(
-                                        height: MediaQuery.of(context).size.height/6,
-                                                                              child: ListView.builder(
-            physics: BouncingScrollPhysics(),
-            itemCount: profiles == null ? 0 : profiles.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Container(
-                              decoration: BoxDecoration(border: new Border.all(color: Colors.black),),
-                              child: InkWell(
+// Widget dialogContent(BuildContext context,write,setState)
+// {
+//   return Center(
+//     child: Container(
+//       height: MediaQuery.of(context).size.height/3,
+//       child: Dialog( 
+//         child: Container(padding: EdgeInsets.only(bottom:10),
+//                   child: Column(
+//                                       children: <Widget>[Container(
+//                                         height: MediaQuery.of(context).size.height/6,
+//                                                                               child: ListView.builder(
+//             physics: BouncingScrollPhysics(),
+//             itemCount: profiles == null ? 0 : profiles.length,
+//                         itemBuilder: (BuildContext context, int index) {
+//                           return Container(
+//                               decoration: BoxDecoration(border: new Border.all(color: Colors.black),),
+//                               child: InkWell(
                                
-                                onTap: ()async{
-                                 // print(profiles[index]['cvid'].toString());
-                                  await write(profiles[index]['cvid'].toString());
-                                   setState((){
-                                     print("done");
+//                                 onTap: ()async{
+//                                  // print(profiles[index]['cvid'].toString());
+//                                   await write(profiles[index]['cvid'].toString());
+//                                    setState((){
+//                                      print("done");
                                          
-                                     profileselected=true;
-                                   });
-                                },
-                                child: Text(
-                                 profiles[index]['profileName'],
-                                  style: TextStyle(
-                                    fontFamily: "cvFonts",
-                                        color: Colors.black,
-                                        fontSize: 15.0,
-                                        fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            );
-                        },
+//                                      profileselected=true;
+//                                    });
+//                                 },
+//                                 child: Text(
+//                                  profiles[index]['profileName'],
+//                                   style: TextStyle(
+//                                     fontFamily: "cvFonts",
+//                                         color: Colors.black,
+//                                         fontSize: 15.0,
+//                                         fontWeight: FontWeight.bold),
+//                                 ),
+//                               ),
+//                             );
+//                         },
                       
-          ),
-                                      ),
+//           ),
+//                                       ),
 
-                                       Align(alignment: Alignment.bottomCenter,
-                          child: OutlineButton(splashColor: Colors.blue,
-                            onPressed: (){
-                               Navigator.of(context).push(
-              MaterialPageRoute<Null>(builder: (BuildContext context) {
-                return CardProfilesName();
-              }
-              )
-          );
-                            },
-                            child: Text("Add New Profile"),color: Colors.blue),)
-                                      ],
-                  ),
-        ),
-      ),
-    ),
-  );
-}
+//                                        Align(alignment: Alignment.bottomCenter,
+//                           child: OutlineButton(splashColor: Colors.blue,
+//                             onPressed: (){
+//                                Navigator.of(context).push(
+//               MaterialPageRoute<Null>(builder: (BuildContext context) {
+//                 return CardProfilesName();
+//               }
+//               )
+//           );
+//                             },
+//                             child: Text("Add New Profile"),color: Colors.blue),)
+//                                       ],
+//                   ),
+//         ),
+//       ),
+//     ),
+//   );
+// }
   @override
   Widget build(BuildContext context) {
     return isLoading
@@ -184,9 +192,8 @@ Widget dialogContent(BuildContext context,write,setState)
             //bottomNavigationBar: BottomBar(),
             drawer: SideMenu(),
             endDrawer: PreviewPane(),
-            body: profileselected?
-            _buildCardView(context):
-            dialogContent(context, write,setState),
+            body: _buildCardView(context),
+            
             // bottomNavigationBar: FABBottomAppBar(
             //   selectedPage: 3,
             //   onTabSelected: _selectedTab,
@@ -268,14 +275,32 @@ Widget _buildCardView(BuildContext context) {
           ],
         ),
       ),
-      Card(
+       Card(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height / 3,
-          width: MediaQuery.of(context).size.width,
-          child: DonutPieChart.withSampleData(filled,total),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+             ListTile(
+              leading: Icon(
+                Icons.add_to_home_screen,
+                size: 30.0,
+                color: Color(0xff232882),
+              ),
+              title: Text(
+              "Selected profile - "+pname,
+                style: TextStyle(
+                    color: Color(0xff232882),
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+          ],
         ),
+      ),
+      Container(
+        
+        child: Donut(filled, total),
       ),
     ],
   ));

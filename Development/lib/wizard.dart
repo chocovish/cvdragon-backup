@@ -1,5 +1,6 @@
 import 'package:cvdragonapp_v1/demologin.dart';
 import 'package:cvdragonapp_v1/home.dart';
+import 'package:cvdragonapp_v1/otppage.dart';
 import 'package:flutter/material.dart';
 import './urlgenerator.dart'as urlgenerator;
 import 'package:flutter/painting.dart';
@@ -28,10 +29,10 @@ class FirstTimeWizard extends StatefulWidget {
 }
 final _selectedVal = ValueNotifier("None Selected");
 class _FirstTimeWizard extends State<FirstTimeWizard> {
- var nameController = TextEditingController(text: " ");
- var emailController = TextEditingController(text:  " ");
-  var phonecodeController = TextEditingController(text: " ");
- var phoneController = TextEditingController(text: " ");
+ var nameController = TextEditingController(text: "");
+ var emailController = TextEditingController(text:  "");
+ var phonecodeController = TextEditingController(text: "");
+ var phoneController = TextEditingController(text: typeoflogin==1?mobile:"");
  var category;
 
  @override
@@ -45,18 +46,18 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height/3,
+                height: MediaQuery.of(context).size.height/5,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFFf45d27),
-                      Color(0xFFf5851f)
+                     Colors.pinkAccent,
+                     Colors.purple
                     ],
                   ),
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(90)
+                    bottomLeft: Radius.circular(40)
                   )
                 ),
                 child: Column(
@@ -70,7 +71,9 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                         color: Colors.white,
                       ),
                     ),
-                    Spacer(),
+                    //Spacer(),
+                    Text("Register Here" ,style: TextStyle(color: Colors.white,fontSize: 20),),
+                    Spacer()
 
                     // Align(
                     //   alignment: Alignment.bottomRight,
@@ -120,7 +123,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           icon: Icon(Icons.person_outline,
-                              color: Colors.grey,
+                              color: Colors.pinkAccent,
                           ),
                             hintText: 'Name',
                         ),
@@ -151,7 +154,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           icon: Icon(Icons.email,
-                              color: Colors.grey,
+                              color: Colors.pinkAccent,
                           ),
                             hintText: 'Email',
                         ),
@@ -188,14 +191,16 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 icon: Icon(Icons.phone,
-                                  color: Colors.grey,
+                                  color: Colors.pink,
                                 ),
                                 hintText: '91',
                               ),
                             ),
                           ),
                           Flexible(
-                                                      child: TextField(
+                            
+                            child: TextField(
+                              enabled: typeoflogin==1?false:true,
                               controller: phoneController,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -211,6 +216,9 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                     padding: EdgeInsets.symmetric(horizontal: 18),
                     child:
                      FormBuilderSegmentedControl(
+                       borderColor: Colors.transparent,
+                       pressedColor: Colors.purple,
+                       selectedColor: Colors.purple,
                        initialValue: "Fresher",
                        onChanged: (s){
                          category = s;
@@ -232,8 +240,15 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                     InkWell(
                       onTap: ()
                         async{
-                  String url=urlgenerator.usercreate(nameController.text, emailController.text, phonecodeController.text, phoneController.text, typelogin.toString(), socialid, category);
-                  //print(url);
+                          var cat=0;
+                          if(category=="Basic")
+                          cat=1;
+                          if(category=="Fresher")
+                          cat=2;
+                          if(category=="Experience")
+                          cat=3;
+                  String url=urlgenerator.usercreate(nameController.text, emailController.text, phonecodeController.text, phoneController.text, typelogin.toString(), socialid, cat.toString());
+                  print(url);
                    http.Response res=await http.get(url);
                      print(res.body.toString());
                    List data=json.decode(res.body);
@@ -255,8 +270,8 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
-                              Color(0xFFf45d27),
-                              Color(0xFFf5851f)
+                             Colors.pinkAccent,
+                             Colors.purple
                             ],
                           ),
                           borderRadius: BorderRadius.all(
@@ -274,7 +289,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                       ),
                     ),
                      Padding(padding: EdgeInsets.only(bottom: 15),),
-                    InkWell(
+                  GestureDetector(
                       onTap: (){
                          Navigator.push(
                          context,

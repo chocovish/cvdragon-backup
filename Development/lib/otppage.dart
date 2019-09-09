@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cvdragonapp_v1/form_card.dart';
 import 'package:cvdragonapp_v1/home.dart';
 import 'package:cvdragonapp_v1/sharedfetch.dart';
@@ -28,7 +29,7 @@ class OtpPage extends StatefulWidget {
     return _OtpPage();
   }
 }
-
+final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 class _OtpPage extends State<OtpPage> {
   final myController2 = TextEditingController();
   bool _isLoading = true;
@@ -46,6 +47,7 @@ class _OtpPage extends State<OtpPage> {
     if (typeoflogin == 1) {
       fetch.getOtp(mobileno).then((List res) {
         setState(() {
+          print(res.toString());
           data = res;
           _isLoading = false;
         });
@@ -59,6 +61,7 @@ class _OtpPage extends State<OtpPage> {
   }
 
   verify() async {
+
     print(typeoflogin);
     if (typeoflogin == 1) {
       if (otp == data[1]['OTP'].toString()) {
@@ -81,7 +84,12 @@ class _OtpPage extends State<OtpPage> {
               context, MaterialPageRoute(builder: (context) => HomePagee()),(r)=>false); 
         }
       } else
-        print("Wrong otp");
+      {
+         _scaffoldKey.currentState.showSnackBar(new SnackBar(content: new Text("Wrong Otp")
+         ,action: SnackBarAction(label: "Try Again",onPressed: (){},),));
+          print("wrong otp");
+      }
+        
     } else {
       print(socialid);
       var data = await fetch.getverifyUserSocial(socialid);
@@ -104,32 +112,53 @@ class _OtpPage extends State<OtpPage> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: _isLoading
-            ? DecoratedBox(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/cover.png"),
-                        fit: BoxFit.fill)),
-                child: Center(
-                    child: Image(
-                        image: AssetImage("assets/logocv.gif"),
-                        height: MediaQuery.of(context).size.height / 12,
-                        width: MediaQuery.of(context).size.width / 6)),
-              )
-            : Container(
-                color: Colors.purple,
-                alignment: Alignment.center,
-                child: CodeInput(
-                  length: 4,
-                  keyboardType: TextInputType.number,
-                  builder: CodeInputBuilders.lightCircle(),
-                  onFilled: (String val) {
-                    otp = val;
-                    verify();
-                  },
+    return Container(
+        decoration: BoxDecoration(image:  DecorationImage(image: AssetImage('assets/otppage.png'),fit: BoxFit.cover)),
+      child: Scaffold(
+        key: _scaffoldKey,
+        backgroundColor: Colors.transparent,
+          body: _isLoading
+              ? DecoratedBox(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/cover.png"),
+                          fit: BoxFit.fill)),
+                  child: Center(
+                      child: Image(
+                          image: AssetImage("assets/logocv.gif"),
+                          height: MediaQuery.of(context).size.height / 12,
+                          width: MediaQuery.of(context).size.width / 6)),
+                )
+              : Container(
+                  //color: Colors.purple,
+                  alignment: Alignment.center,
+                  child: Center(
+                 
+                       child
+                       : Container(
+                          padding: EdgeInsets.only(top:MediaQuery.of(context).size.height/2.2),
+                         child: Column(
+                           children: <Widget>[
+                             Text("Enter OTP",style: TextStyle(color: Colors.white,fontSize: 20),),
+                           //  AutoSizeText("Enter OTP",style: TextStyle(color: Colors.white),),
+                             Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height/40),),
+                             CodeInput(
+                                length: 4,
+                                keyboardType: TextInputType.number,
+                                builder: CodeInputBuilders.lightCircle(),
+                                onFilled: (String val) {
+                                  otp = val;
+                                  verify();
+                                },
+                              ),
+                           ],
+                         ),
+                       ),
+                
+                  ),
+                )
                 ),
-              ));
+    );
   }
 
   void initState() {

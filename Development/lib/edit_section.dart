@@ -61,11 +61,12 @@ class _EditSection extends State<EditSection> {
     key = await getKeyPhrases(section);
 
     databb =  await getDatabase(section); // DataBase me jo hai vo aa rha hai
-    db0.value = databb;
+    
     print("DB0 IS ${db0.value}");
 
     addeddata = await getAddedData(section);
-    db0.value +=  addeddata;
+    db0.value =  addeddata;
+  db0.value+=databb;
     print("NOW DB0 IS ${db0.value}");
 
     setState(() {
@@ -337,7 +338,7 @@ Widget _buildCardView(BuildContext context) {
                                                   .toString());
                                           addeddata.remove(db0.value[index]);
                                           databb.add(db0.value[index]);
-                                          db0.value = databb + addeddata;
+                                          db0.value = addeddata+databb;
                                         },
                                         // onTap: deletefromprofile,
                                         child: Icon(Icons.delete,
@@ -359,7 +360,7 @@ Widget _buildCardView(BuildContext context) {
                                                 .toString());
                                         databb.remove(db0.value[index]);
                                         addeddata.add(db0.value[index]);
-                                        db0.value = databb + addeddata;
+                                        db0.value =  addeddata+databb;
                                       },
                                       child: Row(
                                         mainAxisAlignment:

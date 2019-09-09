@@ -1,3 +1,4 @@
+import 'package:cvdragonapp_v1/home.dart';
 import 'package:cvdragonapp_v1/vishBottomBar.dart';
 import './localdatafetch.dart' as lfetch;
 import 'package:cvdragonapp_v1/sharedfetch.dart';
@@ -69,6 +70,7 @@ setState(() {
       ));
       writeprofile(sd["cvid"]).then((_){
         showDialog(context: context,builder: (_)=>dlg);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePagee()));
       });
     }
 

@@ -1,11 +1,8 @@
 import 'package:cvdragonapp_v1/Configure_your_Profile.dart';
 import 'package:cvdragonapp_v1/CustomDialogNewProfile.dart';
-import 'package:cvdragonapp_v1/home.dart';
-import './datapush.dart'as server;
 import 'package:cvdragonapp_v1/maps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import './Custom_dialog.dart';
 import './topmenu.dart';
 import './maps.dart';
 import './localdatafetch.dart'as lfetch;

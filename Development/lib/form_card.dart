@@ -1,13 +1,10 @@
-import 'package:cvdragonapp_v1/localdatapush.dart' as local;
 import 'package:cvdragonapp_v1/login_page.dart';
-import 'package:cvdragonapp_v1/otppage.dart';
 import 'package:flutter/material.dart';
 
 
 class LoginFormCard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return LoginFormCardState();
   }
 }
@@ -16,7 +13,7 @@ class LoginFormCard extends StatefulWidget {
 class LoginFormCardState extends State<LoginFormCard> {
   @override
   void initState() {
-    // TODO: implement initState
+   
   
    
     super.initState();
@@ -24,7 +21,7 @@ class LoginFormCardState extends State<LoginFormCard> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+   
     return Container(
       height: 200.0,
       width: MediaQuery.of(context).size.width,

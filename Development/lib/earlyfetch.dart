@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:io' as io;
-import 'package:cvdragonapp_v1/datapush.dart';
 import 'package:path_provider/path_provider.dart';
 import './listofcreatequeries.dart';
 import 'package:sqflite/sqflite.dart';

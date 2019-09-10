@@ -1,10 +1,7 @@
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import './maps.dart' as maps;
 import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
 import 'dart:convert';
-import 'package:sqflite/sqflite.dart';
-import 'package:http/http.dart' as http;
 var id = ""; //Rohit Agarwal 
 var authkey = "";
 // var id		 = '15363407469796';

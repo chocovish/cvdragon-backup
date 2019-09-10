@@ -1,12 +1,7 @@
 import 'package:cvdragonapp_v1/vishBottomBar.dart';
-import './localdatafetch.dart' as lfetch;
-import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:flutter/material.dart';
-import './Create_new_profile_Name.dart';
 import 'package:flutter/painting.dart';
-import './bottombar_home.dart';
 import './topmenu.dart';
-import "./sharedfetch.dart";
 
 String id="";
 String authkey="";

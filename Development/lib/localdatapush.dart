@@ -1,18 +1,12 @@
 import 'dart:math';
 import './Notifiers.dart' show syncNotifier;
-import 'package:cvdragonapp_v1/datapush.dart';
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/maps.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:convert';
 import 'dart:async';
-import 'dart:io' as io;
 import './sharedfetch.dart' as sfetch;
-import 'package:cvdragonapp_v1/datapush.dart';
-import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:sqflite/sqflite.dart';
-import './earlyfetch.dart';
 import './datapush.dart' as server;
 
 var id = '';

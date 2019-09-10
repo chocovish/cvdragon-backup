@@ -1,7 +1,6 @@
 import 'package:cvdragonapp_v1/cvwebview.dart';
 import 'package:cvdragonapp_v1/vishal/sections/AchievmentsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/AssociatedMembersForm.dart';
-import 'package:cvdragonapp_v1/vishal/sections/BasicInfo.dart';
 import 'package:cvdragonapp_v1/vishal/sections/CertificatesForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/CoCurricularActivityForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/HonorsAwardsForm.dart';
@@ -22,7 +21,6 @@ import 'package:cvdragonapp_v1/vishal/sections/WorkDetailsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/WorkProjectsForm.dart';
 import 'package:flutter/material.dart';
 
-import './rightpreviewpane.dart';
 
 import './vishBottomBar.dart';
 import './Custom_dialog.dart';

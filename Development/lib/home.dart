@@ -1,8 +1,5 @@
-import 'package:cvdragonapp_v1/CardView_NewProfile.dart';
-import 'package:cvdragonapp_v1/Sections/Educational_Background.dart';
 import 'package:cvdragonapp_v1/cvwebview.dart';
 import 'package:cvdragonapp_v1/donut.dart';
-import 'package:cvdragonapp_v1/institute.dart';
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart';
 import 'package:cvdragonapp_v1/myprofiles.dart';
@@ -12,12 +9,8 @@ import 'package:cvdragonapp_v1/vishBottomBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import './institute.dart';
-import './Create_new_profile_Name.dart';
-import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
-import './earlyfetch.dart' as efetch;
 import './fetch.dart' as fetch;
 import './rightpreviewpane.dart';
 
@@ -42,7 +35,7 @@ val=1;
   @override
 
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+ 
     return _HomePagee();
   }
 }
@@ -54,7 +47,7 @@ class _HomePagee extends State<HomePagee> {
   bool profileselected = false;
   
   void initState() {
-    // TODO: implement initState
+    
     super.initState();
     get();
   }

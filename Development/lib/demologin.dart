@@ -1,17 +1,13 @@
-import 'package:cvdragonapp_v1/Sections/BasicInfo.dart';
-import 'package:cvdragonapp_v1/home.dart';
 import 'package:cvdragonapp_v1/layerbeforeHP.dart';
 import 'package:cvdragonapp_v1/otppage.dart';
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:flutter/material.dart';
-import 'package:cvdragonapp_v1/form_card.dart';
 import 'package:cvdragonapp_v1/social_login.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:linkedin_login/linkedin_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'dart:convert';
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:http/http.dart' as http;
 
 final String redirectUrl = 'https://cvdragon.com/loginRedirect';

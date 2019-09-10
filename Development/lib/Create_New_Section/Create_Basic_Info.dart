@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../Custom_dialog.dart';
-import '../Custom_dialog_KeyPhrases.dart';
 
 Map<String, dynamic> faq;
 //List keyPhrases;

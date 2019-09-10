@@ -1,8 +1,5 @@
 import 'package:cvdragonapp_v1/edit_section.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
-import '../Custom_dialog.dart';
-import '../Custom_dialog_KeyPhrases.dart';
 import '../localdatapush.dart'as lpush;
 
 Map<String, dynamic> faq;

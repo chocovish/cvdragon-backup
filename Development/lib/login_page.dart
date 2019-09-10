@@ -14,7 +14,7 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   @override
   void initState() {
-    // TODO: implement initState
+   
     super.initState();
     myController.text="";
   }

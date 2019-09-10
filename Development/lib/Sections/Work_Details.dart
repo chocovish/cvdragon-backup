@@ -1,4 +1,3 @@
-import 'package:cvdragonapp_v1/login_page.dart';
 import 'package:flutter/material.dart';
 import '../Custom_dialog.dart';
 import '../Custom_dialog_KeyPhrases.dart';

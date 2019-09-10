@@ -1,4 +1,3 @@
-import 'package:cvdragonapp_v1/login_page.dart';
 import 'package:flutter/material.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
@@ -7,14 +6,12 @@ import 'package:cvdragonapp_v1/rightpreviewpane.dart';
 import 'package:flutter/painting.dart';
 import 'package:animator/animator.dart';
 import './sidemenu.dart';
-import './home.dart';
-import 'package:animated_splash/animated_splash.dart';
 import './rightpreviewpane.dart';
 
 class Congrats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return Scaffold(
       appBar: TopMenuBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

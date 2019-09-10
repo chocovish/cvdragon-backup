@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DesignSection extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+   
     return _DesignSection();
   }
 }
@@ -19,7 +19,7 @@ class _DesignSection extends State<DesignSection> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return Scaffold(
       endDrawer: Drawer(
       elevation: 2,

@@ -1,4 +1,6 @@
+import 'package:cvdragonapp_v1/cvwebview.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart';
+import 'package:cvdragonapp_v1/vishBottomBar.dart';
 import 'package:cvdragonapp_v1/vishal/myFormFields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -30,17 +32,26 @@ class _CertificatesFormState extends State<BasicInfo> {
     print("got BAsicInfo data: ${widget.instance}");
     //return Container(child: Text("Hello World",style: TextStyle(color: Colors.teal),),);
     return Scaffold(
+      
+       
+     
       body: NestedScrollView(
         headerSliverBuilder: (context, bool ibs) => [
           SliverAppBar(
+
             backgroundColor: Colors.blue,
             expandedHeight: 150,
             floating: false,
             pinned: true,
-            flexibleSpace: FlexibleSpaceBar(title: Text("Basic Info"),centerTitle: true,),
+            flexibleSpace: Container(decoration: BoxDecoration(gradient: LinearGradient(colors: 
+            [    Color(0xff2727ff),
+                      Color(0xff00003b),])),
+              child: FlexibleSpaceBar(title: Text("Basic Info"),centerTitle: true,)),
           )
         ],
+        
         body: Container(
+          padding: EdgeInsets.all(10),
           color: Colors.white,
           child: FormBuilder(
             key: _formKey,

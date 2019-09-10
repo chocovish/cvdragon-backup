@@ -1,3 +1,4 @@
+import 'package:cvdragonapp_v1/cvwebview.dart';
 import 'package:cvdragonapp_v1/vishal/sections/AchievmentsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/AssociatedMembersForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/BasicInfo.dart';
@@ -33,6 +34,7 @@ import './vishal/sections/InternshipsForm.dart';
 int index2;
 String database;
 List keyPhrases;
+List fAQs;
 List databb2;
 List databb1;
 String y;
@@ -42,7 +44,7 @@ var data = [];
 
 class CreateSection extends StatefulWidget {
   @override
-  CreateSection(List d, int i, String sectionid, List k1, List db, List d3) {
+  CreateSection(List d, int i, String sectionid, List k1, List db, List d3,List f) {
     data = d;
     index2 = i;
     keyPhrases = k1;
@@ -50,6 +52,7 @@ class CreateSection extends StatefulWidget {
     secName = maps.Sections[sectionid];
     databb1 = d3;
     databb2 = db;
+    fAQs=f;
   }
   State<StatefulWidget> createState() {
     return _CreateSection();
@@ -66,15 +69,16 @@ class _CreateSection extends State<CreateSection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        backgroundColor: Colors.white,
+       
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.pinkAccent,
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute<Null>(
                 builder: (BuildContext context) {
-                  return PreviewPane();
+                  return CVView();
                 },
               ),
             );
@@ -136,12 +140,14 @@ class _CreateSection extends State<CreateSection> {
                               children: <Widget>[
                                 InkWell(
                                   onTap: () {
+                                    
                                     showDialog(
+                                      
                                       context: context,
                                       builder: (BuildContext context) =>
                                           CustomDialog(
                                         title: "FAQs",
-                                        description: "You ask, we answer !",
+                                        description: fAQs.toString(),
                                         buttonText: "Okay",
                                       ),
                                     );

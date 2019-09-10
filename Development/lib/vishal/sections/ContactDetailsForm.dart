@@ -1,5 +1,7 @@
 
+import 'package:cvdragonapp_v1/cvwebview.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart';
+import 'package:cvdragonapp_v1/vishBottomBar.dart';
 import 'package:cvdragonapp_v1/vishal/myFormFields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -33,6 +35,7 @@ class _ContactDetailsFormState extends State<ContactDetailsForm> {
   Widget build(BuildContext context) {
     print(" contact details incoming data is: ${widget.instance}");
     return Scaffold(
+      
            body :NestedScrollView(
              headerSliverBuilder: (context, bool ibs)=>[
                SliverAppBar(
@@ -40,12 +43,12 @@ class _ContactDetailsFormState extends State<ContactDetailsForm> {
                  expandedHeight: 150.0,
                  floating: false,
                  pinned: true,
-                flexibleSpace: FlexibleSpaceBar(
-                  title: Text('Contact details',
-                ),centerTitle: true,
-                ),
-               ),
-             ],
+                flexibleSpace: Container(decoration: BoxDecoration(gradient: LinearGradient(colors: 
+            [    Color(0xff2727ff),
+                      Color(0xff00003b),])),
+              child: FlexibleSpaceBar(title: Text("Contact Details"),centerTitle: true,)),
+          )
+        ],
           body: Container(
         color: Colors.white,
         height: MediaQuery.of(context).size.height,

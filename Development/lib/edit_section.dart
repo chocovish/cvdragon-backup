@@ -42,7 +42,7 @@ List addeddata ;
 List databb ;
 ValueNotifier<List> db0 = ValueNotifier(null);
 List key;
-
+List faq;
 class _EditSection extends State<EditSection> {
 
   bool pageLoading = true;
@@ -59,7 +59,7 @@ class _EditSection extends State<EditSection> {
     // db0.value = [];
     
     key = await getKeyPhrases(section);
-
+    faq=await getFAQ(section);
     databb =  await getDatabase(section); // DataBase me jo hai vo aa rha hai
     
     print("DB0 IS ${db0.value}");
@@ -99,7 +99,8 @@ class _EditSection extends State<EditSection> {
           )
         : Scaffold(
             backgroundColor: Colors.black,
-            appBar: TopMenuBar(),
+            appBar:(section != "51100")&&(section != "51101")&&(section != "51102")&&
+            (section != "51103")&&(section != "51109")? TopMenuBar():null,
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
@@ -212,6 +213,7 @@ Widget _buildCardView(BuildContext context) {
                                           index,
                                           section,
                                           key,
+                                          faq,
                                           databb,
                                           addeddata))));
                             },
@@ -304,6 +306,7 @@ Widget _buildCardView(BuildContext context) {
                                               index,
                                               section,
                                               key,
+                                              faq,
                                               databb,
                                               addeddata))));
                                           //print(db0.value[index][AddedDataColumn[section]]);

@@ -41,8 +41,13 @@ class _IntroductionFormState extends State<IntroductionForm> {
             expandedHeight: 150.0,
             floating: false,
             pinned: true,
-            flexibleSpace: FlexibleSpaceBar(title: Text('Introduction Form'),centerTitle: true,),
+            flexibleSpace: Container(decoration: BoxDecoration(gradient: LinearGradient(colors: 
+            [    Color(0xff2727ff),
+                      Color(0xff00003b),])),
+              child: FlexibleSpaceBar(title: Text("Introduction"),centerTitle: true,)),
           )
+        
+          
         ],
           body: Container(
         color: Colors.white,

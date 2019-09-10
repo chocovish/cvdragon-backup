@@ -1,5 +1,7 @@
 
+import 'package:cvdragonapp_v1/cvwebview.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart';
+import 'package:cvdragonapp_v1/vishBottomBar.dart';
 import 'package:cvdragonapp_v1/vishal/myFormFields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -32,6 +34,27 @@ class _EducationalBackgroundFormState extends State<EducationalBackgroundForm> {
   Widget build(BuildContext context) {
     print("widget instance is  ${widget.instance}");
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+       
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.pinkAccent,
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute<Null>(
+                builder: (BuildContext context) {
+                  return CVView();
+                },
+              ),
+            );
+          },
+          child: Icon(
+            Icons.visibility,
+            color: Colors.white,
+          ),
+          elevation: 0.0,
+        ),
+        bottomNavigationBar: MybottomNav(-1) ,
+      
            body:NestedScrollView(
              headerSliverBuilder: (context,bool ibs)=>[
                SliverAppBar(
@@ -39,7 +62,10 @@ class _EducationalBackgroundFormState extends State<EducationalBackgroundForm> {
                  expandedHeight: 150.0,
                  floating: false,
                  pinned: true,
-                 flexibleSpace: FlexibleSpaceBar(title: Text('Education Background'),centerTitle: true,),
+                 flexibleSpace: Container(decoration: BoxDecoration(gradient: LinearGradient(colors: 
+            [    Color(0xff2727ff),
+                      Color(0xff00003b),])),
+              child: FlexibleSpaceBar(title: Text("Educational Background"),centerTitle: true,)),
                ),
              ],
            

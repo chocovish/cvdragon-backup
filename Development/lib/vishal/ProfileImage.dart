@@ -7,9 +7,8 @@ import 'package:nice_button/nice_button.dart';
 import './utils.dart';
 
 class ProfileImageUpload extends StatefulWidget {
-  ProfileImageUpload(){
+  ProfileImageUpload() {
     print("Calling from constructor.......");
-    
   }
 
   @override
@@ -23,36 +22,54 @@ class _ProfileImageUploadState extends State<ProfileImageUpload> {
     print("Calling from init State..");
     _selectedImage.value = File("");
   }
+
   @override
   Widget build(BuildContext context) {
-    return 
-    Container(
-        padding: EdgeInsets.all(20.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-             // _uploadButton(context),
-              SizedBox(
-                height: 20,
+    return Scaffold(
+      body: NestedScrollView(
+        headerSliverBuilder: (context, _) => [
+          SliverAppBar(
+            floating: false,
+            pinned: true,
+            expandedHeight: 150,
+            flexibleSpace: Container(
+              decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.blueAccent,Colors.black])),
+              child: FlexibleSpaceBar(
+                title: Text("Profile Pictures"),
               ),
-              Container(
-                //color: Colors.redAccent,
-                child: _SelectedImageWidget(),
+            ),
+          )
+        ],
+        body: Container(
+            padding: EdgeInsets.all(20.0),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  // _uploadButton(context),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    //color: Colors.redAccent,
+                    child: _SelectedImageWidget(),
+                  ),
+                  SizedBox(height: 14),
+                  ProfilePicList(),
+                  SizedBox(height: 16),
+                  _uploadButton(context)
+                  // NiceButton(
+                  //   text: "Logout",
+                  //   fontSize: 16,
+                  //   width: 100,
+                  //   onPressed: logout,
+                  //   background: Colors.amber,
+                  // )
+                ],
               ),
-              SizedBox(height: 14),
-              ProfilePicList(),
-              SizedBox(height: 16),
-              // NiceButton(
-              //   text: "Logout",
-              //   fontSize: 16,
-              //   width: 100,
-              //   onPressed: logout,
-              //   background: Colors.amber,
-              // )
-            ],
-          ),
-        ));
+            )),
+      ),
+    );
   }
 
   Widget _uploadButton(BuildContext context) {
@@ -101,7 +118,6 @@ class _SelectedImageWidget extends StatelessWidget {
     );
   }
 }
-
 
 ValueNotifier<File> _selectedImage = ValueNotifier(File(""));
 

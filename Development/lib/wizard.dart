@@ -1,5 +1,6 @@
 import 'package:cvdragonapp_v1/demologin.dart';
 import 'package:cvdragonapp_v1/home.dart';
+import 'package:cvdragonapp_v1/layerbeforeHP.dart';
 import 'package:cvdragonapp_v1/otppage.dart';
 import 'package:flutter/material.dart';
 import './urlgenerator.dart'as urlgenerator;
@@ -261,7 +262,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                   //  print(phoneController.text);
                   //  print(_selectedVal.value);
                    Navigator.push(context,
-                       MaterialPageRoute(builder: (context) => HomePagee()));
+                       MaterialPageRoute(builder: (context) => LayerBeforeHP()));
                  
                       },
                                           child: Container(

@@ -1,7 +1,9 @@
 import 'package:cvdragonapp_v1/Configure_your_Profile.dart';
 import 'package:cvdragonapp_v1/CustomDialogNewProfile.dart';
 import 'package:cvdragonapp_v1/home.dart';
-import './datapush.dart'as server;
+import 'package:cvdragonapp_v1/pimage.dart';
+// import './datapush.dart'as server;
+import 'localdatapush.dart';
 import 'package:cvdragonapp_v1/maps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -11,23 +13,18 @@ import './topmenu.dart';
 import './maps.dart';
 import './localdatafetch.dart'as lfetch;
 import 'dart:convert';
-  Map<String,dynamic> datatobesent={};
   List data=[];
  
 class AddNewSection extends StatefulWidget {
- // CardProfiles({Key key}) : super(key: key);
-  AddNewSection(List pdata) {
-    data = pdata;
-  }
+
   @override
   _AddNewSection createState() => new _AddNewSection();
 }
 class _AddNewSection extends State<AddNewSection> {
-  TextEditingController con=new TextEditingController();
-  
-   Map<String,dynamic> totaldata={};
+  List sectobeadded=[];
+
  
-  bool _isLoading=false;
+  bool _isLoading=true;
   PageController controller;
   int currentpage = 0;
   @override
@@ -41,30 +38,11 @@ class _AddNewSection extends State<AddNewSection> {
     );
   
   }
-  List d3=[];
   void get()async{
-  datatobesent={};
- List  data2=await lfetch.getSections();
- print("data="+data.toString());
- print("data2="+data2.toString());
-  // List d4=[];
-  
-  // List d5=[];
-  // data2.forEach((e){
-  //   d5.add(e['section'].toString());
-
-  // });
-  
-  // for (var element in d5){
-  //   if (d4.contains(element)==false){
-  //     d3.add(element);
-  //   }
-  // }
-       setState(() {
-         totaldata={};  
+      data = await lfetch.getNotAddedSections();
+      setState(() {
         _isLoading = false;
-       });
-        
+       });  
   }
   @override
   dispose() {
@@ -82,25 +60,26 @@ class _AddNewSection extends State<AddNewSection> {
       });
     }
     return 
+    _isLoading
+              ? DecoratedBox(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/cover.png"),
+                          fit: BoxFit.fill)),
+                  child: Center(
+                      child: Image(
+                          image: AssetImage("assets/logocv.gif"),
+                          height: MediaQuery.of(context).size.height/12,
+                          width: MediaQuery.of(context).size.width/6)),
+                )
+              : 
      Scaffold(
       appBar: TopMenuBar(),
       
       body: Container(
         color: Colors.black,
         child: 
-        // _isLoading
-        //       ? DecoratedBox(
-        //           decoration: BoxDecoration(
-        //               image: DecorationImage(
-        //                   image: AssetImage("assets/cover.png"),
-        //                   fit: BoxFit.fill)),
-        //           child: Center(
-        //               child: Image(
-        //                   image: AssetImage("assets/logocv.gif"),
-        //                   height: MediaQuery.of(context).size.height/12,
-        //                   width: MediaQuery.of(context).size.width/6)),
-        //         )
-        //       : 
+        
               ListView(children:<Widget>[Column(
                 
                 children:<Widget>[
@@ -111,23 +90,20 @@ class _AddNewSection extends State<AddNewSection> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFFf45d27),
-                      Color(0xFFf5851f)
+                      Colors.pinkAccent,
+                      Colors.purple
                     ],
                   ),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(90)
                   )
                 ),
-                    height: MediaQuery.of(context).size.height/2.5,
+                    height: MediaQuery.of(context).size.height/4,
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       children: <Widget>[
 
-                        Container(
-                           padding: EdgeInsets.all(10),
-                          child:Align(alignment: Alignment.topRight,
-                          child: Text("Step 2/3",style: TextStyle(color: Colors.white,fontSize: 15,fontWeight:FontWeight.bold),),)),
+                       
                           Padding(padding: EdgeInsets.only(bottom: 5),),
                           Align(
                       alignment: Alignment.center,
@@ -143,12 +119,7 @@ class _AddNewSection extends State<AddNewSection> {
                       style: TextStyle(color: Colors.white,
                       fontWeight: FontWeight.bold,fontSize: 25),),
                     ),
-                        // Container(
-                        //   height: MediaQuery.of(context).size.height/3,
-                        //   child: Center(
-                        //     child: Text("NAME YOUR PROFILE !",
-                        //     style: TextStyle(color: Colors.white,
-                        //     fontWeight: FontWeight.bold,fontSize: 25),))),
+                       
                       ],
                     )
                   ),
@@ -159,7 +130,7 @@ class _AddNewSection extends State<AddNewSection> {
                  height: MediaQuery.of(context).size.height/3,
           child: new PageView.builder(
             
-            itemCount: d3.length,
+            itemCount: data.length,
               onPageChanged: (value) {
                 setState(() {
                   currentpage = value;
@@ -169,6 +140,15 @@ class _AddNewSection extends State<AddNewSection> {
               itemBuilder: (context, index) => builder(index)),
               
         ),
+        RaisedButton(color: Colors.purple,child: Text("Add the Sections",style: TextStyle(color: Colors.white),),
+        onPressed: ()async{
+          print("sectobeadded"+sectobeadded.toString());
+           sectobeadded.forEach((f)async{
+              await addSection(f.toString());
+           });
+           Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePagee()));
+        },
+        )
                 ],
               ),
               ],
@@ -183,61 +163,11 @@ class _AddNewSection extends State<AddNewSection> {
       animation: controller,
       builder: (context, child) {
         double value = 0.9;
-         var item = d3[index].toString();
+         var item = data[index].toString();
 
-         if(d3[index]=='Add a New Section'){
+         if(data[index].toString()=='51126'){
            return new Center(
-            child: new SizedBox(
-              height: MediaQuery.of(context).size.height / 4,
-              width: Curves.easeOut.transform(value) * 500,
-              child: new Container(
-                decoration: BoxDecoration(
-               gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFFf45d27),
-                      Color(0xFFf5851f)
-                    ],
-                  ),
-                  borderRadius: BorderRadius.all(
-                     Radius.circular(20)),
-                ),
-                margin: const EdgeInsets.all(8.0),
-                child:
-                  Center(
-          
-          child:InkWell(
-              onTap: (){
-                 Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => (ProfileSections())));
-              },
-                      child: Container(
-              height: MediaQuery.of(context).size.height / 6,
-              width: MediaQuery.of(context).size.width/1.5,
-              child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.center,
-                    child: Icon(Icons.chevron_right,size: 40,color: Colors.white,)),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text("Continue".toUpperCase(),style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),)),
-                ],
-              ),
-            ),
-          ),
-       
-        
-      ),
-        
-      ),
-            ),
-           );
-         
-      
+             child: Text("None of the sections left !",style: TextStyle(color: Colors.white),));
       
          }
 
@@ -247,39 +177,28 @@ class _AddNewSection extends State<AddNewSection> {
           if (direction == DismissDirection.up){
                   // Removes that item the list on swipwe
                   setState(() {
-               
-                 d3.removeAt(index);
+                    
+                 data.removeAt(index);
                  
                   });
                   // Shows the information on Snackbar
                   Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text(" dismissed")));
+                      .showSnackBar(SnackBar(content: Text(" dismissed"),duration: Duration(milliseconds: 50),));
                      
           }
           if (direction == DismissDirection.down){
             var secid ="";
                   // Removes that item the list on swipwe
                   setState(()  {
-                    secid=d3[index].toString();
-                 d3.removeAt(index);
-                   
+                    secid=data[index].toString();
+                 data.removeAt(index);
+                   sectobeadded.add(secid.toString());
                   });
                   Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text("dismissed")));
-                      return showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) => CustomDialogNewProfile(
-                                      title:Sections[secid],
-                                      description: totaldata[secid],
-                                      buttonText: "Submit",
-                                      sectionId: secid,
-                                    ),
-                                  );
-                  // Shows the information on Snackbar
+                      .showSnackBar(SnackBar(content: Text("Added"),duration: Duration(milliseconds: 50),));
                   
           }
                       },
-                      
                       
                   child: 
           new Center(
@@ -288,12 +207,13 @@ class _AddNewSection extends State<AddNewSection> {
               width: Curves.easeOut.transform(value) * 500,
               child: Container(
                 decoration: BoxDecoration(
+                  image: DecorationImage(image: AssetImage('assets/ProfileSection/'+data[index].toString()+'-01.png'),fit: BoxFit.cover),
                gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFFf45d27),
-                      Color(0xFFf5851f)
+                      Colors.pink,
+                      Colors.purple
                     ],
                   ),
                   borderRadius: BorderRadius.all(
@@ -301,8 +221,7 @@ class _AddNewSection extends State<AddNewSection> {
                 ),
         child: Align(
           alignment: Alignment.center,
-          child: Text( Sections[
-                                                    d3[index].toString()]
+          child: Text( Sections[data[index].toString()]
                                                 .toString(),style: TextStyle(fontSize: 25,color:Colors.white, fontWeight:FontWeight.bold),)),
         //elevation: 15.0,
         margin: const EdgeInsets.all(8.0),

@@ -28,9 +28,19 @@ var selectedprofile='';
 List profiles;
 int filled=14,total=27;
 String pname="";
-
+int val=0;
 class HomePagee extends StatefulWidget {
+HomePagee()
+{
+val=1;
+}
+// HomePagee.fromLayer(int a)
+// {
+//   val=a;
+// }
+
   @override
+
   State<StatefulWidget> createState() {
     // TODO: implement createState
     return _HomePagee();
@@ -50,10 +60,10 @@ class _HomePagee extends State<HomePagee> {
   }
 
   void get() async{
-  
+  print("called HomepAge");
     total=0;
     filled=0;
-    int val=await efetch.get();
+  //  int val=await efetch.get();
       if(val==1){
          id=await readid();
           authkey=await readauthKey();
@@ -87,6 +97,7 @@ class _HomePagee extends State<HomePagee> {
         print(name);
         setState(() {
         print(val);
+        print("Homepage false ");
         isLoading = false;
       });
   }

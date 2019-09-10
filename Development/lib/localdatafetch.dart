@@ -158,6 +158,31 @@ var db=  await openDatabase(add.path+'/sections.db', version: 3);
    List response=await db.rawQuery("SELECT * FROM `resource-section`");
     return response;
 }
+Future<List> getNotAddedSections() async {
+   var cvid=await readprofiles();
+  var id =await readid();
+   var add =await getApplicationDocumentsDirectory();
+var db=  await openDatabase(add.path+'/sections.db', version: 3);
+   List totalsections=await db.rawQuery("SELECT section FROM `resource-section`");
+    List addedsection=await db.rawQuery("SELECT section FROM `create-cvprofilesection` WHERE id="+id+" AND cvid="+cvid+" AND status=1");
+    
+    List t=[];
+    totalsections.forEach((f){
+        t.add(f['section'].toString());
+    });
+    List a=[];
+addedsection.forEach((f){
+  a.add(f['section'].toString());
+});
+List response=t;
+a.forEach((f){
+  t.remove(f);
+});
+print("TT"+t.toString());
+print("SS"+a.toString());
+print("dd"+response.toString());
+return t;
+}
 
 Future<List> getKeyPhrases(String section) async {
    var add =await getApplicationDocumentsDirectory();

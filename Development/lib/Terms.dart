@@ -1,3 +1,4 @@
+import 'package:cvdragonapp_v1/vishBottomBar.dart';
 import 'package:flutter/material.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
@@ -150,68 +151,52 @@ You can contact cvDragon by email to cvdragon@lifeinmba.com """;
 
 class Terms extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TopMenuBar(),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.pinkAccent,
-      //   onPressed: () {
-      //     Navigator.of(context).push(
-      //       MaterialPageRoute<Null>(
-      //         builder: (BuildContext context) {
-      //           return CVView();
-      //         },
-      //       ),
-      //     );
-      //   },
-      //   child: Icon(
-      //     Icons.visibility,
-      //     color: Colors.white,
-      //   ),
-      //   elevation: 0.0,
-      // ),
-      drawer: SideMenu(),
-      endDrawer: PreviewPane(),
-      // bottomNavigationBar: FABBottomAppBar(
-      //   //onTabSelected: _selectedTab,
-      //   notchedShape: CircularNotchedRectangle(),
-      //   color: Colors.white30,
-      //   centerItemText: "Preview",
-      //   backgroundColor: Color(0xff232882),
-      //   selectedColor: Colors.white,
-      //   items: [
-      //     FABBottomAppBarItem(
-      //         iconData: Icons.import_contacts, text: 'Knowledge'),
-      //     FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
-      //     FABBottomAppBarItem(iconData: Icons.swap_vert, text: 'Profiles'),
-      //     FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
-      //   ],
-      // ),
-      body: Container(
-
-        margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/35,left: 10,right:5),
-        child: Column(
-          children: <Widget>[
-            Container(margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height/40),
-              child: Row(
-                children: <Widget>[
-                  Text("Terms & Conditions",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: MediaQuery.of(context).size.width/10)),
-                ],
+  Widget build(BuildContext context) { return Container(
+      decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/atp.png'),fit: BoxFit.cover)),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: TopMenuBar(),
+        drawer: SideMenu(),
+        bottomNavigationBar: MybottomNav(-1),
+        floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: Colors.pinkAccent,
+              onPressed: () async{
+              // await generateresumeid();
+                Navigator.of(context).push(
+                  MaterialPageRoute<Null>(
+                    builder: (BuildContext context) {
+                      return CVView();
+                    },
+                  ),
+                );
+              },
+            child: Icon(
+                Icons.visibility,
+                color: Colors.white,
               ),
+              elevation: 0.0,
             ),
-            Container(
-              //padding: EdgeInsets.only(bottom: 15),
-              height: MediaQuery.of(context).size.height/1.5,
-              child: new Markdown(data:abtext),
+        endDrawer: PreviewPane(),
+        body: Container(
+          margin: EdgeInsets.only(top: 5,left: 10,right:5,),
 
-            )
-          ],
-        ),
+                // child: new Markdown(data:abtext),
+                child:SingleChildScrollView(
+                  child:Column(
+                    children: <Widget>[
+                       Padding(padding: EdgeInsets.only(bottom: 25),),
+                      Center(child: Text("Terms & Conditions",style: TextStyle(fontSize: 30,color: Colors.white,),),),
+
+                      Padding(padding: EdgeInsets.only(bottom: 10),),
+                      Text(abtext,style: TextStyle(color: Colors.white,fontSize: 16),),
+                    ],
+                  ) ,
+                ) 
+                
+
+              ),
       ),
     );
   }

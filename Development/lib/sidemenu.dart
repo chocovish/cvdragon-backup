@@ -62,7 +62,7 @@ class _SideMenu extends State<SideMenu> {
               ): Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/cover.png"), fit: BoxFit.fill)),
+                image: AssetImage("assets/sidemenu.png"), fit: BoxFit.cover)),
         child: ListView(
           padding: const EdgeInsets.all(0.0),
           children: <Widget>[

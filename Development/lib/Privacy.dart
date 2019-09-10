@@ -1,3 +1,4 @@
+import 'package:cvdragonapp_v1/vishBottomBar.dart';
 import 'package:flutter/material.dart';
 import './bottombar_home.dart';
 import './topmenu.dart';
@@ -10,7 +11,7 @@ import './rightpreviewpane.dart';
 
 
 
-String abtext = """# **Privacy**
+String abtext = """
 
 This Privacy Policy governs the manner in which cvDragon collects, uses, maintains and discloses information collected from users (each, a "User") of the https://cvdragon.com/ website ("Site").
 
@@ -63,53 +64,54 @@ If you have any questions about this Privacy Policy, the practices of this site,
 
 This document was last updated on January 05, 2018""";
 
-class Privacy extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TopMenuBar(),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.pinkAccent,
-      //   onPressed: () {
-      //     Navigator.of(context).push(
-      //       MaterialPageRoute<Null>(
-      //         builder: (BuildContext context) {
-      //           return CVView();
-      //         },
-      //       ),
-      //     );
-      //   },
-      //   child: Icon(
-      //     Icons.visibility,
-      //     color: Colors.white,
-      //   ),
-      //   elevation: 0.0,
-      // ),
-      drawer: SideMenu(),
-      endDrawer: PreviewPane(),
-      // bottomNavigationBar: FABBottomAppBar(
-      //   //onTabSelected: _selectedTab,
-      //   notchedShape: CircularNotchedRectangle(),
-      //   color: Colors.white30,
-      //   centerItemText: "Preview",
-      //   backgroundColor: Color(0xff232882),
-      //   selectedColor: Colors.white,
-      //   items: [
-      //     FABBottomAppBarItem(
-      //         iconData: Icons.import_contacts, text: 'Knowledge'),
-      //     FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
-      //     FABBottomAppBarItem(iconData: Icons.swap_vert, text: 'Profiles'),
-      //     FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
-      //   ],
-      // ),
-      body: Container(
-        margin: EdgeInsets.only(top: 5,left: 10,right:5,),
-
-              child: new Markdown(data:abtext),
-
+class Privacy extends StatelessWidget{
+   Widget build(BuildContext context) {
+    
+    return Container(
+      decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/atp.png'),fit: BoxFit.cover)),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: TopMenuBar(),
+        drawer: SideMenu(),
+        bottomNavigationBar: MybottomNav(-1),
+        floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: Colors.pinkAccent,
+              onPressed: () async{
+              // await generateresumeid();
+                Navigator.of(context).push(
+                  MaterialPageRoute<Null>(
+                    builder: (BuildContext context) {
+                      return CVView();
+                    },
+                  ),
+                );
+              },
+            child: Icon(
+                Icons.visibility,
+                color: Colors.white,
+              ),
+              elevation: 0.0,
             ),
-    );
+        endDrawer: PreviewPane(),
+        body: Container(
+          margin: EdgeInsets.only(top: 5,left: 10,right:5,),
 
+                // child: new Markdown(data:abtext),
+                child:SingleChildScrollView(
+                  child:Column(
+                    children: <Widget>[
+                       Padding(padding: EdgeInsets.only(bottom: 25),),
+                      Center(child: Text("Privacy",style: TextStyle(fontSize: 30,color: Colors.white,),),),
+                      Text(abtext,style: TextStyle(color: Colors.white,fontSize: 16),),
+                    ],
+                  ) ,
+                ) 
+                
+
+              ),
+      ),
+    );
   }
 }

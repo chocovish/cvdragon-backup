@@ -6,6 +6,7 @@ import 'package:cvdragonapp_v1/wizard.dart';
 import 'package:flutter/material.dart';
 import 'package:code_input/code_input.dart';
 import './fetch.dart' as fetch;
+import 'layerbeforeHP.dart';
 
 String mobileno = "";
 String socialid = "";
@@ -81,7 +82,7 @@ class _OtpPage extends State<OtpPage> {
           await writeauthKey(basic_data['authKey']);
           await writeloginstatus(1);
           Navigator.pushAndRemoveUntil(
-              context, MaterialPageRoute(builder: (context) => HomePagee()),(r)=>false); 
+              context, MaterialPageRoute(builder: (context) => LayerBeforeHP()),(r)=>false); 
         }
       } else
       {
@@ -106,7 +107,7 @@ class _OtpPage extends State<OtpPage> {
         await writeauthKey(basic_data['authKey']);
         await writeloginstatus(1);
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomePagee()));
+            context, MaterialPageRoute(builder: (context) => LayerBeforeHP()));
       }
     }
   }

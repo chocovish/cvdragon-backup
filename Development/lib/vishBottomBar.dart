@@ -15,13 +15,13 @@ class MybottomNav extends StatelessWidget {
               selectedPage: selectedPage??3,
               onTabSelected: _updateIndex,
               notchedShape: CircularNotchedRectangle(),
-              color: Colors.white30,
+              color: Colors.white,
               centerItemText: centerItemText??"Preview",
-              backgroundColor: Color(0xff232882),
-              selectedColor: Colors.white,
+              backgroundColor: Colors.transparent,
+              selectedColor: Colors.pink,
               items: [
                 FABBottomAppBarItem(
-                    iconData: Icons.home, text: 'Home'),
+                    iconData: Icons.home, text: 'Home',),
                 FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
                 FABBottomAppBarItem(
                     iconData: Icons.swap_vert, text: 'Profiles'),

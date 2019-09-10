@@ -137,6 +137,7 @@ Future<int> removeSection(String section) async {
 
 Future<int> addSection(String section) async {
   var add = await getApplicationDocumentsDirectory();
+  var timestamp = new DateTime.now().millisecondsSinceEpoch;
   id = await sfetch.readid();
   cvid = await sfetch.readprofiles();
   var db = await openDatabase(add.path + "/sections.db", version: 1);
@@ -155,11 +156,10 @@ Future<int> addSection(String section) async {
       " AND cvid=" +
       cvid +
       " AND status=1");
-  List<Map<String, dynamic>> createdatainprofile = [
-    {'id': id, 'cvid': cvid, 'section': section, 'subsection': "", 'status': 1}
-  ];
-  await db.rawInsert("`create-cvprofilesection`", createdatainprofile);
-  String serversend = await server.deleteSection(section);
+  Map<String, dynamic> createdatainprofile = 
+    {'psid':timestamp,'id': id, 'cvid': cvid, 'section': section, 'subsection': "[]", 'status': 1};
+  await db.insert("`create-cvprofilesection`", createdatainprofile);
+  String serversend = await server.addSection(section);
   print(serversend);
   syncNotifier.value = true;
   return 1;

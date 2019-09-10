@@ -142,7 +142,7 @@ class _ProfileSections extends State<ProfileSections> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            (AddNewSection(data))));
+                                            (AddNewSection())));
                               },
                               child: Stack(
                                 children: <Widget>[

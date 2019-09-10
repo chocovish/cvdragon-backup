@@ -31,8 +31,19 @@ class _EducationalBackgroundFormState extends State<EducationalBackgroundForm> {
   @override
   Widget build(BuildContext context) {
     print("widget instance is  ${widget.instance}");
-    return Material(
-          child: ListView(
+    return Scaffold(
+           body:NestedScrollView(
+             headerSliverBuilder: (context,bool ibs)=>[
+               SliverAppBar(
+                 backgroundColor: Colors.blue,
+                 expandedHeight: 150.0,
+                 floating: false,
+                 pinned: true,
+                 flexibleSpace: FlexibleSpaceBar(title: Text('Education Background'),centerTitle: true,),
+               ),
+             ],
+           
+          body: ListView(       // add body inplace of child
         //color: Colors.white,
         //height: MediaQuery.of(context).size.height,
         
@@ -89,6 +100,7 @@ class _EducationalBackgroundFormState extends State<EducationalBackgroundForm> {
         ),
         ],
       ),
+     ),
     );
   }
 }

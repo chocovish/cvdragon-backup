@@ -21,6 +21,7 @@ import 'package:cvdragonapp_v1/vishal/sections/VolunteerForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/WorkDetailsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/WorkProjectsForm.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 import './rightpreviewpane.dart';
 
@@ -140,17 +141,58 @@ class _CreateSection extends State<CreateSection> {
                               children: <Widget>[
                                 InkWell(
                                   onTap: () {
-                                    
+                                    List questions=[];
+                                   
+                                     fAQs.forEach((e){
+                                       
+                                        questions.add(e['faq'].toString());
+                                      });
+                                      if(questions.length>0){
                                     showDialog(
+                                     
                                       
                                       context: context,
                                       builder: (BuildContext context) =>
-                                          CustomDialog(
-                                        title: "FAQs",
-                                        description: fAQs.toString(),
-                                        buttonText: "Okay",
+                                          AlertDialog(actions: <Widget>[
+                                            MaterialButton(child: Text("Close"),onPressed: (){Navigator.pop(context);},)
+                                          ],
+                                            title: 
+                                          Text("FAQs",textAlign: TextAlign.center,),
+                                        content: Container(
+                                          
+                                          width: MediaQuery.of(context).size.height,
+                                          height: MediaQuery.of(context).size.width,                                          child: ListView(
+                                          children: questions.map((q) => Html(data: q,)).toList() 
+                                              ,
+                                          ),
+                                        ),
                                       ),
                                     );
+                                  }
+                                  
+                                  else{
+                                    showDialog(
+                                     
+                                      
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          AlertDialog(actions:[MaterialButton(child: Text("Close"),onPressed: (){Navigator.pop(context);},)
+                                          ],
+                                            title: 
+                                          Text("FAQs",textAlign: TextAlign.center,),
+                                        content: Container(
+                                          
+                                          width: MediaQuery.of(context).size.height/2,
+                                          height: MediaQuery.of(context).size.width/2,                                          child: ListView(
+                                          children: [
+                                            Text("No FAQs for this section",textAlign: TextAlign.center,),
+                                          ] 
+                                              ,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
                                   },
                                   child: Container(
                                     height:

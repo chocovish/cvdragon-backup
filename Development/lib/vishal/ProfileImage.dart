@@ -52,12 +52,14 @@ class _ProfileImageUploadState extends State<ProfileImageUpload> {
                   SizedBox(
                     height: 20,
                   ),
+                  
+                  ProfilePicList(),
+                  SizedBox(height: 14),
                   Container(
                     //color: Colors.redAccent,
                     child: _SelectedImageWidget(),
                   ),
-                  SizedBox(height: 14),
-                  ProfilePicList(),
+                  
                   SizedBox(height: 16),
                   _uploadButton(context)
                   // NiceButton(

@@ -33,7 +33,9 @@ class _ProfileImageUploadState extends State<ProfileImageUpload> {
             pinned: true,
             expandedHeight: 150,
             flexibleSpace: Container(
-              decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.blueAccent,Colors.black])),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Colors.blueAccent, Colors.black])),
               child: FlexibleSpaceBar(
                 title: Text("Profile Pictures"),
               ),
@@ -163,34 +165,45 @@ class ProfilePicList extends StatelessWidget {
                 return Container(
                   child: Text("No Images"),
                 );
-              return Column(
-                children: snapshot.data.map((file) {
-                  return Container(
-                    decoration: BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.circular(10)),
-                    margin: EdgeInsets.symmetric(horizontal: 4, vertical: 5),
-                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 5),
-                    child: ListTile(
-                      onTap: () {
-                        print("Deleter");
-                      },
-                      leading: ClipRRect(
-                        child: Image.file(file),
-                        borderRadius: BorderRadius.circular(10),
+              return Container(
+                height: 100,
+                width: MediaQuery.of(context).size.width,
+                child: ListView(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: snapshot.data.map((file) {
+                    return Container(
+                      decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.circular(10)),
+                      margin: EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+                      padding: EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 100,
+                        width: MediaQuery.of(context).size.width*.7,
+                        child: ListTile(
+                          onTap: () {
+                            print("Deleter");
+                          },
+                          leading: ClipRRect(
+                            child: Image.file(file),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          title: Text("FileName"),
+                          trailing: IconButton(
+                            onPressed: () {
+                              print("Deleter");
+                              file.deleteSync();
+                              _selectedImage.value = File("");
+                            },
+                            icon: Icon(Icons.delete),
+                          ),
+                        ),
                       ),
-                      title: Text("FileName"),
-                      trailing: IconButton(
-                        onPressed: () {
-                          print("Deleter");
-                          file.deleteSync();
-                          _selectedImage.value = File("");
-                        },
-                        icon: Icon(Icons.delete),
-                      ),
-                    ),
-                  );
-                }).toList(),
+                    );
+                  }).toList(),
+                ),
               );
             },
           ),

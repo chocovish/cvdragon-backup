@@ -6,7 +6,6 @@ import 'package:cvdragonapp_v1/vishal/ProfileImage.dart';
 import 'package:cvdragonapp_v1/vishal/sections/ContactDetailsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/IntroductionForm.dart';
 
-import 'package:cvdragonapp_v1/vishal/sections/PreferencesForm.dart';
 import 'package:flutter/material.dart';
 import './topmenu.dart';
 import './vishal/ProfileImage.dart';
@@ -213,9 +212,10 @@ Widget _buildCardView(BuildContext context) {
                                           index,
                                           section,
                                           key,
-                                          faq,
+                                          
                                           databb,
-                                          addeddata))));
+                                          addeddata,
+                                          faq))));
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -306,9 +306,9 @@ Widget _buildCardView(BuildContext context) {
                                               index,
                                               section,
                                               key,
-                                              faq,
                                               databb,
-                                              addeddata))));
+                                              addeddata,
+                                              faq))));
                                           //print(db0.value[index][AddedDataColumn[section]]);
                                           // Navigator.push(
                                           //     context,

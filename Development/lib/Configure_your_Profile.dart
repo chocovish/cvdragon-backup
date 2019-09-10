@@ -1,16 +1,7 @@
-import 'package:cvdragonapp_v1/Custom_dialog.dart';
-import 'package:cvdragonapp_v1/edit_section.dart' as prefix0;
-import 'package:cvdragonapp_v1/maps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import './Custom_dialog.dart';
 import './topmenu.dart';
 import './Congrats.dart';
-import './maps.dart';
-import './vishal/myFormFields.dart';
-import './localdatafetch.dart'as lfetch;
-import './CardView_NewProfile.dart';
-import 'dart:convert';
 
 
 class ConfigureProfile extends StatefulWidget {

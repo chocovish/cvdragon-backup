@@ -1,10 +1,7 @@
 import './fonts.dart';
 import 'package:flutter/material.dart';
 import './home.dart';
-import './designs.dart';
-import './Design_Sections.dart';
 import './profile_sections.dart';
-import './Colors.dart';
 
 class FABBottomAppBarItem {
   FABBottomAppBarItem({this.iconData, this.text});

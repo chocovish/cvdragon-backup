@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import './profile_sections.dart';
-import './knowledge_centre.dart';
-import './home.dart';
 
 class FABBottomAppBarItem {
   FABBottomAppBarItem({this.iconData, this.text});

@@ -1,6 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cvdragonapp_v1/form_card.dart';
-import 'package:cvdragonapp_v1/home.dart';
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:cvdragonapp_v1/wizard.dart';
 import 'package:flutter/material.dart';

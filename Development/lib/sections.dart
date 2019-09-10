@@ -1,14 +1,8 @@
-import 'dart:ui' as prefix0;
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import './bottombar_home.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
-import 'dart:async';
 import './localdatafetch.dart'as lfetch;
-import 'package:http/http.dart' as http;
-import 'main.dart' as main;
 
 class Sections extends StatefulWidget {
   @override

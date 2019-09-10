@@ -1,4 +1,3 @@
-import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:http/http.dart' as http;
 import './urlgenerator.dart'as urlgetter;
 import 'dart:convert';

@@ -1,12 +1,10 @@
 import 'package:cvdragonapp_v1/vishBottomBar.dart';
 import 'package:flutter/material.dart';
-import './bottombar_home.dart';
 import './topmenu.dart';
 import 'package:cvdragonapp_v1/cvwebview.dart';
 import 'package:cvdragonapp_v1/rightpreviewpane.dart';
 import 'package:flutter/painting.dart';
 import './sidemenu.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import './rightpreviewpane.dart';
 
 

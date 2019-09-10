@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import './bottombar_design.dart';
 import './topmenu.dart';
 import './localdatafetch.dart' as lfetch;
-import './rightpreviewpane.dart';
 List font=[];
 bool isLoading=true;
 class CVFont extends StatefulWidget {

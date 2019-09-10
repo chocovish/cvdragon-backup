@@ -1,15 +1,13 @@
 import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import './bottombar_home.dart';
 import './topmenu.dart';
-import './sidemenu.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PublicProfile extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+   
     return _PublicProfile();
   }
 }
@@ -30,7 +28,7 @@ class _PublicProfile extends State<PublicProfile> {
   }
 
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
 
     return isLoading?DecoratedBox(
               decoration: BoxDecoration(

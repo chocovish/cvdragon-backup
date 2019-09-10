@@ -7,7 +7,6 @@ import 'package:nice_button/nice_button.dart';
 import '../../localdatapush.dart' show updateData;
 import '../myFormFields.dart';
 import '../../edit_section.dart';
-import 'package:validators/validators.dart';
 
 GlobalKey<FormBuilderState> _formKey;
 

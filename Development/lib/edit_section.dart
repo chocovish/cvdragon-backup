@@ -145,9 +145,7 @@ class _EditSection extends State<EditSection> {
                     return ProfileImageUpload();
                   else if (section == "51100")
                   return BasicInfo(i: db0.value[0]);
-                  // else if (section == "51101")
-                  // return prefix1.ContactDetails()
-                   // return BI.BasicInfo(section, Sections[section], db0.value);
+                  
                   else if (section == "51109") //return EducationalBackgroundForm(i: db0.value[1]);
                     return EditSectionEB(section);
                   else if (section=="51101") return ContactDetailsForm(i: db0.value[0]);

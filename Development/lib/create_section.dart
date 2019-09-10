@@ -1,5 +1,6 @@
 import 'package:cvdragonapp_v1/vishal/sections/AchievmentsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/AssociatedMembersForm.dart';
+import 'package:cvdragonapp_v1/vishal/sections/BasicInfo.dart';
 import 'package:cvdragonapp_v1/vishal/sections/CertificatesForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/CoCurricularActivityForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/HonorsAwardsForm.dart';
@@ -19,39 +20,13 @@ import 'package:cvdragonapp_v1/vishal/sections/VolunteerForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/WorkDetailsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/WorkProjectsForm.dart';
 import 'package:flutter/material.dart';
-import './topmenu.dart';
-import './sidemenu.dart';
+
 import './rightpreviewpane.dart';
-import './bottombar_createsection.dart';
+
 import './vishBottomBar.dart';
 import './Custom_dialog.dart';
 import './Custom_dialog_KeyPhrases.dart';
-import './Create_New_Section/Create_Academic_Projects.dart';
-import './Create_New_Section/Create_Publications.dart';
-import './Create_New_Section/Create_Achievments.dart';
-import './Create_New_Section/Create_Associated_Members.dart';
-import './Create_New_Section/Create_POR.dart';
-import './Create_New_Section/Create_Certificates.dart';
-import './Create_New_Section/Create_Co_Curricular_Activity.dart';
-import './Create_New_Section/Create_Honors_Awards.dart';
-import './Create_New_Section/Create_Interests.dart';
-import './Create_New_Section/Create_Internships.dart';
-import './Create_New_Section/Create_Introduction.dart';
-import './Create_New_Section/Create_Languages.dart';
-import './Create_New_Section/Create_Patents.dart';
-import './Create_New_Section/Create_Presentations.dart';
-import './Create_New_Section/Create_Professional_Qualifications.dart';
-import './Create_New_Section/Create_Soft_Skills.dart';
-import './Create_New_Section/Create_Trainings_Conducted.dart';
-import './Create_New_Section/Create_Volunteer_Experience.dart';
-import './Custom dialog database.dart';
-import './Create_New_Section/Create_Work_Details.dart';
-import './Create_New_Section/Create_Work_Projects.dart';
-import './Create_New_Section/Create_Tech_Knowledge.dart';
 import './maps.dart' as maps;
-import './vishal/CustomForm.dart';
-import './fetch.dart';
- 
 import './vishal/sections/AcademicProjects.dart';
 import './vishal/sections/InternshipsForm.dart';
 
@@ -270,9 +245,8 @@ Widget _buildCardView(BuildContext context) {
   print("$data and $index2");
   //print(data[index2]);
   if (section == "51122") return AcademicProjectsForm(i:index2==null?null:data[index2],);
-    //return CreateAcademicProjects(section, secName, index2, data); //Done
-//  else if (section == "51100")
-//    return CreateBasicInfo(section, secName, index2, data);
+  //else if (section=="51100") return BasicInfo();
+
   else if (section == "51106") return InternshipsForm(i:index2==null?null:data[index2]);
     //return CreateInternships(section, secName, index2, data); //Done
   else if (section == "51103") return IntroductionForm(i:index2==null?null:data[index2]);

@@ -6,7 +6,6 @@ import 'package:cvdragonapp_v1/vishal/ProfileImage.dart';
 import 'package:cvdragonapp_v1/vishal/sections/ContactDetailsForm.dart';
 import 'package:cvdragonapp_v1/vishal/sections/IntroductionForm.dart';
 
-import 'package:cvdragonapp_v1/vishal/sections/PreferencesForm.dart';
 import 'package:flutter/material.dart';
 import './topmenu.dart';
 import './vishal/ProfileImage.dart';

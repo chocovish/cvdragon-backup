@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:cvdragonapp_v1/Colors.dart';
@@ -7,7 +6,6 @@ import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_full_pdf_viewer/flutter_full_pdf_viewer.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import './MyDesigns.dart';
 import 'package:flutter/services.dart';

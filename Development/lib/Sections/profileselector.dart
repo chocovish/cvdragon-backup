@@ -23,7 +23,7 @@ class _ProfileSelectorState extends State<ProfileSelector> {
   }
   @override
   void initState() {
-    // TODO: implement initState
+   
     super.initState();
    get();
   }
@@ -33,7 +33,7 @@ class _ProfileSelectorState extends State<ProfileSelector> {
   }
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return Dialog(
       child: dialogContent(context,write),
 

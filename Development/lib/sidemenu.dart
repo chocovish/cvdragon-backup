@@ -1,27 +1,20 @@
-import 'package:cvdragonapp_v1/home.dart';
 import 'package:flutter/material.dart';
 import './myprofiles.dart';
 import './coverletters.dart';
 import './institute.dart';
 import './publicprofile.dart';
 import './MyDesigns.dart';
-import './sections.dart';
 import './Terms.dart';
 import './Privacy.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import './fetch.dart' as fetch;
 import './sharedfetch.dart'as sfetch;
 import './About.dart';
-import './main.dart'as main;
 import './vishal/utils.dart';
-import './textformfield.dart';
-import './pimage.dart';
 String name;
 String email;
 class SideMenu extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+    
     return _SideMenu();
   }
 }
@@ -31,7 +24,7 @@ class _SideMenu extends State<SideMenu> {
      bool _isLoading=true;
   @override
   void initState() {
-    // TODO: implement initState
+   
     super.initState();
     this.get();
   }
@@ -51,7 +44,7 @@ class _SideMenu extends State<SideMenu> {
 
   Widget build(BuildContext context) {
     //print('called');
-    // TODO: implement build
+   
     return Drawer(
       elevation: 2,
       child: _isLoading?Center(child: Center(

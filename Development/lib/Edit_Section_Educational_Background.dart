@@ -1,10 +1,8 @@
 import 'package:cvdragonapp_v1/vishal/sections/EducationalBackgroundForm.dart';
 import 'package:flutter/material.dart';
 import 'package:cvdragonapp_v1/maps.dart';
-import './edit_section2.dart';
 import './maps.dart';
 import './edit_section.dart';
-import 'edit_section2.dart';
 
 String section = '';
 

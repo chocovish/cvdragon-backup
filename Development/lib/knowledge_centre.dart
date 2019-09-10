@@ -2,15 +2,13 @@ import 'package:cvdragonapp_v1/vishBottomBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import './bottombar_knowledge.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
-import './home.dart';
 
 class Knowledge extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+   
     return _Knowledge();
   }
 }
@@ -18,7 +16,7 @@ class Knowledge extends StatefulWidget {
 class _Knowledge extends State<Knowledge> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+   
     return Container(
       decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/csoon.png'),fit: BoxFit.cover)),
       child: Scaffold(

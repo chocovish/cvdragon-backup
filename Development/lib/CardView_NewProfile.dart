@@ -77,97 +77,106 @@ datatobesent={};
       });
     }
     return 
-     Scaffold(
-      appBar: TopMenuBar(),
-      
-      body: Container(
-        color: Colors.black,
-        child: _isLoading
-              ? DecoratedBox(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/cover.png"),
-                          fit: BoxFit.fill)),
-                  child: Center(
-                      child: Image(
-                          image: AssetImage("assets/logocv.gif"),
-                          height: MediaQuery.of(context).size.height/12,
-                          width: MediaQuery.of(context).size.width/6)),
-                )
-              : ListView(children:<Widget>[Column(
-                
-                children:<Widget>[
-                 Container(
-                    padding: EdgeInsets.only(bottom: 10),
-                     decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFFf45d27),
-                      Color(0xFFf5851f)
-                    ],
-                  ),
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(90)
+     Container(
+       decoration: BoxDecoration(
+         image: DecorationImage(
+           image:AssetImage('assets/cys.jpeg'),fit: BoxFit.cover ),
+       ),
+       child: Scaffold(
+          backgroundColor: Colors.transparent,
+        appBar: TopMenuBar(),
+        
+        body: Container(
+         
+          child: _isLoading
+                ? DecoratedBox(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("assets/cover.png"),
+                            fit: BoxFit.fill)),
+                    child: Center(
+                        child: Image(
+                            image: AssetImage("assets/logocv.gif"),
+                            height: MediaQuery.of(context).size.height/12,
+                            width: MediaQuery.of(context).size.width/6)),
                   )
-                ),
-                    height: MediaQuery.of(context).size.height/2.5,
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      children: <Widget>[
+                : ListView(children:<Widget>[Column(
+                  
+                  children:<Widget>[
+                  //  Container(
+                  //     padding: EdgeInsets.only(bottom: 10),
+                  //      decoration: BoxDecoration(
+                  //   gradient: LinearGradient(
+                  //     begin: Alignment.topCenter,
+                  //     end: Alignment.bottomCenter,
+                  //     colors: [
+                  //       Color(0xFFf45d27),
+                  //       Color(0xFFf5851f)
+                  //     ],
+                  //   ),
+                  //   borderRadius: BorderRadius.only(
+                  //     bottomLeft: Radius.circular(90)
+                  //   )
+                  // ),
+                  //     height: MediaQuery.of(context).size.height/2.5,
+                  //     width: MediaQuery.of(context).size.width,
+                  //     child: Column(
+                  //       children: <Widget>[
 
-                        Container(
-                           padding: EdgeInsets.all(10),
-                          child:Align(alignment: Alignment.topRight,
-                          child: Text("Step 2/3",style: TextStyle(color: Colors.white,fontSize: 15,fontWeight:FontWeight.bold),),)),
-                          Padding(padding: EdgeInsets.only(bottom: 5),),
-                          Align(
-                      alignment: Alignment.center,
-                      child: Icon(Icons.person,
-                        size: 90,
-                        color: Colors.white,
-                      ),
-                    ),
-                   
-                     Align(
-                      alignment: Alignment.center,
-                      child: Text("CHOOSE YOUR SECTIONS",
-                      style: TextStyle(color: Colors.white,
-                      fontWeight: FontWeight.bold,fontSize: 25),),
-                    ),
-                        // Container(
-                        //   height: MediaQuery.of(context).size.height/3,
-                        //   child: Center(
-                        //     child: Text("NAME YOUR PROFILE !",
-                        //     style: TextStyle(color: Colors.white,
-                        //     fontWeight: FontWeight.bold,fontSize: 25),))),
-                      ],
-                    )
-                  ),
+                  //         Container(
+                  //            padding: EdgeInsets.all(10),
+                  //           child:Align(alignment: Alignment.topRight,
+                  //           child: Text("Step 2/3",style: TextStyle(color: Colors.white,fontSize: 15,fontWeight:FontWeight.bold),),)),
+                  //           Padding(padding: EdgeInsets.only(bottom: 5),),
+                  //           Align(
+                  //       alignment: Alignment.center,
+                  //       child: Icon(Icons.person,
+                  //         size: 90,
+                  //         color: Colors.white,
+                  //       ),
+                  //     ),
+                     
+                  //      Align(
+                  //       alignment: Alignment.center,
+                  //       child: Text("CHOOSE YOUR SECTIONS",
+                  //       style: TextStyle(color: Colors.white,
+                  //       fontWeight: FontWeight.bold,fontSize: 25),),
+                  //     ),
+                  //         // Container(
+                  //         //   height: MediaQuery.of(context).size.height/3,
+                  //         //   child: Center(
+                  //         //     child: Text("NAME YOUR PROFILE !",
+                  //         //     style: TextStyle(color: Colors.white,
+                  //         //     fontWeight: FontWeight.bold,fontSize: 25),))),
+                  //       ],
+                  //     )
+                    
+                Padding(
+                  padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/3),
+                ),
+                
+                
+                Container(
+                   height: MediaQuery.of(context).size.height/3,
+            child: new PageView.builder(
               
-              
-              
-              Container(
-                 height: MediaQuery.of(context).size.height/3,
-          child: new PageView.builder(
-            
-            itemCount: items.length,
-              onPageChanged: (value) {
-                setState(() {
-                  currentpage = value;
-                });
-              },
-              controller: controller,
-              itemBuilder: (context, index) => builder(index)),
-              
-        ),
+              itemCount: items.length,
+                onPageChanged: (value) {
+                  setState(() {
+                    currentpage = value;
+                  });
+                },
+                controller: controller,
+                itemBuilder: (context, index) => builder(index)),
+                
+          ),
+                  ],
+                ),
                 ],
-              ),
-              ],
-              ),
-      ),
-    );
+                ),
+        ),
+    ),
+     );
   }
   builder(int index) {
   
@@ -185,12 +194,15 @@ datatobesent={};
               width: Curves.easeOut.transform(value) * 500,
               child: new Container(
                 decoration: BoxDecoration(
+                   //image: DecorationImage(image: AssetImage('assets/ProfileSection/'+data[index].toString()+'-01.png'),fit: BoxFit.cover),
                gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFFf45d27),
-                      Color(0xFFf5851f)
+                      Colors.purple,
+                      Colors.pink,
+                      // Color(0xFFf45d27),
+                      // Color(0xFFf5851f)
                     ],
                   ),
                   borderRadius: BorderRadius.all(
@@ -258,7 +270,7 @@ datatobesent={};
                    
                   });
                   Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text("dismissed")));
+                      .showSnackBar(SnackBar(content: Text("Added")));
                       return showDialog(
                                     context: context,
                                     builder: (BuildContext context) => CustomDialogNewProfile(
@@ -281,20 +293,21 @@ datatobesent={};
               width: Curves.easeOut.transform(value) * 500,
               child: Container(
                 decoration: BoxDecoration(
-               gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xFFf45d27),
-                      Color(0xFFf5851f)
-                    ],
-                  ),
+                   image: DecorationImage(image: AssetImage('assets/ProfileSection/'+items[index].toString()+'-01.png'),fit: BoxFit.cover),
+              //  gradient: LinearGradient(
+              //       begin: Alignment.topCenter,
+              //       end: Alignment.bottomCenter,
+              //       colors: [
+              //         Color(0xFFf45d27),
+              //         Color(0xFFf5851f)
+              //       ],
+              //     ),
                   borderRadius: BorderRadius.all(
                      Radius.circular(20)),
                 ),
         child: Align(
           alignment: Alignment.center,
-          child: Text(items[index].toString(),style: TextStyle(fontSize: 25,color:Colors.white, fontWeight:FontWeight.bold),)),
+          child: Text(Sections[items[index].toString()],style: TextStyle(fontSize: 25,color:Colors.white, fontWeight:FontWeight.bold),)),
         //elevation: 15.0,
         margin: const EdgeInsets.all(8.0),
         

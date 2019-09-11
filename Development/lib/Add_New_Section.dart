@@ -68,58 +68,69 @@ class _AddNewSection extends State<AddNewSection> {
                           width: MediaQuery.of(context).size.width/6)),
                 )
               : 
-     Scaffold(
-      appBar: TopMenuBar(),
+
+        Container(
+          
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/cys.jpeg'),fit: BoxFit.cover
+              ),
+            ),
+         child:  Scaffold(
+           backgroundColor: Colors.transparent,
+        appBar: TopMenuBar(),
       
       body: Container(
-        color: Colors.black,
+        
         child: 
         
               ListView(children:<Widget>[Column(
                 
                 children:<Widget>[
-                 Container(
-                    padding: EdgeInsets.only(bottom: 10),
-                     decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.pinkAccent,
-                      Colors.purple
-                    ],
-                  ),
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(90)
-                  )
-                ),
-                    height: MediaQuery.of(context).size.height/4,
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      children: <Widget>[
+                //  Container(
+                //     padding: EdgeInsets.only(bottom: 10),
+                //      decoration: BoxDecoration(
+                //   gradient: LinearGradient(
+                //     begin: Alignment.topCenter,
+                //     end: Alignment.bottomCenter,
+                //     colors: [
+                //       Colors.pinkAccent,
+                //       Colors.purple
+                //     ],
+                //   ),
+                //   borderRadius: BorderRadius.only(
+                //     bottomLeft: Radius.circular(90)
+                //   )
+                // ),
+                //     height: MediaQuery.of(context).size.height/4,
+                //     width: MediaQuery.of(context).size.width,
+                //     child: Column(
+                //       children: <Widget>[
 
                        
-                          Padding(padding: EdgeInsets.only(bottom: 5),),
-                          Align(
-                      alignment: Alignment.center,
-                      child: Icon(Icons.person,
-                        size: 90,
-                        color: Colors.white,
-                      ),
-                    ),
+                //           Padding(padding: EdgeInsets.only(bottom: 5),),
+                //           Align(
+                //       alignment: Alignment.center,
+                //       child: Icon(Icons.person,
+                //         size: 90,
+                //         color: Colors.white,
+                //       ),
+                //     ),
                    
-                     Align(
-                      alignment: Alignment.center,
-                      child: Text("CHOOSE YOUR SECTIONS",
-                      style: TextStyle(color: Colors.white,
-                      fontWeight: FontWeight.bold,fontSize: 25),),
-                    ),
+                //      Align(
+                //       alignment: Alignment.center,
+                //       child: Text("CHOOSE YOUR SECTIONS",
+                //       style: TextStyle(color: Colors.white,
+                //       fontWeight: FontWeight.bold,fontSize: 25),),
+                //     ),
                        
-                      ],
-                    )
-                  ),
+                //       ],
+                //     )
+                //   ),
               
-              
+              Padding(
+                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/3),
+              ),
               
               Container(
                  height: MediaQuery.of(context).size.height/3,
@@ -135,7 +146,7 @@ class _AddNewSection extends State<AddNewSection> {
               itemBuilder: (context, index) => builder(index)),
               
         ),
-        RaisedButton(color: Colors.purple,child: Text("Add the Sections",style: TextStyle(color: Colors.white),),
+        RaisedButton(color: Colors.transparent,child: Text("Add the Sections",style: TextStyle(color: Colors.white),),
         onPressed: ()async{
           print("sectobeadded"+sectobeadded.toString());
            sectobeadded.forEach((f)async{
@@ -149,7 +160,9 @@ class _AddNewSection extends State<AddNewSection> {
               ],
               ),
       ),
+         ),
     );
+
   }
   builder(int index) {
   

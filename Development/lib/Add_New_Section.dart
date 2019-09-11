@@ -49,97 +49,123 @@ class _AddNewSection extends State<AddNewSection> {
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading
-        ? DecoratedBox(
+    
+    int _selectedIndex = 0;
+    void _onItemTapped(int index) {
+      setState(() {
+        print(index);
+        _selectedIndex = index;
+      });
+    }
+    return 
+    _isLoading
+              ? DecoratedBox(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/cover.png"),
+                          fit: BoxFit.fill)),
+                  child: Center(
+                      child: Image(
+                          image: AssetImage("assets/logocv.gif"),
+                          height: MediaQuery.of(context).size.height/12,
+                          width: MediaQuery.of(context).size.width/6)),
+                )
+              : 
+
+        Container(
+          
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/cover.png"), fit: BoxFit.fill)),
-            child: Center(
-                child: Image(
-                    image: AssetImage("assets/logocv.gif"),
-                    height: MediaQuery.of(context).size.height / 12,
-                    width: MediaQuery.of(context).size.width / 6)),
-          )
-        : Scaffold(
-            appBar: TopMenuBar(),
-            body: Container(
-              color: Colors.black,
-              child: ListView(
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Container(
-                          padding: EdgeInsets.only(bottom: 10),
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [Colors.pinkAccent, Colors.purple],
-                              ),
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(90))),
-                          height: MediaQuery.of(context).size.height / 4,
-                          width: MediaQuery.of(context).size.width,
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 5),
-                              ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Icon(
-                                  Icons.person,
-                                  size: 90,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  "CHOOSE YOUR SECTIONS",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 25),
-                                ),
-                              ),
-                            ],
-                          )),
-                      Container(
-                        height: MediaQuery.of(context).size.height / 3,
-                        child: new PageView.builder(
-                            itemCount: data.length,
-                            onPageChanged: (value) {
-                              setState(() {
-                                currentpage = value;
-                              });
-                            },
-                            controller: controller,
-                            itemBuilder: (context, index) => builder(index)),
-                      ),
-                      RaisedButton(
-                        color: Colors.purple,
-                        child: Text(
-                          "Add the Sections",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        onPressed: () async {
-                          print("sectobeadded" + sectobeadded.toString());
-                          sectobeadded.forEach((f) async {
-                            await addSection(f.toString());
-                          });
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePagee()));
-                        },
-                      )
-                    ],
-                  ),
-                ],
+              image: DecorationImage(
+                image: AssetImage('assets/cys.jpeg'),fit: BoxFit.cover
               ),
             ),
-          );
+         child:  Scaffold(
+           backgroundColor: Colors.transparent,
+        appBar: TopMenuBar(),
+      
+      body: Container(
+        
+        child: 
+        
+              ListView(children:<Widget>[Column(
+                
+                children:<Widget>[
+                //  Container(
+                //     padding: EdgeInsets.only(bottom: 10),
+                //      decoration: BoxDecoration(
+                //   gradient: LinearGradient(
+                //     begin: Alignment.topCenter,
+                //     end: Alignment.bottomCenter,
+                //     colors: [
+                //       Colors.pinkAccent,
+                //       Colors.purple
+                //     ],
+                //   ),
+                //   borderRadius: BorderRadius.only(
+                //     bottomLeft: Radius.circular(90)
+                //   )
+                // ),
+                //     height: MediaQuery.of(context).size.height/4,
+                //     width: MediaQuery.of(context).size.width,
+                //     child: Column(
+                //       children: <Widget>[
+
+                       
+                //           Padding(padding: EdgeInsets.only(bottom: 5),),
+                //           Align(
+                //       alignment: Alignment.center,
+                //       child: Icon(Icons.person,
+                //         size: 90,
+                //         color: Colors.white,
+                //       ),
+                //     ),
+                   
+                //      Align(
+                //       alignment: Alignment.center,
+                //       child: Text("CHOOSE YOUR SECTIONS",
+                //       style: TextStyle(color: Colors.white,
+                //       fontWeight: FontWeight.bold,fontSize: 25),),
+                //     ),
+                       
+                //       ],
+                //     )
+                //   ),
+              
+              Padding(
+                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/3),
+              ),
+              
+              Container(
+                 height: MediaQuery.of(context).size.height/3,
+          child: new PageView.builder(
+            
+            itemCount: data.length,
+              onPageChanged: (value) {
+                setState(() {
+                  currentpage = value;
+                });
+              },
+              controller: controller,
+              itemBuilder: (context, index) => builder(index)),
+              
+        ),
+        RaisedButton(color: Colors.transparent,child: Text("Add the Sections",style: TextStyle(color: Colors.white),),
+        onPressed: ()async{
+          print("sectobeadded"+sectobeadded.toString());
+           sectobeadded.forEach((f)async{
+              await addSection(f.toString());
+           });
+           Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePagee()));
+        },
+        )
+                ],
+              ),
+              ],
+              ),
+      ),
+         ),
+    );
+
   }
 
   builder(int index) {

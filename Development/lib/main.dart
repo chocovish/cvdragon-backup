@@ -6,6 +6,7 @@ String name, email;
 
 void main() {
 
+
   //Turning of landscape mode..
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,

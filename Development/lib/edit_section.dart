@@ -212,9 +212,10 @@ Widget _buildCardView(BuildContext context) {
                                           index,
                                           section,
                                           key,
-                                          faq,
+                                          
                                           databb,
-                                          addeddata))));
+                                          addeddata,
+                                          faq))));
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -305,9 +306,9 @@ Widget _buildCardView(BuildContext context) {
                                               index,
                                               section,
                                               key,
-                                              faq,
                                               databb,
-                                              addeddata))));
+                                              addeddata,
+                                              faq))));
                                           //print(db0.value[index][AddedDataColumn[section]]);
                                           // Navigator.push(
                                           //     context,

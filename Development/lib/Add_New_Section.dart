@@ -1,25 +1,26 @@
 import 'package:cvdragonapp_v1/home.dart';
 
-// import './datapush.dart'as server;
+
 import 'localdatapush.dart';
 import 'package:cvdragonapp_v1/maps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './topmenu.dart';
 import './maps.dart';
-import './localdatafetch.dart'as lfetch;
-  List data=[];
- 
-class AddNewSection extends StatefulWidget {
+import './localdatafetch.dart' as lfetch;
 
+
+List data = [];
+
+class AddNewSection extends StatefulWidget {
   @override
   _AddNewSection createState() => new _AddNewSection();
 }
-class _AddNewSection extends State<AddNewSection> {
-  List sectobeadded=[];
 
- 
-  bool _isLoading=true;
+class _AddNewSection extends State<AddNewSection> {
+  List sectobeadded = [];
+
+  bool _isLoading = true;
   PageController controller;
   int currentpage = 0;
   @override
@@ -31,19 +32,21 @@ class _AddNewSection extends State<AddNewSection> {
       keepPage: false,
       viewportFraction: 0.9,
     );
-  
   }
-  void get()async{
-      data = await lfetch.getNotAddedSections();
-      setState(() {
-        _isLoading = false;
-       });  
+
+  void get() async {
+    data = await lfetch.getNotAddedSections();
+    setState(() {
+      _isLoading = false;
+    });
   }
+
   @override
   dispose() {
     controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     
@@ -164,89 +167,85 @@ class _AddNewSection extends State<AddNewSection> {
     );
 
   }
+
   builder(int index) {
-  
     return new AnimatedBuilder(
-      
       animation: controller,
       builder: (context, child) {
         double value = 0.9;
-         var item = data[index].toString();
+        var item = data[index].toString();
 
-         if(data[index].toString()=='51126'){
-           return new Center(
-             child: Text("None of the sections left !",style: TextStyle(color: Colors.white),));
-      
-         }
-
-         else{
-        return Dismissible(direction: DismissDirection.vertical, key: Key(item),     
-        onDismissed: (direction ) {
-          if (direction == DismissDirection.up){
-                  // Removes that item the list on swipwe
-                  setState(() {
-                    
-                 data.removeAt(index);
-                 
-                  });
-                  // Shows the information on Snackbar
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text(" dismissed"),duration: Duration(milliseconds: 50),));
-                     
-          }
-          if (direction == DismissDirection.down){
-            var secid ="";
-                  // Removes that item the list on swipwe
-                  setState(()  {
-                    secid=data[index].toString();
-                 data.removeAt(index);
-                   sectobeadded.add(secid.toString());
-                  });
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text("Added"),duration: Duration(milliseconds: 50),));
-                  
-          }
-                      },
-                      
-                  child: 
-          new Center(
-            child: new SizedBox(
-              height: MediaQuery.of(context).size.height / 4,
-              width: Curves.easeOut.transform(value) * 500,
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage('assets/ProfileSection/'+data[index].toString()+'-01.png'),fit: BoxFit.cover),
-               gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.pink,
-                      Colors.purple
-                    ],
+        if (data[index].toString() == '51126') {
+          return new Center(
+              child: Text(
+            "None of the sections left !",
+            style: TextStyle(color: Colors.white),
+          ));
+        } else {
+          return Dismissible(
+            direction: DismissDirection.vertical,
+            key: Key(item),
+            onDismissed: (direction) {
+              if (direction == DismissDirection.up) {
+                // Removes that item the list on swipwe
+                setState(() {
+                  data.removeAt(index);
+                });
+                // Shows the information on Snackbar
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text(" dismissed"),
+                  duration: Duration(milliseconds: 50),
+                ));
+              }
+              if (direction == DismissDirection.down) {
+                var secid = "";
+                // Removes that item the list on swipwe
+                setState(() {
+                  secid = data[index].toString();
+                  data.removeAt(index);
+                  sectobeadded.add(secid.toString());
+                });
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text("Added"),
+                  duration: Duration(milliseconds: 50),
+                ));
+              }
+            },
+            child: new Center(
+              child: new SizedBox(
+                height: MediaQuery.of(context).size.height / 4,
+                width: Curves.easeOut.transform(value) * 500,
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/ProfileSection/' +
+                            data[index].toString() +
+                            '-01.png'),
+                        fit: BoxFit.cover),
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.pink, Colors.purple],
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
-                  borderRadius: BorderRadius.all(
-                     Radius.circular(20)),
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        Sections[data[index].toString()].toString(),
+                        style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      )),
+                  //elevation: 15.0,
+                  margin: const EdgeInsets.all(8.0),
                 ),
-        child: Align(
-          alignment: Alignment.center,
-          child: Text( Sections[data[index].toString()]
-                                                .toString(),style: TextStyle(fontSize: 25,color:Colors.white, fontWeight:FontWeight.bold),)),
-        //elevation: 15.0,
-        margin: const EdgeInsets.all(8.0),
-        
-        
-      ),
+              ),
             ),
-          ),
-        );
-         }
-         
+          );
+        }
       },
-    
     );
   }
 }
-
-
-
-

@@ -40,8 +40,8 @@ class _IntroductionFormState extends State<IntroductionForm> {
             floating: false,
             pinned: true,
             flexibleSpace: Container(decoration: BoxDecoration(gradient: LinearGradient(colors: 
-            [    Color(0xff2727ff),
-                      Color(0xff00003b),])),
+            [    Color(0xff32b547	),
+                      Color(0xff4b8ab5),])),
               child: FlexibleSpaceBar(title: Text("Introduction"),centerTitle: true,)),
           )
         

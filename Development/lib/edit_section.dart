@@ -99,7 +99,7 @@ class _EditSection extends State<EditSection> {
         : Scaffold(
             backgroundColor: Colors.black,
             appBar:(section != "51100")&&(section != "51101")&&(section != "51102")&&
-            (section != "51103")&&(section != "51109")? TopMenuBar():null,
+            (section != "51103")? TopMenuBar():null,
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(

@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './topmenu.dart';
 import './sidemenu.dart';
-import './fetch.dart' as fetch;
 import './rightpreviewpane.dart';
 
 String name = "";
@@ -62,7 +61,7 @@ class _HomePagee extends State<HomePagee> {
           authkey=await readauthKey();
         name=await readname();
         selectedprofile=await readprofiles();
-         profiles=await fetch.getcvProfiles(id, authkey);
+         profiles=await getProfiles(id, authkey);
         
         if(selectedprofile!=" ")
         profileselected=true;

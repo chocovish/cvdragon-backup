@@ -42,8 +42,8 @@ class _CertificatesFormState extends State<BasicInfo> {
             floating: false,
             pinned: true,
             flexibleSpace: Container(decoration: BoxDecoration(gradient: LinearGradient(colors: 
-            [    Color(0xff2727ff),
-                      Color(0xff00003b),])),
+            [    Color(0xffef6c3e	),
+                      Color(0xff530d27),])),
               child: FlexibleSpaceBar(title: Text("Basic Info"),centerTitle: true,)),
           )
         ],

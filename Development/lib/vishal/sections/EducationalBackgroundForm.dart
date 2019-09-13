@@ -63,8 +63,8 @@ class _EducationalBackgroundFormState extends State<EducationalBackgroundForm> {
                  floating: false,
                  pinned: true,
                  flexibleSpace: Container(decoration: BoxDecoration(gradient: LinearGradient(colors: 
-            [    Color(0xff2727ff),
-                      Color(0xff00003b),])),
+            [    Color(0xff283890	),
+                      Color(0xff7fa7da),])),
               child: FlexibleSpaceBar(title: Text("Educational Background"),centerTitle: true,)),
                ),
              ],

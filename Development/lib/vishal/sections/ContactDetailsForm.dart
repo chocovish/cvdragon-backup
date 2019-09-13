@@ -42,8 +42,8 @@ class _ContactDetailsFormState extends State<ContactDetailsForm> {
                  floating: false,
                  pinned: true,
                 flexibleSpace: Container(decoration: BoxDecoration(gradient: LinearGradient(colors: 
-            [    Color(0xff2727ff),
-                      Color(0xff00003b),])),
+            [    Color(0xffe11f2a	),
+                      Color(0xffb6295e),])),
               child: FlexibleSpaceBar(title: Text("Contact Details"),centerTitle: true,)),
           )
         ],

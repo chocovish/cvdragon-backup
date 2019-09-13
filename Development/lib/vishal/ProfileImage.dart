@@ -34,7 +34,7 @@ class _ProfileImageUploadState extends State<ProfileImageUpload> {
             flexibleSpace: Container(
               decoration: BoxDecoration(
                   gradient: LinearGradient(
-                      colors: [Colors.blueAccent, Colors.black])),
+                      colors: [Color(0xfffcaa20), Color(0xff583861)])),
               child: FlexibleSpaceBar(
                 title: Text("Profile Pictures"),
               ),

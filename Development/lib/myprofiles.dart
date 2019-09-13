@@ -164,29 +164,33 @@ setState(() {
         color: Colors.black,
         child: 
        
-        Center(
-          
-          child:InkWell(
-            onTap: (){
-              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => (CardProfilesName())));
-            },
-                      child: Container(
-              height: MediaQuery.of(context).size.height / 3,
-              width: MediaQuery.of(context).size.width/1.5,
-              child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(Icons.add_circle,size: 60,color: Colors.white,),
-                  Text("Add New Profile",style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
-                ],
+        Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image:AssetImage('assets/add_new_profile.jpeg'),fit: BoxFit.cover ),
+              ),
+          child: Center(
+            
+            child:InkWell(
+              onTap: (){
+                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => (CardProfilesName())));
+              },
+                        child: Container(
+                height: MediaQuery.of(context).size.height / 3,
+                width: MediaQuery.of(context).size.width/1.5,
+                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.add_circle,size: 60,color: Colors.white,),
+                    Text("Add New Profile",style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
+                  ],
+                ),
               ),
             ),
-          ),
-       
-        
       ),
+        ),
           ),
           ),
         );

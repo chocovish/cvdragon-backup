@@ -41,7 +41,33 @@ String section;
 String secName;
 var data = [];
 Map colors={
-  "51101":{"c1":0xffcfcb48,"c2":0xffebeb99}
+'51099':{'c1':0xffd1ca46,'c2':0xffecec9e},
+'51100':{'c1':0xffef6c3e,'c2':0xff530d27},
+'51101':{'c1':0xffe11f2a,'c2':0xffb6295e},
+'51102':{'c1':0xfffcaa20,'c2':0xff583861},
+'51103':{'c1':0xff32b547,'c2':0xff4b8ab5},
+'51104':{'c1':0xff111d37,'c2':0xff3b86a6},
+'51105':{'c1':0xffee438f,'c2':0xfffdb723},
+'51106':{'c1':0xffb1d66f,'c2':0xff95d3bc},
+'51107':{'c1':0xffe0365d,'c2':0xff9093b2},
+'51108':{'c1':0xff51286a,'c2':0xff1c0f29},
+'51109':{'c1':0xff283890,'c2':0xff7fa7da},
+'51110':{'c1':0xfff8e690,'c2':0xfff36865},
+'51111':{'c1':0xff47397d,'c2':0xffef4c61},
+'51112':{'c1':0xff005e91,'c2':0xffebcd17},
+'51113':{'c1':0xff5158a8,'c2':0xff00491e},
+'51114':{'c1':0xfff05326,'c2':0xfff7ad30},
+'51115':{'c1':0xffef383c,'c2':0xff14574},
+'51116':{'c1':0xffd2d61f,'c2':0xff2d7f4f},
+'51117':{'c1':0xfff6aa30,'c2':0xff854337},
+'51118':{'c1':0xff17b7ab,'c2':0xffeb4752},
+'51119':{'c1':0xff492e41,'c2':0xffc35352},
+'51120':{'c1':0xffee5e82,'c2':0xff7e7ab5},
+'51121':{'c1':0xffb2202d,'c2':0xfff7cfac},
+'51122':{'c1':0xffbd3567,'c2':0xff3a2e6e},
+'51123':{'c1':0xff1c6473,'c2':0xff569f67},
+'51125':{'c1':0xffffda47,'c2':0xffe7193f},
+'51126':{'c1':0xffaabade,'c2':0xff473694},
 };
 class CreateSection extends StatefulWidget {
   @override
@@ -69,6 +95,7 @@ class _CreateSection extends State<CreateSection> {
 
   @override
   Widget build(BuildContext context) {
+    print("section="+section);
     return Scaffold(
        backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -111,8 +138,8 @@ class _CreateSection extends State<CreateSection> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Color(colors["51101"]["c1"]),
-                      Color(colors["51101"]["c2"]),
+                      Color(colors[section]["c1"]),
+                      Color(colors[section]["c2"]),
                     ],
                   ),
                 ),child: FlexibleSpaceBar(

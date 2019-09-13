@@ -1,11 +1,18 @@
+import 'package:cvdragonapp_v1/datapush.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './topmenu.dart';
 import './Congrats.dart';
-
+String profile="";
+List sections=[];
 
 class ConfigureProfile extends StatefulWidget {
   @override
+  ConfigureProfile(String p,List d)
+  {
+      profile=p;
+      sections=d;
+  }
   _ConfigureProfile createState() => new _ConfigureProfile();
 }
 
@@ -87,7 +94,14 @@ class _ConfigureProfile extends State<ConfigureProfile> {
                       alignment: Alignment.center,
                                           child: InkWell(
                         
-                      onTap: (){
+                      onTap: ()async{
+                        print(sections.toString());
+                        Map<String,dynamic> secs={};
+                        sections.forEach((f){
+                          secs[f.toString()]=[];
+                        });
+                        String s=await createProfile(secs, profile);
+                        print("Profile created - "+s);
                            Navigator.of(context).push(
                   MaterialPageRoute<Null>(builder: (BuildContext context) {return
                       Congrats();

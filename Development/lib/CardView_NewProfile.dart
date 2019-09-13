@@ -7,18 +7,24 @@ import './topmenu.dart';
 import './maps.dart';
 import './localdatafetch.dart'as lfetch;
 import 'dart:convert';
-  Map<String,dynamic> datatobesent={};
+String profileName="";
+  List datatobesent=[];
+  
   List data=[];
   List data2=[];
    List items=[];
 class CardProfiles extends StatefulWidget {
-  CardProfiles({Key key}) : super(key: key);
+ 
+ CardProfiles(String p){
+   profileName=p;
+   datatobesent=[];
+ }
   @override
   _CardProfiles createState() => new _CardProfiles();
 }
 class _CardProfiles extends State<CardProfiles> {
   TextEditingController con=new TextEditingController();
-  
+ 
    Map<String,dynamic> totaldata={};
  
   bool _isLoading=true;
@@ -35,7 +41,7 @@ class _CardProfiles extends State<CardProfiles> {
     );
   }
   void get()async{
-datatobesent={};
+datatobesent=[];
    data=await lfetch.getSections();
   //  data2.forEach((element){
   //   data.add({'sections':element['sections'].toString(),});
@@ -45,7 +51,7 @@ datatobesent={};
         for(var element in data)
         {
           String it=element['section'].toString();
-          if(it!="51100"&&it!="51101"&&it!="51102"&&it!="51103"&&it!="51109")
+          if(it!="51100"&&it!="51101"&&it!="51102"&&it!="51103"&&it!="51109"&&it!="51126")
          {
           items.add(json.decode(it));
           List d1= await lfetch.getDefaultSection(it);
@@ -53,6 +59,7 @@ datatobesent={};
           
         }
         }
+        
          items.add("q");
        
        setState(() {
@@ -217,7 +224,7 @@ datatobesent={};
                  Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => (ConfigureProfile())));
+                                      builder: (context) => (ConfigureProfile(profileName,datatobesent))));
               },
                       child: Container(
               height: MediaQuery.of(context).size.height / 6,
@@ -258,7 +265,7 @@ datatobesent={};
                   });
                   // Shows the information on Snackbar
                   Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text(" dismissed")));
+                      .showSnackBar(SnackBar(content: Text("Dismissed"),duration: Duration(milliseconds: 500),));
                      
           }
           if (direction == DismissDirection.down){
@@ -267,19 +274,19 @@ datatobesent={};
                   setState(()  {
                     secid=items[index].toString();
                  items.removeAt(index);
-                   
+                   datatobesent.add(secid);
                   });
                   Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text("Added")));
-                      return showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) => CustomDialogNewProfile(
-                                      title:Sections[secid],
-                                      description: totaldata[secid],
-                                      buttonText: "Submit",
-                                      sectionId: secid,
-                                    ),
-                                  );
+                      .showSnackBar(SnackBar(content: Text("Added"),duration: Duration(milliseconds: 500),));
+                      // return showDialog(
+                      //               context: context,
+                      //               builder: (BuildContext context) => CustomDialogNewProfile(
+                      //                 title:Sections[secid],
+                      //                 description: totaldata[secid],
+                      //                 buttonText: "Submit",
+                      //                 sectionId: secid,
+                      //               ),
+                      //             );
                   // Shows the information on Snackbar
                   
           }

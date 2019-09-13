@@ -1,7 +1,6 @@
 import 'package:cvdragonapp_v1/maps.dart';
 import 'package:flutter/material.dart';
 import './const.dart';
-import './CardView_NewProfile.dart' as np;
 
 class CustomDialogNewProfile extends StatelessWidget {
   final String title, buttonText,sectionId;
@@ -136,7 +135,7 @@ final addit = ValueNotifier(false);
             child: RaisedButton(color: Colors.pink,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
               onPressed: () {
-                np.datatobesent[sectionId]=selectedsubs;
+                // np.datatobesent[sectionId]=selectedsubs;
                 Navigator.of(context).pop();
               },
               child: Text(

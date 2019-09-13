@@ -118,6 +118,7 @@ class _DemoLogin extends State<DemoLogin> {
         : status == 1
             ? LayerBeforeHP()
             : Scaffold(
+
                 //resizeToAvoidBottomInset: true,
                 //resizeToAvoidBottomPadding: true,
                 body: Container(
@@ -125,69 +126,97 @@ class _DemoLogin extends State<DemoLogin> {
                   width: MediaQuery.of(context).size.width,
 
                   decoration: BoxDecoration(
-                    color: Colors.black,
+                    image: DecorationImage(image: AssetImage('assets/loginbg.jpeg'),
+                    fit: BoxFit.cover)
                   ),
                   child: ListView(
                     children: <Widget>[
                       Column(
                         children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.only(bottom: 10),
-                            decoration: BoxDecoration(
-                                color: Colors.yellow,
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(90),
+                          // Container(
+                          //   padding: EdgeInsets.only(bottom: 10),
+                          //   decoration: BoxDecoration(
+                          //       color: Colors.yellow,
+                          //       borderRadius: BorderRadius.only(
+                          //         bottomLeft: Radius.circular(90),
 
-                                  //borderRadius: BorderRadius.only(bottomLeft:  const  Radius.circular(30.0),
-                                  //bottomRight:  const  Radius.circular(30.0),
-                                )),
-                            height: MediaQuery.of(context).size.height / 1.9,
-                            width: MediaQuery.of(context).size.width,
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height / 2,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: new PageView.builder(
-                                      itemCount: 3,
-                                      onPageChanged: (value) {
-                                        setState(() {
-                                          currentpage = value;
-                                        });
-                                      },
-                                      controller: controller,
-                                      itemBuilder: (context, index) =>
-                                          builder(index)),
-                                ),
-                              ],
+                          //         //borderRadius: BorderRadius.only(bottomLeft:  const  Radius.circular(30.0),
+                          //         //bottomRight:  const  Radius.circular(30.0),
+                          //       )),
+                          //   height: MediaQuery.of(context).size.height / 1.9,
+                          //   width: MediaQuery.of(context).size.width,
+                          //   child: Column(
+                          //     children: <Widget>[
+                          //       Container(
+                          //         height:
+                          //             MediaQuery.of(context).size.height / 2,
+                          //         width: MediaQuery.of(context).size.width,
+                          //         child: new PageView.builder(
+                          //             itemCount: 3,
+                          //             onPageChanged: (value) {
+                          //               setState(() {
+                          //                 currentpage = value;
+                          //               });
+                          //             },
+                          //             controller: controller,
+                          //             itemBuilder: (context, index) =>
+                          //                 builder(index)),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/9),),
+                          Align(
+                            alignment: Alignment.center,
+                            // child: Padding(
+                            //   padding:
+                            //       const EdgeInsets.only(top: 10, bottom: 10),
+                            //   child: Container(
+                            //     height: 35.0,
+                            //     width: 100.0,
+                            //     alignment: FractionalOffset.center,
+                            //     decoration: BoxDecoration(
+                            //         color: Colors.transparent,
+                            //         borderRadius: BorderRadius.circular(10.0),
+                            //         border:
+                            //             new Border.all(color: Colors.white)),
+                            //    // child: CircleAvatar(backgroundImage: AssetImage('assets/'),),
+                            //   ),
+                            // ),
+                            child: ClipOval(
+                              child: Opacity(opacity: 0.8,
+                                child: Image.asset('assets/loginlogo.png',fit: BoxFit.cover,height: 200,width: 200,)),
                             ),
                           ),
-
                           Container(
-                            margin: EdgeInsets.only(top: 20),
-                            width: MediaQuery.of(context).size.width / 1.15,
+                            margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/9),
+                            width: MediaQuery.of(context).size.width /1.5,
                             height: 45,
                             padding: EdgeInsets.only(
-                                top: 4, left: 16, right: 16, bottom: 4),
+                                top: 4, left: 30, right: 30, bottom: 4),
                             decoration: BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(50)),
+                                    BorderRadius.all(Radius.circular(10)),
                                 color: Colors.white,
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.black12, blurRadius: 5)
                                 ]),
                             child: TextField(
+                              
+                              
                               keyboardType: TextInputType.number,
                               controller: mycontroller,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-                                icon: Icon(
-                                  Icons.phone,
-                                  color: Colors.grey,
-                                ),
-                                hintText: 'Phone',
+                                
+
+                                // icon: Icon(
+                                //   Icons.phone,
+                                //   color: Colors.grey,
+                                // ),
+                                hintText: 'TYPE YOUR PHONE NUMBER HERE',
+                                hintStyle: TextStyle(letterSpacing: 0)
                               ),
                             ),
                           ),
@@ -223,7 +252,7 @@ class _DemoLogin extends State<DemoLogin> {
                             alignment: Alignment.center,
                             child: Padding(
                               padding:
-                                  const EdgeInsets.only(top: 20, bottom: 10),
+                                  const EdgeInsets.only(top: 60, bottom: 20),
                               child: InkWell(
                                 onTap: () {
                                   Navigator.push(
@@ -235,12 +264,12 @@ class _DemoLogin extends State<DemoLogin> {
                                               1)));
                                 },
                                 child: Container(
-                                  height: 40.0,
-                                  width: 150.0,
+                                  height: 35.0,
+                                  width: 100.0,
                                   alignment: FractionalOffset.center,
                                   decoration: BoxDecoration(
                                       color: Colors.transparent,
-                                      borderRadius: BorderRadius.circular(30.0),
+                                      borderRadius: BorderRadius.circular(10.0),
                                       border:
                                           new Border.all(color: Colors.white)),
                                   child: InkWell(
@@ -257,11 +286,11 @@ class _DemoLogin extends State<DemoLogin> {
                                       // });
                                     },
                                     child: Text(
-                                      "Verify",
+                                      "VERIFY",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 15.0,
-                                          fontWeight: FontWeight.bold,
+                                          // fontWeight: FontWeight.bold,
                                           letterSpacing: 1.0),
                                     ),
                                   ),
@@ -271,9 +300,9 @@ class _DemoLogin extends State<DemoLogin> {
                           ),
 
                           _buildTextSocialLogin(),
-                          Padding(padding: EdgeInsets.only(bottom: 10)),
+                          Padding(padding: EdgeInsets.only(top: 25)),
                           Container(
-                            width: MediaQuery.of(context).size.width / 1.5,
+                            width: MediaQuery.of(context).size.width / 1.3,
                             child: Row(
 //            crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
@@ -284,17 +313,17 @@ class _DemoLogin extends State<DemoLogin> {
                                       print("FB");
                                       fbb(context);
                                     },
-                                    child: Container(
-                                      //padding: EdgeInsets.only(left: 10),
-                                      child: CircleAvatar(
-                                        backgroundImage: ExactAssetImage(
-                                            'assets/facebook.jpg'),
-                                        minRadius: 20,
-                                        maxRadius: 20,
-                                      ),
+                                    child: ClipOval(
+                                      
+                                       // backgroundColor: Colors.black,
+                                      child: Image.asset(
+                                          'assets/fbcvd.png',fit: BoxFit.cover,height:55,width: 55,),
+                                      // minRadius: 20,
+                                     // maxRadius: 20,
                                     ),
                                   ),
                                   InkWell(
+
                                     onTap: () {
                                       _handleSignIn()
                                           .then((GoogleSignInAccount acc) {
@@ -309,14 +338,13 @@ class _DemoLogin extends State<DemoLogin> {
                                         }
                                       });
                                     },
-                                    child: Container(
-                                      //padding: EdgeInsets.only(left: 20),
-                                      child: CircleAvatar(
-                                        backgroundImage: ExactAssetImage(
-                                            'assets/google.png'),
-                                        minRadius: 20,
-                                        maxRadius: 20,
-                                      ),
+                                    child: ClipOval(
+                                      
+                                       // backgroundColor: Colors.black,
+                                      child: Image.asset(
+                                          'assets/googlecvd.png',fit: BoxFit.cover,height:55,width: 55,),
+                                      // minRadius: 20,
+                                     // maxRadius: 20,
                                     ),
                                   ),
                                   InkWell(
@@ -326,15 +354,13 @@ class _DemoLogin extends State<DemoLogin> {
                                               builder: (context) =>
                                                   buildLinkedIn(context)));
                                     },
-                                    child: Container(
-                                      //padding: EdgeInsets.only(left: 20),
-
-                                      child: CircleAvatar(
-                                        backgroundImage: ExactAssetImage(
-                                            'assets/linkedin.jpg'),
-                                        minRadius: 20,
-                                        maxRadius: 20,
-                                      ),
+                                    child: ClipOval(
+                                      
+                                       // backgroundColor: Colors.black,
+                                      child: Image.asset(
+                                          'assets/incvd.png',fit: BoxFit.cover,height:55,width: 55,),
+                                      // minRadius: 20,
+                                     // maxRadius: 20,
                                     ),
                                   ),
                                 ]),
@@ -391,6 +417,7 @@ class _DemoLogin extends State<DemoLogin> {
 
 Widget _buildTextSocialLogin() {
   return Row(
+    
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
       _buildHorizontalLine(),

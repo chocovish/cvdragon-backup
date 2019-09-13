@@ -110,36 +110,8 @@ flutter:
   #  - images/a_dot_ham.jpeg
  assets:
     - assets/
-    - assets/resumeDesignsLarge/
-    - assets/facebook.jpg
-    - assets/google.png
-    - assets/linkedin.jpg
-    - assets/logocv.gif
-    - assets/cover.png
-    - assets/giflogo2.gif
-    - assets/sections.db
-    - assets/Position of Responsibility.png
-    - assets/Contact Details.png
-    - assets/Basic Info.png
-    - assets/Profile Image.png
-    - assets/logofull.png
-    - assets/cv.png
-    - assets/cv3.html
-    - assets/angry.gif
-    - assets/sad.gif
-    - assets/like.gif
-    - assets/haha.gif
-    - assets/wow.gif
-    - assets/love.gif
-    - assets/twitterlogo.png
-    - assets/finalpor.png
-    - assets/Work Details.png
-    - assets/Profile Image.png
-    - assets/final structure-02.png
     - assets/ProfileSection/
     - assets/Edit Section/
-    - assets/FormSection/
-    - assets/AllSection/
     - assets/cv-Fonts/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

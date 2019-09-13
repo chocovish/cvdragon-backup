@@ -16,10 +16,13 @@ class _CoverLetters extends State <CoverLetters> {
   Widget build(BuildContext context) {
     
   
-    return Scaffold(appBar: TopMenuBar(),
-        //bottomNavigationBar: BottomBar(),
-        drawer: SideMenu(),
-      body: Center(child: Text("Cover Letters",style: TextStyle(fontSize: 50.0),)),
-    );
+    return  Container(
+       decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/csoon.png'),fit: BoxFit.cover)),
+       child: Scaffold(
+         backgroundColor: Colors.transparent,
+        appBar: TopMenuBar(),
+        
+       ),
+     );
   }
 }

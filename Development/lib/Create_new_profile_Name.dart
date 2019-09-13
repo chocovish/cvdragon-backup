@@ -117,6 +117,7 @@ class _CardProfilesName extends State<CardProfilesName> {
                      
 
                         child: TextField(
+                          
                            controller: pnameController,
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -134,13 +135,22 @@ class _CardProfilesName extends State<CardProfilesName> {
                       if(pnameController.text=="")
                           {
                             showDialog(context: context,
-                            child:Dialog(backgroundColor: Colors.transparent,elevation: 20,
-                            child: Text("Please Enter Your Profile Name",style: TextStyle(color: Colors.red)),));
+                            child:
+                            Dialog(
+                              backgroundColor: Colors.transparent,
+                              elevation: 20,
+                            child: 
+                            Text("Please Enter Your Profile Name".toUpperCase(),
+                            style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold
+                            )
+                            ),
+                            )
+                            );
                           }
                           else{
                        Navigator.of(context).push(
                   MaterialPageRoute<Null>(builder: (BuildContext context) {
-                    return CardProfiles();
+                    return CardProfiles(pnameController.text);
                     }));
                     }
                     

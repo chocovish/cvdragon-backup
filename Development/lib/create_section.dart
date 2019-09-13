@@ -40,7 +40,9 @@ String y;
 String section;
 String secName;
 var data = [];
-
+Map colors={
+  "51101":{"c1":0xffcfcb48,"c2":0xffebeb99}
+};
 class CreateSection extends StatefulWidget {
   @override
   CreateSection(List d, int i, String sectionid, List k1, List db, List d3,List f) {
@@ -90,9 +92,9 @@ class _CreateSection extends State<CreateSection> {
         ),
         bottomNavigationBar: MybottomNav(-1) ,
         body: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
+            // decoration: BoxDecoration(
+            //     image: DecorationImage(
+            //         image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
             child: NestedScrollView(
                 headerSliverBuilder:
                     (BuildContext context, bool innerBoxIsScrolled) {
@@ -109,8 +111,8 @@ class _CreateSection extends State<CreateSection> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Color(0xff2727ff),
-                      Color(0xff00003b),
+                      Color(colors["51101"]["c1"]),
+                      Color(colors["51101"]["c2"]),
                     ],
                   ),
                 ),child: FlexibleSpaceBar(

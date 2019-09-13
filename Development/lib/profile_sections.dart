@@ -26,6 +26,7 @@ class _ProfileSections extends State<ProfileSections> {
   String authkey = "";
   String cvid = "";
   bool _isLoading = true;
+  int addsec=0;
   Map<String, dynamic> countoftotaldata = {};
   List data2 = [];
   List data = [];
@@ -40,11 +41,13 @@ class _ProfileSections extends State<ProfileSections> {
     authkey = await sfetch.readauthKey();
     cvid = await sfetch.readprofiles();
     data2 = await lfetch.getProfileSections(id, cvid);
+
     countoftotaldata = await lfetch.getCount(data2);
     
     data2.forEach((element) {
       data.add(json.decode(element['section'].toString()));
     });
+    print(data.toString());
     data.add("Add a New Section");
     //data3 = data2;
     //for (var i in data) data3.remove(i);
@@ -77,9 +80,7 @@ class _ProfileSections extends State<ProfileSections> {
                     physics: BouncingScrollPhysics(),
                     itemCount: data == null ? 0 : data.length,
                     itemBuilder: (BuildContext context, int index) {
-                      if (data[index].toString() == "51126") {
-                        print("New Section loop executed");
-                      }
+                      
 
                       //     child: Container(
                       //       height: 120,
@@ -131,8 +132,9 @@ class _ProfileSections extends State<ProfileSections> {
                       //   );
 
                       //  }
-                      else if (data[index].toString() == "Add a New Section") {
-                        return Card(
+                      if (data[index].toString() == "51126"||data[index].toString() == "Add a New Section") {
+                        addsec+=1;
+                        return addsec>1?null:Card(
                           child: Container(
                             height: 120,
                             width: MediaQuery.of(context).size.width,

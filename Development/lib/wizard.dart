@@ -228,7 +228,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                         ),
                       ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 0),
+                      padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/18),
 
                       child:
                        FormBuilderSegmentedControl(
@@ -244,7 +244,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                          },
                         decoration: InputDecoration( 
                        
-                        //  border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                       //  border: Border
                         ),
                         attribute: "Form",

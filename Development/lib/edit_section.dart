@@ -137,6 +137,8 @@ class _EditSection extends State<EditSection> {
             //     FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
             //   ],
             // ),
+
+            
             bottomNavigationBar: MybottomNav(-1),
             body: ValueListenableBuilder(
                 valueListenable: db0,

@@ -27,7 +27,7 @@ syncMsg(BuildContext context) {
 
 
 
-void syncthedata(BuildContext context) async{
+Future<void> syncthedata(BuildContext context) async{
   syncOnGoing.value = true;
 //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Started Sync"),backgroundColor: Colors.amber,));
 try {

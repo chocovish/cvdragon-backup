@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cvdragonapp_v1/sync.dart';
 import 'package:flutter/material.dart';
 import '../demologin.dart';
 
@@ -6,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 Future<void> logout(BuildContext context) async {
-
+  await syncthedata(context);
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString("authKey", null);
   prefs.setInt("loginstatus", null);  

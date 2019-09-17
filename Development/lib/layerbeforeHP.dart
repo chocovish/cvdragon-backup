@@ -1,4 +1,5 @@
 import 'package:cvdragonapp_v1/home.dart';
+import 'package:cvdragonapp_v1/sync.dart';
 import 'package:flutter/material.dart';
 import './earlyfetch.dart' as efetch;
 
@@ -13,7 +14,10 @@ class _LayerBeforeHPState extends State<LayerBeforeHP> {
   void g() async
   {
 
+    
     print("Entered Here");
+    print("Syncing the file");
+    await syncthedata(context);
     int val = await efetch.get();
     if(val==1)
     {

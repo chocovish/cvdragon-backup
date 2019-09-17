@@ -47,6 +47,8 @@ try {
         if(res.body=="1")
         { 
            queue[i]="1";
+
+        
         }
         else
         {
@@ -62,7 +64,7 @@ try {
    if(queue.length>0) syncMsg(context);   
    await sfetch.writeSyncQueueList(queue);
    syncNotifier.value = false;
-
+   
   }
 } on SocketException catch (_) {
   Scaffold.of(context).showSnackBar(SnackBar(content: Text("No Internet"),backgroundColor: Colors.amber,));

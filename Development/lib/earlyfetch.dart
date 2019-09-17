@@ -13,6 +13,7 @@ List datafrmserver;
 Database database;
 
 Future<String> deletetables() async {
+  
   print('delete tables called');
   var add =await getApplicationDocumentsDirectory();
    var db =   await openDatabase(add.path.toString()+"/sections.db", version: 1);

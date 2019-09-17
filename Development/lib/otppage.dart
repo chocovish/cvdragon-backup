@@ -5,6 +5,12 @@ import 'package:code_input/code_input.dart';
 import './fetch.dart' as fetch;
 import 'layerbeforeHP.dart';
 
+// import 'package:sms_maintained/contact.dart';
+// import 'package:sms_maintained/generated/i18n.dart';
+// import 'package:sms_maintained/globals.dart';
+// import 'package:sms_maintained/sms.dart';
+// import 'package:sms_autofill/sms_autofill.dart';
+
 String mobileno = "";
 String socialid = "";
 int typeoflogin;
@@ -43,13 +49,22 @@ class _OtpPage extends State<OtpPage> {
 
   void get() async {
     if (typeoflogin == 1) {
+     
+  //    SmsReceiver receiver = new SmsReceiver();            // sms receiver mehtod call 
+  // receiver.onSmsReceived.listen((SmsMessage msg) => print(msg.body));
+    
+
       fetch.getOtp(mobileno).then((List res) {
         setState(() {
+          
           print(res.toString());
           data = res;
           _isLoading = false;
         });
       });
+
+
+        
     } else {
       await verify();
       setState(() {

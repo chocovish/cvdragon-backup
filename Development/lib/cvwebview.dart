@@ -159,9 +159,9 @@ class _MyWebViewState extends State<MyWebView> {
           bottomNavigationBar: Builder(
             builder: (_) => FABBottomAppBar(
               notchedShape: CircularNotchedRectangle(),
-              color: Colors.white30,
+              color: Colors.white,
               centerItemText: "Download",
-              backgroundColor: Color(0xff232882),
+              backgroundColor: Color(0xff000000),                      //Color(0xff232882),
               selectedColor: Colors.white,
               items: [
                 FABBottomAppBarItem(

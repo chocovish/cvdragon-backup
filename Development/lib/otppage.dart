@@ -4,18 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:code_input/code_input.dart';
 import './fetch.dart' as fetch;
 import 'layerbeforeHP.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 // import 'package:sms_maintained/contact.dart';
 // import 'package:sms_maintained/generated/i18n.dart';
 // import 'package:sms_maintained/globals.dart';
 // import 'package:sms_maintained/sms.dart';
 // import 'package:sms_autofill/sms_autofill.dart';
-
 String mobileno = "";
 String socialid = "";
 int typeoflogin;
 int otp;
-
 /*
 1   Mobile
 2 Facebook
@@ -46,14 +45,12 @@ class _OtpPage extends State<OtpPage> {
     myController2.dispose();
     super.dispose();
   }
-
   void get() async {
     if (typeoflogin == 1) {
      
   //    SmsReceiver receiver = new SmsReceiver();            // sms receiver mehtod call 
   // receiver.onSmsReceived.listen((SmsMessage msg) => print(msg.body));
     
-
       fetch.getOtp(mobileno).then((List res) {
         setState(() {
           
@@ -62,8 +59,6 @@ class _OtpPage extends State<OtpPage> {
           _isLoading = false;
         });
       });
-
-
         
     } else {
       await verify();
@@ -72,9 +67,8 @@ class _OtpPage extends State<OtpPage> {
       });
     }
   }
-
   verify() async {
-
+    await SmsAutoFill().listenForCode;
     print(typeoflogin);
     if (typeoflogin == 1) {
       if (otp == data[1]['OTP'].toString()) {
@@ -123,7 +117,6 @@ class _OtpPage extends State<OtpPage> {
       }
     }
   }
-
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(image:  DecorationImage(image: AssetImage('assets/otppage.png'),fit: BoxFit.cover)),
@@ -164,6 +157,16 @@ class _OtpPage extends State<OtpPage> {
                                   verify();
                                 },
                               ),
+                              // PinFieldAutoFill(
+                              //   codeLength: 4,
+                              //   keyboardType: TextInputType.number,
+                              //   currentCode: "----",
+                              // //  onCodeSubmitted: (SmsAutoFill().code.toString()) {
+
+                              // //     return SmsAutoFill().code;
+                              // //  }
+
+                              // ),
                            ],
                          ),
                        ),
@@ -173,7 +176,6 @@ class _OtpPage extends State<OtpPage> {
                 ),
     );
   }
-
   void initState() {
     super.initState();
     this.get();

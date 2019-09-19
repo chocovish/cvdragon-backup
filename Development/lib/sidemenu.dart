@@ -9,6 +9,7 @@ import './Privacy.dart';
 import './sharedfetch.dart'as sfetch;
 import './About.dart';
 import './vishal/utils.dart';
+import './help.dart';
 String name;
 String email;
 class SideMenu extends StatefulWidget {
@@ -195,6 +196,24 @@ class _SideMenu extends State<SideMenu> {
               trailing: Icon(Icons.arrow_forward, color: Colors.white),
               onTap: () {
                
+              },
+            ),
+             Divider(color: Colors.white30),
+            ListTile(
+              title: Text('Help & Support',
+                  style: TextStyle(color: Colors.white, fontSize: 15.0)),
+              trailing: Icon(Icons.arrow_forward, color: Colors.white),
+              leading: Icon(
+                Icons.help,
+                size: MediaQuery.of(context).size.aspectRatio*55.0,
+                color: Colors.white,
+              ),
+              subtitle: Text('Enquiry',
+                  style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Help()));
               },
             ),
             Divider(color: Colors.white30),

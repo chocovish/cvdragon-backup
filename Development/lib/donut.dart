@@ -12,7 +12,7 @@ Donut(var a,var b){
    
     return new AnimatedCircularChart(
   key: _chartKey,
-  size: Size(300,300),
+  size: Size(MediaQuery.of(context).size.height/5,MediaQuery.of(context).size.height/5),
   initialChartData: <CircularStackEntry>[
     new CircularStackEntry(
       <CircularSegmentEntry>[
@@ -34,9 +34,9 @@ Donut(var a,var b){
   percentageValues: true,
   holeLabel: f.floor().toString()+"/"+t.floor().toString(),
   labelStyle: new TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontWeight: FontWeight.bold,
-    fontSize: 24.0,
+    fontSize: 18.0,
   ),
 );
   }

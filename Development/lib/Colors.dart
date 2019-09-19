@@ -1,3 +1,4 @@
+import 'package:cvdragonapp_v1/sharedfetch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import './bottombar_home.dart';
@@ -55,7 +56,16 @@ setState(() {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.pinkAccent,
-        onPressed: () {},
+        onPressed: () {
+          //var c = colors[currentpage];
+          //print(c);
+          //String s = "${c['color1']}_${c['color2']}_${c['color3']}_${c['color4']}";
+          //print(s);
+          writecolor(currentpage.toString());
+          readcolor().then((v){
+            print(v);
+          });
+        },
         child: Icon(
           Icons.visibility,
           color: Colors.white,

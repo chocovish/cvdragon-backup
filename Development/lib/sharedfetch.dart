@@ -49,7 +49,7 @@ Future<String> writeid(String id) async {
     }
    Future<String> readcolor() async {
       final prefs = await SharedPreferences.getInstance();
-      final value = prefs.getString('cvcolor')??"0";
+      final value = prefs.getString('cvcolor')??"1";
       return value;
     }
    Future<String> readfont() async {

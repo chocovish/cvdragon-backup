@@ -34,6 +34,7 @@ class OtpPage extends StatefulWidget {
 }
 final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 class _OtpPage extends State<OtpPage> {
+   FocusNode focusnode;
   final myController2 = TextEditingController();
   bool _isLoading = true;
   String otp;
@@ -43,20 +44,22 @@ class _OtpPage extends State<OtpPage> {
     // Clean up the controller when the widget is removed from the
     // widget tree.
     myController2.dispose();
+    focusnode.dispose();
     super.dispose();
   }
   void get() async {
     if (typeoflogin == 1) {
-     
   //    SmsReceiver receiver = new SmsReceiver();            // sms receiver mehtod call 
   // receiver.onSmsReceived.listen((SmsMessage msg) => print(msg.body));
     
       fetch.getOtp(mobileno).then((List res) {
         setState(() {
-          
+             
           print(res.toString());
           data = res;
+        
           _isLoading = false;
+         
         });
       });
         
@@ -118,10 +121,11 @@ class _OtpPage extends State<OtpPage> {
     }
   }
   Widget build(BuildContext context) {
+     _isLoading==false?FocusScope.of(context).requestFocus(focusnode):focusnode.unfocus();
     return Container(
         decoration: BoxDecoration(image:  DecorationImage(image: AssetImage('assets/otppage.png'),fit: BoxFit.cover)),
       child: Scaffold(
-        key: _scaffoldKey,
+       key: _scaffoldKey,
         backgroundColor: Colors.transparent,
           body: _isLoading
               ? DecoratedBox(
@@ -142,7 +146,7 @@ class _OtpPage extends State<OtpPage> {
                  
                        child
                        : Container(
-                          padding: EdgeInsets.only(top:MediaQuery.of(context).size.height/2.2),
+                          padding: EdgeInsets.only(top:MediaQuery.of(context).size.height/3),
                          child: Column(
                            children: <Widget>[
                              Text("Enter OTP",style: TextStyle(color: Colors.white,fontSize: 20),),
@@ -151,7 +155,9 @@ class _OtpPage extends State<OtpPage> {
                              CodeInput(
                                 length: 4,
                                 keyboardType: TextInputType.number,
-                                builder: CodeInputBuilders.lightCircle(),
+                                focusNode: focusnode,
+                                builder: CodeInputBuilders.circle(color: Colors.white.withOpacity(0.5),emptyRadius: 10,filledRadius: 25,totalRadius: 30,border:Border.all(width: 0),textStyle: 
+                                TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold)),
                                 onFilled: (String val) {
                                   otp = val;
                                   verify();
@@ -178,6 +184,9 @@ class _OtpPage extends State<OtpPage> {
   }
   void initState() {
     super.initState();
-    this.get();
+    focusnode=FocusNode(canRequestFocus: true);
+       this.get();
+    
+    
   }
 }

@@ -231,8 +231,12 @@ Future<void> loadTemplate() async {
 Future<Map> makeSendData() async {
   String resumeid = await generateresumeid();
   var result = await getResumeDetails(resumeid);
-  print("runtime type: ${result.runtimeType}");
   print("got result...: $result");
+  print("heyyy");
+  List colors = await getColors();
+  print("hello");
+  var color = colors[result['profileSetting']];
+  print("color is $color");
   String sectionstring = result["ProfileSections"];
   List sections = sectionstring
       .substring(2, sectionstring.length - 2)
@@ -240,12 +244,14 @@ Future<Map> makeSendData() async {
       .split(",");
   print(sections);
 
-  Map<String, List> m = {};
+  Map m = {};
   String k;
   for (String key in sections) {
     k = tablename[key].replaceFirst("`cv-", "").replaceFirst("`", "");
     m[k] = await getDefaultSection(key);
   }
-  print(m["introduction"]);
+  m['color'] = color;
+  //print("m is $m");
+  print(m["color"]);
   return m;
 }

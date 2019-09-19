@@ -144,12 +144,15 @@ Future _storeImage() async {
 }
 
 Future<List<FileSystemEntity>> _getStoredImage() async {
-  Directory appDocDir = await getApplicationDocumentsDirectory();
+ try {Directory appDocDir = await getApplicationDocumentsDirectory();
   String imageDirPath = join(appDocDir.path, 'profile_images');
   Directory imageDir = Directory(imageDirPath);
   List<FileSystemEntity> l = imageDir.listSync();
   print(l.length);
-  return l;
+  return l;}
+  catch(e){
+    return [];
+  }
 }
 
 class ProfilePicList extends StatelessWidget {

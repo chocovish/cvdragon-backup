@@ -318,7 +318,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                           ),
                         ),
                       ),
-                       Padding(padding: EdgeInsets.only(bottom: 15),),
+                       Padding(padding: EdgeInsets.only(bottom: 30),),
                     GestureDetector(
                         onTap: (){
                            Navigator.push(

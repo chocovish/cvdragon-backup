@@ -133,6 +133,96 @@ class _DemoLogin extends State<DemoLogin> {
                     children: <Widget>[
                       Column(
                         children: <Widget>[
+
+
+
+                          Padding(
+                            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/1.5),
+
+                          ),
+                        Container(
+                          height: MediaQuery.of(context).size.height/13,
+                          width: MediaQuery.of(context).size.width/1.1,
+                     decoration:BoxDecoration(
+                           color: Colors.white,
+                           borderRadius: BorderRadius.all(
+                           Radius.circular(5.0),
+                          ),
+                        ),
+                          
+                          child: Row(
+                           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Container(
+                                child: Expanded(
+                                child: TextField(
+                                    keyboardType: TextInputType.number,
+                                        controller: mycontroller,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          
+                                       
+                                          // icon: Icon(
+                                          
+                                          //   Icons.arrow_right,
+                                          //   color: Colors.grey,
+                                          // ),
+                                          hintText: 'Mobile Number',
+                                           //counterText: "",
+                                           contentPadding: EdgeInsets.only(left: 10),
+                                           
+                                         
+                                          hintStyle: TextStyle(letterSpacing: 0 ),
+                                        
+                                          // suffixIcon: Padding(
+                                          
+                                          //   padding: const EdgeInsetsDirectional.only(end: 12.0),
+                                          //   child:Icon(Icons.arrow_right,
+                                          
+                                          //   ),
+                                          // )
+                                      
+                                      ),
+                                  ),
+                                ),
+                              ),
+                          //  Padding(
+                          //    // width:MediaQuery.of(context).size.width/3),
+                          //   // margin: EdgeInsets.only(left:MediaQuery.of(context).size.width/3),
+                            
+                          //   ),
+                             
+                              Container(
+                                //width:70,
+                                margin: EdgeInsets.all(2),
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.pink),
+                                width:MediaQuery.of(context).size.width/4,
+                                //color: Colors.orange,
+                                child: IconButton(
+                               icon: new Icon(Icons.arrow_forward,color: Colors.white,
+                               
+                               ),
+                              onPressed: (){
+                                  // local.pushAcademicProject().then((int status){
+                          //             //   if(status==1)
+                                 Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => OtpPage(
+                                                  mycontroller.text.toString(),
+                                                  "",
+                                                  1)));
+                                      // });
+                                    },
+                              //{ /* Your code */ },
+                                ),
+                              )
+                              
+                            ],
+                          ),
+
+                        ),
+
                           // Container(
                           //   padding: EdgeInsets.only(bottom: 10),
                           //   decoration: BoxDecoration(
@@ -165,9 +255,10 @@ class _DemoLogin extends State<DemoLogin> {
                           //     ],
                           //   ),
                           // ),
-                          Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/9),),
-                          Align(
-                            alignment: Alignment.center,
+                          // Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/2),
+                          // ),
+                          // Align(
+                          //   alignment: Alignment.center,
                             // child: Padding(
                             //   padding:
                             //       const EdgeInsets.only(top: 10, bottom: 10),
@@ -183,43 +274,77 @@ class _DemoLogin extends State<DemoLogin> {
                             //    // child: CircleAvatar(backgroundImage: AssetImage('assets/'),),
                             //   ),
                             // ),
-                            child: ClipOval(
-                              child: Opacity(opacity: 0.8,
-                                child: Image.asset('assets/loginlogo.png',fit: BoxFit.cover,height: 200,width: 200,)),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/9),
-                            width: MediaQuery.of(context).size.width /1.5,
-                            height: 45,
-                            padding: EdgeInsets.only(
-                                top: 4, left: 30, right: 30, bottom: 4),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.black12, blurRadius: 5)
-                                ]),
-                            child: TextField(
+                          //   child: ClipOval(
+                          //     child: Opacity(opacity: 0.8,
+                          //       child: Image.asset('assets/loginlogo.png',fit: BoxFit.cover,height: 200,width: 200,)),
+                          //   ),
+                          // ),
+                          
+                          //  Container(
                               
-                              
-                              keyboardType: TextInputType.number,
-                              controller: mycontroller,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                
+                            //  padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height/40),
+                            //   color: Colors.white,
+                              //  margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/9),
+                              //     width: MediaQuery.of(context).size.width /1.5,
+                              //     height: 45,
 
-                                // icon: Icon(
-                                //   Icons.phone,
-                                //   color: Colors.grey,
-                                // ),
-                                hintText: 'TYPE YOUR PHONE NUMBER HERE',
-                                hintStyle: TextStyle(letterSpacing: 0)
-                              ),
-                            ),
-                          ),
+                            //   child: Row(
+                            //    mainAxisAlignment: MainAxisAlignment.center,
+                            //     children: <Widget>[
+                            //       Container(            //  comments from here
+                            //       margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/9),
+                            //       width: MediaQuery.of(context).size.width /1.5,
+                            //       height: 45,
+                            //       padding: EdgeInsets.only(
+                            //           top: 4, left: 30, right: 30, bottom: 4),
+                            //       decoration: BoxDecoration(
+                            //           borderRadius:
+                            //               BorderRadius.all(Radius.circular(10)),
+                            //          color: Colors.white,
+                            //           boxShadow: [
+                            //             BoxShadow(
+                            //                 color: Colors.black12, blurRadius: 5)
+                            //           ]
+                            //           ),
+                            //       child: TextField(
+                                    
+                                    
+                            //         keyboardType: TextInputType.number,
+                            //         controller: mycontroller,
+                            //         decoration: InputDecoration(
+                            //           border: InputBorder.none,
+                                      
+                                   
+                            //           // icon: Icon(
+                                      
+                            //           //   Icons.arrow_right,
+                            //           //   color: Colors.grey,
+                            //           // ),
+                            //           hintText: 'TYPE YOUR PHONE NUMBER HERE',
+                            //           hintStyle: TextStyle(letterSpacing: 0 ),
+                                    
+                            //           suffixIcon: Padding(
+                                      
+                            //             padding: const EdgeInsetsDirectional.only(end: 12.0),
+                            //             child:Icon(Icons.arrow_right,
+                                      
+                            //             ),
+                            //           )
+                                      
+                            //         ),
+                                  
+                            //       ),
+                            //       ),
+                            //       //   ),
+                            //       // )
+                                  
+                            //     ],
+                            //   ),
+                            // ),
+                         
+                           
+                            
+                         // ),
 //               Padding(
 //       padding: const EdgeInsets.all(8.0),
 //       child: Align(
@@ -248,59 +373,61 @@ class _DemoLogin extends State<DemoLogin> {
 //           ),
 //       ),
 //     ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 60, bottom: 20),
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => OtpPage(
-                                              mycontroller.text.toString(),
-                                              "",
-                                              1)));
-                                },
-                                child: Container(
-                                  height: 35.0,
-                                  width: 100.0,
-                                  alignment: FractionalOffset.center,
-                                  decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      border:
-                                          new Border.all(color: Colors.white)),
-                                  child: InkWell(
-                                    onTap: () {
-                                      // local.pushAcademicProject().then((int status){
-                                      //   if(status==1)
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => OtpPage(
-                                                  mycontroller.text.toString(),
-                                                  "",
-                                                  1)));
-                                      // });
-                                    },
-                                    child: Text(
-                                      "VERIFY",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 15.0,
-                                          // fontWeight: FontWeight.bold,
-                                          letterSpacing: 1.0),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-
+                          // Align(
+                          //   alignment: Alignment.center,
+                          //   child: Padding(
+                          //     padding:
+                          //         const EdgeInsets.only(top: 60, bottom: 20),
+                          //     child: InkWell(
+                          //       onTap: () {
+                          //         Navigator.push(
+                          //             context,
+                          //             MaterialPageRoute(
+                          //                 builder: (context) => OtpPage(
+                          //                     mycontroller.text.toString(),
+                          //                     "",
+                          //                     1)));
+                          //       },
+                          //       child: Container(
+                          //         height: 35.0,
+                          //         width: 100.0,
+                          //         alignment: FractionalOffset.center,
+                          //         decoration: BoxDecoration(
+                          //             color: Colors.transparent,
+                          //             borderRadius: BorderRadius.circular(10.0),
+                          //             border:
+                          //                 new Border.all(color: Colors.white)),
+                          //         child: InkWell(
+                          //           onTap: () {
+                          //             // local.pushAcademicProject().then((int status){
+                          //             //   if(status==1)
+                          //             Navigator.push(
+                          //                 context,
+                          //                 MaterialPageRoute(
+                          //                     builder: (context) => OtpPage(
+                          //                         mycontroller.text.toString(),
+                          //                         "",
+                          //                         1)));
+                          //             // });
+                          //           },
+                          //           child: Text(
+                          //             "VERIFY",
+                          //             style: TextStyle(
+                          //                 color: Colors.white,
+                          //                 fontSize: 15.0,
+                          //                 // fontWeight: FontWeight.bold,
+                          //                 letterSpacing: 1.0),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                           Padding(
+                             padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/25),
+                           ),
                           _buildTextSocialLogin(),
-                          Padding(padding: EdgeInsets.only(top: 25)),
+                          Padding(padding: EdgeInsets.only(top: 15)),
                           Container(
                             width: MediaQuery.of(context).size.width / 1.3,
                             child: Row(
@@ -317,7 +444,7 @@ class _DemoLogin extends State<DemoLogin> {
                                       
                                        // backgroundColor: Colors.black,
                                       child: Image.asset(
-                                          'assets/fbcvd.png',fit: BoxFit.cover,height:55,width: 55,),
+                                          'assets/fbcvd.png',fit: BoxFit.cover,height:40,width: 40,),
                                       // minRadius: 20,
                                      // maxRadius: 20,
                                     ),
@@ -342,7 +469,7 @@ class _DemoLogin extends State<DemoLogin> {
                                       
                                        // backgroundColor: Colors.black,
                                       child: Image.asset(
-                                          'assets/googlecvd.png',fit: BoxFit.cover,height:55,width: 55,),
+                                          'assets/googlecvd.png',fit: BoxFit.cover,height:40,width: 40,),
                                       // minRadius: 20,
                                      // maxRadius: 20,
                                     ),
@@ -358,7 +485,7 @@ class _DemoLogin extends State<DemoLogin> {
                                       
                                        // backgroundColor: Colors.black,
                                       child: Image.asset(
-                                          'assets/incvd.png',fit: BoxFit.cover,height:55,width: 55,),
+                                          'assets/incvd.png',fit: BoxFit.cover,height:40,width: 40,),
                                       // minRadius: 20,
                                      // maxRadius: 20,
                                     ),

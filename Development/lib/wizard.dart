@@ -95,7 +95,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                 //     ],
                 //   ),
                 // ),
-                Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/2.4),),
+                Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/3.6),),
                 Container(
                   height: MediaQuery.of(context).size.height/1.5,
                   width: MediaQuery.of(context).size.width,
@@ -104,10 +104,12 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                     children: <Widget>[
                        Container(
                         width: MediaQuery.of(context).size.width/1.2,
-                        height: 45,
-                        padding: EdgeInsets.only(
-                          top: 4,left: 16, right: 16, bottom: 4
-                        ),
+                        height: MediaQuery.of(context).size.height/13,
+                       padding: EdgeInsets.only(
+                        //   // top: 4,
+                         left: 16, right: 16, 
+                        //   // bottom: 4
+                       ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
                             Radius.circular(10)
@@ -120,28 +122,30 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                             )
                           ]
                         ),
-                        child: TextField(
-                         
-                           controller: nameController,
-                          decoration: InputDecoration(
-                            alignLabelWithHint: true,
-                            border: InputBorder.none,
-                            // icon: Icon(Icons.person_outline,
-                            //     color: Colors.pinkAccent,
-                            // ),
-                              hintText: 'Name'.toUpperCase(),
-                              
-                              hintStyle: TextStyle(letterSpacing: 6 ),
+                        child: Center(
+                          child: TextField(
+                           
+                             controller: nameController,
+                            decoration: InputDecoration(
+                              alignLabelWithHint: true,
+                              border: InputBorder.none,
+                              icon: Icon(Icons.person_outline,
+                                  color: Colors.pinkAccent,
+                              ),
+                                hintText: 'Name'.toUpperCase(),
+                                
+                                hintStyle: TextStyle(letterSpacing: 2 ),
+                            ),
                           ),
                         ),
                       ),
                       
                       Container(
                         width: MediaQuery.of(context).size.width/1.2,
-                        height: 45,
-                        margin: EdgeInsets.only(top: 32),
+                        height: MediaQuery.of(context).size.height/13,
+                      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/26),
                         padding: EdgeInsets.only(
-                          top: 4,left: 16, right: 16, bottom: 4
+                         left: 16, right: 16,
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
@@ -155,16 +159,18 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                             )
                           ]
                         ),
-                        child: TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          controller: emailController,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            // icon: Icon(Icons.email,
-                            //     color: Colors.pinkAccent,
-                            // ),
-                              hintText: 'EMAIL',
-                              hintStyle: TextStyle(letterSpacing: 6)
+                        child: Center(
+                          child: TextField(
+                            keyboardType: TextInputType.emailAddress,
+                            controller: emailController,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              icon: Icon(Icons.email,
+                                  color: Colors.pinkAccent,
+                              ),
+                                hintText: 'EMAIL',
+                                hintStyle: TextStyle(letterSpacing: 2)
+                            ),
                           ),
                         ),
                       ),
@@ -172,10 +178,10 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                        Container(
                        
                         width: MediaQuery.of(context).size.width/1.2,
-                        height: 45,
-                        margin: EdgeInsets.only(top: 32,bottom: 10),
+                        height: MediaQuery.of(context).size.height/13,
+                        margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/26),
                         padding: EdgeInsets.only(
-                            top: 4,left: 16, right: 16, bottom: 4
+                          left: 16, right: 16,
                         ),
                         decoration: BoxDecoration(
                           
@@ -190,41 +196,45 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                               )
                             ]
                         ),
-                        child: Row(
-                            
-                          children: <Widget>[
-                          //  typeoflogin==1? SizedBox(
-                          //     height: 50,
-                          //     width: 60,
-                          //                               child: TextField(
-                          //       controller: phonecodeController,
-                          //       decoration: InputDecoration(
-                          //         border: InputBorder.none,
-                          //         // icon: Icon(Icons.phone,
-                          //         //   color: Colors.pink,
-                          //         // ),
-                          //         hintText: '91',
+                        child: Center(
+                          child: Row(
+                              
+                            children: <Widget>[
+                            //  typeoflogin==1? SizedBox(
+                            //     height: 50,
+                            //     width: 60,
+                            //                               child: TextField(
+                            //       controller: phonecodeController,
+                            //       decoration: InputDecoration(
+                            //         border: InputBorder.none,
+                            //         // icon: Icon(Icons.phone,
+                            //         //   color: Colors.pink,
+                            //         // ),
+                            //         hintText: '91',
 
-                          //       ),
-                          //     ),
-                          //   ),
-                            Flexible(
-                              flex: 2,
-                              child: TextField(
-                                keyboardType: TextInputType.number,
-                                
-                                enabled: typeoflogin==1?false:true,
-                                controller: phoneController,
-                                decoration: InputDecoration(
-                               
-                                  border: InputBorder.none,
+                            //       ),
+                            //     ),
+                            //   ),
+                              Flexible(
+                                flex: 2,
+                                child: TextField(
+                                  keyboardType: TextInputType.number,
                                   
-                                  hintText: 'Phone'.toUpperCase(),
-                                  hintStyle: TextStyle(letterSpacing: 6)
+                                  enabled: typeoflogin==1?false:true,
+                                  controller: phoneController,
+                                  decoration: InputDecoration(
+                                 
+                                    border: InputBorder.none,
+                                    icon: Icon(Icons.phone_android,
+                                  color: Colors.pinkAccent,
+                              ),
+                                    hintText: 'Phone'.toUpperCase(),
+                                    hintStyle: TextStyle(letterSpacing: 2)
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     Padding(
@@ -236,7 +246,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                          borderColor: Colors.white,
                         pressedColor: Colors.pink[400],
                          selectedColor: Colors.pink[400],
-
+  
                          initialValue: "Fresher",
                          onChanged: (s){
                            category = s;
@@ -284,8 +294,8 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                    
                         },
                                             child: Container(
-                          height: 45,
-                          width: MediaQuery.of(context).size.width/2,
+                          height: MediaQuery.of(context).size.height/13,
+                          width: MediaQuery.of(context).size.width/1.2,
                           decoration: BoxDecoration(
                             // gradient: LinearGradient(
                             //   colors: [
@@ -321,7 +331,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                          
                             child: Text('Already have an account ? Login',
                               style: TextStyle(
-                                color: Colors.grey
+                                color: Colors.white
                               ),
                             ),
                           ),

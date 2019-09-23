@@ -40,6 +40,7 @@ void dispose(){
     return Scaffold(
       
       appBar: AppBar(
+        
        title: Text('CvDragon Help Center'),
        
        bottom: TabBar(

@@ -10,11 +10,6 @@ import './Privacy.dart';
 import './sharedfetch.dart' as sfetch;
 import './About.dart';
 import './vishal/utils.dart';
-<<<<<<< HEAD
-import './help.dart';
-=======
-
->>>>>>> 8394e4cfa1e9df02ba5ded4d3f477b4032e3b0b9
 String name;
 String email;
 
@@ -52,181 +47,6 @@ class _SideMenu extends State<SideMenu> {
 
     return Drawer(
       elevation: 2,
-<<<<<<< HEAD
-      child: _isLoading?Center(child: Center(
-                    child: Image(
-                        image: AssetImage("assets/logocv.gif"),
-                        height: MediaQuery.of(context).size.height/12,
-                        width: MediaQuery.of(context).size.width/6)),
-              ): Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/sidemenu.png"), fit: BoxFit.cover)),
-        child: ListView(
-          padding: const EdgeInsets.all(0.0),
-          children: <Widget>[
-            Container(
-                child: UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: Colors.transparent),
-              accountName: Text(name),
-              accountEmail: Text(email),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-              ),
-              otherAccountsPictures: <Widget>[
-                IconButton(
-                 
-                  icon: Icon(Icons.home),
-                  color: Colors.white,
-                  onPressed:(){
-
-                  Navigator.of(context).popUntil((Route route){
-                   //  Navigator.pop(context);
-            return route.isFirst;
-          });},
-                ),
-                Icon(
-                  Icons.notifications,
-                  color: Colors.white,
-                ),
-              ],
-            )),
-            Divider(color: Colors.white30),
-            ListTile(
-              title: Text('My Profiles',
-                  style: TextStyle(color: Colors.white, fontSize: 15.0)),
-              leading: Icon(
-                Icons.supervised_user_circle,
-                size: MediaQuery.of(context).size.aspectRatio*55.0,
-                color: Colors.white,
-              ),
-              subtitle: Text(
-                'Check your Profiles',
-                style: TextStyle(color: Colors.white),
-              ),
-              trailing: Icon(Icons.arrow_forward, color: Colors.white),
-              onTap: () {
-                setState(() {
-                  Navigator.pop(context);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyProfiles()));
-                });
-              },
-            ),
-            Divider(color: Colors.white30),
-            ListTile(
-              title: Text('Cover Letters',
-                  style: TextStyle(color: Colors.white, fontSize: 15.0)),
-              leading: Icon(
-                Icons.edit,
-                size: MediaQuery.of(context).size.aspectRatio*55.0,
-                color: Colors.white,
-              ),
-              subtitle: Text('View your cover letters',
-                  style: TextStyle(color: Colors.white)),
-              trailing: Icon(Icons.arrow_forward, color: Colors.white),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CoverLetters()));
-              },
-            ),
-            Divider(color: Colors.white30),
-           
-            ListTile(
-              title: Text('Designs',
-                  style: TextStyle(color: Colors.white, fontSize: 15.0)),
-              trailing: Icon(Icons.arrow_forward, color: Colors.white),
-              leading: Icon(
-                Icons.supervised_user_circle,
-                size: MediaQuery.of(context).size.aspectRatio*55.0,
-                color: Colors.white,
-              ),
-              subtitle: Text('View Your Public Profile',
-                  style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MyDesigns()));
-              },
-            ),
-            Divider(color: Colors.white30),
-
-            ListTile(
-              title: Text('Institute',
-                  style: TextStyle(color: Colors.white, fontSize: 15.0)),
-              leading: Icon(
-                Icons.home,
-                size: MediaQuery.of(context).size.aspectRatio*55.0,
-                color: Colors.white,
-              ),
-              subtitle: Text('My Institute Details',
-                  style: TextStyle(color: Colors.white)),
-              trailing: Icon(Icons.arrow_forward, color: Colors.white),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Institutes()));
-              },
-            ),
-            Divider(color: Colors.white30),
-            ListTile(
-              title: Text('Public Profile',
-                  style: TextStyle(color: Colors.white, fontSize: 15.0)),
-              trailing: Icon(Icons.arrow_forward, color: Colors.white),
-              leading: Icon(
-                Icons.supervised_user_circle,
-                size: MediaQuery.of(context).size.aspectRatio*55.0,
-                color: Colors.white,
-              ),
-              subtitle: Text('View Your Public Profile',
-                  style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => PublicProfile()));
-              },
-            ),
-            Divider(color: Colors.white30),
-             ListTile(
-              title: Text('Reviews and Ratings',
-                  style: TextStyle(color: Colors.white, fontSize: 15.0)),
-              leading: Icon(
-                Icons.rate_review,
-                size: MediaQuery.of(context).size.aspectRatio*55.0,
-                color: Colors.white,
-              ),
-              subtitle: Text('Liked cvDragon ? Rate us !',
-                  style: TextStyle(color: Colors.white)),
-              trailing: Icon(Icons.arrow_forward, color: Colors.white),
-              onTap: () {
-               
-              },
-            ),
-             Divider(color: Colors.white30),
-            ListTile(
-              title: Text('Help & Support',
-                  style: TextStyle(color: Colors.white, fontSize: 15.0)),
-              trailing: Icon(Icons.arrow_forward, color: Colors.white),
-              leading: Icon(
-                Icons.help,
-                size: MediaQuery.of(context).size.aspectRatio*55.0,
-                color: Colors.white,
-              ),
-              subtitle: Text('Enquiry',
-                  style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Help()));
-              },
-            ),
-            Divider(color: Colors.white30),
-            Container(
-              padding: EdgeInsets.only(top:5.0,bottom: 15.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-=======
       child: _isLoading
           ? Center(
               child: Center(
@@ -242,7 +62,6 @@ class _SideMenu extends State<SideMenu> {
                       fit: BoxFit.cover)),
               child: ListView(
                 padding: const EdgeInsets.all(0.0),
->>>>>>> 8394e4cfa1e9df02ba5ded4d3f477b4032e3b0b9
                 children: <Widget>[
                   Container(
                       child: UserAccountsDrawerHeader(

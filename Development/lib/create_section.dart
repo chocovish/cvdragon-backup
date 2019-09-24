@@ -120,12 +120,14 @@ class _CreateSection extends State<CreateSection> {
 }
     print("section=" + section);
     return Container(
-      decoration: BoxDecoration(gradient: 
-      LinearGradient(colors: [
-        Color(colors[section]['c1']),
-        Color(colors[section]['c2']),
+      decoration: BoxDecoration(
+        // gradient: 
+      // LinearGradient(colors: [
+      //   Color(colors[section]['c1']),
+      //   Color(colors[section]['c2']),
         
-      ])
+      // ])
+        image: DecorationImage(image: AssetImage('assets/allsecbg.png'),fit: BoxFit.cover)
       ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -142,18 +144,19 @@ class _CreateSection extends State<CreateSection> {
                     return <Widget>[
                       SliverAppBar(
                         // automaticallyImplyLeading: false,
-                        //backgroundColor: ,
+                        backgroundColor: Colors.transparent,
                         expandedHeight: 160.0,
                         floating: false,
                         pinned: true,
                         flexibleSpace: Container(
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color(colors[section]["c1"]),
-                                Color(colors[section]["c2"]),
-                              ],
-                            ),
+                            // gradient: 
+                            // LinearGradient(
+                            //   colors: [
+                            //     Color(colors[section]["c1"]),
+                            //     Color(colors[section]["c2"]),
+                            //   ],
+                            // ),
                           ),
                           child: Container(
                             color: Colors.black.withOpacity(0.25),

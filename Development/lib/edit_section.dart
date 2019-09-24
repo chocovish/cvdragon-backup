@@ -140,12 +140,13 @@ class _EditSection extends State<EditSection> {
           )
         :Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(colors: 
-            [
-              Color(colors[section]['c1']),
-              Color(colors[section]['c2']),
+           image: DecorationImage(image: AssetImage('assets/allsecbg.png'),fit: BoxFit.cover)
+            // gradient: LinearGradient(colors: 
+            // [
+            //   Color(colors[section]['c1']),
+            //   Color(colors[section]['c2']),
 
-            ])
+            // ])
           ),
           child: 
             Scaffold(
@@ -221,32 +222,34 @@ class _EditSection extends State<EditSection> {
             expandedHeight: 150.0,
             floating: false,
             pinned: true,
-            flexibleSpace: Container(decoration: BoxDecoration(gradient: LinearGradient( 
+            flexibleSpace: Container(decoration: BoxDecoration(
+          //     gradient: LinearGradient( 
               
-          colors: 
-            [    
-              // Colors.black,
-              // Colors.black,  
-              Color(colors[section]["c1"]),
-              Color(colors[section]["c2"]),
-                ]
-                )
+          // colors: 
+          //   [    
+          //     // Colors.black,
+          //     // Colors.black,  
+          //     Color(colors[section]["c1"]),
+          //     Color(colors[section]["c2"]),
+          //       ]
+          //       )
                 ),
               child: Container(
-                color: Colors.black.withOpacity(0.25),
+                color: Colors.white.withOpacity(0.25),
                 child: FlexibleSpaceBar(
                   title:
                  Text(
                    Sections[section],
                    style: TextStyle(
                      fontWeight: FontWeight.w300,
-                     fontSize: 18,
+                     fontSize: 16,
                      letterSpacing: 1.5),
                      ),
                   background: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                    Icon(Icons.work,size: 50,color: Colors.white,)
+                    // Icon(Icons.work,size: 50,color: Colors.white,)
+                    Image.asset('assets/idk2.png',height:80,width:80)
                   ],),
                 centerTitle: true,
                 )
@@ -298,24 +301,72 @@ Widget _buildCardView(BuildContext context) {
     child: ListView(
       padding: EdgeInsets.all(10.0),
       children: <Widget>[
+        Padding(padding: EdgeInsets.only(top:10)),
                 Container(
-                  margin: EdgeInsets.only(right: 8,),
+                  margin: EdgeInsets.only(right: 8,left: 5),
                  //     top: MediaQuery.of(context).size.height /25, right: 5),
                   //padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/20,right: MediaQuery.of(context).size.width/25),
                   alignment: Alignment.centerRight,
                    height: MediaQuery.of(context).size.height/20,
                  // padding: EdgeInsets.all(10.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       InkWell(
                         child: Container(
                           height: MediaQuery.of(context).size.height / 20,
-                          width: MediaQuery.of(context).size.width / 3.5,
+                          width: MediaQuery.of(context).size.width / 2.5,
 //                              alignment: FractionalOffset.center,
                           decoration: BoxDecoration(
                               color: Colors.black,
-                              borderRadius: BorderRadius.circular(10.0),
+                              borderRadius: BorderRadius.circular(5.0),
+                              border: new Border.all(color: Colors.transparent)),
+                          child: InkWell(
+                            onTap: () {
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => (CreateSection(
+                              //             db0.value,
+                              //             index,
+                              //             section,
+                              //             key,
+                                          
+                              //             databb,
+                              //             addeddata,
+                              //             faq))));
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  padding: EdgeInsets.only(right: 5),
+                                  child: Icon(
+                                    Icons.help,
+                                    color: Colors.white,
+                                    size: 20,
+                                  ),
+                                ),
+                                Text(
+                                  "Know More",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.w300),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height / 20,
+                          width: MediaQuery.of(context).size.width / 2.5,
+//                              alignment: FractionalOffset.center,
+                          decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(5.0),
                               border: new Border.all(color: Colors.transparent)),
                           child: InkWell(
                             onTap: () {
@@ -363,8 +414,8 @@ Widget _buildCardView(BuildContext context) {
 //           ),
 //         ),
         Container(
-
-          margin: EdgeInsets.only(top: 5),
+          
+          margin: EdgeInsets.only(top: 0),
           color: Colors.transparent,
           height: MediaQuery.of(context).size.height / 1.8,
           width: MediaQuery.of(context).size.width/2,
@@ -373,91 +424,92 @@ Widget _buildCardView(BuildContext context) {
               itemCount: db0 == null ? 0 : db0.value.length,
               itemBuilder: (BuildContext context, int index) {
                 return  Card(
-                      color: addeddata.contains(db0.value[index])?Colors.black.withOpacity(0.75):Colors.black.withOpacity(0.25),
-                      margin: EdgeInsets.only(top: 15, left: 5, right: 5),
-                      elevation: 5.0,
-                      child: Container(
+                        color: addeddata.contains(db0.value[index])?Colors.white.withOpacity(0.42):Colors.white.withOpacity(0.25),
+                        margin: EdgeInsets.only(top: 15, left: 5, right: 5),
+                        elevation: 15.0,
+                        child: Container(
+                          
+                            width: MediaQuery.of(context).size.width/3,
                         
-                          width: MediaQuery.of(context).size.width/3,
-                      
-                          padding: EdgeInsets.all(10),
-                          child: Row(
-                            children: <Widget>[
-                              InkWell(
-                                splashColor: Colors.pink,
-                                
-                                 onTap: (){
-                            Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => (CreateSection(
-                        db0.value,
-                        index,
-                        section,
-                        key,
-                        databb,
-                        addeddata,
-                        faq))));
-                         
-                          },
+                            padding: EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                InkWell(
 
-                                            child: Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.only(top: 5, bottom: 5),
-                height: MediaQuery.of(context).size.height / 12,
-                width: MediaQuery.of(context).size.width /1.5,
-                child: Text(
-                    db0.value[index][AddedDataColumn[section]]
-                        .toString(),
-                    textAlign: TextAlign.left,
-                    style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w300),
-                  ),
+                                 splashColor: Colors.pink,
+                
+                 onTap: (){
+                              Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => (CreateSection(
+                          db0.value,
+                          index,
+                          section,
+                          key,
+                          databb,
+                          addeddata,
+                          faq))));
+                           
+                            },
+
+                            child: Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(top: 5, bottom: 5),
+                  // height: MediaQuery.of(context).size.height / 13,
+                  width: MediaQuery.of(context).size.width /1.5,
+                  child: Text(
+                      db0.value[index][AddedDataColumn[section]]
+                          .toString(),
+                      textAlign: TextAlign.left,
+                      style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.w300),
+                    ),
+                ),
                                 ),
-                              ),
-                              Padding(padding:EdgeInsets.only(right:10),),
-                              addeddata.contains(db0.value[index])
-                ? Row(children: <Widget>[
-                    InkWell(
-                      onTap: () async {
-                        print(index);
-                        await deleteFromProfile(
+                                Padding(padding:EdgeInsets.only(right:10),),
+                                addeddata.contains(db0.value[index])
+                  ? Row(children: <Widget>[
+                      InkWell(
+                        onTap: () async {
+                          print(index);
+                          await deleteFromProfile(
+                          section,
+                          db0.value[index][columnName[section]]
+                              .toString());
+                          addeddata.remove(db0.value[index]);
+                          databb.add(db0.value[index]);
+                          db0.value = addeddata+databb;
+                        },
+                        // onTap: deletefromprofile,
+                        child: Icon(Icons.delete,
+                        size: 30, color: Colors.black),
+                      )
+                    ])
+                  : InkWell(
+                    onTap: () async {
+                      await addintoProfile(
                         section,
                         db0.value[index][columnName[section]]
                             .toString());
-                        addeddata.remove(db0.value[index]);
-                        databb.add(db0.value[index]);
-                        db0.value = addeddata+databb;
-                      },
-                      // onTap: deletefromprofile,
-                      child: Icon(Icons.delete,
-                      size: 30, color: Colors.red),
-                    )
-                  ])
-                : InkWell(
-                  onTap: () async {
-                    await addintoProfile(
-                      section,
-                      db0.value[index][columnName[section]]
-                          .toString());
-                    databb.remove(db0.value[index]);
-                    addeddata.add(db0.value[index]);
-                    db0.value =  addeddata+databb;
-                  },
-                  child: Row(
-                    mainAxisAlignment:
-                      MainAxisAlignment.end,
-                    children: <Widget>[
-                      Icon(Icons.add_circle,
-                        size: 30, color: Colors.green),
-                   
-                    ],
+                      databb.remove(db0.value[index]);
+                      addeddata.add(db0.value[index]);
+                      db0.value =  addeddata+databb;
+                    },
+                    child: Row(
+                      mainAxisAlignment:
+                        MainAxisAlignment.end,
+                      children: <Widget>[
+                        Icon(Icons.add_circle,
+                          size: 30, color: Colors.green),
+                     
+                      ],
+                    ),
                   ),
-                ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                    
-                  );
+                      
+                    );
               }),
         ),
       ],

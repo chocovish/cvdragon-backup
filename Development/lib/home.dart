@@ -110,12 +110,12 @@ class _HomePagee extends State<HomePagee> {
           )
          :Container(
            decoration: BoxDecoration(
-             gradient: LinearGradient(         
-               colors: [Colors.pink[900],Colors.black]),),
-            //  image: DecorationImage(image: AssetImage('assets/homebg.png'),fit: BoxFit.cover)),
+            //  gradient: LinearGradient(         
+            //    colors: [Colors.pink[900],Colors.black]),),
+             image: DecorationImage(image: AssetImage('assets/homebg.png'),fit: BoxFit.cover)),
          child:
          Scaffold(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.black.withOpacity(0.4),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(

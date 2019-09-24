@@ -108,8 +108,14 @@ class _HomePagee extends State<HomePagee> {
                     height: MediaQuery.of(context).size.height / 12,
                     width: MediaQuery.of(context).size.width / 6)),
           )
-         :Scaffold(
-            backgroundColor: Colors.black,
+         :Container(
+           decoration: BoxDecoration(
+             gradient: LinearGradient(         
+               colors: [Colors.pink[900],Colors.black]),),
+            //  image: DecorationImage(image: AssetImage('assets/homebg.png'),fit: BoxFit.cover)),
+         child:
+         Scaffold(
+            backgroundColor: Colors.transparent,
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
@@ -135,7 +141,8 @@ class _HomePagee extends State<HomePagee> {
             endDrawer: PreviewPane(),
             body: _buildCardView(context),
             bottomNavigationBar: MybottomNav(0),
-          );
+          )
+         );
   }
 }
 write(String cvid) async
@@ -149,9 +156,9 @@ Widget _buildCardView(BuildContext context) {
     padding: EdgeInsets.only(top: 5.0, left: 5.0, right: 5.0, bottom: 30.0),
     children: <Widget>[
       Card(
-        color: Colors.white.withOpacity(0.7),
+        color: Colors.white,
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -178,9 +185,9 @@ Widget _buildCardView(BuildContext context) {
         ),
       ),
       Card(
-           color: Colors.white.withOpacity(0.7),
+           color: Colors.white,
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -202,9 +209,10 @@ Widget _buildCardView(BuildContext context) {
         ),
       ),
        Card(
-            color: Colors.white.withOpacity(0.7),
+            color: Colors.white,
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(
+              5.0)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -225,9 +233,9 @@ Widget _buildCardView(BuildContext context) {
           ],
         ),
       ),
-      Card(color: Colors.white.withOpacity(0.7),
+      Card(color: Colors.white,
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         child:
         
          Donut(filled, total),

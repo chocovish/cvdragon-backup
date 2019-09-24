@@ -126,7 +126,7 @@ class _DemoLogin extends State<DemoLogin> {
                   width: MediaQuery.of(context).size.width,
 
                   decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage('assets/loginbg.jpeg'),
+                    image: DecorationImage(image: AssetImage('assets/loginbg.png'),
                     fit: BoxFit.cover)
                   ),
                   child: ListView(
@@ -141,6 +141,7 @@ class _DemoLogin extends State<DemoLogin> {
 
                           ),
                         Container(
+                         
                           height: MediaQuery.of(context).size.height/13,
                           width: MediaQuery.of(context).size.width/1.1,
                      decoration:BoxDecoration(
@@ -153,49 +154,42 @@ class _DemoLogin extends State<DemoLogin> {
                           child: Row(
                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
+                              Padding(padding: EdgeInsets.only(left:5),),
+                               Icon(
+                                            
+                                             Icons.phone_android,
+                                             color: Colors.pink,
+                                             size: 30
+                                            ),
+                              Padding(padding: EdgeInsets.only(left:2),),
+                              Text("+91",style: TextStyle(color: Colors.black,fontSize: 18),),
                               Container(
-                                child: Expanded(
-                                child: TextField(
-                                    keyboardType: TextInputType.number,
-                                        controller: mycontroller,
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          
+                                child: Container(
+                                  //  margin: EdgeInsets.only(4),
+                                  child: Expanded( 
+                                    
+                                  child: TextField(
+                                    style: TextStyle(color: Colors.black,fontSize: 18),
+                                      keyboardType: TextInputType.number,
+                                          controller: mycontroller,
+                                          decoration: InputDecoration(
+                                            
+                                            border: InputBorder.none,
+                                            contentPadding: EdgeInsets.symmetric(horizontal:4),
+                                            hintText: 'Mobile Number',
                                        
-                                          // icon: Icon(
-                                          
-                                          //   Icons.arrow_right,
-                                          //   color: Colors.grey,
-                                          // ),
-                                          hintText: 'Mobile Number',
-                                           //counterText: "",
-                                           contentPadding: EdgeInsets.only(left: 10),
-                                           
-                                         
-                                          hintStyle: TextStyle(letterSpacing: 0 ),
-                                        
-                                          // suffixIcon: Padding(
-                                          
-                                          //   padding: const EdgeInsetsDirectional.only(end: 12.0),
-                                          //   child:Icon(Icons.arrow_right,
-                                          
-                                          //   ),
-                                          // )
-                                      
-                                      ),
+                                            hintStyle: TextStyle(color: Colors.grey,fontSize: 18 ),
+                                        ),
+                                    ),
                                   ),
                                 ),
                               ),
-                          //  Padding(
-                          //    // width:MediaQuery.of(context).size.width/3),
-                          //   // margin: EdgeInsets.only(left:MediaQuery.of(context).size.width/3),
-                            
-                          //   ),
-                             
                               Container(
                                 //width:70,
-                                margin: EdgeInsets.all(2),
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),color: Colors.pink),
+                                margin: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(image: AssetImage('assets/button.gif'),fit: BoxFit.cover),
+                                  borderRadius: BorderRadius.circular(5),color: Colors.transparent),
                                 width:MediaQuery.of(context).size.width/4,
                                 //color: Colors.orange,
                                 child: IconButton(

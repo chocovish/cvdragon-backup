@@ -17,7 +17,7 @@ class MybottomNav extends StatelessWidget {
               notchedShape: CircularNotchedRectangle(),
               color: Colors.white,
               centerItemText: centerItemText??"Preview",
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.black,
               selectedColor: Colors.pink,
               items: [
                 FABBottomAppBarItem(

@@ -172,31 +172,17 @@ class _EditSection extends State<EditSection> {
               ),
               elevation: 0.0,
             ),
-            // bottomNavigationBar: BottomBar(),
             drawer: SideMenu(),
            
-            // bottomNavigationBar: FABBottomAppBar(
-            //   onTabSelected: _selectedTab,
-            //   notchedShape: CircularNotchedRectangle(),
-            //   color: Colors.white30,
-            //   centerItemText: "Preview",
-            //   backgroundColor: Color(0xff232882),
-            //   selectedColor: Colors.white,
-            //   items: [
-            //     FABBottomAppBarItem(
-            //         iconData: Icons.import_contacts, text: 'Knowledge'),
-            //     FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
-            //     FABBottomAppBarItem(iconData: Icons.swap_vert, text: 'Profiles'),
-            //     FABBottomAppBarItem(iconData: Icons.home, text: 'Home'),
-            //   ],
-            // ),
-
+          
             
             bottomNavigationBar: MybottomNav(-1),
             body:(section != "51100")&&(section != "51101")&&(section != "51102")&&
              (section != "51103")? NestedScrollView(
         headerSliverBuilder: (context,bool ibs)=>[
-          SliverAppBar(
+          SliverAppBar( 
+       
+            backgroundColor: Colors.transparent,
             actions: <Widget>[
         ValueListenableBuilder(
           valueListenable: syncOnGoing,
@@ -214,7 +200,7 @@ class _EditSection extends State<EditSection> {
                           },
                           icon: Icon(
                             Icons.done_outline,
-                            color: Colors.green,
+                            color: Colors.white,
                             size: 14,
                           ),
                         )
@@ -224,7 +210,7 @@ class _EditSection extends State<EditSection> {
                           },
                           icon: Icon(
                             Icons.sync,
-                            color: Colors.yellow,
+                            color: Colors.white,
                           ),
                           tooltip: 'Sync',
                         ),
@@ -235,10 +221,37 @@ class _EditSection extends State<EditSection> {
             expandedHeight: 150.0,
             floating: false,
             pinned: true,
-            flexibleSpace: Container(decoration: BoxDecoration(gradient: LinearGradient(colors: 
-            [      Color(colors[section]["c1"]),
-                      Color(colors[section]["c2"]),])),
-              child: FlexibleSpaceBar(title: Text(Sections[section]),centerTitle: true,)),
+            flexibleSpace: Container(decoration: BoxDecoration(gradient: LinearGradient( 
+              
+          colors: 
+            [    
+              // Colors.black,
+              // Colors.black,  
+              Color(colors[section]["c1"]),
+              Color(colors[section]["c2"]),
+                ]
+                )
+                ),
+              child: Container(
+                color: Colors.black.withOpacity(0.25),
+                child: FlexibleSpaceBar(
+                  title:
+                 Text(
+                   Sections[section],
+                   style: TextStyle(
+                     fontWeight: FontWeight.w300,
+                     fontSize: 18,
+                     letterSpacing: 1.5),
+                     ),
+                  background: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                    Icon(Icons.work,size: 50,color: Colors.white,)
+                  ],),
+                centerTitle: true,
+                )
+                )
+                ),
           )
         
           
@@ -285,27 +298,8 @@ Widget _buildCardView(BuildContext context) {
     child: ListView(
       padding: EdgeInsets.all(10.0),
       children: <Widget>[
-//         Container(
-//           height: MediaQuery.of(context).size.height / 4.4,
-//           width: MediaQuery.of(context).size.width,
-//           decoration: BoxDecoration(
-//               image: DecorationImage(
-//                   image:
-//                       AssetImage('assets/Edit Section/' + section + '-03.png'),
-//                   alignment: Alignment.topCenter,
-//                   fit: BoxFit.scaleDown)),
-//           child: Container(
-//             margin:
-//                 EdgeInsets.only(top: MediaQuery.of(context).size.height / 20),
-//             child: Column(
-//               children: <Widget>[
-//                 Text(
-//                   Sections[section],
-//                   style: TextStyle(color: Colors.white, fontSize: 30.0),
-//                   textAlign: TextAlign.center,
-//                 ),
                 Container(
-                //  margin: EdgeInsets.only(
+                  margin: EdgeInsets.only(right: 8,),
                  //     top: MediaQuery.of(context).size.height /25, right: 5),
                   //padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/20,right: MediaQuery.of(context).size.width/25),
                   alignment: Alignment.centerRight,
@@ -320,7 +314,7 @@ Widget _buildCardView(BuildContext context) {
                           width: MediaQuery.of(context).size.width / 3.5,
 //                              alignment: FractionalOffset.center,
                           decoration: BoxDecoration(
-                              color: Colors.green,
+                              color: Colors.black,
                               borderRadius: BorderRadius.circular(10.0),
                               border: new Border.all(color: Colors.transparent)),
                           child: InkWell(
@@ -350,11 +344,11 @@ Widget _buildCardView(BuildContext context) {
                                   ),
                                 ),
                                 Text(
-                                  "Add Data",
+                                  "Add New Data",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 15.0,
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.w300),
                                 )
                               ],
                             ),
@@ -378,135 +372,92 @@ Widget _buildCardView(BuildContext context) {
               physics: BouncingScrollPhysics(),
               itemCount: db0 == null ? 0 : db0.value.length,
               itemBuilder: (BuildContext context, int index) {
-                return  InkWell(
-                  onTap: (){
-                    
-                  },
-                                  child: Card(
-                      color: Colors.transparent,
-                      margin: EdgeInsets.only(top: 10, left: 5, right: 5),
+                return  Card(
+                      color: addeddata.contains(db0.value[index])?Colors.black.withOpacity(0.75):Colors.black.withOpacity(0.25),
+                      margin: EdgeInsets.only(top: 15, left: 5, right: 5),
                       elevation: 5.0,
                       child: Container(
-                        height: 70,
-                        width: MediaQuery.of(context).size.width/3,
-                        decoration: addeddata.contains(db0.value[index])
-                            ? BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage("assets/51122-04.png"),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(8.0))
-                            : BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(4.0)),
-                        padding: EdgeInsets.only(left: 10),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.only(top: 5, bottom: 5),
-                              height: MediaQuery.of(context).size.height / 12,
-                              width: MediaQuery.of(context).size.width / 2,
-                              child: Text(
-                                db0.value[index][AddedDataColumn[section]]
-                                    .toString(),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                            addeddata.contains(db0.value[index])
-                                ? Row(children: <Widget>[
-                                    Container(
-                                      height:
-                                          MediaQuery.of(context).size.height / 14,
-                                      width: MediaQuery.of(context).size.width / 8,
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => (CreateSection(
-                                              db0.value,
-                                              index,
-                                              section,
-                                              key,
-                                              databb,
-                                              addeddata,
-                                              faq))));
-                                          //print(db0.value[index][AddedDataColumn[section]]);
-                                          // Navigator.push(
-                                          //     context,
-                                          //     MaterialPageRoute(
-                                          //         builder: (context) =>
-                                          //             (EditSection2(
-                                          //                 db0.value,
-                                          //                 index,
-                                          //                 section,
-                                          //                 key,
-                                          //                 databb,
-                                          //                 addeddata))));
-                                        },
-                                        child: Icon(Icons.mode_edit,
-                                            size: 30, color: Colors.white70),
-                                      ),
-                                    ),
-                                    Container(
-                                      height:
-                                          MediaQuery.of(context).size.height / 14,
-                                      width: MediaQuery.of(context).size.width / 8,
-                                      child: InkWell(
-                                        onTap: () async {
-                                          print(index);
-                                          await deleteFromProfile(
-                                              section,
-                                              db0.value[index][columnName[section]]
-                                                  .toString());
-                                          addeddata.remove(db0.value[index]);
-                                          databb.add(db0.value[index]);
-                                          db0.value = addeddata+databb;
-                                        },
-                                        // onTap: deletefromprofile,
-                                        child: Icon(Icons.delete,
-                                            size: 30, color: Colors.white70),
-                                      ),
-                                    )
-                                  ])
-                                : Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(50.0),
-                                        color: Colors.green),
-                                    height: MediaQuery.of(context).size.height / 18,
-                                    width: MediaQuery.of(context).size.width / 4.5,
-                                    child: InkWell(
-                                      onTap: () async {
-                                        await addintoProfile(
-                                            section,
-                                            db0.value[index][columnName[section]]
-                                                .toString());
-                                        databb.remove(db0.value[index]);
-                                        addeddata.add(db0.value[index]);
-                                        db0.value =  addeddata+databb;
-                                      },
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: <Widget>[
-                                          Icon(Icons.add_circle,
-                                              size: 20, color: Colors.white70),
-                                          Text("Add",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 15.0,
-                                                  fontWeight: FontWeight.bold)),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                          ],
-                        ),
-                      ),
-                    
+                        
+                          width: MediaQuery.of(context).size.width/3,
+                      
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            children: <Widget>[
+                              InkWell(
+                                splashColor: Colors.pink,
+                                
+                                 onTap: (){
+                            Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => (CreateSection(
+                        db0.value,
+                        index,
+                        section,
+                        key,
+                        databb,
+                        addeddata,
+                        faq))));
+                         
+                          },
+
+                                            child: Container(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.only(top: 5, bottom: 5),
+                height: MediaQuery.of(context).size.height / 12,
+                width: MediaQuery.of(context).size.width /1.5,
+                child: Text(
+                    db0.value[index][AddedDataColumn[section]]
+                        .toString(),
+                    textAlign: TextAlign.left,
+                    style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w300),
                   ),
-                );
+                                ),
+                              ),
+                              Padding(padding:EdgeInsets.only(right:10),),
+                              addeddata.contains(db0.value[index])
+                ? Row(children: <Widget>[
+                    InkWell(
+                      onTap: () async {
+                        print(index);
+                        await deleteFromProfile(
+                        section,
+                        db0.value[index][columnName[section]]
+                            .toString());
+                        addeddata.remove(db0.value[index]);
+                        databb.add(db0.value[index]);
+                        db0.value = addeddata+databb;
+                      },
+                      // onTap: deletefromprofile,
+                      child: Icon(Icons.delete,
+                      size: 30, color: Colors.red),
+                    )
+                  ])
+                : InkWell(
+                  onTap: () async {
+                    await addintoProfile(
+                      section,
+                      db0.value[index][columnName[section]]
+                          .toString());
+                    databb.remove(db0.value[index]);
+                    addeddata.add(db0.value[index]);
+                    db0.value =  addeddata+databb;
+                  },
+                  child: Row(
+                    mainAxisAlignment:
+                      MainAxisAlignment.end,
+                    children: <Widget>[
+                      Icon(Icons.add_circle,
+                        size: 30, color: Colors.green),
+                   
+                    ],
+                  ),
+                ),
+                            ],
+                          ),
+                        ),
+                    
+                  );
               }),
         ),
       ],

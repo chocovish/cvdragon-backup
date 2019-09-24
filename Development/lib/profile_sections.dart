@@ -60,266 +60,248 @@ class _ProfileSections extends State<ProfileSections> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      //floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   child: Icon(Icons.add_circle),
-      //   backgroundColor: Colors.green,
-      //   //label: Text("Add Profile"),
-      // ),
-      appBar: TopMenuBar(),
-      // bottomNavigationBar: BottomBar(),
-      drawer: SideMenu(),
-      body: _isLoading ? Center(child: CupertinoActivityIndicator()) : Container(
-                padding: EdgeInsets.only(
-                    top: 4.0, bottom: 4.0, right: 0.0, left: 0.0),
-                decoration: BoxDecoration(color: Colors.black),
-                child: Scrollbar(
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: data == null ? 0 : data.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      
+    return Container(
+      decoration: BoxDecoration( image: DecorationImage(image: AssetImage('assets/sectionsbg.png'),fit: BoxFit.cover)),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        //floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {},
+        //   child: Icon(Icons.add_circle),
+        //   backgroundColor: Colors.green,
+        //   //label: Text("Add Profile"),
+        // ),
+        appBar: TopMenuBar(),
+        // bottomNavigationBar: BottomBar(),
+        drawer: SideMenu(),
+        body: _isLoading ? Center(child: CupertinoActivityIndicator()) : Container(
 
-                      //     child: Container(
-                      //       height: 120,
-                      //       width: MediaQuery.of(context).size.width,
-                      //     child: InkWell(
-                      //       onTap: () {
-                      //         Navigator.push(
-                      //             context,
-                      //             MaterialPageRoute(
-                      //                 builder: (context) =>
-                      //                     (CardProfiles())));
-                      //       },
-                      //       child: Stack(
-                      //         children: <Widget>[
-                      //           Image.asset(
-                      //             "51125-01.png",
-                      //             fit: BoxFit.cover,
-                      //             width: MediaQuery.of(context).size.width,
-                      //             //heighaQuery.of(context).size.height,
-                      //           ),
-                      //           Center(child:
-                      //           Container(
-                      //             padding: new EdgeInsets.symmetric(
-                      //                 vertical: 40, horizontal: MediaQuery.of(context).size.width/25),
-                      //             alignment: Alignment.center,
-                      //             child: Row(
+                  padding: EdgeInsets.only(
+                      top: 4.0, bottom: 4.0, right: 0.0, left: 0.0),
+                  decoration: BoxDecoration(color: Colors.transparent),
+                  child: Scrollbar(
+                    child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                      itemCount: data == null ? 0 : data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        
 
-                      //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //               children: <Widget>[
-                      //                 AutoSizeText(
-                      //                 "Add a Section",
-                      //                   style: TextStyle(
-                      //                       color: Colors.white,
-                      //                       fontSize: 20,
-                      //                       letterSpacing: 0.5,
-                      //                       fontWeight: FontWeight.bold),
-                      //                 ),
+                        if (data[index].toString() == "51126"||data[index].toString() == "Add a New Section") {
+                          addsec+=1;
+                          return addsec>1?null:Card(
+                            child: Container(
+                              height: 120,
+                              width: MediaQuery.of(context).size.width,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              (AddNewSection())));
+                                },
+                                child: Stack(
+                                  children: <Widget>[
+                                    // Image.asset(
+                                    //   "assets/ProfileSection/51102-01.png",
+                                    //   fit: BoxFit.cover,
+                                    //   width: MediaQuery.of(context).size.width,
+                                    //   //heighaQuery.of(context).size.height,
+                                    // ),
+                                    Center(
+                                      child: Container(
+                                        color: Colors.black,
+                                        padding: new EdgeInsets.symmetric(
+                                            vertical: 40,
+                                            horizontal: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                25),
+                                        alignment: Alignment.center,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            AutoSizeText(
+                                              "Add a New Section",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                  letterSpacing: 0.5,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
 
-                      //                 // CircleAvatar(backgroundColor: Colors.black,radius: 21,
-                      //                 //   child: Text("D"),),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //     ),
-                      //   );
-
-                      //  }
-                      if (data[index].toString() == "51126"||data[index].toString() == "Add a New Section") {
-                        addsec+=1;
-                        return addsec>1?null:Card(
-                          child: Container(
-                            height: 120,
-                            width: MediaQuery.of(context).size.width,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            (AddNewSection())));
-                              },
-                              child: Stack(
-                                children: <Widget>[
-                                  Image.asset(
-                                    "assets/ProfileSection/51102-01.png",
-                                    fit: BoxFit.cover,
-                                    width: MediaQuery.of(context).size.width,
-                                    //heighaQuery.of(context).size.height,
-                                  ),
-                                  Center(
-                                    child: Container(
-                                      padding: new EdgeInsets.symmetric(
-                                          vertical: 40,
-                                          horizontal: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              25),
-                                      alignment: Alignment.center,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          AutoSizeText(
-                                            "Add a New Section",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                letterSpacing: 0.5,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-
-                                          // CircleAvatar(backgroundColor: Colors.black,radius: 21,
-                                          //   child: Text("D"),),
-                                        ],
+                                            // CircleAvatar(backgroundColor: Colors.black,radius: 21,
+                                            //   child: Text("D"),),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      } else if (data[index].toString() == "51100" ||
-                          data[index].toString() == "51101" ||
-                          data[index].toString() == "51102" ||
-                          data[index].toString() == "51103" ||
-                          data[index].toString() == "51109") {
-                        return Card(
-                          child: Container(
-                            height: 120,
-                            width: MediaQuery.of(context).size.width,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => (EditSection(
-                                            data[index].toString()))));
-                              },
-                              child: Stack(
-                                children: <Widget>[
-                                  Image.asset(
-                                    "assets/ProfileSection/" +
-                                        data[index].toString() +
-                                        "-01.png",
-                                    fit: BoxFit.cover,
-                                    width: MediaQuery.of(context).size.width,
-                                    //heighaQuery.of(context).size.height,
-                                  ),
-                                  Center(
-                                    child: Container(
-                                      padding: new EdgeInsets.symmetric(
-                                          vertical: 40,
-                                          horizontal: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              25),
-                                      alignment: Alignment.center,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          AutoSizeText(
-                                            maps.Sections[
-                                                    data[index].toString()]
-                                                .toString(),
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                letterSpacing: 0.5,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          CircleAvatar(
-                                            backgroundColor: Colors.black,
-                                            radius: 21,
-                                            child: Text("D"),
-                                          ),
-                                        ],
+                          );
+                        } else if (data[index].toString() == "51100" ||
+                            data[index].toString() == "51101" ||
+                            data[index].toString() == "51102" ||
+                            data[index].toString() == "51103" ||
+                            data[index].toString() == "51109") {
+                          return Card(
+                            color: Colors.transparent,
+                            margin: EdgeInsets.only(top: 10,bottom: 10,left: 20,right: 20),
+                            child: Container(
+                                
+                              color: Colors.transparent,
+                             // margin: EdgeInsets.only(top: 10,bottom: 10,left: 5,right: 5),
+                              height: 80,
+                              width: MediaQuery.of(context).size.width,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => (EditSection(
+                                              data[index].toString()))));
+                                },
+                                child: Stack(
+
+                                  children: <Widget>[
+                                    // Image.asset(
+                                    //   "assets/ProfileSection/" +
+                                    //       data[index].toString() +
+                                    //       "-01.png",
+                                    //   fit: BoxFit.cover,
+                                    //   width: MediaQuery.of(context).size.width,
+                                    //   //heighaQuery.of(context).size.height,
+                                    // ),
+                                    Center(
+                                      child: Container(
+
+                                        color: Colors.black.withOpacity(0.75),
+                                        padding: new EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                25),
+                                        alignment: Alignment.center,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Row(
+                                              children: <Widget>[
+                                                 Icon(Icons.add_circle_outline,color: Colors.white.withOpacity(0.5),), 
+                                                Padding(padding: EdgeInsets.only(right:10),),
+                                                AutoSizeText(
+                                                  maps.Sections[
+                                                          data[index].toString()]
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18,
+                                                      letterSpacing: 0.5,
+                                                      fontWeight: FontWeight.w400),
+                                                ),
+                                              ],
+                                            ),
+                                            CircleAvatar(
+                                              backgroundColor: Colors.black,
+                                              radius: 21,
+                                              child: Text("D"),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      } else {
-                        return Card(
-                          child: Container(
-                            height: 120,
-                            width: MediaQuery.of(context).size.width,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => (EditSection(
-                                            data[index].toString()))));
-                              },
-                              child: Stack(
-                                children: <Widget>[
-                                  Image.asset(
-                                    "assets/ProfileSection/" +
-                                        data[index].toString() +
-                                        "-01.png",
-                                    fit: BoxFit.cover,
-                                    width: MediaQuery.of(context).size.width,
-                                    //heighaQuery.of(context).size.height,
-                                  ),
-                                  Center(
-                                    child: Container(
-                                      padding: new EdgeInsets.symmetric(
-                                          vertical: 40,
-                                          horizontal: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
-                                              25),
-                                      alignment: Alignment.center,
-                                      child: Row(
-                                        // crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          AutoSizeText(
-                                            maps.Sections[
-                                                    data[index].toString()]
-                                                .toString(),
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                letterSpacing: 0.5,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          CircleAvatar(
-                                            backgroundColor: Colors.black,
-                                            radius: 21,
-                                            child: Text(countoftotaldata[
-                                                data[index].toString()]),
-                                          ),
-                                        ],
+                          );
+                        } else {
+                          return Card(
+                            color: Colors.transparent,
+                              margin: EdgeInsets.only(top: 10,bottom: 10,left: 20,right: 20),
+                            child: Container(
+                              color: Colors.transparent,
+                              height: 80,
+                              width: MediaQuery.of(context).size.width,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => (EditSection(
+                                              data[index].toString()))));
+                                },
+                                child: Stack(
+                                  children: <Widget>[
+                                    // Image.asset(
+                                    //   "assets/ProfileSection/" +
+                                    //       data[index].toString() +
+                                    //       "-01.png",
+                                    //   fit: BoxFit.cover,
+                                    //   width: MediaQuery.of(context).size.width,
+                                    //   //heighaQuery.of(context).size.height,
+                                    // ),
+                                    Center(
+                                      child: Container(
+                                        color: Colors.black.withOpacity(0.75),
+                                        padding: new EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                25),
+                                        alignment: Alignment.center,
+                                        child: Row(
+
+                                          // crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            
+                                            Row(
+                                              children: <Widget>[
+                                                Icon(Icons.add_circle_outline,color: Colors.white.withOpacity(0.5),), 
+                                                Padding(padding: EdgeInsets.only(right:10),),
+                                                AutoSizeText(
+                                                  maps.Sections[
+                                                          data[index].toString()]
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18 ,
+                                                      letterSpacing: 0.5,
+                                                      fontWeight: FontWeight.w300),
+                                                ),
+                                              ],
+                                            ),
+                                            CircleAvatar(
+                                              backgroundColor: Colors.black,
+                                              radius: 21,
+                                              child: Text(countoftotaldata[
+                                                  data[index].toString()]),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      }
-                      return null;
-                    },
+                          );
+                        }
+                        return null;
+                      },
+                    ),
                   ),
                 ),
-              ),
-      
+        
+      ),
     );
   }
 

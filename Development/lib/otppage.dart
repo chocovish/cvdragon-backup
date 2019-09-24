@@ -156,21 +156,14 @@ class _OtpPage extends State<OtpPage> {
                                 length: 4,
                                 keyboardType: TextInputType.number,
                                 focusNode: focusnode,
-                                builder: CodeInputBuilders.circle(color: Colors.white.withOpacity(0.5),emptyRadius: 10,filledRadius: 25,totalRadius: 30,border:Border.all(width: 0),textStyle: 
-                                TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold)),
+                                builder: CodeInputBuilders.circle(color: Colors.white.withOpacity(0.75),emptyRadius: 10,filledRadius: 25,totalRadius: 30,border:Border.all(width: 0),textStyle: 
+                                TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.w900)),
                                 onFilled: (String val) {
                                   otp = val;
                                   verify();
                                 },
                               ),
-                              // PinFieldAutoFill(
-                              //   codeLength: 4,
-                              //   keyboardType: TextInputType.number,
-                              //   currentCode: "----",
-                              // //  onCodeSubmitted: (SmsAutoFill().code.toString()) {
-
-                              // //     return SmsAutoFill().code;
-                              // //  }
+                        
 
                               // ),
                            ],

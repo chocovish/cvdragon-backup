@@ -119,209 +119,231 @@ class _CreateSection extends State<CreateSection> {
         ):null;
 }
     print("section=" + section);
-    return Scaffold(
-        backgroundColor: Colors.white,
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: fab(context),
-        bottomNavigationBar: MybottomNav(-1),
-        body: Container(
-            // decoration: BoxDecoration(
-            //     image: DecorationImage(
-            //         image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
-            child: NestedScrollView(
-                headerSliverBuilder:
-                    (BuildContext context, bool innerBoxIsScrolled) {
-                  return <Widget>[
-                    SliverAppBar(
-                      // automaticallyImplyLeading: false,
-                      //backgroundColor: ,
-                      expandedHeight: 160.0,
-                      floating: false,
-                      pinned: true,
-                      flexibleSpace: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(colors[section]["c1"]),
-                              Color(colors[section]["c2"]),
-                            ],
-                          ),
-                        ),
-                        child: FlexibleSpaceBar(
-                          centerTitle: true,
-                          title: Text(secName,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                              )),
-                        ),
-                      ),
-                    ),
-                  ];
-                },
-                body: Card(
-                    elevation: 5.0,
-                    child: Container(
-                        child: ListView(
-                      padding: EdgeInsets.only(bottom: 30.0),
-                      children: <Widget>[
-                        Column(children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.only(top: 5.0, bottom: 20.0),
-                            child: Builder(
-                              builder: (BuildContext context) => Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  InkWell(
-                                    onTap: () {
-                                      List questions = [];
-
-                                      fAQs.forEach((e) {
-                                        questions.add(e['faq'].toString());
-                                      });
-                                      if (questions.length > 0) {
-                                         var bottomSheetController = showBottomSheet(
-                                          context: context,
-                                          builder: (context) => Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .height,
-                                            height: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            child: ListView(
-                                              children: questions
-                                                  .map((q) => Html(
-                                                        data: q,
-                                                      ))
-                                                  .toList(),
-                                            ),
-                                          ),
-                                        );
-                                         
-                                         showFoatingActionButton(false);
-              bottomSheetController.closed.then((value) {
-                  showFoatingActionButton(false);
-              });
-                                      } else {
-                                         var bottomSheetController = showBottomSheet(
-                                          context: context,
-                                          builder: (context) => Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .height,
-                                            height: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            child: ListView(
-                                              children: [Text("No FAQs Found")]
-                                            ),
-                                          ),
-                                        );
-                                         
-                                         showFoatingActionButton(false);
-              bottomSheetController.closed.then((value) {
-                  showFoatingActionButton(false);
-              });
-                                      }
-                                    },
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              18,
-                                      width:
-                                          MediaQuery.of(context).size.width / 4,
-                                      alignment: FractionalOffset.center,
-                                      decoration: BoxDecoration(
-                                          color: Color(0xff232882),
-                                          borderRadius:
-                                              BorderRadius.circular(30.0),
-                                          border: new Border.all(
-                                              color: Colors.white)),
-                                      child: Text(
-                                        "FAQs",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            CustomDialogKeyPhrases(
-                                                "Key Phrases", keyPhrases),
-                                      );
-                                    },
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              18,
-                                      width:
-                                          MediaQuery.of(context).size.width / 4,
-                                      alignment: FractionalOffset.center,
-                                      decoration: BoxDecoration(
-                                          color: Color(0xff232882),
-                                          borderRadius:
-                                              BorderRadius.circular(30.0),
-                                          border: new Border.all(
-                                              color: Colors.white)),
-                                      child: Text(
-                                        "Key Phrases",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                      // showDialog(
-                                      //   context: context,
-                                      //   builder: (BuildContext context) =>
-                                      //       CustomDialogDatabase("Database", data,
-                                      //           databb1, section),
-                                      // );
-                                    },
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              18,
-                                      width:
-                                          MediaQuery.of(context).size.width / 4,
-                                      alignment: FractionalOffset.center,
-                                      decoration: BoxDecoration(
-                                          color: Color(0xff232882),
-                                          borderRadius:
-                                              BorderRadius.circular(30.0),
-                                          border: new Border.all(
-                                              color: Colors.white)),
-                                      child: Text(
-                                        "Database",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+    return Container(
+      decoration: BoxDecoration(gradient: 
+      LinearGradient(colors: [
+        Color(colors[section]['c1']),
+        Color(colors[section]['c2']),
+        
+      ])
+      ),
+      child: Scaffold(
+          backgroundColor: Colors.transparent,
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: fab(context),
+          bottomNavigationBar: MybottomNav(-1),
+          body: Container(
+              // decoration: BoxDecoration(
+              //     image: DecorationImage(
+              //         image: AssetImage('assets/bg.png'), fit: BoxFit.fill)),
+              child: NestedScrollView(
+                  headerSliverBuilder:
+                      (BuildContext context, bool innerBoxIsScrolled) {
+                    return <Widget>[
+                      SliverAppBar(
+                        // automaticallyImplyLeading: false,
+                        //backgroundColor: ,
+                        expandedHeight: 160.0,
+                        floating: false,
+                        pinned: true,
+                        flexibleSpace: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color(colors[section]["c1"]),
+                                Color(colors[section]["c2"]),
+                              ],
                             ),
                           ),
-                          Container(
-                            padding: EdgeInsets.only(left: 25, right: 25),
-                            child: _buildCardView(context),
+                          child: Container(
+                            color: Colors.black.withOpacity(0.25),
+                            child: FlexibleSpaceBar(
+                              background: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                      Icon(Icons.work,size: 50,color: Colors.white,)
+                    ],),
+                              centerTitle: true,
+                              title: Text(secName,
+                               style: TextStyle(
+                       fontWeight: FontWeight.w300,
+                       fontSize: 18,
+                       letterSpacing: 1.5
+                              )),
+                            ),
                           ),
-                        ])
-                      ],
-                    ))))));
+                        ),
+                      ),
+                    ];
+                  },
+                  body: Card(
+                    color: Colors.transparent,
+                      elevation: 0,
+                      margin: EdgeInsets.only(left: 0,right: 0,),
+                      child: Container(
+                        color: Colors.transparent,
+                          child: ListView(
+                        padding: EdgeInsets.only(bottom: 30.0),
+                        children: <Widget>[
+                          Column(children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.only(top: 5.0, bottom: 20.0),
+                              child: Builder(
+                                builder: (BuildContext context) => Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    InkWell(
+                                      
+                                      onTap: () {
+                                        List questions = [];
+
+                                        fAQs.forEach((e) {
+                                          questions.add(e['faq'].toString());
+                                        });
+                                        if (questions.length > 0) {
+                                           var bottomSheetController = showBottomSheet(
+                                            context: context,
+                                            builder: (context) => Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .height,
+                                              height: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              child: ListView(
+                                                children: questions
+                                                    .map((q) => Html(
+                                                          data: q,
+                                                        ))
+                                                    .toList(),
+                                              ),
+                                            ),
+                                          );
+                                           
+                                           showFoatingActionButton(false);
+                bottomSheetController.closed.then((value) {
+                    showFoatingActionButton(false);
+                });
+                                        } else {
+                                           var bottomSheetController = showBottomSheet(
+                                            context: context,
+                                            builder: (context) => Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .height,
+                                              height: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              child: ListView(
+                                                children: [Text("No FAQs Found")]
+                                              ),
+                                            ),
+                                          );
+                                           
+                                           showFoatingActionButton(false);
+                bottomSheetController.closed.then((value) {
+                    showFoatingActionButton(false);
+                });
+                                        }
+                                      },
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                18,
+                                        width:
+                                            MediaQuery.of(context).size.width / 4,
+                                        alignment: FractionalOffset.center,
+                                        decoration: BoxDecoration(
+                                            color: Colors.black,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            border: new Border.all(
+                                                )),
+                                        child: Text(
+                                          "FAQs",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15.0,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              CustomDialogKeyPhrases(
+                                                  "Key Phrases", keyPhrases),
+                                        );
+                                      },
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                18,
+                                        width:
+                                            MediaQuery.of(context).size.width / 4,
+                                        alignment: FractionalOffset.center,
+                                        decoration: BoxDecoration(
+                                            color: Colors.black,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                        ),
+                                          
+                                        child: Text(
+                                          "Key Phrases",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15.0,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                        // showDialog(
+                                        //   context: context,
+                                        //   builder: (BuildContext context) =>
+                                        //       CustomDialogDatabase("Database", data,
+                                        //           databb1, section),
+                                        // );
+                                      },
+                                      child: Container(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                18,
+                                        width:
+                                            MediaQuery.of(context).size.width / 4,
+                                        alignment: FractionalOffset.center,
+                                        decoration: BoxDecoration(
+                                            color: Colors.black,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                        child: Text(
+                                          "Database",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15.0,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              color: Colors.transparent,
+                              padding: EdgeInsets.only(left: 25, right: 25),
+                              child: _buildCardView(context),
+                            ),
+                          ])
+                        ],
+                      )))))),
+    );
   }
  void showFoatingActionButton(bool value) {
     setState(() {

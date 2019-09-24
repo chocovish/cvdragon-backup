@@ -112,7 +112,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                        ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(10)
+                            Radius.circular(5)
                           ),
                           color: Colors.white,
                           boxShadow: [
@@ -149,7 +149,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(10)
+                            Radius.circular(5)
                           ),
                           color: Colors.white,
                           boxShadow: [
@@ -186,7 +186,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                         decoration: BoxDecoration(
                           
                             borderRadius: BorderRadius.all(
-                                Radius.circular(10)
+                                Radius.circular(5)
                             ),
                             color: typeoflogin==1?Colors.white.withOpacity(0.6):Colors.white,
                             boxShadow: [
@@ -237,6 +237,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                           ),
                         ),
                       ),
+                      Padding(padding: EdgeInsets.only(top:MediaQuery.of(context).size.height/29),),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/18),
 
@@ -254,7 +255,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                          },
                         decoration: InputDecoration( 
                        
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
                       //  border: Border
                         ),
                         attribute: "Form",
@@ -264,7 +265,7 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                         FormBuilderFieldOption(value: "Experience",child: Text("EXPERIENCE",style: TextStyle(color: Colors.white,)),)],
                       ),
                     ),
-                      Padding(padding: EdgeInsets.only(bottom: 20),),
+                      Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height/29),),
 
                       InkWell(
                         onTap: ()
@@ -303,15 +304,16 @@ class _FirstTimeWizard extends State<FirstTimeWizard> {
                             //    Colors.purple
                             //   ],
                             // ),
-                              color: Colors.white,
+                           image: DecorationImage(image: AssetImage('assets/button.gif'),fit: BoxFit.cover),
+                              color: Colors.pink,
                             borderRadius: BorderRadius.all(
-                              Radius.circular(10)
+                              Radius.circular(5)
                             )
                           ),
                           child: Center(
                             child: Text('Create Account'.toUpperCase(),
                               style: TextStyle(letterSpacing: 4,
-                                color: Colors.black,
+                                color: Colors.white,
                                 
                               ),
                             ),

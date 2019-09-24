@@ -17,6 +17,9 @@ import './maps.dart' show tablename;
 import 'package:flutter_html_to_pdf/flutter_html_to_pdf.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'package:pdf_render/pdf_render.dart';
+import 'package:pdf_render/pdf_render_widgets.dart';
+
 WebViewController webViewController;
 
 class CVView extends StatefulWidget {
@@ -41,7 +44,7 @@ class MyWebView extends StatefulWidget {
 
 class _MyWebViewState extends State<MyWebView> {
   void _selectedTab(int index, BuildContext context) {
-    Navigator.of(context).pop();
+    //Navigator.of(context).pop();
     if (index == 3)
       showModalBottomSheet<void>(
           context: context,
@@ -88,7 +91,8 @@ class _MyWebViewState extends State<MyWebView> {
 
   showDownloadMSG(BuildContext context) {
     Navigator.pop(context);
-    File mfile = File("/sdcard/cvdragon/cv_${DateTime.now().toIso8601String()}.pdf");
+    File mfile =
+        File("/sdcard/cvdragon/cv_${DateTime.now().toIso8601String()}.pdf");
     mfile.createSync(recursive: true);
     finalpdf.copySync(mfile.path);
     showDialog(
@@ -148,11 +152,40 @@ class _MyWebViewState extends State<MyWebView> {
       builder: (context, snapshot) {
         if (!snapshot.hasData)
           return Center(child: CupertinoActivityIndicator());
-        return MyPdfScaffold(
-          path: snapshot.data.path,
+        return Scaffold(
+          body: Align(
+            alignment: Alignment.center,
+            child: Container(
+              height: MediaQuery.of(context).size.width * 1.5,
+              child: PdfDocumentLoader(
+                filePath: finalpdf.path,
+                documentBuilder:
+                    (BuildContext context, PdfDocument doc, int pageCount) =>
+                        ListView.builder(
+                  itemCount: pageCount,
+                  scrollDirection: Axis.horizontal,
+                  physics: BouncingScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) => Container(
+                    width: MediaQuery.of(context).size.width,
+                    //height: MediaQuery.of(context).size.width * 4 / 3,
+                    
+                    child: PdfPageView(
+                      pdfDocument: doc,
+                      pageNumber: index + 1,
+                      // calculateSize: (w, h, r) {
+                      //   print("$w $h $r");
+                      //   return Size(w * scale, h * scale);
+                      // },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          // bars and all...
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.arrow_downward),
-            onPressed: ()=>showDownloadMSG(context),
+            onPressed: () => showDownloadMSG(context),
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
@@ -161,7 +194,7 @@ class _MyWebViewState extends State<MyWebView> {
               notchedShape: CircularNotchedRectangle(),
               color: Colors.white,
               centerItemText: "Download",
-              backgroundColor: Color(0xff000000),                      //Color(0xff232882),
+              backgroundColor: Color(0xff000000), //Color(0xff232882),
               selectedColor: Colors.white,
               items: [
                 FABBottomAppBarItem(
@@ -177,8 +210,39 @@ class _MyWebViewState extends State<MyWebView> {
               },
             ),
           ),
-          // body:
+          appBar: AppBar(title: Text("Previrew"),backgroundColor: Colors.black,centerTitle: true,),
         );
+        // return MyPdfScaffold(
+        //   path: snapshot.data.path,
+        //   floatingActionButton: FloatingActionButton(
+        //     child: Icon(Icons.arrow_downward),
+        //     onPressed: () => showDownloadMSG(context),
+        //   ),
+        //   floatingActionButtonLocation:
+        //       FloatingActionButtonLocation.centerDocked,
+        //   bottomNavigationBar: Builder(
+        //     builder: (_) => FABBottomAppBar(
+        //       notchedShape: CircularNotchedRectangle(),
+        //       color: Colors.white,
+        //       centerItemText: "Download",
+        //       backgroundColor: Color(0xff000000), //Color(0xff232882),
+        //       selectedColor: Colors.white,
+        //       items: [
+        //         FABBottomAppBarItem(
+        //           iconData: Icons.home,
+        //           text: 'Home',
+        //         ),
+        //         FABBottomAppBarItem(iconData: Icons.edit, text: 'Designs'),
+        //         FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
+        //         FABBottomAppBarItem(iconData: Icons.more, text: 'More'),
+        //       ],
+        //       onTabSelected: (int index) {
+        //         _selectedTab(index, _);
+        //       },
+        //     ),
+        //   ),
+        //   // body:
+        // );
       },
     );
   }

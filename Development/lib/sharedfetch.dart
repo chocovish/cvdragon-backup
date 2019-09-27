@@ -142,3 +142,16 @@ Future<String> writeSyncQueue(String query) async {
       List<String> queuelist = prefs.getStringList('syncQuery')??[];
       return queuelist;
       }
+
+
+// Vishal..
+
+Future<bool> readFirstTime() async {
+      final prefs = await SharedPreferences.getInstance();
+      final value = prefs.getBool('firstTime')??true;
+      return value;
+    }
+Future<void> writeFirstTime(bool v) async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setBool('firstTime',v);
+      }

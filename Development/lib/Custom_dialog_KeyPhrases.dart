@@ -1,17 +1,20 @@
+import 'package:cvdragonapp_v1/create_section.dart';
 import 'package:flutter/material.dart';
 import './const.dart';
+
 List data;
+
 class CustomDialogKeyPhrases extends StatelessWidget {
-  String title="";
+  String title = "";
 
-  CustomDialogKeyPhrases(String t,List d){
-    this.title=t;
-    data=d;
-
+  CustomDialogKeyPhrases(String t, List d) {
+    this.title = t;
+    data = d;
   }
 
   @override
   Widget build(BuildContext context) {
+    print("Coming keyphrases are: $data");
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Consts.padding),
@@ -66,8 +69,8 @@ class CustomDialogKeyPhrases extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(bottom: 20),
-            height: MediaQuery.of(context).size.height /1.9,
-              child: Scrollbar(
+            height: MediaQuery.of(context).size.height / 1.9,
+            child: Scrollbar(
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
                 itemCount: data == null ? 0 : data.length,
@@ -88,13 +91,11 @@ class CustomDialogKeyPhrases extends StatelessWidget {
                     ),
                   );
                 },
-              
+              ),
             ),
           ),
-          ),
           Container(
-            height: MediaQuery.of(context).size.height/16,
-
+            height: MediaQuery.of(context).size.height / 16,
             alignment: FractionalOffset.center,
             child: RaisedButton(
               color: Colors.pink,
@@ -103,8 +104,8 @@ class CustomDialogKeyPhrases extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Okay",
-                
+              child: Text(
+                "Okay",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 15.0,

@@ -1,3 +1,4 @@
+import 'package:cvdragonapp_v1/FirstTimeOverlay.dart';
 import 'package:cvdragonapp_v1/cvwebview.dart';
 import 'package:cvdragonapp_v1/donut.dart';
 import 'package:cvdragonapp_v1/localdatafetch.dart';
@@ -16,83 +17,76 @@ import './rightpreviewpane.dart';
 String name = "";
 var id = '';
 var authkey = '';
-var selectedprofile='';
+var selectedprofile = '';
 List profiles;
-int filled=14,total=27;
-String pname="";
-int val=0;
+int filled = 14, total = 27;
+String pname = "";
+int val = 0;
+
 class HomePagee extends StatefulWidget {
-HomePagee()
-{
-val=1;
-}
+  HomePagee() {
+    val = 1;
+  }
 // HomePagee.fromLayer(int a)
 // {
 //   val=a;
 // }
 
   @override
-
   State<StatefulWidget> createState() {
- 
     return _HomePagee();
   }
 }
 
-
 class _HomePagee extends State<HomePagee> {
-  @override
   bool isLoading = true;
   bool profileselected = false;
+
   //working offline
   void initState() {
-    
     super.initState();
     get();
   }
 
-  void get() async{
-  print("called HomepAge");
-    total=0;
-    filled=0;
-  //  int val=await efetch.get();
-      if(val==1){
-         id=await readid();
-          authkey=await readauthKey();
-        name=await readname();
-        selectedprofile=await readprofiles();
-         profiles=await getProfiles(id, authkey);
-        
-        if(selectedprofile!=" ")
-        profileselected=true;
-        if(profileselected==true)
-        {
-          for(var element in profiles){
-            if(element['cvid'].toString()==selectedprofile){
-              pname=element['profileName'].toString();
-            }
-          }
-          total=await getTotalSections(id);
-        filled=await getFilledSections(id);
-        print("total is"+total.toString());
-        print("filled is"+filled.toString());
-        }
-        else{
-          
-          total=1;
-          filled=1;
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> MyProfiles()));
-        }
+  void get() async {
+    print("called HomepAge");
+    total = 0;
+    filled = 0;
+    //  int val=await efetch.get();
+    if (val == 1) {
+      id = await readid();
+      authkey = await readauthKey();
+      name = await readname();
+      selectedprofile = await readprofiles();
+      profiles = await getProfiles(id, authkey);
 
-        print("selected profile id is "+selectedprofile);
-      
-        print(name);
-        setState(() {
+      if (selectedprofile != " ") profileselected = true;
+      if (profileselected == true) {
+        for (var element in profiles) {
+          if (element['cvid'].toString() == selectedprofile) {
+            pname = element['profileName'].toString();
+          }
+        }
+        total = await getTotalSections(id);
+        filled = await getFilledSections(id);
+        print("total is" + total.toString());
+        print("filled is" + filled.toString());
+      } else {
+        total = 1;
+        filled = 1;
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MyProfiles()));
+      }
+
+      print("selected profile id is " + selectedprofile);
+
+      print(name);
+      setState(() {
         print(val);
         print("Homepage false ");
         isLoading = false;
       });
-  }
+    }
   }
 
   @override
@@ -108,47 +102,51 @@ class _HomePagee extends State<HomePagee> {
                     height: MediaQuery.of(context).size.height / 12,
                     width: MediaQuery.of(context).size.width / 6)),
           )
-         :Container(
-           decoration: BoxDecoration(
-             gradient: LinearGradient(         
-               colors: [Colors.pink[900],Colors.black]),),
-            //  image: DecorationImage(image: AssetImage('assets/homebg.png'),fit: BoxFit.cover)),
-         child:
-         Scaffold(
-            backgroundColor: Colors.transparent,
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: FloatingActionButton(
-              backgroundColor: Colors.pinkAccent,
-              onPressed: () async{
-              await generateresumeid();
-                Navigator.of(context).push(
-                  MaterialPageRoute<Null>(
-                    builder: (BuildContext context) {
-                      return CVView();
-                    },
-                  ),
-                );
-              },
-              child: Icon(
-                Icons.visibility,
-                color: Colors.white,
-              ),
-              elevation: 0.0,
+        : Container(
+            decoration: BoxDecoration(
+              gradient:
+                  LinearGradient(colors: [Colors.pink[900], Colors.black]),
             ),
-            appBar: TopMenuBar(),
-            drawer: SideMenu(),
-            endDrawer: PreviewPane(),
-            body: _buildCardView(context),
-            bottomNavigationBar: MybottomNav(0),
-          )
-         );
+            //  image: DecorationImage(image: AssetImage('assets/homebg.png'),fit: BoxFit.cover)),
+            child: Stack(
+              children: <Widget>[
+                Scaffold(
+                  backgroundColor: Colors.transparent,
+                  floatingActionButtonLocation:
+                      FloatingActionButtonLocation.centerDocked,
+                  floatingActionButton: FloatingActionButton(
+                    backgroundColor: Colors.pinkAccent,
+                    onPressed: () async {
+                      await generateresumeid();
+                      Navigator.of(context).push(
+                        MaterialPageRoute<Null>(
+                          builder: (BuildContext context) {
+                            return CVView();
+                          },
+                        ),
+                      );
+                    },
+                    child: Icon(
+                      Icons.visibility,
+                      color: Colors.white,
+                    ),
+                    elevation: 0.0,
+                  ),
+                  appBar: TopMenuBar(),
+                  drawer: SideMenu(),
+                  endDrawer: PreviewPane(),
+                  body: _buildCardView(context),
+                  bottomNavigationBar: MybottomNav(0),
+                ),
+                FirstTimeOverlay(),
+              ],
+            ));
   }
 }
-write(String cvid) async
-  {
-      await writeprofile(cvid);
-  }
+
+write(String cvid) async {
+  await writeprofile(cvid);
+}
 
 Widget _buildCardView(BuildContext context) {
   return Container(
@@ -157,20 +155,18 @@ Widget _buildCardView(BuildContext context) {
     children: <Widget>[
       Card(
         color: Colors.white,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-             ListTile(
-               
+            ListTile(
               leading: Icon(
                 Icons.account_circle,
                 size: 30.0,
                 color: Color(0xff232882),
               ),
               title: Text(
-              name,
+                name,
                 style: TextStyle(
                     color: Color(0xff232882),
                     fontSize: 25.0,
@@ -185,20 +181,19 @@ Widget _buildCardView(BuildContext context) {
         ),
       ),
       Card(
-           color: Colors.white,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-             ListTile(
+            ListTile(
               leading: Icon(
                 Icons.add_to_home_screen,
                 size: 30.0,
                 color: Color(0xff232882),
               ),
               title: Text(
-              "You have an active subscription: Dummy",
+                "You have an active subscription: Dummy",
                 style: TextStyle(
                     color: Color(0xff232882),
                     fontSize: 15.0,
@@ -208,22 +203,20 @@ Widget _buildCardView(BuildContext context) {
           ],
         ),
       ),
-       Card(
-            color: Colors.white,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(
-              5.0)),
+      Card(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-             ListTile(
+            ListTile(
               leading: Icon(
                 Icons.add_to_home_screen,
                 size: 30.0,
                 color: Color(0xff232882),
               ),
               title: Text(
-              "Selected profile - "+pname,
+                "Selected profile - " + pname,
                 style: TextStyle(
                     color: Color(0xff232882),
                     fontSize: 15.0,
@@ -233,12 +226,10 @@ Widget _buildCardView(BuildContext context) {
           ],
         ),
       ),
-      Card(color: Colors.white,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-        child:
-        
-         Donut(filled, total),
+      Card(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+        child: Donut(filled, total),
       ),
     ],
   ));

@@ -61,9 +61,9 @@ class _ProfileSections extends State<ProfileSections> {
 
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration( image: DecorationImage(image: AssetImage('assets/sectionsbg.png'),fit: BoxFit.cover)),
+      decoration: BoxDecoration( image: DecorationImage(image: AssetImage('assets/all sections bg-01.png'),fit: BoxFit.cover)),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black.withOpacity(0),
         //floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         // floatingActionButton: FloatingActionButton(
         //   onPressed: () {},
@@ -192,7 +192,8 @@ class _ProfileSections extends State<ProfileSections> {
                                           children: <Widget>[
                                             Row(
                                               children: <Widget>[
-                                                 Icon(Icons.add_circle_outline,color: Colors.white.withOpacity(0.5),), 
+                                                Image.asset('assets/idk2.png',width:30,height:30),
+                                                //  Icon(Icons.add_circle_outline,color: Colors.white.withOpacity(0.5),), 
                                                 Padding(padding: EdgeInsets.only(right:10),),
                                                 AutoSizeText(
                                                   maps.Sections[
@@ -200,9 +201,9 @@ class _ProfileSections extends State<ProfileSections> {
                                                       .toString(),
                                                   style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 18,
+                                                      fontSize: 15,
                                                       letterSpacing: 0.5,
-                                                      fontWeight: FontWeight.w400),
+                                                      fontWeight: FontWeight.w300),
                                                 ),
                                               ],
                                             ),
@@ -222,10 +223,13 @@ class _ProfileSections extends State<ProfileSections> {
                           );
                         } else {
                           return Card(
+                            
                             color: Colors.transparent,
+                            
                               margin: EdgeInsets.only(top: 10,bottom: 10,left: 20,right: 20),
                             child: Container(
                               color: Colors.transparent,
+                              // decoration: BoxDecoration(borderRadius: BorderRadius.circular(2)),
                               height: 80,
                               width: MediaQuery.of(context).size.width,
                               child: InkWell(
@@ -265,7 +269,8 @@ class _ProfileSections extends State<ProfileSections> {
                                             
                                             Row(
                                               children: <Widget>[
-                                                Icon(Icons.add_circle_outline,color: Colors.white.withOpacity(0.5),), 
+                                                // Icon(Icons.add_circle_outline,color: Colors.white.withOpacity(0.5),), 
+                                                Image.asset('assets/idk1.png',height: 30,width: 30,),
                                                 Padding(padding: EdgeInsets.only(right:10),),
                                                 AutoSizeText(
                                                   maps.Sections[
@@ -273,7 +278,7 @@ class _ProfileSections extends State<ProfileSections> {
                                                       .toString(),
                                                   style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 18 ,
+                                                      fontSize: 15 ,
                                                       letterSpacing: 0.5,
                                                       fontWeight: FontWeight.w300),
                                                 ),

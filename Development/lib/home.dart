@@ -102,6 +102,7 @@ class _HomePagee extends State<HomePagee> {
                     height: MediaQuery.of(context).size.height / 12,
                     width: MediaQuery.of(context).size.width / 6)),
           )
+<<<<<<< HEAD
         : Container(
             decoration: BoxDecoration(
               gradient:
@@ -125,6 +126,26 @@ class _HomePagee extends State<HomePagee> {
                           },
                         ),
                       );
+=======
+         :Container(
+           decoration: BoxDecoration(
+            //  gradient: LinearGradient(         
+            //    colors: [Colors.pink[900],Colors.black]),),
+             image: DecorationImage(image: AssetImage('assets/homebg.png'),fit: BoxFit.cover)),
+         child:
+         Scaffold(
+            backgroundColor: Colors.black.withOpacity(0.4),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: Colors.pinkAccent,
+              onPressed: () async{
+              await generateresumeid();
+                Navigator.of(context).push(
+                  MaterialPageRoute<Null>(
+                    builder: (BuildContext context) {
+                      return CVView();
+>>>>>>> a4021816c57c241dbcfbca8b1a1d5e8c3302b3c7
                     },
                     child: Icon(
                       Icons.visibility,

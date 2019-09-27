@@ -1,4 +1,5 @@
 import 'package:cvdragonapp_v1/FirstTimeOverlay.dart';
+import 'package:cvdragonapp_v1/LoadingScreen.dart';
 import 'package:cvdragonapp_v1/cvwebview.dart';
 import 'package:cvdragonapp_v1/donut.dart';
 import 'package:cvdragonapp_v1/localdatafetch.dart';
@@ -92,17 +93,7 @@ class _HomePagee extends State<HomePagee> {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? DecoratedBox(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/cover.png"), fit: BoxFit.fill)),
-            child: Center(
-                child: Image(
-                    image: AssetImage("assets/logocv.gif"),
-                    height: MediaQuery.of(context).size.height / 12,
-                    width: MediaQuery.of(context).size.width / 6)),
-          )
-<<<<<<< HEAD
+        ? LoadingScreen()
         : Container(
             decoration: BoxDecoration(
               gradient:
@@ -126,26 +117,6 @@ class _HomePagee extends State<HomePagee> {
                           },
                         ),
                       );
-=======
-         :Container(
-           decoration: BoxDecoration(
-            //  gradient: LinearGradient(         
-            //    colors: [Colors.pink[900],Colors.black]),),
-             image: DecorationImage(image: AssetImage('assets/homebg.png'),fit: BoxFit.cover)),
-         child:
-         Scaffold(
-            backgroundColor: Colors.black.withOpacity(0.4),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: FloatingActionButton(
-              backgroundColor: Colors.pinkAccent,
-              onPressed: () async{
-              await generateresumeid();
-                Navigator.of(context).push(
-                  MaterialPageRoute<Null>(
-                    builder: (BuildContext context) {
-                      return CVView();
->>>>>>> a4021816c57c241dbcfbca8b1a1d5e8c3302b3c7
                     },
                     child: Icon(
                       Icons.visibility,

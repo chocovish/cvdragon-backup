@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cvdragonapp_v1/Colors.dart';
+import 'package:cvdragonapp_v1/FirstTimeOverlay.dart';
 import 'package:cvdragonapp_v1/MyPdfScaffold.dart';
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart';
@@ -152,65 +153,70 @@ class _MyWebViewState extends State<MyWebView> {
       builder: (context, snapshot) {
         if (!snapshot.hasData)
           return Center(child: CupertinoActivityIndicator());
-        return Scaffold(
-          body: Align(
-            alignment: Alignment.center,
-            child: Container(
-              height: MediaQuery.of(context).size.width * 1.5,
-              child: PdfDocumentLoader(
-                filePath: finalpdf.path,
-                documentBuilder:
-                    (BuildContext context, PdfDocument doc, int pageCount) =>
-                        ListView.builder(
-                  itemCount: pageCount,
-                  scrollDirection: Axis.horizontal,
-                  physics: BouncingScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) => Container(
-                    width: MediaQuery.of(context).size.width,
-                    //height: MediaQuery.of(context).size.width * 4 / 3,
-                    
-                    child: PdfPageView(
-                      pdfDocument: doc,
-                      pageNumber: index + 1,
-                      // calculateSize: (w, h, r) {
-                      //   print("$w $h $r");
-                      //   return Size(w * scale, h * scale);
-                      // },
+        return Stack(
+          children: <Widget>[
+            Scaffold(
+              body: Align(
+                alignment: Alignment.center,
+                child: Container(
+                  height: MediaQuery.of(context).size.width * 1.5,
+                  child: PdfDocumentLoader(
+                    filePath: finalpdf.path,
+                    documentBuilder:
+                        (BuildContext context, PdfDocument doc, int pageCount) =>
+                            ListView.builder(
+                      itemCount: pageCount,
+                      scrollDirection: Axis.horizontal,
+                      physics: BouncingScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) => Container(
+                        width: MediaQuery.of(context).size.width,
+                        //height: MediaQuery.of(context).size.width * 4 / 3,
+                        
+                        child: PdfPageView(
+                          pdfDocument: doc,
+                          pageNumber: index + 1,
+                          // calculateSize: (w, h, r) {
+                          //   print("$w $h $r");
+                          //   return Size(w * scale, h * scale);
+                          // },
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
-          // bars and all...
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.arrow_downward),
-            onPressed: () => showDownloadMSG(context),
-          ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          bottomNavigationBar: Builder(
-            builder: (_) => FABBottomAppBar(
-              notchedShape: CircularNotchedRectangle(),
-              color: Colors.white,
-              centerItemText: "Download",
-              backgroundColor: Color(0xff000000), //Color(0xff232882),
-              selectedColor: Colors.white,
-              items: [
-                FABBottomAppBarItem(
-                  iconData: Icons.home,
-                  text: 'Home',
+              // bars and all...
+              floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.arrow_downward),
+                onPressed: () => showDownloadMSG(context),
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              bottomNavigationBar: Builder(
+                builder: (_) => FABBottomAppBar(
+                  notchedShape: CircularNotchedRectangle(),
+                  color: Colors.white,
+                  centerItemText: "Download",
+                  backgroundColor: Color(0xff000000), //Color(0xff232882),
+                  selectedColor: Colors.white,
+                  items: [
+                    FABBottomAppBarItem(
+                      iconData: Icons.home,
+                      text: 'Home',
+                    ),
+                    FABBottomAppBarItem(iconData: Icons.edit, text: 'Designs'),
+                    FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
+                    FABBottomAppBarItem(iconData: Icons.more, text: 'More'),
+                  ],
+                  onTabSelected: (int index) {
+                    _selectedTab(index, _);
+                  },
                 ),
-                FABBottomAppBarItem(iconData: Icons.edit, text: 'Designs'),
-                FABBottomAppBarItem(iconData: Icons.edit, text: 'Sections'),
-                FABBottomAppBarItem(iconData: Icons.more, text: 'More'),
-              ],
-              onTabSelected: (int index) {
-                _selectedTab(index, _);
-              },
+              ),
+              appBar: AppBar(title: Text("Previrew"),backgroundColor: Colors.black,centerTitle: true,),
             ),
-          ),
-          appBar: AppBar(title: Text("Previrew"),backgroundColor: Colors.black,centerTitle: true,),
+            FirstTimeOverlay(),
+          ],
         );
         // return MyPdfScaffold(
         //   path: snapshot.data.path,
@@ -312,7 +318,10 @@ Future<Map> makeSendData() async {
   String k;
   for (String key in sections) {
     k = tablename[key].replaceFirst("`cv-", "").replaceFirst("`", "");
-    m[k] = await getDefaultSection(key);
+
+    if(["basic-info","languages","contact","introduction","education"].contains(k)) m[k] = await getDefaultSection(key);  
+    else m[k] = await getAddedData(key);
+    
   }
   m['color'] = color;
   //print("m is $m");

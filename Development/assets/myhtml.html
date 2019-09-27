@@ -539,7 +539,7 @@ OTHER INFORMATION
         </td>
 </tr>
 
-
+        {{#skills.isNotEmpty}}
         <tr>
         <td style="width:30mm; font-size:0.81em; line-height:1.44em; padding:2mm; background-color:#EEE; border:1px; border-color:#999; border-width:1px; border-style:solid;" valign="middle" align="left">
         Skills
@@ -549,21 +549,23 @@ OTHER INFORMATION
             {{skill}}, &nbsp;
         {{/skills}}
         </td>
-</tr>
+        </tr>
+        {{/skills.isNotEmpty}}
 
+        {{#interests.isNotEmpty}}
         <tr>
         <td style="width:30mm; font-size:0.81em; line-height:1.44em; padding:2mm; background-color:#EEE; border:1px; border-color:#999; border-width:1px; border-style:solid;" valign="middle" align="left">
         Hobbies
         </td>
         <td style="width:160mm; font-size:0.81em; line-height:1.44em; padding:2mm;  border:thin; border-color:#999; border-width:thin; border-style:solid;" valign="middle" align="left">
-{{#interests}}
+            {{#interests}}
             {{interest}}, &nbsp;
-{{/interests}}
-
+            {{/interests}}
         </td>
-</tr>
+        </tr>
+        {{/interests.isNotEmpty}}
 
-
+        {{#languages.isNotEmpty}}
         <tr>
         <td style="width:30mm; font-size:0.81em; line-height:1.44em; padding:2mm; background-color:#EEE; border:1px; border-color:#999; border-width:1px; border-style:solid;" valign="middle" align="left">
         Langauges
@@ -571,13 +573,13 @@ OTHER INFORMATION
         <td style="width:160mm; font-size:0.81em; line-height:1.44em; padding:2mm;  border:thin; border-color:#999; border-width:thin; border-style:solid;" valign="middle" align="left">
         
  
-{{#languages}}
-    {{language}}, &nbsp;
-{{/languages}}
+        {{#languages}}
+            {{language}}, &nbsp;
+        {{/languages}}
 
         </td>
 </tr>
-
+{{/languages.isNotEmpty}}
        <tr>
         <td style="width:30mm; font-size:0.81em; line-height:1.44em; padding:2mm; background-color:#EEE; border:1px; border-color:#999; border-width:1px; border-style:solid;" valign="middle" align="left">
         Date of Birth

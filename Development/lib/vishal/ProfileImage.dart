@@ -139,11 +139,11 @@ Future _storeImage() async {
   myImage.createSync(recursive: true);
   _selectedImage.value.copySync(myImage.path);
   print("Done");
-  _getStoredImage();
+  getStoredImage();
   _selectedImage.value = File("");
 }
 
-Future<List<FileSystemEntity>> _getStoredImage() async {
+Future<List<FileSystemEntity>> getStoredImage() async {
  try {Directory appDocDir = await getApplicationDocumentsDirectory();
   String imageDirPath = join(appDocDir.path, 'profile_images');
   Directory imageDir = Directory(imageDirPath);
@@ -163,7 +163,7 @@ class ProfilePicList extends StatelessWidget {
       builder: (context, val, child) {
         return Container(
           child: FutureBuilder(
-            future: _getStoredImage(),
+            future: getStoredImage(),
             builder: (context, AsyncSnapshot<List<FileSystemEntity>> snapshot) {
               if (!snapshot.hasData)
                 return Container(

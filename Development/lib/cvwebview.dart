@@ -5,6 +5,7 @@ import 'package:cvdragonapp_v1/FirstTimeOverlay.dart';
 import 'package:cvdragonapp_v1/MyPdfScaffold.dart';
 import 'package:cvdragonapp_v1/localdatafetch.dart';
 import 'package:cvdragonapp_v1/localdatapush.dart';
+import 'package:cvdragonapp_v1/vishal/ProfileImage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -20,6 +21,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:pdf_render/pdf_render.dart';
 import 'package:pdf_render/pdf_render_widgets.dart';
+import 'package:permission/permission.dart';
 
 WebViewController webViewController;
 
@@ -90,20 +92,40 @@ class _MyWebViewState extends State<MyWebView> {
           });
   }
 
-  showDownloadMSG(BuildContext context) {
-    Navigator.pop(context);
-    File mfile =
-        File("/sdcard/cvdragon/cv_${DateTime.now().toIso8601String()}.pdf");
-    mfile.createSync(recursive: true);
-    finalpdf.copySync(mfile.path);
-    showDialog(
-        context: context,
-        builder: (context) => Dialog(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text("File has been saved to /sdcard/cvdragon/"),
-              ),
-            ));
+  showDownloadMSG(BuildContext context) async {
+    //Navigator.pop(context);
+
+    print("within fumction");
+
+    List<Permissions> pstatus =
+        await Permission.requestPermissions([PermissionName.Storage]);
+    pstatus =
+        await Permission.getPermissionsStatus([PermissionName.Storage]);
+    if (pstatus.first.permissionStatus == PermissionStatus.allow) {
+      print("in allow status");
+      File mfile =
+          File("/sdcard/cvdragon/cv_${DateTime.now().toIso8601String()}.pdf");
+      mfile.createSync(recursive: true);
+      finalpdf.copySync(mfile.path);
+      showDialog(
+          context: context,
+          builder: (context) => Dialog(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text("File has been saved to /sdcard/cvdragon/"),
+                ),
+              ));
+    } else {
+      print("in else condition");
+      showDialog(
+          context: context,
+          builder: (context) => Dialog(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text("Permission Not Granted!!"),
+                ),
+              ));
+    }
   }
 
   @override
@@ -156,22 +178,24 @@ class _MyWebViewState extends State<MyWebView> {
         return Stack(
           children: <Widget>[
             Scaffold(
+              backgroundColor: Colors.grey,
               body: Align(
                 alignment: Alignment.center,
                 child: Container(
                   height: MediaQuery.of(context).size.width * 1.5,
                   child: PdfDocumentLoader(
                     filePath: finalpdf.path,
-                    documentBuilder:
-                        (BuildContext context, PdfDocument doc, int pageCount) =>
-                            ListView.builder(
+                    documentBuilder: (BuildContext context, PdfDocument doc,
+                            int pageCount) =>
+                        ListView.builder(
                       itemCount: pageCount,
                       scrollDirection: Axis.horizontal,
                       physics: BouncingScrollPhysics(),
-                      itemBuilder: (BuildContext context, int index) => Container(
+                      itemBuilder: (BuildContext context, int index) =>
+                          Container(
                         width: MediaQuery.of(context).size.width,
                         //height: MediaQuery.of(context).size.width * 4 / 3,
-                        
+
                         child: PdfPageView(
                           pdfDocument: doc,
                           pageNumber: index + 1,
@@ -213,7 +237,11 @@ class _MyWebViewState extends State<MyWebView> {
                   },
                 ),
               ),
-              appBar: AppBar(title: Text("Previrew"),backgroundColor: Colors.black,centerTitle: true,),
+              appBar: AppBar(
+                title: Text("Preview"),
+                backgroundColor: Colors.black,
+                centerTitle: true,
+              ),
             ),
             FirstTimeOverlay(),
           ],
@@ -319,12 +347,25 @@ Future<Map> makeSendData() async {
   for (String key in sections) {
     k = tablename[key].replaceFirst("`cv-", "").replaceFirst("`", "");
 
-    if(["basic-info","languages","contact","introduction","education"].contains(k)) m[k] = await getDefaultSection(key);  
-    else m[k] = await getAddedData(key);
-    
+    if (["basic-info", "languages", "contact", "introduction", "education"]
+        .contains(k))
+      m[k] = await getDefaultSection(key);
+    else
+      m[k] = await getAddedData(key);
   }
   m['color'] = color;
   //print("m is $m");
   print(m["color"]);
+  List<FileSystemEntity> img = await getStoredImage();
+
+  //m["img"] = img[0].path;
+  //print(img[0].path);
+  try {
+    m["img"] = img[0].path;
+    print("WITHIN TRY BLOCKKK!!!!!!!!!!!");
+  } catch (e) {
+    print("WITHIN EXCEPTION B:LOCK!!!!!!!!!!!!!!");
+    m["img"] = "https://pub.dev/static/img/pub-dev-logo-2x.png";
+  }
   return m;
 }
